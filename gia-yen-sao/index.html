@@ -148,6 +148,13 @@
   .hero .container>*,.usp .container>*,.gal-grid>*{min-width:0}
   .hero-img img{height:auto}
   img{height:auto}
+  .menu-btn{display:none;background:none;border:1.5px solid var(--gold);color:var(--gold-light);border-radius:8px;padding:5px 12px;font-size:1.2rem;cursor:pointer;line-height:1;margin-left:auto}
+  @media(max-width:820px){.menu-btn{display:inline-flex}}
+  .mobile-nav{display:none;background:var(--deep)}
+  .mobile-nav.open{display:block}
+  .mobile-nav a{display:block;padding:13px 20px;color:var(--cream);border-top:1px solid rgba(193,163,116,.18);font-weight:500;font-size:.95rem}
+  .mobile-nav a:active{background:rgba(193,163,116,.12)}
+  @media(max-width:560px){.brand span{display:none}}
 </style>
 </head>
 <body>
@@ -166,8 +173,17 @@
       <a href="#uu-dai">Quà tặng</a>
       <a href="#lien-he">Liên hệ</a>
     </nav>
+    <button class="menu-btn" aria-label="Mở menu" onclick="document.getElementById('mnav').classList.toggle('open')">☰</button>
     <a class="btn btn-gold" href="tel:0969850153">☎ 0969.850.153</a>
   </div>
+  <nav class="mobile-nav" id="mnav" onclick="this.classList.remove('open')">
+<a href="/">Trang chủ</a>
+      <a href="#bang-gia">Bảng giá</a>
+      <a href="#hinh-anh">Hình ảnh</a>
+      <a href="#tuy-chon">Tùy chọn</a>
+      <a href="#uu-dai">Quà tặng</a>
+      <a href="#lien-he">Liên hệ</a>
+  </nav>
 </header>
 
 <section class="hero" id="top">
