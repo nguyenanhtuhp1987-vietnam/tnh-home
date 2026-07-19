@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://thenesthouse.com.vn/sitemap.xml
