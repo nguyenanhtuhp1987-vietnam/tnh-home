@@ -70,6 +70,14 @@
   .prose p{margin-bottom:13px;font-size:.97rem}
   .prose h2{font-size:1.35rem;margin:28px 0 10px;padding-left:12px;border-left:4px solid var(--gold)}
   .prose img{border-radius:14px;margin:16px 0}
+  .pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 6px}
+  @media(max-width:900px){.pr-grid{grid-template-columns:repeat(2,1fr)}}
+  .pr{border:1px solid #e8e0cc;border-radius:14px;background:#fff;padding:16px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-height:110px;transition:.2s;text-align:center}
+  .pr:hover{box-shadow:0 10px 26px rgba(14,59,51,.13);transform:translateY(-2px);border-color:var(--gold)}
+  .pr img{height:38px;width:auto;max-width:88%;object-fit:contain;margin:0;border-radius:0}
+  .pr .wm{font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--forest)}
+  .pr small{font-size:.72rem;color:#8a8570}
+  .pr-note{font-size:.82rem;color:#6b7f79;margin-top:8px}
   .prose figcaption{font-size:.78rem;color:#6b7f79;text-align:center;margin-top:-8px;margin-bottom:14px}
   .info{max-width:820px;margin:0 auto}
   .info-row{display:flex;gap:16px;align-items:flex-start;border:1px solid #e8e0cc;border-radius:14px;padding:18px 20px;margin-bottom:14px;background:linear-gradient(170deg,#fffdf6,var(--white))}
@@ -123,7 +131,18 @@
     <h2>Chất lượng có bằng chứng</h2>
     <p>Chúng tôi không nói suông: mẫu yến chưng của The Nest House được kiểm nghiệm tại phòng lab độc lập <strong>NEWCENLAB (công nhận VILAS 1118)</strong> — chì <strong>không phát hiện</strong>, 8/8 chỉ tiêu vi sinh <strong>không phát hiện</strong>, 0g chất béo. Giấy ATVSTP theo pháp nhân mới và kiểm nghiệm dòng yến tinh chế đang được bổ sung trong quý này.</p>
     <h2>Báo chí nói về The Nest House</h2>
-    <p>Tháng 07/2026, loạt bài về hành trình "xây nội lực từ sàn thương mại điện tử" của The Nest House xuất hiện trên <strong>CafeF, Báo Tin Tức (TTXVN), ZNews, Công Thương, Tiếp thị &amp; Tiêu dùng, Thương hiệu &amp; Doanh nhân</strong> và nhiều trang tin khác.</p>
+    <p>Loạt bài về hành trình "xây nội lực từ sàn thương mại điện tử" của The Nest House — bấm vào logo để đọc bài gốc trên từng báo:</p>
+    <div class="pr-grid">
+      <a class="pr" href="https://cafef.vn/bai-hoc-tmdt-giup-thuong-hieu-viet-vuon-ra-the-gioi-188250807092108388.chn" target="_blank" rel="noopener"><img src="/assets/press/cafef.png" alt="Logo CafeF" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://baotintuc.vn/doanh-nghiep-doanh-nhan/xay-noi-luc-tu-lazada-de-dua-yen-viet-vuon-ra-the-gioi-20250806115529166.htm" target="_blank" rel="noopener"><img src="/assets/press/baotintuc.png" alt="Logo Báo Tin Tức — TTXVN" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://tgs.vn/chuyen-doi-so/the-nest-house-dua-yen-viet-ra-the-gioi/" target="_blank" rel="noopener"><span class="wm">Thế Giới Số (TGS)</span><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://trainghiemso.vn/the-nest-house-xay-noi-luc-tu-lazada/" target="_blank" rel="noopener"><img src="/assets/press/trainghiemso.png" alt="Logo Trải Nghiệm Số" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://mediaonlinevn.com/2025/08/06/hanh-trinh-vuon-ra-the-gioi-cua-thuong-hieu-yen-viet-the-nest-house-tu-nen-tang-tmdt-lazada/" target="_blank" rel="noopener"><img src="/assets/press/mediaonline.png" alt="Logo MediaOnline" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://phamhongphuoc.net/2025/08/06/thuong-hieu-the-nest-house-xay-dung-noi-luc-tu-lazada-de-dua-yen-viet-vuon-ra-the-gioi/" target="_blank" rel="noopener"><img src="/assets/press/phamhongphuoc.png" alt="Logo Phạm Hồng Phước" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://nhipsongkinhte.com/kinh-doanh/the-nest-house-xay-noi-luc-tu-lazada-de-dua-yen-viet-vuon-ra-the-gioi/" target="_blank" rel="noopener"><img src="/assets/press/nhipsongkinhte.png" alt="Logo Nhịp Sống Kinh Tế" loading="lazy"><small>Đọc bài viết ➚</small></a>
+      <a class="pr" href="https://tuoitrethudo.vn/the-nest-house-xay-noi-luc-tu-lazada-de-dua-yen-viet-vuon-ra-the-gioi-285469.html" target="_blank" rel="noopener"><span class="wm">Tuổi Trẻ Thủ Đô</span><small>Đọc bài viết ➚</small></a>
+    </div>
+    <p class="pr-note">Và các bài trên <strong>ZNews · Công Thương · Tiếp thị &amp; Tiêu dùng · Cosmolife · Thương hiệu &amp; Doanh nhân</strong> — liên kết đang được cập nhật.</p>
     <h2>Doanh nghiệp tin chọn làm quà biếu</h2>
     <p>Từ 2022 đến nay, The Nest House đồng hành cùng <strong>MISA · PQR · Shinhan Bank · Bệnh viện Hoàn Mỹ · Kiến Hòa · PV GAS · Cống Quỳnh Mart</strong> trong các mùa quà tặng đối tác và nhân viên — kèm hóa đơn chứng từ, in logo doanh nghiệp và thiệp tay theo yêu cầu.</p>
     <figure><img src="/assets/cua-hang-the-nest-house.jpg" alt="Cửa hàng The Nest House tại Tops Market" loading="lazy"><figcaption>Cửa hàng The Nest House — Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM</figcaption></figure>
