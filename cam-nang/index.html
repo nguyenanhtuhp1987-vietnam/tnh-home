@@ -27,9 +27,12 @@
   .head{background:linear-gradient(150deg,var(--forest),var(--deep));color:var(--cream);padding:44px 0;text-align:center}
   .head h1{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.3rem);color:var(--white)}
   .head p{opacity:.9;max-width:620px;margin:10px auto 0;font-size:.95rem}
+
+  /* Lưới dự phòng — dùng khi JS chưa kịp chạy (trình duyệt cũ / crawler không thực thi JS) */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:40px 0}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.grid{grid-template-columns:1fr}}
+
   .card{border:1px solid #e8e0cc;border-radius:16px;overflow:hidden;background:var(--white);transition:.25s;display:flex;flex-direction:column}
   .card:hover{box-shadow:0 14px 34px rgba(14,59,51,.14);transform:translateY(-3px)}
   .card img{aspect-ratio:1.9/1;object-fit:cover}
@@ -37,6 +40,23 @@
   .card h2{font-family:var(--serif);font-size:1.05rem;line-height:1.4}
   .card p{font-size:.85rem;color:#4a5f59;flex:1}
   .card .date{font-size:.76rem;color:#8a8570}
+
+  /* Slide 3 bài/trang — JS bọc các .card có sẵn vào .cn-page rồi thay #cnGrid bằng khung này */
+  .cn-viewport{overflow:hidden;padding:38px 2px 8px}
+  .cn-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+  @media(prefers-reduced-motion:reduce){.cn-track{transition:none}}
+  .cn-page{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:0 2px}
+  @media(max-width:900px){.cn-page{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.cn-page{grid-template-columns:1fr}}
+
+  .cn-pager{display:flex;align-items:center;justify-content:center;gap:18px;padding:22px 0 46px}
+  .cn-nav{width:42px;height:42px;flex:0 0 42px;border-radius:50%;border:1px solid var(--gold);background:var(--white);color:var(--forest);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .cn-nav:hover:not(:disabled){background:var(--forest);color:var(--white);border-color:var(--forest)}
+  .cn-nav:disabled{opacity:.3;cursor:default}
+  .cn-dots{display:flex;align-items:center;gap:8px}
+  .cn-dot{width:9px;height:9px;border-radius:5px;background:#e0d8c0;border:none;cursor:pointer;padding:0;transition:.2s}
+  .cn-dot.active{background:var(--gold);width:24px}
+
   .soon{border-style:dashed;display:flex;flex-direction:column;justify-content:center;padding:26px 22px;background:linear-gradient(170deg,#fffdf6,var(--white))}
   .soon b{font-family:var(--serif);font-size:1rem;margin-bottom:8px}
   .soon p{font-size:.85rem;color:#4a5f59;margin-bottom:6px}
@@ -61,7 +81,7 @@
   <p>Cách chưng, cách dùng, cách chọn yến — viết từ kinh nghiệm làm nghề thật của The Nest House, đăng mới thứ Ba · Năm · Bảy hằng tuần.</p>
 </div>
 <div class="container">
-  <div class="grid">
+  <div class="grid" id="cnGrid">
     <a class="card" href="/cam-nang/cach-chung-yen-sao.html">
       <img src="/assets/100G-soi-dai.jpg" alt="Cách chưng yến sào chuẩn" loading="lazy">
       <div class="body">
@@ -86,9 +106,6 @@
         <span class="date">Thứ Bảy, 25/07/2026</span>
       </div>
     </a>
-  </div>
-</div>
-<footer>© 2026 Công ty TNHH The Nest House Việt Nam — MST 0319562645 · <a href="/">thenesthouse.com.vn</a><br>Trụ sở: Nhà số 4, Đường 3, Khu nhà ở Hưng Phú, 563 Tô Ngọc Vân, P. Tam Bình, TP.HCM · Hotline 0969.850.153 · Email cskh.thenesthouse@gmail.com<br><a href="/chinh-sach/doi-tra/" style="color:inherit">Chính sách đổi trả</a> · <a href="/chinh-sach/van-chuyen/" style="color:inherit">Vận chuyển</a> · <a href="/chinh-sach/thanh-toan/" style="color:inherit">Thanh toán</a> · <a href="/chinh-sach/bao-mat/" style="color:inherit">Bảo mật</a> · <a href="/chinh-sach/dieu-khoan/" style="color:inherit">Điều khoản giao dịch</a>
     <a class="card" href="/cam-nang/tac-dung-cua-yen-sao.html">
       <img src="/assets/100g-yen-tinh-che-soi-ngan.jpg" alt="Tác dụng của yến sào: ai nên dùng, dùng bao nhiêu là đủ" loading="lazy">
       <div class="body">
@@ -96,6 +113,93 @@
         <p>Yến sào bổ ở chỗ nào, ai nên dùng và mỗi lần bao nhiêu gram là đủ — đọc số liệu dinh dưỡng thay vì nghe đồn.</p>
         <span class="date">Thứ Ba, 28/07/2026</span>
       </div>
-    </a></footer>
+    </a>
+  </div>
+</div>
+<footer>© 2026 Công ty TNHH The Nest House Việt Nam — MST 0319562645 · <a href="/">thenesthouse.com.vn</a><br>Trụ sở: Nhà số 4, Đường 3, Khu nhà ở Hưng Phú, 563 Tô Ngọc Vân, P. Tam Bình, TP.HCM · Hotline 0969.850.153 · Email cskh.thenesthouse@gmail.com<br><a href="/chinh-sach/doi-tra/" style="color:inherit">Chính sách đổi trả</a> · <a href="/chinh-sach/van-chuyen/" style="color:inherit">Vận chuyển</a> · <a href="/chinh-sach/thanh-toan/" style="color:inherit">Thanh toán</a> · <a href="/chinh-sach/bao-mat/" style="color:inherit">Bảo mật</a> · <a href="/chinh-sach/dieu-khoan/" style="color:inherit">Điều khoản giao dịch</a></footer>
+<script>
+(function(){
+  var grid = document.getElementById('cnGrid');
+  if(!grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  if(cards.length === 0) return;
+
+  var perPage = 3;
+  var track = document.createElement('div');
+  track.className = 'cn-track';
+  var pages = [];
+  for(var i = 0; i < cards.length; i += perPage){
+    var page = document.createElement('div');
+    page.className = 'cn-page';
+    cards.slice(i, i + perPage).forEach(function(c){ page.appendChild(c); });
+    track.appendChild(page);
+    pages.push(page);
+  }
+
+  var viewport = document.createElement('div');
+  viewport.className = 'cn-viewport';
+  viewport.appendChild(track);
+  grid.replaceWith(viewport);
+
+  var total = pages.length;
+  var idx = 0;
+  var prevBtn, nextBtn, dots = [];
+
+  if(total > 1){
+    var pager = document.createElement('div');
+    pager.className = 'cn-pager';
+
+    prevBtn = document.createElement('button');
+    prevBtn.className = 'cn-nav';
+    prevBtn.setAttribute('aria-label', 'Bài trước');
+    prevBtn.innerHTML = '&#8249;';
+
+    var dotsWrap = document.createElement('div');
+    dotsWrap.className = 'cn-dots';
+    for(var d = 0; d < total; d++){
+      var dot = document.createElement('button');
+      dot.className = 'cn-dot' + (d === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Trang ' + (d + 1) + '/' + total);
+      (function(n){ dot.addEventListener('click', function(){ go(n); }); })(d);
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    }
+
+    nextBtn = document.createElement('button');
+    nextBtn.className = 'cn-nav';
+    nextBtn.setAttribute('aria-label', 'Bài sau');
+    nextBtn.innerHTML = '&#8250;';
+
+    prevBtn.addEventListener('click', function(){ go(idx - 1); });
+    nextBtn.addEventListener('click', function(){ go(idx + 1); });
+
+    pager.appendChild(prevBtn);
+    pager.appendChild(dotsWrap);
+    pager.appendChild(nextBtn);
+    viewport.parentNode.appendChild(pager);
+  }
+
+  function go(n){
+    if(n < 0 || n >= total) return;
+    idx = n;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    if(total > 1){
+      dots.forEach(function(dot, i){ dot.classList.toggle('active', i === idx); });
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === total - 1;
+    }
+  }
+  go(0);
+
+  var startX = null;
+  viewport.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  viewport.addEventListener('touchend', function(e){
+    if(startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40){ go(dx < 0 ? idx + 1 : idx - 1); }
+    startX = null;
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
