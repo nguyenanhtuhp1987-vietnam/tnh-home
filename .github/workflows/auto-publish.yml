@@ -1,0 +1,45 @@
+name: Auto publish bai cam nang toi han
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Scan bai toi han, cap nhat muc luc va sitemap
+        run: python3 _scripts/auto-publish.py | tee /tmp/out.txt
+
+      - name: Doc danh sach bai da dang
+        id: pub
+        run: |
+          LINE=$(grep '^PUBLISHED=' /tmp/out.txt | tail -1)
+          echo "list=${LINE#PUBLISHED=}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit va push len main
+        if: steps.pub.outputs.list != ''
+        run: |
+          git config user.name "TNH Auto Publisher"
+          git config user.email "nguyenanhtuhp1987@gmail.com"
+          git add cam-nang/index.html sitemap.xml
+          git commit -m "Auto publish: ${{ steps.pub.outputs.list }}"
+          git push origin main
+
+      - name: Deploy len gh-pages
+        if: steps.pub.outputs.list != ''
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          git merge origin/gh-pages --no-edit
+          git merge main --no-edit -m "Deploy: ${{ steps.pub.outputs.list }}"
+          git push origin gh-pages

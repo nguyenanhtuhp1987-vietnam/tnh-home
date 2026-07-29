@@ -70,8 +70,13 @@ def main():
             f'      </div>\n'
             f'    </a>'
         )
-        # chèn sau thẻ card cuối cùng trong lưới
-        last = index_html.rfind("</a>")
+        # chèn sau thẻ card cuối cùng trong lưới — CHỈ tìm trong vùng trước <footer>,
+        # vì footer cũng chứa thẻ <a> (rfind toàn file từng chèn nhầm card vào trong footer)
+        pos_footer = index_html.find("<footer")
+        if pos_footer == -1:
+            print("!! Không tìm thấy <footer> để giới hạn vùng chèn", file=sys.stderr)
+            sys.exit(1)
+        last = index_html.rfind("</a>", 0, pos_footer)
         if last == -1:
             print(f"!! Không tìm thấy chỗ chèn card trong index.html", file=sys.stderr)
             sys.exit(1)
