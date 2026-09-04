@@ -65,11 +65,14 @@
   .result-card .prize{font-family:var(--serif);font-size:1.25rem;color:var(--white)}
 
   .compare{display:flex;flex-direction:column;gap:12px;margin-top:16px}
-  .pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:16px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:.2s}
+  .pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:14px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s}
   .pick:hover{border-color:var(--gold)}
   .pick.chosen{border-color:var(--gold-light);background:rgba(193,163,116,.14);box-shadow:0 0 0 2px var(--gold-light) inset}
+  .pick .thumb{width:64px;height:64px;flex:0 0 64px;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,var(--forest),#1a5a4d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid rgba(193,163,116,.4)}
+  .pick .thumb img{width:100%;height:100%;object-fit:cover}
+  .pick .info{flex:1;min-width:0}
   .pick .l{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
-  .pick .p{font-family:var(--serif);font-size:1.08rem;color:var(--white);margin-top:2px}
+  .pick .p{font-family:var(--serif);font-size:1.05rem;color:var(--white);margin-top:2px;line-height:1.25}
   .pick .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold-light)}
   .pick.chosen .check{background:var(--gold-light);color:var(--deep);border-color:var(--gold-light)}
 
@@ -157,11 +160,13 @@
     <h3 style="font-size:.9rem;color:var(--gold-light);text-align:center;margin-top:22px;text-transform:uppercase;letter-spacing:.05em">Chọn phần thưởng bạn muốn nhận</h3>
     <div class="compare">
       <div class="pick" id="pick0" onclick="choosePrize(0)">
-        <div><div class="l">Lượt 1</div><div class="p" id="pickPrize0">—</div></div>
+        <div class="thumb" id="pickThumb0"></div>
+        <div class="info"><div class="l">Lượt 1</div><div class="p" id="pickPrize0">—</div></div>
         <div class="check">✓</div>
       </div>
       <div class="pick" id="pick1" onclick="choosePrize(1)">
-        <div><div class="l">Lượt 2</div><div class="p" id="pickPrize1">—</div></div>
+        <div class="thumb" id="pickThumb1"></div>
+        <div class="info"><div class="l">Lượt 2</div><div class="p" id="pickPrize1">—</div></div>
         <div class="check">✓</div>
       </div>
     </div>
@@ -212,13 +217,13 @@
 
   // ---- prize segments (order = wheel order). prob in %, sums to 100 ----
   var SEGMENTS = [
-    { name: "Hộp yến kim cương",        lines: ["Hộp yến","kim cương"],        prob: 25 },
-    { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5  },
-    { name: "Hũ đông trùng sấy thăng hoa", lines: ["Đông trùng","sấy thăng hoa"], prob: 20 },
-    { name: "Hũ kỷ tử sấy thăng hoa",   lines: ["Kỷ tử","sấy thăng hoa"],      prob: 20 },
-    { name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10 },
-    { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20 },
-    { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0  }
+    { name: "Hộp yến kim cương",        lines: ["Hộp yến","kim cương"],        prob: 25, img: null, icon: "🎁" },
+    { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5,  img: null, icon: "🍵" },
+    { name: "Hũ đông trùng sấy thăng hoa", lines: ["Đông trùng","sấy thăng hoa"], prob: 20, img: "/assets/wheel-dong-trung.jpg", icon: "🍯" },
+    { name: "Hũ kỷ tử sấy thăng hoa",   lines: ["Kỷ tử","sấy thăng hoa"],      prob: 20, img: null, icon: "🍯" },
+    { name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10, img: null, icon: "🏷️" },
+    { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20, img: "/assets/wheel-yen-chung.jpg", icon: "🍯" },
+    { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0,  img: "/assets/wheel-yen-chung.jpg", icon: "🍯" }
   ];
 
   // ---- state ----
@@ -339,11 +344,23 @@
   var formZone = document.getElementById('formZone');
   var hubSpin = document.getElementById('hubSpin');
 
+  function fillThumb(el, seg){
+    if(seg.img){
+      el.innerHTML = '<img src="' + seg.img + '" alt="' + seg.name + '" loading="lazy">';
+    } else {
+      el.textContent = seg.icon || '🎁';
+    }
+  }
+
   function showCompare(){
     stepWheel.hidden = true;
     stepCompare.hidden = false;
-    document.getElementById('pickPrize0').textContent = SEGMENTS[state.spins[0]].name;
-    document.getElementById('pickPrize1').textContent = SEGMENTS[state.spins[1]].name;
+    var seg0 = SEGMENTS[state.spins[0]];
+    var seg1 = SEGMENTS[state.spins[1]];
+    document.getElementById('pickPrize0').textContent = seg0.name;
+    document.getElementById('pickPrize1').textContent = seg1.name;
+    fillThumb(document.getElementById('pickThumb0'), seg0);
+    fillThumb(document.getElementById('pickThumb1'), seg1);
   }
 
   window.choosePrize = function(which){
