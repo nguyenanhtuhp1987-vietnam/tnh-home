@@ -51,7 +51,8 @@
   .pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--gold-light);z-index:5;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
   .wheel-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--gold-light),var(--gold),var(--gold-light));padding:8px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
   #wheelCanvas{display:block;width:100%;height:100%;border-radius:50%;background:var(--white);transition:transform 4.2s cubic-bezier(.17,.67,.16,1)}
-  .hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22%;height:22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--deep);font-size:.8rem;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4;text-align:center;line-height:1.1}
+  .hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:27%;height:27%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--deep);font-size:.58rem;letter-spacing:.02em;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4;text-align:center;line-height:1.25;cursor:pointer;transition:transform .15s;border:2px solid rgba(255,255,255,.5)}
+  .hub:active{transform:translate(-50%,-50%) scale(.93)}
 
   .spin-btn{margin-top:22px;width:100%;max-width:280px;padding:15px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-family:var(--sans);font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;box-shadow:0 8px 22px rgba(193,163,116,.35);transition:.2s}
   .spin-btn:active{transform:scale(.97)}
@@ -92,6 +93,12 @@
 
   footer{margin-top:34px;text-align:center;font-size:.72rem;opacity:.6;line-height:1.7;padding:0 8px}
   footer a{color:var(--gold-light)}
+
+  .float-zalo{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:10px}
+  .float-zalo a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 8px 22px rgba(0,0,0,.3)}
+  .fz{background:#0068ff;color:#fff;font-weight:800;font-size:.8rem!important;font-family:var(--sans)}
+  .fp{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep)}
+
   [hidden]{display:none!important}
 </style>
 </head>
@@ -133,7 +140,7 @@
         <div class="wheel-ring">
           <canvas id="wheelCanvas" width="600" height="600"></canvas>
         </div>
-        <div class="hub">THE<br>NEST</div>
+        <div class="hub" id="hubSpin" title="Chạm để quay">THE<br>NEST<br>HOUSE</div>
       </div>
       <button class="spin-btn" id="spinBtn">🎯 Quay ngay — Lượt 1</button>
       <p class="spin-hint" id="spinHint">Còn 2 lượt quay</p>
@@ -189,6 +196,11 @@
     <a href="/">thenesthouse.com.vn</a> · <a href="/chinh-sach/bao-mat/">Chính sách bảo mật</a>
   </footer>
 
+</div>
+
+<div class="float-zalo">
+  <a class="fz" href="https://zalo.me/0969850153" target="_blank" title="Nhắn Zalo">Zalo</a>
+  <a class="fp" href="tel:0969850153" title="Gọi hotline">☎</a>
 </div>
 
 <script>
@@ -325,6 +337,7 @@
   var stepThanks = document.getElementById('stepThanks');
   var stepAlready = document.getElementById('stepAlready');
   var formZone = document.getElementById('formZone');
+  var hubSpin = document.getElementById('hubSpin');
 
   function showCompare(){
     stepWheel.hidden = true;
@@ -341,9 +354,10 @@
     formZone.hidden = false;
   };
 
-  spinBtn.addEventListener('click', function(){
+  function triggerSpin(){
     if(state.submitted){ renderState(); return; }
     if(state.spins.length >= 2) return;
+    if(spinBtn.disabled) return;
     spinBtn.disabled = true;
     spin(function(idx){
       state.spins.push(idx);
@@ -360,7 +374,9 @@
         setTimeout(showCompare, 900);
       }
     });
-  });
+  }
+  spinBtn.addEventListener('click', triggerSpin);
+  hubSpin.addEventListener('click', triggerSpin);
 
   var phoneInput = document.getElementById('phone');
   var phoneErr = document.getElementById('phoneErr');
