@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>Vòng Quay May Mắn — The Nest House</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Quay số nhận quà từ The Nest House — tỉ lệ trúng 100%. Nhập số điện thoại để nhận quà tặng ngay.">
+<link rel="canonical" href="https://thenesthouse.com.vn/cham-soc-khach-hang/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--forest:#0E3B33;--deep:#072E2C;--gold:#C1A374;--gold-light:#E3C97A;--cream:#F4ECD6;--white:#fff;--serif:'Playfair Display',serif;--sans:'Be Vietnam Pro',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{font-family:var(--sans);color:var(--cream);background:radial-gradient(ellipse at top,#134a40,var(--deep) 60%);line-height:1.6;min-height:100vh}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:480px;margin:0 auto;padding:0 18px 40px}
+  h1,h2{font-family:var(--serif)}
+
+  /* header */
+  .topbar{padding:16px 0;text-align:center;border-bottom:1px solid rgba(193,163,116,.28)}
+  .topbar .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--gold-light);letter-spacing:.02em}
+
+  /* hero */
+  .hero{text-align:center;padding:26px 0 6px}
+  .hero .eyebrow{display:inline-block;background:rgba(193,163,116,.16);border:1px solid var(--gold);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+  .hero h1{font-size:clamp(1.5rem,7vw,2rem);color:var(--white);line-height:1.25}
+  .hero h1 em{font-style:normal;color:var(--gold-light)}
+  .hero p{font-size:.9rem;opacity:.85;margin-top:8px}
+
+  /* countdown */
+  .countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 6px}
+  .countdown .u{background:rgba(255,255,255,.06);border:1px solid rgba(193,163,116,.35);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center}
+  .countdown .u b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--gold-light)}
+  .countdown .u span{display:block;font-size:.62rem;opacity:.75;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+  .cd-note{text-align:center;font-size:.74rem;opacity:.65;margin-bottom:6px}
+
+  /* rules */
+  .rules{background:rgba(255,255,255,.05);border:1px solid rgba(193,163,116,.3);border-radius:16px;padding:16px 18px;margin:20px 0}
+  .rules h3{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+  .rules ul{list-style:none}
+  .rules li{position:relative;padding-left:22px;font-size:.85rem;opacity:.92;margin-bottom:8px}
+  .rules li:last-child{margin-bottom:0}
+  .rules li::before{content:'✓';position:absolute;left:0;top:0;color:var(--gold-light);font-weight:700}
+
+  /* wheel */
+  .wheel-zone{display:flex;flex-direction:column;align-items:center;margin:26px 0 10px}
+  .wheel-outer{position:relative;width:min(84vw,320px);height:min(84vw,320px)}
+  .pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--gold-light);z-index:5;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+  .wheel-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--gold-light),var(--gold),var(--gold-light));padding:8px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  #wheelCanvas{display:block;width:100%;height:100%;border-radius:50%;background:var(--white);transition:transform 4.2s cubic-bezier(.17,.67,.16,1)}
+  .hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22%;height:22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--deep);font-size:.8rem;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4;text-align:center;line-height:1.1}
+
+  .spin-btn{margin-top:22px;width:100%;max-width:280px;padding:15px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-family:var(--sans);font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;box-shadow:0 8px 22px rgba(193,163,116,.35);transition:.2s}
+  .spin-btn:active{transform:scale(.97)}
+  .spin-btn:disabled{opacity:.5;cursor:not-allowed}
+  .spin-hint{text-align:center;font-size:.78rem;opacity:.7;margin-top:10px}
+
+  /* result cards */
+  .result-card{background:rgba(255,255,255,.06);border:1.5px solid var(--gold);border-radius:16px;padding:18px;text-align:center;margin-top:16px}
+  .result-card .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-light);font-weight:700;margin-bottom:6px}
+  .result-card .prize{font-family:var(--serif);font-size:1.25rem;color:var(--white)}
+
+  .compare{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+  .pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:16px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:.2s}
+  .pick:hover{border-color:var(--gold)}
+  .pick.chosen{border-color:var(--gold-light);background:rgba(193,163,116,.14);box-shadow:0 0 0 2px var(--gold-light) inset}
+  .pick .l{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
+  .pick .p{font-family:var(--serif);font-size:1.08rem;color:var(--white);margin-top:2px}
+  .pick .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold-light)}
+  .pick.chosen .check{background:var(--gold-light);color:var(--deep);border-color:var(--gold-light)}
+
+  /* form */
+  .form-zone{margin-top:22px}
+  .form-zone label{display:block;font-size:.82rem;font-weight:600;color:var(--gold-light);margin-bottom:8px}
+  .form-zone input{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(193,163,116,.5);background:rgba(255,255,255,.06);color:var(--white);font-size:1rem;font-family:var(--sans)}
+  .form-zone input::placeholder{color:rgba(244,236,214,.4)}
+  .form-zone input:focus{outline:none;border-color:var(--gold-light)}
+  .err{color:#ff9d9d;font-size:.78rem;margin-top:6px;display:none}
+  .submit-btn{margin-top:14px;width:100%;padding:15px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--forest),#1a5a4d);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;border:1.5px solid var(--gold)}
+  .submit-btn:disabled{opacity:.55;cursor:not-allowed}
+
+  /* thank you */
+  .thanks{text-align:center;padding:20px 0}
+  .thanks .ico{font-size:2.6rem;margin-bottom:8px}
+  .thanks h2{color:var(--white);font-size:1.4rem;margin-bottom:8px}
+  .thanks p{font-size:.9rem;opacity:.85;margin-bottom:18px}
+  .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
+  .call-btn{display:block;margin-top:10px;font-size:.85rem;color:var(--gold-light);text-decoration:underline}
+
+  footer{margin-top:34px;text-align:center;font-size:.72rem;opacity:.6;line-height:1.7;padding:0 8px}
+  footer a{color:var(--gold-light)}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="brand">THE NEST HOUSE</div></header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Tỉ lệ trúng 100%</span>
+    <h1>Vòng Quay <em>May Mắn</em></h1>
+    <p>Quay số nhận quà tặng từ The Nest House — ai quay cũng có quà!</p>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="u"><b id="cdD">00</b><span>Ngày</span></div>
+    <div class="u"><b id="cdH">00</b><span>Giờ</span></div>
+    <div class="u"><b id="cdM">00</b><span>Phút</span></div>
+    <div class="u"><b id="cdS">00</b><span>Giây</span></div>
+  </div>
+  <p class="cd-note">Thời gian tham gia còn lại — hết hạn 31/12/2026</p>
+
+  <div class="rules">
+    <h3>Cách thức tham gia</h3>
+    <ul>
+      <li>Thực hiện tối đa <b>2 lượt quay</b> cho mỗi lượt tham gia</li>
+      <li>Chọn kết quả <b>tốt nhất trong 2 lượt</b> để nhận quà</li>
+      <li>Nhập số điện thoại → nhắn Zalo hotline The Nest House để nhận quà</li>
+      <li>Chương trình áp dụng đến hết <b>31/12/2026</b></li>
+    </ul>
+  </div>
+
+  <!-- WHEEL STEP -->
+  <div id="stepWheel">
+    <div class="wheel-zone">
+      <div class="wheel-outer">
+        <div class="pointer"></div>
+        <div class="wheel-ring">
+          <canvas id="wheelCanvas" width="600" height="600"></canvas>
+        </div>
+        <div class="hub">THE<br>NEST</div>
+      </div>
+      <button class="spin-btn" id="spinBtn">🎯 Quay ngay — Lượt 1</button>
+      <p class="spin-hint" id="spinHint">Còn 2 lượt quay</p>
+    </div>
+
+    <div class="result-card" id="resultCard" hidden>
+      <div class="tag" id="resultTag">Kết quả lượt 1</div>
+      <div class="prize" id="resultPrize">—</div>
+    </div>
+  </div>
+
+  <!-- COMPARE STEP -->
+  <div id="stepCompare" hidden>
+    <h3 style="font-size:.9rem;color:var(--gold-light);text-align:center;margin-top:22px;text-transform:uppercase;letter-spacing:.05em">Chọn phần thưởng bạn muốn nhận</h3>
+    <div class="compare">
+      <div class="pick" id="pick0" onclick="choosePrize(0)">
+        <div><div class="l">Lượt 1</div><div class="p" id="pickPrize0">—</div></div>
+        <div class="check">✓</div>
+      </div>
+      <div class="pick" id="pick1" onclick="choosePrize(1)">
+        <div><div class="l">Lượt 2</div><div class="p" id="pickPrize1">—</div></div>
+        <div class="check">✓</div>
+      </div>
+    </div>
+
+    <div class="form-zone" id="formZone" hidden>
+      <label for="phone">Số điện thoại nhận quà</label>
+      <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
+      <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
+      <button class="submit-btn" id="submitBtn">🎁 Nhận quà ngay</button>
+    </div>
+  </div>
+
+  <!-- THANK YOU STEP -->
+  <div id="stepThanks" class="thanks" hidden>
+    <div class="ico">🎉</div>
+    <h2>Chúc mừng bạn!</h2>
+    <p>Cảm ơn bạn đã tham gia. Nhắn Zalo cho The Nest House kèm số điện thoại vừa đăng ký để nhận quà nhé.</p>
+    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo nhận quà</a>
+    <a class="call-btn" href="tel:0969850153">☎ hoặc gọi 0969.850.153</a>
+  </div>
+
+  <div id="stepAlready" class="thanks" hidden>
+    <div class="ico">🙏</div>
+    <h2>Bạn đã tham gia rồi!</h2>
+    <p>Mỗi khách chỉ tham gia quay số một lần. Nhắn Zalo để The Nest House hỗ trợ nhận quà.</p>
+    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo ngay</a>
+  </div>
+
+  <footer>
+    © 2026 CÔNG TY TNHH THE NEST HOUSE VIỆT NAM — MST 0319562645<br>
+    Cửa hàng: Kios A126-A113-A131, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM<br>
+    <a href="/">thenesthouse.com.vn</a> · <a href="/chinh-sach/bao-mat/">Chính sách bảo mật</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var WEBAPP_URL = "https://script.google.com/macros/s/AKfycby0kmKY3wVK0VUSDtdpI4mMttjs0jBBDGPGEDMjN-8tJb24Q--h9ydftLo20svjlOxL/exec";
+  var STORE_KEY = "tnh_wheel_v1";
+  var DEADLINE = new Date("2026-12-31T23:59:59+07:00").getTime();
+
+  // ---- prize segments (order = wheel order). prob in %, sums to 100 ----
+  var SEGMENTS = [
+    { name: "Hộp yến kim cương",        lines: ["Hộp yến","kim cương"],        prob: 25 },
+    { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5  },
+    { name: "Hũ đông trùng sấy thăng hoa", lines: ["Đông trùng","sấy thăng hoa"], prob: 20 },
+    { name: "Hũ kỷ tử sấy thăng hoa",   lines: ["Kỷ tử","sấy thăng hoa"],      prob: 20 },
+    { name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10 },
+    { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20 },
+    { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0  }
+  ];
+
+  // ---- state ----
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return { spins: [], chosenIndex: null, submitted: false };
+      return JSON.parse(raw);
+    }catch(e){ return { spins: [], chosenIndex: null, submitted: false }; }
+  }
+  function saveState(s){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){}
+  }
+  var state = loadState();
+
+  // ---- countdown ----
+  function tickCountdown(){
+    var now = Date.now();
+    var diff = Math.max(0, DEADLINE - now);
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    document.getElementById('cdD').textContent = String(d).padStart(2,'0');
+    document.getElementById('cdH').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent = String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // ---- wheel drawing ----
+  var canvas = document.getElementById('wheelCanvas');
+  var ctx = canvas.getContext('2d');
+  var SIZE = 600, R = SIZE/2;
+  var segAngle = (2*Math.PI) / SEGMENTS.length;
+  var colors = ['#0E3B33', '#C1A374'];
+
+  function drawWheel(){
+    ctx.clearRect(0,0,SIZE,SIZE);
+    SEGMENTS.forEach(function(seg, i){
+      var start = i*segAngle - Math.PI/2;
+      var end = start + segAngle;
+      ctx.beginPath();
+      ctx.moveTo(R,R);
+      ctx.arc(R,R,R-6,start,end);
+      ctx.closePath();
+      ctx.fillStyle = colors[i%2];
+      ctx.fill();
+      ctx.strokeStyle = '#F4ECD6';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // label
+      var mid = start + segAngle/2;
+      ctx.save();
+      ctx.translate(R,R);
+      ctx.rotate(mid);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = (i%2===0) ? '#F4ECD6' : '#072E2C';
+      ctx.font = '700 26px "Be Vietnam Pro", sans-serif';
+      var lines = seg.lines;
+      var lineH = 30;
+      var startY = -((lines.length-1)*lineH)/2;
+      lines.forEach(function(line, li){
+        ctx.fillText(line, R-30, startY + li*lineH + 8);
+      });
+      ctx.restore();
+    });
+  }
+  drawWheel();
+
+  // ---- weighted pick ----
+  function pickPrizeIndex(){
+    var r = Math.random()*100;
+    var cum = 0;
+    for(var i=0;i<SEGMENTS.length;i++){
+      cum += SEGMENTS[i].prob;
+      if(SEGMENTS[i].prob>0 && r<=cum) return i;
+    }
+    // fallback: pick a random non-zero-prob segment
+    var pool = [];
+    SEGMENTS.forEach(function(s,i){ if(s.prob>0) pool.push(i); });
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+
+  var currentRotation = 0;
+  var spinning = false;
+
+  function spin(cb){
+    if(spinning) return;
+    spinning = true;
+    var idx = pickPrizeIndex();
+    var segCenter = idx*segAngle + segAngle/2; // radians, 0 = 3 o'clock (canvas), matches drawWheel offset by -90 baked visually
+    var segCenterDeg = segCenter * (180/Math.PI);
+    var jitter = (Math.random()-0.5) * (segAngle*(180/Math.PI)*0.5);
+    // pointer sits at top (canvas -90deg / 270deg). Wheel drawn with -90 offset already applied inside drawWheel,
+    // so in DOM-rotation terms segment center visually sits at segCenterDeg measured from top clockwise.
+    var targetDeg = 360*6 + (360 - segCenterDeg + jitter);
+    currentRotation += targetDeg;
+    canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
+    setTimeout(function(){
+      spinning = false;
+      cb(idx);
+    }, 4300);
+  }
+
+  // ---- UI flow ----
+  var spinBtn = document.getElementById('spinBtn');
+  var spinHint = document.getElementById('spinHint');
+  var resultCard = document.getElementById('resultCard');
+  var resultTag = document.getElementById('resultTag');
+  var resultPrize = document.getElementById('resultPrize');
+  var stepWheel = document.getElementById('stepWheel');
+  var stepCompare = document.getElementById('stepCompare');
+  var stepThanks = document.getElementById('stepThanks');
+  var stepAlready = document.getElementById('stepAlready');
+  var formZone = document.getElementById('formZone');
+
+  function showCompare(){
+    stepWheel.hidden = true;
+    stepCompare.hidden = false;
+    document.getElementById('pickPrize0').textContent = SEGMENTS[state.spins[0]].name;
+    document.getElementById('pickPrize1').textContent = SEGMENTS[state.spins[1]].name;
+  }
+
+  window.choosePrize = function(which){
+    state.chosenIndex = which;
+    saveState(state);
+    document.getElementById('pick0').classList.toggle('chosen', which===0);
+    document.getElementById('pick1').classList.toggle('chosen', which===1);
+    formZone.hidden = false;
+  };
+
+  spinBtn.addEventListener('click', function(){
+    if(state.submitted){ renderState(); return; }
+    if(state.spins.length >= 2) return;
+    spinBtn.disabled = true;
+    spin(function(idx){
+      state.spins.push(idx);
+      saveState(state);
+      resultCard.hidden = false;
+      resultTag.textContent = 'Kết quả lượt ' + state.spins.length;
+      resultPrize.textContent = SEGMENTS[idx].name;
+      if(state.spins.length === 1){
+        spinBtn.textContent = '🎯 Quay ngay — Lượt 2 (cuối)';
+        spinHint.textContent = 'Còn 1 lượt quay';
+        spinBtn.disabled = false;
+      } else {
+        spinBtn.disabled = true;
+        setTimeout(showCompare, 900);
+      }
+    });
+  });
+
+  var phoneInput = document.getElementById('phone');
+  var phoneErr = document.getElementById('phoneErr');
+  var submitBtn = document.getElementById('submitBtn');
+
+  function validPhone(v){
+    var clean = v.replace(/[\s.\-]/g,'');
+    return /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(clean);
+  }
+
+  submitBtn.addEventListener('click', function(){
+    var v = phoneInput.value.trim();
+    if(!validPhone(v)){
+      phoneErr.style.display = 'block';
+      return;
+    }
+    phoneErr.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Đang gửi...';
+    var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
+    fetch(WEBAPP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ phone: v, prize: prizeName })
+    }).then(function(){
+      state.submitted = true;
+      state.finalPrize = prizeName;
+      saveState(state);
+      stepCompare.hidden = true;
+      stepThanks.hidden = false;
+    }).catch(function(){
+      // even if network read fails (e.g. opaque redirect), Apps Script already wrote the row server-side.
+      state.submitted = true;
+      state.finalPrize = prizeName;
+      saveState(state);
+      stepCompare.hidden = true;
+      stepThanks.hidden = false;
+    });
+  });
+
+  // ---- resume state on load ----
+  function renderState(){
+    if(state.submitted){
+      stepWheel.hidden = true;
+      stepCompare.hidden = true;
+      stepThanks.hidden = true;
+      stepAlready.hidden = false;
+      return;
+    }
+    if(state.spins.length >= 2){
+      showCompare();
+      if(state.chosenIndex !== null && state.chosenIndex !== undefined){
+        window.choosePrize(state.chosenIndex);
+      }
+      return;
+    }
+    if(state.spins.length === 1){
+      resultCard.hidden = false;
+      resultTag.textContent = 'Kết quả lượt 1';
+      resultPrize.textContent = SEGMENTS[state.spins[0]].name;
+      spinBtn.textContent = '🎯 Quay ngay — Lượt 2 (cuối)';
+      spinHint.textContent = 'Còn 1 lượt quay';
+      // snap wheel visually without re-animating
+      var idx = state.spins[0];
+      var segCenterDeg = (idx*segAngle + segAngle/2) * (180/Math.PI);
+      currentRotation = 360*6 + (360 - segCenterDeg);
+      canvas.style.transition = 'none';
+      canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
+      setTimeout(function(){ canvas.style.transition = ''; }, 50);
+    }
+  }
+  renderState();
+
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://thenesthouse.com.vn/"},{"@type":"ListItem","position":2,"name":"Vòng quay may mắn","item":"https://thenesthouse.com.vn/cham-soc-khach-hang/"}]}</script>
+</body>
+</html>
