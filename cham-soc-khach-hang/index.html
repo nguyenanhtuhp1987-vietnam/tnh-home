@@ -418,20 +418,28 @@
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ phone: v, prize: prizeName })
-    }).then(function(){
-      state.submitted = true;
-      state.finalPrize = prizeName;
-      saveState(state);
-      stepCompare.hidden = true;
-      stepThanks.hidden = false;
-    }).catch(function(){
-      // even if network read fails (e.g. opaque redirect), Apps Script already wrote the row server-side.
-      state.submitted = true;
-      state.finalPrize = prizeName;
-      saveState(state);
-      stepCompare.hidden = true;
-      stepThanks.hidden = false;
-    });
+    }).then(function(res){ return res.json(); })
+      .then(function(json){
+        if(json && json.ok === false && json.error === 'duplicate'){
+          state.submitted = true;
+          saveState(state);
+          stepCompare.hidden = true;
+          stepAlready.hidden = false;
+          return;
+        }
+        state.submitted = true;
+        state.finalPrize = prizeName;
+        saveState(state);
+        stepCompare.hidden = true;
+        stepThanks.hidden = false;
+      }).catch(function(){
+        // network/parse failure (e.g. opaque redirect) — Apps Script already wrote the row server-side if it got that far.
+        state.submitted = true;
+        state.finalPrize = prizeName;
+        saveState(state);
+        stepCompare.hidden = true;
+        stepThanks.hidden = false;
+      });
   });
 
   // ---- resume state on load ----
