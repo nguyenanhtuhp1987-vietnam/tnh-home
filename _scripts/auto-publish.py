@@ -10,6 +10,12 @@ Cách hoạt động:
   3. In ra danh sách bài đã đăng (workflow dùng để đặt tên commit)
 
 Không đụng gì tới bài chưa tới hạn — cứ để sẵn trong repo, đúng ngày mới lên mục lục.
+
+Cổng duyệt bài (thêm 10/2026, app "Duyệt bài"): nếu bài có
+<meta name="tnh-approved" content="pending"> (hoặc "false") thì dù đã tới hạn
+vẫn KHÔNG đăng — chờ duyệt xong (app sửa content thành "true") mới đăng.
+Bài không có thẻ này (bài cũ trước khi có app) coi như đã duyệt, đăng bình
+thường — giữ tương thích ngược, không làm gãy pipeline cũ.
 """
 import re, sys, datetime, pathlib
 
@@ -53,6 +59,10 @@ def main():
             continue
         if f'href="/cam-nang/{path.name}"' in index_html:
             continue  # đã lên mục lục rồi
+        approved = meta(html, "tnh-approved")
+        if approved in ("pending", "false"):
+            print(f"   {path.name}: tới hạn nhưng CHƯA DUYỆT — chờ duyệt trong app")
+            continue
 
         title = first_text(html, r"<h1[^>]*>(.*?)</h1>") or path.stem
         desc = meta(html, "tnh-card-desc") or (meta(html, "description") or "")[:150]
