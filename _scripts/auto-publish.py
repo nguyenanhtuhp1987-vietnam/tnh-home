@@ -16,6 +16,11 @@ Cổng duyệt bài (thêm 10/2026, app "Duyệt bài"): nếu bài có
 vẫn KHÔNG đăng — chờ duyệt xong (app sửa content thành "true") mới đăng.
 Bài không có thẻ này (bài cũ trước khi có app) coi như đã duyệt, đăng bình
 thường — giữ tương thích ngược, không làm gãy pipeline cũ.
+
+Thêm 02/10/2026 (SEO):
+  - Bài có lịch đăng nhưng CHƯA lên mục lục → gắn NOINDEX_TAG (Google không lập chỉ mục bản nháp
+    dù mở được bằng link để duyệt qua Telegram). Lúc đăng → gỡ thẻ, bài được index bình thường.
+  - Mọi trang .html thiếu mã GA4 → tự gắn GTAG ngay sau <head> (bài mới không cần nhớ gắn tay).
 """
 import re, sys, datetime, pathlib
 
@@ -24,6 +29,44 @@ INDEX = ROOT / "cam-nang" / "index.html"
 SITEMAP = ROOT / "sitemap.xml"
 TZ_VN = datetime.timezone(datetime.timedelta(hours=7))
 THU = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật"]
+
+GA_ID = "G-R4S6DMJPX3"  # GA4 property thenesthouse.com.vn (tạo 02/10/2026)
+GTAG = (
+    f'<!-- Google tag (gtag.js) -->\n'
+    f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n'
+    f"<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}"
+    f"gtag('js',new Date());gtag('config','{GA_ID}');</script>\n"
+)
+NOINDEX_TAG = '<meta name="robots" content="noindex" data-tnh="cho-dang">\n'
+
+
+def ensure_gtag():
+    """Gắn GA4 cho mọi trang thiếu. Trả về số trang vừa gắn."""
+    n = 0
+    for path in ROOT.rglob("*.html"):
+        if any(part.startswith((".", "_")) for part in path.relative_to(ROOT).parts):
+            continue
+        html = path.read_text()
+        if GA_ID in html or "<head>" not in html:
+            continue
+        path.write_text(html.replace("<head>\n", "<head>\n" + GTAG, 1) if "<head>\n" in html
+                        else html.replace("<head>", "<head>\n" + GTAG, 1))
+        n += 1
+    return n
+
+
+def set_noindex(path, html, on):
+    """Bật/tắt thẻ noindex chờ đăng. Chỉ đụng thẻ do script này gắn (data-tnh="cho-dang")."""
+    has = 'data-tnh="cho-dang"' in html
+    if on and not has:
+        html = html.replace("</title>\n", "</title>\n" + NOINDEX_TAG, 1) if "</title>\n" in html \
+            else html.replace("</head>", NOINDEX_TAG + "</head>", 1)
+    elif not on and has:
+        html = re.sub(r'<meta name="robots" content="noindex" data-tnh="cho-dang">\n?', "", html)
+    else:
+        return html
+    path.write_text(html)
+    return html
 
 
 def meta(html, name):
@@ -54,15 +97,19 @@ def main():
         except ValueError:
             print(f"!! {path.name}: ngày '{raw_date}' sai định dạng, bỏ qua", file=sys.stderr)
             continue
+        if f'href="/cam-nang/{path.name}"' in index_html:
+            set_noindex(path, html, False)  # đã lên mục lục → chắc chắn được index
+            continue
         if pub > today:
+            set_noindex(path, html, True)
             print(f"   {path.name}: hẹn {pub} — chưa tới hạn")
             continue
-        if f'href="/cam-nang/{path.name}"' in index_html:
-            continue  # đã lên mục lục rồi
         approved = meta(html, "tnh-approved")
         if approved in ("pending", "false"):
+            set_noindex(path, html, True)
             print(f"   {path.name}: tới hạn nhưng CHƯA DUYỆT — chờ duyệt trong app")
             continue
+        html = set_noindex(path, html, False)  # tới hạn + đã duyệt → gỡ noindex rồi đăng
 
         title = first_text(html, r"<h1[^>]*>(.*?)</h1>") or path.stem
         desc = meta(html, "tnh-card-desc") or (meta(html, "description") or "")[:150]
@@ -105,6 +152,9 @@ def main():
     if published:
         INDEX.write_text(index_html)
         SITEMAP.write_text(sitemap)
+    n = ensure_gtag()
+    if n:
+        print(f"✓ Gắn GA4 cho {n} trang")
     print("PUBLISHED=" + ",".join(published))
 
 
