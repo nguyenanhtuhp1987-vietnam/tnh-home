@@ -22,7 +22,7 @@ Thêm 02/10/2026 (SEO):
     dù mở được bằng link để duyệt qua Telegram). Lúc đăng → gỡ thẻ, bài được index bình thường.
   - Mọi trang .html thiếu mã GA4 → tự gắn GTAG ngay sau <head> (bài mới không cần nhớ gắn tay).
 """
-import re, sys, datetime, pathlib
+import re, sys, json, html as htmllib, datetime, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "cam-nang" / "index.html"
@@ -53,6 +53,40 @@ def ensure_gtag():
                         else html.replace("<head>", "<head>\n" + GTAG, 1))
         n += 1
     return n
+
+
+def geo_fix_post(path, html):
+    """Chuẩn GEO cho bài sắp đăng: dateModified (= ngày "Cập nhật dd/mm/yyyy" hiển thị) + og:site_name/og:locale."""
+    new = html
+    m = re.search(r"Cập nhật (\d{2})/(\d{2})/(\d{4})", new)
+    if m and '"dateModified"' not in new:
+        iso = f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+        new = re.sub(r'("datePublished"\s*:\s*"[^"]+")', rf'\1, "dateModified": "{iso}"', new, count=1)
+    add = ""
+    if 'property="og:site_name"' not in new:
+        add += '<meta property="og:site_name" content="The Nest House">\n'
+    if 'property="og:locale"' not in new:
+        add += '<meta property="og:locale" content="vi_VN">\n'
+    ogs = list(re.finditer(r'<meta property="og:[^>]*>\n?', new))
+    if add and ogs:
+        new = new[:ogs[-1].end()] + add + new[ogs[-1].end():]
+    if new != html:
+        path.write_text(new)
+    return new
+
+
+def sync_itemlist(index_html):
+    """Dựng lại ItemList JSON-LD của /cam-nang/ từ các thẻ card (đúng thứ tự trên trang)."""
+    items = [{"@type": "ListItem", "position": i + 1, "url": "https://thenesthouse.com.vn" + href,
+              "name": htmllib.unescape(t)}
+             for i, (href, t) in enumerate(re.findall(r'<a class="card" href="(/cam-nang/[^"]+)">.*?<h2>(.*?)</h2>',
+                                                      index_html, re.S))]
+    ld = ('<script type="application/ld+json">' + json.dumps(
+        {"@context": "https://schema.org", "@type": "ItemList", "@id": "https://thenesthouse.com.vn/cam-nang/#danh-sach",
+         "name": "Cẩm nang yến sào The Nest House", "itemListElement": items}, ensure_ascii=False) + "</script>")
+    old = re.search(r'<script type="application/ld\+json">\{"@context": "https://schema.org", "@type": "ItemList".*?</script>',
+                    index_html, re.S)
+    return index_html.replace(old.group(0), ld) if old else index_html.replace("</head>", ld + "\n</head>", 1)
 
 
 def set_noindex(path, html, on):
@@ -110,6 +144,7 @@ def main():
             print(f"   {path.name}: tới hạn nhưng CHƯA DUYỆT — chờ duyệt trong app")
             continue
         html = set_noindex(path, html, False)  # tới hạn + đã duyệt → gỡ noindex rồi đăng
+        html = geo_fix_post(path, html)
 
         title = first_text(html, r"<h1[^>]*>(.*?)</h1>") or path.stem
         desc = meta(html, "tnh-card-desc") or (meta(html, "description") or "")[:150]
@@ -150,7 +185,7 @@ def main():
         print(f"✓ ĐĂNG: {path.name} — {title}")
 
     if published:
-        INDEX.write_text(index_html)
+        INDEX.write_text(sync_itemlist(index_html))
         SITEMAP.write_text(sitemap)
     n = ensure_gtag()
     if n:
