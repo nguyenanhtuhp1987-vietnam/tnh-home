@@ -56,12 +56,20 @@ def ensure_gtag():
 
 
 def geo_fix_post(path, html):
-    """Chuẩn GEO cho bài sắp đăng: dateModified (= ngày "Cập nhật dd/mm/yyyy" hiển thị) + og:site_name/og:locale."""
+    """Chuẩn GEO cho bài sắp đăng: dateModified (= ngày "Cập nhật dd/mm/yyyy" hiển thị) + og:site_name/og:locale + người kiểm duyệt."""
     new = html
     m = re.search(r"Cập nhật (\d{2})/(\d{2})/(\d{4})", new)
     if m and '"dateModified"' not in new:
         iso = f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
         new = re.sub(r'("datePublished"\s*:\s*"[^"]+")', rf'\1, "dateModified": "{iso}"', new, count=1)
+    # người kiểm duyệt (CEO chốt 02/10/2026): author = tổ chức, editor = Nguyễn Anh Tú
+    new = new.replace("Cẩm nang yến sào · The Nest House · Cập nhật",
+                      "Cẩm nang yến sào · Kiểm duyệt: <strong>Nguyễn Anh Tú</strong>, nhà sáng lập The Nest House · Cập nhật", 1)
+    if '"editor"' not in new:
+        new = new.replace('"author": {"@type": "Organization", "name": "The Nest House"}',
+                          '"author": {"@type": "Organization", "name": "The Nest House", "@id": "https://thenesthouse.com.vn/#organization"}, '
+                          '"editor": {"@type": "Person", "@id": "https://thenesthouse.com.vn/#nguyen-anh-tu", "name": "Nguyễn Anh Tú", '
+                          '"jobTitle": "Nhà sáng lập", "worksFor": {"@id": "https://thenesthouse.com.vn/#organization"}}', 1)
     add = ""
     if 'property="og:site_name"' not in new:
         add += '<meta property="og:site_name" content="The Nest House">\n'
