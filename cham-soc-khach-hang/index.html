@@ -98,7 +98,14 @@
   .thanks p{font-size:.9rem;opacity:.85;margin-bottom:18px}
   .pickup{margin:0 auto 18px;max-width:340px;padding:12px 16px;border:1px solid rgba(193,163,116,.45);border-radius:14px;background:rgba(193,163,116,.08);text-align:left}
   .pickup-title{color:var(--gold-light);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-  .pickup-opt{font-size:.9rem;line-height:1.6}
+  .pickup-opt{display:flex;align-items:center;gap:4px;width:100%;margin:6px 0;padding:11px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+  .pickup-opt:hover{border-color:var(--gold-light)}
+  .pickup-opt.chosen{background:var(--gold);border-color:var(--gold-light);color:var(--deep);font-weight:700}
+  .pickup-opt.chosen::after{content:"✓";margin-left:auto;font-weight:800}
+  .pickup-opt:disabled{opacity:.6;cursor:wait}
+  .pickup-note{font-size:.82rem;opacity:.85;margin-top:8px;line-height:1.5}
+  .pickup-status{font-size:.84rem;margin-top:8px;line-height:1.5;color:var(--gold-light)}
+  .pickup-status.err{color:#ff9d9d}
   .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
   .call-btn{display:block;margin-top:10px;font-size:.85rem;color:var(--gold-light);text-decoration:underline}
 
@@ -199,10 +206,12 @@
     <div class="ico">🎉</div>
     <h2>Chúc mừng bạn!</h2>
     <p>Cảm ơn bạn đã tham gia. Nhắn Zalo cho The Nest House kèm số điện thoại vừa đăng ký để nhận quà nhé.</p>
-    <div class="pickup">
-      <div class="pickup-title">2 cách nhận quà</div>
-      <div class="pickup-opt">🏬&nbsp; Ghé cửa hàng lấy quà</div>
-      <div class="pickup-opt">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</div>
+    <div class="pickup" id="pickupBox">
+      <div class="pickup-title">Chọn cách nhận quà</div>
+      <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
+      <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
+      <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
+      <div class="pickup-status" id="pickupStatus" hidden></div>
     </div>
     <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo nhận quà</a>
     <a class="call-btn" href="tel:0969850153">☎ hoặc gọi 0969.850.153</a>
@@ -467,9 +476,11 @@
         if(!json || json.ok !== true) throw new Error(json && json.error || 'not saved');
         state.submitted = true;
         state.finalPrize = prizeName;
+        state.ref = json.ref || null;
         saveState(state);
         stepCompare.hidden = true;
         stepThanks.hidden = false;
+        renderPickup();
       }).catch(function(){
         // Không lưu được (mạng lỗi / quá 20s / chống bot không qua / gửi quá nhiều lần):
         // KHÔNG báo "Cảm ơn" — giữ nguyên form để khách thử lại hoặc nhắn Zalo.
@@ -508,8 +519,57 @@
     });
   }
 
+  // ---- Khách chọn cách nhận quà → ghi về Sheet (cột G) + báo Telegram cho shop ----
+  var PICKUP_URL = WEBAPP_URL.replace('/wheel/submit', '/wheel/pickup');
+  var PICKUP_LABEL = { store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gửi kèm đơn hàng kế tiếp' };
+  var pickupBox = document.getElementById('pickupBox');
+  var pickupStatus = document.getElementById('pickupStatus');
+  var pickupBtns = [].slice.call(pickupBox.querySelectorAll('.pickup-opt'));
+
+  function renderPickup(){
+    pickupBox.hidden = !state.ref; // khách cũ (trước khi có tính năng) không có ref → ẩn nút, vẫn nhắn Zalo
+    pickupBtns.forEach(function(b){ b.classList.toggle('chosen', b.getAttribute('data-m') === state.pickup); });
+    if(state.pickup){
+      pickupStatus.hidden = false;
+      pickupStatus.className = 'pickup-status';
+      pickupStatus.textContent = '✓ Shop đã ghi nhận: ' + PICKUP_LABEL[state.pickup] + '. Bấm "Nhắn Zalo" bên dưới để báo shop nhé.';
+    }
+  }
+
+  pickupBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var m = btn.getAttribute('data-m');
+      if(!state.ref || m === state.pickup) return;
+      pickupBtns.forEach(function(b){ b.disabled = true; });
+      fetch(PICKUP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ ref: state.ref, method: m })
+      }).then(function(res){ return res.json(); })
+        .then(function(json){
+          if(!json || json.ok !== true) throw new Error('not saved');
+          state.pickup = m;
+          saveState(state);
+          renderPickup();
+        }).catch(function(){
+          pickupStatus.hidden = false;
+          pickupStatus.className = 'pickup-status err';
+          pickupStatus.textContent = 'Chưa lưu được lựa chọn — bạn bấm lại, hoặc nhắn Zalo báo shop giúp nhé.';
+        }).then(function(){ pickupBtns.forEach(function(b){ b.disabled = false; }); });
+    });
+  });
+
   // ---- resume state on load ----
   function renderState(){
+    if(state.submitted && state.ref){
+      // đã gửi SĐT thành công trên máy này → quay lại màn Chúc mừng để chọn/đổi cách nhận quà
+      stepWheel.hidden = true;
+      stepCompare.hidden = true;
+      stepAlready.hidden = true;
+      stepThanks.hidden = false;
+      renderPickup();
+      return;
+    }
     if(state.submitted){
       stepWheel.hidden = true;
       stepCompare.hidden = true;
