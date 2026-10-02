@@ -27,16 +27,21 @@ jobs:
           echo "list=${LINE#PUBLISHED=}" >> "$GITHUB_OUTPUT"
 
       - name: Commit va push len main
-        if: steps.pub.outputs.list != ''
+        id: commit
         run: |
           git config user.name "TNH Auto Publisher"
           git config user.email "nguyenanhtuhp1987@gmail.com"
-          git add cam-nang/index.html sitemap.xml
-          git commit -m "Auto publish: ${{ steps.pub.outputs.list }}"
+          # mục lục + sitemap + bài vừa gỡ/gắn noindex + trang vừa gắn GA4
+          git add -A -- '*.html' sitemap.xml
+          if git diff --cached --quiet; then echo "changed=" >> "$GITHUB_OUTPUT"; exit 0; fi
+          MSG="Auto publish: ${{ steps.pub.outputs.list }}"
+          [ -z "${{ steps.pub.outputs.list }}" ] && MSG="Auto: dong bo noindex bai cho dang / GA4"
+          git commit -m "$MSG"
           git push origin main
+          echo "changed=1" >> "$GITHUB_OUTPUT"
 
       - name: Deploy len gh-pages
-        if: steps.pub.outputs.list != ''
+        if: steps.commit.outputs.changed != ''
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
