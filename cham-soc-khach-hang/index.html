@@ -106,6 +106,9 @@
   .pickup-note{font-size:.82rem;opacity:.85;margin-top:8px;line-height:1.5}
   .pickup-status{font-size:.84rem;margin-top:8px;line-height:1.5;color:var(--gold-light)}
   .pickup-status.err{color:#ff9d9d}
+  .form-pickup{margin:16px 0 0;max-width:none}
+  .form-pickup.need{border-color:#ff9d9d}
+  .pickup-title .req{color:#ff9d9d}
   .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
   .call-btn{display:block;margin-top:10px;font-size:.85rem;color:var(--gold-light);text-decoration:underline}
 
@@ -192,6 +195,13 @@
       <label for="phone">Số điện thoại nhận quà</label>
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
+      <div class="pickup form-pickup" id="formPickup">
+        <div class="pickup-title">Chọn cách nhận quà <span class="req">*</span></div>
+        <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
+        <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
+        <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
+      </div>
+      <div class="err" id="pickupErr">Vui lòng chọn 1 cách nhận quà</div>
       <div id="tsBox" class="ts-box"></div>
       <button class="submit-btn" id="submitBtn">🎁 Nhận quà ngay</button>
       <div class="send-fail" id="sendFail" hidden>
@@ -207,7 +217,7 @@
     <h2>Chúc mừng bạn!</h2>
     <p>Cảm ơn bạn đã tham gia. Nhắn Zalo cho The Nest House kèm số điện thoại vừa đăng ký để nhận quà nhé.</p>
     <div class="pickup" id="pickupBox">
-      <div class="pickup-title">Chọn cách nhận quà</div>
+      <div class="pickup-title">Cách nhận quà · bấm để đổi</div>
       <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
       <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
       <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
@@ -431,6 +441,17 @@
   var phoneErr = document.getElementById('phoneErr');
   var submitBtn = document.getElementById('submitBtn');
   var sendFail = document.getElementById('sendFail');
+  var pickupErr = document.getElementById('pickupErr');
+  var formPickupBox = document.getElementById('formPickup');
+  var formPick = null;
+  [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(b){
+    b.addEventListener('click', function(){
+      formPick = b.getAttribute('data-m');
+      [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+      pickupErr.style.display = 'none';
+      formPickupBox.classList.remove('need');
+    });
+  });
 
   function validPhone(v){
     var clean = v.replace(/[\s.\-]/g,'');
@@ -444,6 +465,13 @@
       return;
     }
     phoneErr.style.display = 'none';
+    // BẮT BUỘC chọn cách nhận quà trước khi gửi (CEO chốt 02/10/2026)
+    if(!formPick){
+      pickupErr.style.display = 'block';
+      formPickupBox.classList.add('need');
+      formPickupBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
     sendFail.hidden = true;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
@@ -455,7 +483,7 @@
       return fetch(WEBAPP_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ phone: v, prize: prizeName, token: token }),
+        body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick }),
         signal: ctrl ? ctrl.signal : undefined
       });
     }).then(function(res){ return res.json(); })
@@ -477,6 +505,7 @@
         state.submitted = true;
         state.finalPrize = prizeName;
         state.ref = json.ref || null;
+        state.pickup = formPick;
         saveState(state);
         stepCompare.hidden = true;
         stepThanks.hidden = false;
