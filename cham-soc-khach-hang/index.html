@@ -488,7 +488,9 @@
           execution: 'execute',
           appearance: 'interaction-only',
           language: 'vi',
-          callback: function(t){ if(tsPending){ tsPending.resolve(t); tsPending = null; } },
+          callback: function(t){ submitBtn.textContent = 'Đang gửi...'; if(tsPending){ tsPending.resolve(t); tsPending = null; } },
+          // Turnstile nghi ngờ → hiện ô tick: chỉ cho khách thấy cần bấm vào đó
+          'before-interactive-callback': function(){ submitBtn.textContent = '☝️ Bấm ô xác minh phía trên để gửi'; },
           'error-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-error')); tsPending = null; } },
           'timeout-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-timeout')); tsPending = null; } }
         });
