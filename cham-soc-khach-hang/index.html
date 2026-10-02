@@ -85,6 +85,8 @@
   .err{color:#ff9d9d;font-size:.78rem;margin-top:6px;display:none}
   .send-fail{margin-top:14px;padding:12px 14px;border:1px solid #ff9d9d;border-radius:12px;background:rgba(255,157,157,.08);color:#F4ECD6;font-size:.86rem;line-height:1.5}
   .send-fail[hidden]{display:none}
+  .ts-box{display:flex;justify-content:center;margin-top:10px}
+  .ts-box:empty{margin-top:0}
   .send-fail .zalo-btn{margin-top:10px}
   .submit-btn{margin-top:14px;width:100%;padding:15px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--forest),#1a5a4d);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;border:1.5px solid var(--gold)}
   .submit-btn:disabled{opacity:.55;cursor:not-allowed}
@@ -107,6 +109,7 @@
 
   [hidden]{display:none!important}
 </style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
 
@@ -178,6 +181,7 @@
       <label for="phone">Số điện thoại nhận quà</label>
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
+      <div id="tsBox" class="ts-box"></div>
       <button class="submit-btn" id="submitBtn">🎁 Nhận quà ngay</button>
       <div class="send-fail" id="sendFail" hidden>
         <strong>⚠️ Chưa gửi được kết quả.</strong> Bạn bấm “Nhận quà ngay” để thử lại, hoặc nhắn Zalo cho The Nest House kèm <b>số điện thoại</b> và <b>tên quà đã chọn</b> — shop vẫn giữ quà cho bạn.
@@ -218,7 +222,10 @@
 <script>
 (function(){
   "use strict";
-  var WEBAPP_URL = "https://script.google.com/macros/s/AKfycby0kmKY3wVK0VUSDtdpI4mMttjs0jBBDGPGEDMjN-8tJb24Q--h9ydftLo20svjlOxL/exec";
+  // Kho gốc = Cloudflare D1 (Worker tnh-khach-hang) → tự chép sang Google Sheet + báo Telegram.
+  // (Apps Script cũ bị Google thu hồi quyền 02/10/2026 → không dùng nữa.)
+  var WEBAPP_URL = "https://tnh-khach-hang.telegram-duyet-worker.workers.dev/wheel/submit";
+  var TURNSTILE_SITEKEY = "0x4AAAAAAFLzdbCdq2a4wlko";
   var STORE_KEY = "tnh_wheel_v1";
   var DEADLINE = new Date("2026-12-31T23:59:59+07:00").getTime();
 
@@ -424,12 +431,15 @@
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
     var ctrl = window.AbortController ? new AbortController() : null;
-    var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
-    fetch(WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ phone: v, prize: prizeName }),
-      signal: ctrl ? ctrl.signal : undefined
+    var timer = null;
+    getTurnstileToken().then(function(token){
+      timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
+      return fetch(WEBAPP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ phone: v, prize: prizeName, token: token }),
+        signal: ctrl ? ctrl.signal : undefined
+      });
     }).then(function(res){ return res.json(); })
       .then(function(json){
         if(timer) clearTimeout(timer);
@@ -440,21 +450,52 @@
           stepAlready.hidden = false;
           return;
         }
-        if(!json || json.ok !== true) throw new Error('not saved');
+        if(json && json.error === 'invalid_phone'){
+          resetSubmit();
+          phoneErr.style.display = 'block';
+          return;
+        }
+        if(!json || json.ok !== true) throw new Error(json && json.error || 'not saved');
         state.submitted = true;
         state.finalPrize = prizeName;
         saveState(state);
         stepCompare.hidden = true;
         stepThanks.hidden = false;
       }).catch(function(){
-        // Không ghi được vào Sheet (Apps Script mất quyền / mạng lỗi / quá 20s):
+        // Không lưu được (mạng lỗi / quá 20s / chống bot không qua / gửi quá nhiều lần):
         // KHÔNG báo "Cảm ơn" — giữ nguyên form để khách thử lại hoặc nhắn Zalo.
         if(timer) clearTimeout(timer);
-        submitBtn.disabled = false;
-        submitBtn.textContent = '🎁 Nhận quà ngay';
+        resetSubmit();
         sendFail.hidden = false;
       });
   });
+
+  function resetSubmit(){
+    submitBtn.disabled = false;
+    submitBtn.textContent = '🎁 Nhận quà ngay';
+    if(window.turnstile && tsWidget !== null){ try{ turnstile.reset(tsWidget); }catch(e){} }
+  }
+
+  // ---- Cloudflare Turnstile: chống bot, chỉ hiện ô xác minh khi nghi ngờ ----
+  var tsWidget = null, tsPending = null;
+  function getTurnstileToken(){
+    return new Promise(function(resolve, reject){
+      if(!window.turnstile) return reject(new Error('turnstile-missing'));
+      tsPending = { resolve: resolve, reject: reject };
+      if(tsWidget === null){
+        tsWidget = turnstile.render('#tsBox', {
+          sitekey: TURNSTILE_SITEKEY,
+          execution: 'execute',
+          appearance: 'interaction-only',
+          language: 'vi',
+          callback: function(t){ if(tsPending){ tsPending.resolve(t); tsPending = null; } },
+          'error-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-error')); tsPending = null; } },
+          'timeout-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-timeout')); tsPending = null; } }
+        });
+      }
+      turnstile.execute(tsWidget);
+    });
+  }
 
   // ---- resume state on load ----
   function renderState(){
