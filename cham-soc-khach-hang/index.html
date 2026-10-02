@@ -83,6 +83,9 @@
   .form-zone input::placeholder{color:rgba(244,236,214,.4)}
   .form-zone input:focus{outline:none;border-color:var(--gold-light)}
   .err{color:#ff9d9d;font-size:.78rem;margin-top:6px;display:none}
+  .send-fail{margin-top:14px;padding:12px 14px;border:1px solid #ff9d9d;border-radius:12px;background:rgba(255,157,157,.08);color:#F4ECD6;font-size:.86rem;line-height:1.5}
+  .send-fail[hidden]{display:none}
+  .send-fail .zalo-btn{margin-top:10px}
   .submit-btn{margin-top:14px;width:100%;padding:15px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--forest),#1a5a4d);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;border:1.5px solid var(--gold)}
   .submit-btn:disabled{opacity:.55;cursor:not-allowed}
 
@@ -176,6 +179,10 @@
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
       <button class="submit-btn" id="submitBtn">🎁 Nhận quà ngay</button>
+      <div class="send-fail" id="sendFail" hidden>
+        <strong>⚠️ Chưa gửi được kết quả.</strong> Bạn bấm “Nhận quà ngay” để thử lại, hoặc nhắn Zalo cho The Nest House kèm <b>số điện thoại</b> và <b>tên quà đã chọn</b> — shop vẫn giữ quà cho bạn.
+        <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo giữ quà</a>
+      </div>
     </div>
   </div>
 
@@ -398,6 +405,7 @@
   var phoneInput = document.getElementById('phone');
   var phoneErr = document.getElementById('phoneErr');
   var submitBtn = document.getElementById('submitBtn');
+  var sendFail = document.getElementById('sendFail');
 
   function validPhone(v){
     var clean = v.replace(/[\s.\-]/g,'');
@@ -411,15 +419,20 @@
       return;
     }
     phoneErr.style.display = 'none';
+    sendFail.hidden = true;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
     fetch(WEBAPP_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ phone: v, prize: prizeName })
+      body: JSON.stringify({ phone: v, prize: prizeName }),
+      signal: ctrl ? ctrl.signal : undefined
     }).then(function(res){ return res.json(); })
       .then(function(json){
+        if(timer) clearTimeout(timer);
         if(json && json.ok === false && json.error === 'duplicate'){
           state.submitted = true;
           saveState(state);
@@ -427,18 +440,19 @@
           stepAlready.hidden = false;
           return;
         }
+        if(!json || json.ok !== true) throw new Error('not saved');
         state.submitted = true;
         state.finalPrize = prizeName;
         saveState(state);
         stepCompare.hidden = true;
         stepThanks.hidden = false;
       }).catch(function(){
-        // network/parse failure (e.g. opaque redirect) — Apps Script already wrote the row server-side if it got that far.
-        state.submitted = true;
-        state.finalPrize = prizeName;
-        saveState(state);
-        stepCompare.hidden = true;
-        stepThanks.hidden = false;
+        // Không ghi được vào Sheet (Apps Script mất quyền / mạng lỗi / quá 20s):
+        // KHÔNG báo "Cảm ơn" — giữ nguyên form để khách thử lại hoặc nhắn Zalo.
+        if(timer) clearTimeout(timer);
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🎁 Nhận quà ngay';
+        sendFail.hidden = false;
       });
   });
 
