@@ -403,5 +403,9 @@
  {"@type":"Question","name":"Vì sao giá yến sào chênh nhau nhiều?","acceptedAnswer":{"@type":"Answer","text":"Giá phụ thuộc loại tổ (thô, tinh chế, rút lông), tỉ lệ sợi, nguồn gốc và quà tặng kèm. Yến giá quá rẻ so với mặt bằng thường bị độn hoặc pha."}},
  {"@type":"Question","name":"Giá yến sào The Nest House đã bao gồm gì?","acceptedAnswer":{"@type":"Answer","text":"Hộp túi quà tặng và nguyên liệu chưng với dòng yến tổ; freeship toàn quốc cho đơn từ 1 triệu; đổi trả trong 90 ngày."}}]}
 </script>
+<script>/* do luot bam Zalo, goi dien, gian hang san -> su kien GA4 (dung lam chuyen doi Google Ads) */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',ev='',ch='';
+if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
+if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
 </body>
 </html>

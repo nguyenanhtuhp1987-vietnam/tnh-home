@@ -38,20 +38,26 @@ GTAG = (
     f"gtag('js',new Date());gtag('config','{GA_ID}');</script>\n"
 )
 NOINDEX_TAG = '<meta name="robots" content="noindex" data-tnh="cho-dang">\n'
+# Đo lượt bấm Zalo / gọi điện / gian hàng sàn → sự kiện GA4, nhập sang Google Ads làm chuyển đổi (thêm 02/10/2026)
+TRACK_FILE = ROOT / "_scripts" / "track-click.html"
+TRACK = TRACK_FILE.read_text().strip() if TRACK_FILE.exists() else ""
 
 
 def ensure_gtag():
-    """Gắn GA4 cho mọi trang thiếu. Trả về số trang vừa gắn."""
+    """Gắn GA4 + đoạn đo lượt bấm cho mọi trang thiếu. Trả về số trang vừa sửa."""
     n = 0
     for path in ROOT.rglob("*.html"):
         if any(part.startswith((".", "_")) for part in path.relative_to(ROOT).parts):
             continue
-        html = path.read_text()
-        if GA_ID in html or "<head>" not in html:
-            continue
-        path.write_text(html.replace("<head>\n", "<head>\n" + GTAG, 1) if "<head>\n" in html
-                        else html.replace("<head>", "<head>\n" + GTAG, 1))
-        n += 1
+        html = orig = path.read_text()
+        if GA_ID not in html and "<head>" in html:
+            html = (html.replace("<head>\n", "<head>\n" + GTAG, 1) if "<head>\n" in html
+                    else html.replace("<head>", "<head>\n" + GTAG, 1))
+        if TRACK and "click_zalo" not in html and "</body>" in html:
+            html = html.replace("</body>", TRACK + "\n</body>", 1)
+        if html != orig:
+            path.write_text(html)
+            n += 1
     return n
 
 
