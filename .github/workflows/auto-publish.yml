@@ -37,6 +37,7 @@ jobs:
           MSG="Auto publish: ${{ steps.pub.outputs.list }}"
           [ -z "${{ steps.pub.outputs.list }}" ] && MSG="Auto: dong bo noindex bai cho dang / GA4"
           git commit -m "$MSG"
+          git pull --rebase origin main
           git push origin main
           echo "changed=1" >> "$GITHUB_OUTPUT"
 
