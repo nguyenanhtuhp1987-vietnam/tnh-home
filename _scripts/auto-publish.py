@@ -41,6 +41,8 @@ NOINDEX_TAG = '<meta name="robots" content="noindex" data-tnh="cho-dang">\n'
 # Đo lượt bấm Zalo / gọi điện / gian hàng sàn → sự kiện GA4, nhập sang Google Ads làm chuyển đổi (thêm 02/10/2026)
 TRACK_FILE = ROOT / "_scripts" / "track-click.html"
 TRACK = TRACK_FILE.read_text().strip() if TRACK_FILE.exists() else ""
+# Khung chat trợ lý (Worker tnh-chatbot) — mọi trang trừ trang vòng quay (thêm 04/10/2026)
+CHAT_TAG = '<script src="/assets/tnh-chat.js" defer></script>'
 
 
 def ensure_gtag():
@@ -55,6 +57,8 @@ def ensure_gtag():
                     else html.replace("<head>", "<head>\n" + GTAG, 1))
         if TRACK and "click_zalo" not in html and "</body>" in html:
             html = html.replace("</body>", TRACK + "\n</body>", 1)
+        if "tnh-chat.js" not in html and "</body>" in html and "cham-soc-khach-hang" not in path.parts:
+            html = html.replace("</body>", CHAT_TAG + "\n</body>", 1)
         if html != orig:
             path.write_text(html)
             n += 1

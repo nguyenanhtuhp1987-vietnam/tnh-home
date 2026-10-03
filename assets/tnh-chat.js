@@ -138,7 +138,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sid: st.sid, page: location.pathname, message: text }),
+      body: JSON.stringify({ sid: st.sid, page: location.host + location.pathname, message: text }),
     })
       .then(function (r) { return r.json(); })
       .then(function (d) {
