@@ -103,6 +103,31 @@ def sync_itemlist(index_html):
     return index_html.replace(old.group(0), ld) if old else index_html.replace("</head>", ld + "\n</head>", 1)
 
 
+def activate_planned_links(index_html):
+    """Link nội bộ đặt sẵn tới bài CHƯA đăng: <li hidden data-tnh-cho="/cam-nang/x.html">Tên</li>
+    → bật thành <li><a href=…>Tên</a></li> khi bài x đã lên mục lục. Trả về số link vừa bật."""
+    n = 0
+    pat = re.compile(r'<li hidden data-tnh-cho="(/cam-nang/[^"]+)">(.*?)</li>', re.S)
+    for path in (ROOT / "cam-nang").glob("*.html"):
+        html = path.read_text()
+        if "data-tnh-cho" not in html:
+            continue
+        def rep(m):
+            nonlocal n
+            if f'href="{m.group(1)}"' in index_html:
+                n += 1
+                return f'<li><a href="{m.group(1)}">{m.group(2)}</a></li>'
+            return m.group(0)
+        new = pat.sub(rep, html)
+        # khối "Đọc thêm" từng toàn link ẩn → hiện tiêu đề khi đã có ít nhất 1 link bật
+        if "data-tnh-cho-khoi" in new:
+            new = re.sub(r'<strong data-tnh-cho-khoi hidden>(Đọc thêm:</strong><ul>(?:(?!</ul>).)*?<li><a )',
+                         r"<strong>\1", new, flags=re.S)
+        if new != html:
+            path.write_text(new)
+    return n
+
+
 def set_noindex(path, html, on):
     """Bật/tắt thẻ noindex chờ đăng. Chỉ đụng thẻ do script này gắn (data-tnh="cho-dang")."""
     has = 'data-tnh="cho-dang"' in html
@@ -201,6 +226,9 @@ def main():
     if published:
         INDEX.write_text(sync_itemlist(index_html))
         SITEMAP.write_text(sitemap)
+    k = activate_planned_links(INDEX.read_text())
+    if k:
+        print(f"✓ Bật {k} link nội bộ đặt sẵn")
     n = ensure_gtag()
     if n:
         print(f"✓ Gắn GA4 cho {n} trang")
