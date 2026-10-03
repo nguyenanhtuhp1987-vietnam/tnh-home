@@ -45,6 +45,7 @@
     ".tc-m.b{background:#fff;border:1px solid #eadfc4;align-self:flex-start;border-bottom-left-radius:4px}" +
     ".tc-m.u{background:#0E3B33;color:#F4ECD6;align-self:flex-end;border-bottom-right-radius:4px}" +
     ".tc-m a{color:#0E3B33;font-weight:600;text-decoration:underline}.tc-m.u a{color:#E3C97A}" +
+    ".tc-qr{padding:6px}.tc-qr img{display:block;width:220px;max-width:100%;border-radius:8px}" +
     ".tc-m.t{color:#7a6c4f;font-style:italic;background:none;border:0;padding:2px 4px}" +
     ".tc-chips{display:flex;flex-wrap:wrap;gap:6px}.tc-chips button{background:#fff;border:1px solid #C1A374;color:#0E3B33;border-radius:999px;padding:6px 11px;font:500 13px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer}" +
     ".tc-zalo{display:block;margin:0 14px 8px;text-align:center;background:#0068FF;color:#fff;border-radius:10px;padding:9px;font-weight:600;text-decoration:none;font-size:14px}" +
@@ -102,7 +103,17 @@
     return s.replace(/\n/g, "<br>");
   }
   function add(role, text, keep) {
-    var m = el("div", "tc-m " + role, fmt(text));
+    var m;
+    if (role === "q") {
+      // Mã VietQR chuyển khoản do máy chủ tạo (chỉ nhận ảnh từ img.vietqr.io)
+      if (String(text).indexOf("https://img.vietqr.io/") !== 0) return null;
+      m = el("div", "tc-m b tc-qr");
+      var img = document.createElement("img");
+      img.src = text;
+      img.alt = "Mã QR chuyển khoản";
+      img.onload = function () { body.scrollTop = body.scrollHeight; };
+      m.appendChild(img);
+    } else m = el("div", "tc-m " + role, fmt(text));
     body.appendChild(m);
     body.scrollTop = body.scrollHeight;
     if (keep !== false) { st.msgs.push([role, text]); save(); }
@@ -145,6 +156,7 @@
         typing.remove();
         if (d && d.ok) {
           add("b", d.reply);
+          if (d.qr) add("q", d.qr);
           if (d.handoff) ga("chat_handoff", { page_path: location.pathname });
         } else {
           var msg = {
