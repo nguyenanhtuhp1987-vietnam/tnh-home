@@ -69,7 +69,7 @@
     '<div class="tc-body"></div>' +
     '<a class="tc-zalo" href="' + ZALO + '" target="_blank" rel="noopener">💬 Nhắn Zalo nhân viên · 0969.850.153</a>' +
     '<div class="tc-ft"><textarea rows="1" maxlength="600" placeholder="Nhập câu hỏi…"></textarea><button type="button">Gửi</button></div>' +
-    '<div class="tc-note">Trợ lý AI có thể nhầm — giá & đơn hàng được nhân viên xác nhận qua Zalo.</div>';
+    '<div class="tc-note">Trợ lý AI trả lời chính xác các thông tin về giá, thông tin sản phẩm, thời gian bảo hành, giao hàng.<br>Quý khách muốn được hỗ trợ gấp, yêu cầu đặc biệt liên hệ nhân viên qua Zalo ở trên.</div>';
   document.body.appendChild(btn);
   document.body.appendChild(box);
 
