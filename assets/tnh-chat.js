@@ -53,7 +53,7 @@
     ".tc-ft textarea:focus{border-color:#0E3B33}" +
     ".tc-ft button{background:#C1A374;color:#0E3B33;border:0;border-radius:10px;padding:0 14px;font-weight:700;cursor:pointer}.tc-ft button:disabled{opacity:.5}" +
     ".tc-note{font-size:11px;color:#8a7d60;text-align:center;padding:0 12px 8px;background:#fff}" +
-    "@media(max-width:480px){.tc-box{right:16px;bottom:16px;height:calc(100vh - 32px)}.tc-btn{right:16px}}";
+    "@media(max-width:480px){.tc-box{right:16px;bottom:16px;height:calc(100vh - 32px)}.tc-btn{right:16px}.tc-ft textarea{font-size:16px}}";
   var style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
