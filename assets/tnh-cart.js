@@ -84,7 +84,7 @@
     ".tnhk-buy{background:#FFFDF7;border:1.5px solid #C1A374;border-radius:16px;padding:18px;margin:18px 0;color:#1d2a27;font-family:'Be Vietnam Pro',system-ui,sans-serif}" +
     ".tnhk-buy h3{margin:0 0 10px;font-size:1.05rem;color:#0E3B33}" +
     ".tnhk-opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}" +
-    ".tnhk-opt{border:1.5px solid #cdbf9f;background:#fff;color:#1d2a27;border-radius:10px;padding:9px 12px;font:600 14px/1.25 inherit;cursor:pointer;text-align:left}" +
+    ".tnhk-opt{border:1.5px solid #cdbf9f;background:#fff;color:#1d2a27;border-radius:10px;padding:9px 12px;font-weight:600;font-size:14px;line-height:1.25;font-family:inherit;cursor:pointer;text-align:left}" +
     ".tnhk-opt small{display:block;font-weight:500;color:#5b6b66;margin-top:2px}" +
     ".tnhk-opt[aria-pressed=true]{border-color:#0E3B33;background:#0E3B33;color:#F4ECD6}.tnhk-opt[aria-pressed=true] small{color:#e6d9b8}" +
     ".tnhk-price{font-size:1.5rem;font-weight:800;color:#0E3B33;margin:4px 0}" +
@@ -92,8 +92,8 @@
     ".tnhk-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}" +
     ".tnhk-qty{display:inline-flex;align-items:center;border:1.5px solid #cdbf9f;border-radius:10px;overflow:hidden;background:#fff}" +
     ".tnhk-qty button{width:38px;height:40px;border:0;background:#f4ecd6;font-size:18px;cursor:pointer;color:#0E3B33}" +
-    ".tnhk-qty input{width:46px;height:40px;border:0;text-align:center;font:600 16px inherit}" +
-    ".tnhk-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:999px;padding:12px 20px;font:700 15px/1 inherit;cursor:pointer;border:1.5px solid #0E3B33;text-decoration:none}" +
+    ".tnhk-qty input{width:46px;height:40px;border:0;text-align:center;font-weight:600;font-size:16px;font-family:inherit}" +
+    ".tnhk-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:999px;padding:12px 20px;font-weight:700;font-size:15px;line-height:1;font-family:inherit;cursor:pointer;border:1.5px solid #0E3B33;text-decoration:none}" +
     ".tnhk-btn.pri{background:#0E3B33;color:#F4ECD6}.tnhk-btn.sec{background:#fff;color:#0E3B33}" +
     ".tnhk-note{font-size:.86rem;color:#4b5a55;margin-top:10px;line-height:1.5}" +
     ".tnhk-toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:#0E3B33;color:#F4ECD6;padding:12px 18px;border-radius:12px;z-index:10000;font:600 14px 'Be Vietnam Pro',system-ui,sans-serif;box-shadow:0 8px 22px rgba(0,0,0,.3)}" +
