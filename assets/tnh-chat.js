@@ -4,6 +4,10 @@
 (function () {
   if (window.__tnhChat) return;
   window.__tnhChat = 1;
+  // Giỏ hàng (nút "🛒 Giỏ hàng" + khối Đặt mua ở trang sản phẩm) — nạp kèm để mọi trang có, không phải sửa từng trang
+  if (!window.__tnhCart && !document.querySelector('script[src*="tnh-cart.js"]')) {
+    var cs = document.createElement("script"); cs.src = "/assets/tnh-cart.js"; cs.defer = true; document.head.appendChild(cs);
+  }
   var API = "https://tnh-chatbot.telegram-duyet-worker.workers.dev/chat";
   var ZALO = "https://zalo.me/0969850153";
   var KEY = "tnh_chat_v1";
