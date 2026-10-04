@@ -222,6 +222,38 @@
     ga("view_item", { currency: "VND", value: P[cur][4], items: [item(cur)] });
   }
 
+  // ---------- Đơn chuyển khoản: chờ nhân viên bấm "💰 Đã nhận tiền" trên Telegram (CEO chốt 05/10/2026) ----------
+  // Hỏi Worker GET /cart/status mỗi 6 giây khi trang đang mở (tối đa 45 phút); có tiền → thay khối QR bằng thông báo đã thanh toán.
+  var PAID_CSS = ".tnhk-paid{background:#e9f6ee;border:1.5px solid #1a7a52;border-radius:14px;padding:16px;margin:12px 0;color:#0f4d33;font-size:1.02rem;line-height:1.5}" +
+    ".tnhk-paid b{font-size:1.15rem}.tnhk-paystat{font-size:.88rem;color:#5b6b66;margin-top:8px}";
+  function watchPaid(root, j) {
+    var st3 = document.createElement("style"); st3.textContent = PAID_CSS; document.head.appendChild(st3);
+    var url = API.replace("/cart/order", "/cart/status") + "?code=" + encodeURIComponent(j.code) + "&t=" + encodeURIComponent(j.token);
+    var until = Date.now() + 45 * 60 * 1000, timer = null, done = false;
+    function tick() {
+      if (done || Date.now() > until) return;
+      var gap = document.hidden ? 15000 : 6000; // trang bị ẩn (khoá màn hình, đổi tab) vẫn hỏi nhưng thưa hơn
+      fetch(url, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (s) {
+        var box = root.querySelector(".tnhk-paywait");
+        if (s && s.ok && s.paid && box) {
+          done = true;
+          box.innerHTML = "<div class='tnhk-paid'>✅ <b>Đã nhận thanh toán " + money(j.total) + "</b><br>Đơn <b>" + esc(j.code) +
+            "</b> đang được đóng gói và gửi đi sớm nhất. Cảm ơn anh/chị đã tin chọn The Nest House!</div>";
+          ga("payment_confirmed", { transaction_id: j.code, currency: "VND", value: j.total });
+          return;
+        }
+        if (s && s.ok && s.cancelled && box) {
+          done = true;
+          box.insertAdjacentHTML("beforeend", "<p class='tnhk-err'>Đơn này đã được huỷ — anh/chị nhắn Zalo 0969.850.153 để được hỗ trợ.</p>");
+          return;
+        }
+        timer = setTimeout(tick, gap);
+      }).catch(function () { timer = setTimeout(tick, 15000); });
+    }
+    document.addEventListener("visibilitychange", function () { if (!document.hidden && !done) { clearTimeout(timer); tick(); } });
+    timer = setTimeout(tick, 4000);
+  }
+
   // ---------- Trang thanh toán ----------
   function checkout(root) {
     root.className = "tnhk-co";
@@ -288,13 +320,17 @@
             (j.gift ? "<p>🎁 Quà tặng kèm: " + esc(j.gift) + "</p>" : "") +
             "<p>Nhân viên The Nest House sẽ gọi/nhắn Zalo số <b>" + esc(phone) + "</b> để xác nhận đơn trong giờ làm việc.</p>";
           if (method === "chuyen_khoan") {
+            ok += "<div class='tnhk-paywait'>";
             ok += j.qr ? "<p><b>Quét mã để chuyển khoản đúng số tiền</b></p><img src='" + esc(j.qr) + "' alt='Mã QR chuyển khoản đơn " + esc(j.code) + "'>" +
               "<p style='text-align:left;display:inline-block'>Ngân hàng: " + esc(j.bank.bank) + "<br>Số tài khoản: <b>" + esc(j.bank.acc) + "</b><br>Chủ tài khoản: " + esc(j.bank.holder) + "<br>Số tiền: <b>" + money(j.bank.amount) + "</b><br>Nội dung: <b>" + esc(j.bank.content) + "</b></p>"
               : "<p>Nhân viên sẽ gửi thông tin chuyển khoản khi xác nhận đơn ạ.</p>";
+            if (j.token) ok += "<p class='tnhk-paystat'>⏳ Chuyển khoản xong, anh/chị cứ để trang này mở — khi The Nest House nhận được tiền, trang sẽ tự báo.</p>";
+            ok += "</div>";
           }
           ok += "<p class='tnhk-note'>Cần hỗ trợ gấp: <a href='https://zalo.me/0969850153'>Zalo 0969.850.153</a></p></div>";
           root.innerHTML = ok;
           window.scrollTo(0, root.offsetTop - 80);
+          if (method === "chuyen_khoan" && j.token) watchPaid(root, j);
         })
         .catch(function (j) {
           btn.disabled = false; btn.textContent = "Đặt hàng — " + money(t.total);
