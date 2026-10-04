@@ -147,7 +147,13 @@
     ".tnhk-bar{height:7px;background:#e6dcc3;border-radius:99px;overflow:hidden;margin:7px 0 2px}.tnhk-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A);border-radius:99px;transition:width .3s}" +
     ".tnhk-ok-l{color:#0E3B33;font-weight:700}" +
     ".tnhk-trust{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:.84rem;color:#33443f}.tnhk-trust span:before{content:'✓ ';color:#1a7a52;font-weight:800}" +
-    "@media(max-width:560px){.tnhk-now{font-size:1.8rem}.tnhk-rib{font-size:12px}}";
+    // nút + ô số lượng: khai báo font đầy đủ (shorthand "font:… inherit" không hợp lệ → trình duyệt bỏ cả dòng, nút ra chữ hệ thống nhỏ)
+    ".tnhk-buy .tnhk-btn{font:700 16px/1.2 'Be Vietnam Pro',system-ui,sans-serif;padding:14px 20px}" +
+    ".tnhk-buy .tnhk-btn.sec{background:linear-gradient(135deg,#C1A374,#E3C97A);border-color:#C1A374;color:#072E2C;box-shadow:0 6px 16px rgba(193,163,116,.35)}" +
+    ".tnhk-buy .tnhk-qty input{font:700 16px 'Be Vietnam Pro',system-ui,sans-serif;color:#0E3B33}" +
+    ".tnhk-buy .tnhk-name{font-size:.86rem!important}" +
+    "@media(max-width:560px){.tnhk-now{font-size:1.85rem}.tnhk-rib{font-size:12px;padding:10px 14px}.tnhk-rib span:last-child{display:none}" +
+    ".tnhk-in{padding:14px 14px 16px}.tnhk-buy .tnhk-opts{gap:8px}.tnhk-opt{padding:9px 8px!important}.tnhk-buy .tnhk-row{gap:8px}}";
   var buyCssDone = false;
 
   function buyBox(box) {
@@ -168,7 +174,7 @@
     var maxOff = Math.max.apply(null, ids.map(pct));
     box.className = "tnhk-buy";
     box.innerHTML =
-      "<div class='tnhk-rib'><span>🏷️ GIÁ ĐẶT TRỰC TIẾP" + (maxOff ? " — <b>RẺ HƠN SÀN ĐẾN " + maxOff + "%</b>" : "") + "</span><span>Giao tận nhà · COD</span></div>" +
+      "<div class='tnhk-rib'><span>🏷️ GIÁ TRỰC TIẾP" + (maxOff ? " · <b>RẺ HƠN SÀN ĐẾN " + maxOff + "%</b>" : "") + "</span><span>Giao tận nhà · COD</span></div>" +
       "<div class='tnhk-in'><div class='tnhk-opts' role='group' aria-label='Chọn quy cách'></div>" +
       "<div class='tnhk-pbox' aria-live='polite'><span class='tnhk-now'></span><span class='tnhk-off'></span></div>" +
       "<div class='tnhk-cmp'></div><div class='tnhk-unit'></div><div class='tnhk-name' style='color:#4b5a55;font-size:.9rem;margin-top:2px'></div>" +
