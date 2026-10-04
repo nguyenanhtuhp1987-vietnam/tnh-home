@@ -54,7 +54,12 @@
     ".tc-ft textarea:focus{border-color:#0E3B33}" +
     ".tc-ft button{background:#C1A374;color:#0E3B33;border:0;border-radius:10px;padding:0 14px;font-weight:700;cursor:pointer}.tc-ft button:disabled{opacity:.5}" +
     ".tc-note{font-size:11px;color:#8a7d60;text-align:center;padding:0 12px 8px;background:#fff}" +
-    "@media(max-width:480px){.tc-box{right:16px;bottom:16px;height:calc(100vh - 32px)}.tc-btn{right:16px}.tc-ft textarea{font-size:16px}}";
+    "@media(max-width:480px){.tc-box{right:16px;bottom:16px;height:calc(100vh - 32px)}.tc-btn{right:16px}.tc-ft textarea{font-size:16px}}" +
+    // cụm nút Zalo/gọi nổi tự thêm (giống hệt trang chủ) cho trang chưa có
+    ".tc-fz{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:10px}" +
+    ".tc-fz a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.3)}" +
+    ".tc-fz .fz{background:#0068ff;color:#fff;font:800 .8rem 'Be Vietnam Pro',system-ui,sans-serif}" +
+    ".tc-fz .fp{background:linear-gradient(135deg,#C1A374,#E3C97A);color:#072E2C}";
   var style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
@@ -73,6 +78,14 @@
     '<div class="tc-note">Trợ lý AI trả lời chính xác các thông tin về giá, thông tin sản phẩm, thời gian bảo hành, giao hàng.<br>Quý khách muốn được hỗ trợ gấp, yêu cầu đặc biệt liên hệ nhân viên qua Zalo ở trên.</div>';
   document.body.appendChild(btn);
   document.body.appendChild(box);
+
+  // Trang chưa có nút Zalo/gọi nổi (bài cẩm nang, trang sản phẩm, chính sách…) → tự thêm cho giống trang chủ
+  // (CEO 04/10/2026). Lượt bấm vẫn được GA4 đếm click_zalo / click_call qua bộ nghe click sẵn trên mỗi trang.
+  if (!document.querySelector(".float-zalo")) {
+    document.body.appendChild(el("div", "float-zalo tc-fz",
+      '<a class="fz" href="' + ZALO + '" target="_blank" rel="noopener" title="Nhắn Zalo">Zalo</a>' +
+      '<a class="fp" href="tel:0969850153" title="Gọi hotline">☎</a>'));
+  }
 
   // Trang có sẵn nút Zalo/gọi nổi góc phải → đặt nút chat lên trên cụm đó
   var fz = document.querySelector(".float-zalo");
