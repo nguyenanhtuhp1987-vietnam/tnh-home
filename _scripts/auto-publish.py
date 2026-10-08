@@ -156,6 +156,53 @@ def first_text(html, pattern):
     return re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else None
 
 
+HOME = ROOT / "index.html"
+HOME_BEGIN = "<!--tnh-bai-moi:begin-->"
+HOME_END = "<!--tnh-bai-moi:end-->"
+
+
+def sync_home_latest(n=6):
+    """Cập nhật khối "Bài mới" ở trang chủ = n bài cẩm nang CÔNG KHAI mới nhất
+    (đã có trong mục lục, không noindex, tnh-publish <= hôm nay). Trả về True nếu index.html đổi."""
+    if not HOME.exists():
+        return False
+    home = HOME.read_text()
+    if HOME_BEGIN not in home or HOME_END not in home:
+        return False
+    today = datetime.datetime.now(TZ_VN).date()
+    idx = INDEX.read_text()
+    posts = []
+    for path in (ROOT / "cam-nang").glob("*.html"):
+        if path.name == "index.html" or f'href="/cam-nang/{path.name}"' not in idx:
+            continue
+        html = path.read_text()
+        if re.search(r'<meta\s+name="robots"\s+content="[^"]*noindex', html):
+            continue
+        if meta(html, "tnh-approved") in ("pending", "false"):
+            continue
+        d = meta(html, "tnh-publish") or "2000-01-01"
+        try:
+            if datetime.date.fromisoformat(d) > today:
+                continue
+        except ValueError:
+            continue
+        title = first_text(html, r"<h1[^>]*>(.*?)</h1>") or path.stem
+        desc = meta(html, "tnh-card-desc") or (meta(html, "description") or "")[:140]
+        posts.append((d, path.name, title, desc))
+    posts.sort(reverse=True)
+    cards = "\n".join(
+        f'      <a class="pcard" href="/cam-nang/{nm}"><h3>{htmllib.escape(t, quote=False)}</h3>'
+        f'<p>{htmllib.escape(ds, quote=False)}</p><span>Đọc tiếp →</span></a>'
+        for _, nm, t, ds in posts[:n]
+    )
+    new = re.sub(re.escape(HOME_BEGIN) + ".*?" + re.escape(HOME_END),
+                 lambda m: HOME_BEGIN + "\n" + cards + "\n      " + HOME_END, home, flags=re.S)
+    if new != home:
+        HOME.write_text(new)
+        return True
+    return False
+
+
 def main():
     today = datetime.datetime.now(TZ_VN).date()
     index_html = INDEX.read_text()
@@ -233,6 +280,8 @@ def main():
     k = activate_planned_links(INDEX.read_text())
     if k:
         print(f"✓ Bật {k} link nội bộ đặt sẵn")
+    if sync_home_latest():
+        print("✓ Cập nhật khối Bài mới ở trang chủ")
     n = ensure_gtag()
     if n:
         print(f"✓ Gắn GA4 cho {n} trang")
