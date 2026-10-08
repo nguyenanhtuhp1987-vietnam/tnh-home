@@ -202,6 +202,20 @@
   .mobile-nav a{display:block;padding:13px 20px;color:var(--cream);border-top:1px solid rgba(193,163,116,.18);font-weight:500;font-size:.95rem}
   .mobile-nav a:active{background:rgba(193,163,116,.12)}
   @media(max-width:560px){.brand span{display:none}}
+  .links-sec{padding-top:0}
+  .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .lgrid a{display:block;background:var(--white);border:1px solid #e8e0cc;border-radius:12px;padding:14px 16px;font-size:.9rem;font-weight:600;line-height:1.35;transition:.2s}
+  .lgrid a:hover{border-color:var(--gold);box-shadow:0 8px 22px rgba(14,59,51,.1)}
+  .lgrid small{display:block;font-weight:500;color:#4a5f59;font-size:.76rem;margin-top:3px}
+  .lh{font-family:var(--serif);font-size:1.1rem;margin:26px 0 12px;padding-left:12px;border-left:4px solid var(--gold)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .pcard{display:flex;flex-direction:column;gap:6px;background:var(--white);border:1px solid #e8e0cc;border-radius:14px;padding:18px;transition:.25s}
+  .pcard:hover{box-shadow:0 14px 34px rgba(14,59,51,.14);transform:translateY(-3px)}
+  .pcard h3{font-size:1rem;line-height:1.35}
+  .pcard p{font-size:.84rem;color:#4a5f59;flex:1}
+  .pcard span{font-size:.84rem;font-weight:700;color:#8a6d3b}
+  @media(max-width:1000px){.lgrid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.lgrid,.pgrid{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://thenesthouse.com.vn/#organization", "founder": {"@type": "Person", "@id": "https://thenesthouse.com.vn/#nguyen-anh-tu", "name": "Nguyễn Anh Tú", "jobTitle": "Nhà sáng lập"}, "name": "The Nest House", "legalName": "Công ty TNHH The Nest House Việt Nam", "taxID": "0319562645", "url": "https://thenesthouse.com.vn/", "logo": "https://thenesthouse.com.vn/assets/logo-the-nest-house.png", "description": "Thương hiệu yến sào cao cấp từ Nha Trang – Khánh Hòa: yến tinh chế, yến chưng sẵn, set quà biếu sức khỏe.", "email": "cskh.thenesthouse@gmail.com", "telephone": "+84969850153", "address": {"@type": "PostalAddress", "streetAddress": "Nhà số 4, Đường 3, Khu nhà ở Hưng Phú, 563 Tô Ngọc Vân", "addressLocality": "Phường Tam Bình", "addressRegion": "TP. Hồ Chí Minh", "addressCountry": "VN"}, "sameAs": ["https://www.facebook.com/thenesthouse", "https://www.instagram.com/the.nesthouse/", "https://www.tiktok.com/@thenesthouse_store", "https://zalo.me/2186834922289862348"]}, {"@type": "Store", "@id": "https://thenesthouse.com.vn/#store", "name": "Cửa hàng yến sào The Nest House", "parentOrganization": {"@id": "https://thenesthouse.com.vn/#organization"}, "image": "https://thenesthouse.com.vn/assets/cua-hang-the-nest-house.jpg", "telephone": "+84969850153", "url": "https://thenesthouse.com.vn/lien-he/", "priceRange": "₫₫", "address": {"@type": "PostalAddress", "streetAddress": "Kios A126-A113-A131, Tầng 2, TTTM Tops Market, 685 Âu Cơ", "addressLocality": "Phường Tân Phú", "addressRegion": "TP. Hồ Chí Minh", "addressCountry": "VN"}, "hasMap": "https://maps.google.com/?q=Tops+Market+685+Au+Co+Tan+Phu+TPHCM"}]}</script>
 </head>
@@ -334,6 +348,56 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="links-sec" id="danh-muc">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:10px">
+      <div class="bar"></div>
+      <h2>Tất cả sản phẩm</h2>
+      <p>Xem chi tiết từng dòng yến — quy cách, số tổ, cách dùng và bảng giá.</p>
+    </div>
+    <h3 class="lh">Yến tinh chế · yến thô · yến chưng</h3>
+    <div class="lgrid">
+      <a href="/yen-sao/tinh-che/soi-dai/">Yến tinh chế sợi dài<small>30g · 50g · 100g</small></a>
+      <a href="/yen-sao/tinh-che/soi-ngan/">Yến tinh chế sợi ngắn<small>30g · 50g · 100g</small></a>
+      <a href="/yen-sao/tinh-che/rut-long/">Yến rút lông nguyên tổ<small>Xuất khẩu · 100g</small></a>
+      <a href="/yen-sao/tinh-che/chan-yen/">Chân yến rút lông<small>Dày, giòn, nở nhiều</small></a>
+      <a href="/yen-sao/tinh-che/yen-vun/">Yến vụn tinh chế<small>Tiết kiệm, chưng nhanh</small></a>
+      <a href="/yen-sao/yen-tho/">Yến thô nguyên tổ Nha Trang<small>Đặt trực tiếp</small></a>
+      <a href="/yen-sao/yen-chung/yen-chung-100/">Yến chưng 100% Hoàng Kim<small>Nguyên chất, không pha</small></a>
+      <a href="/yen-sao/yen-chung/yen-chung-30/">Yến chưng 30% sợi yến<small>Dùng đều cả nhà</small></a>
+    </div>
+    <h3 class="lh">Set quà biếu</h3>
+    <div class="lgrid">
+      <a href="/yen-sao/set-qua-bieu/hop-1-to/">Hộp 1 tổ yến tinh chế<small>Quà tặng nhỏ</small></a>
+      <a href="/yen-sao/set-qua-bieu/sac-xuan-30g/">Set Sắc Xuân 30G<small>Hộp quà lót lụa</small></a>
+      <a href="/yen-sao/set-qua-bieu/tam-giao/">Set quà Tâm Giao<small>2 tổ yến tinh chế</small></a>
+      <a href="/yen-sao/set-qua-bieu/tu-quy/">Set quà Tứ Quý<small>4 hộp yến vụn 3g</small></a>
+    </div>
+    <p style="text-align:center;margin-top:18px"><a href="/yen-sao/" style="color:#8a6d3b;font-weight:700">Xem toàn bộ danh mục sản phẩm →</a></p>
+  </div>
+</section>
+
+<section class="links-sec" id="bai-moi">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:10px">
+      <div class="bar"></div>
+      <h2>Bài mới trong cẩm nang</h2>
+      <p>Kiến thức dùng yến đúng cách, do The Nest House biên soạn.</p>
+    </div>
+    <div class="pgrid">
+      <!--tnh-bai-moi:begin-->
+      <a class="pcard" href="/cam-nang/yen-sao-cho-nguoi-tap-gym.html"><h3>Yến sào cho người tập gym, vận động viên — ăn sao cho đúng</h3><p>Người tập gym cần nhiều đạm phục hồi cơ — yến sào có phải nguồn đạm đáng cân nhắc?</p><span>Đọc tiếp →</span></a>
+      <a class="pcard" href="/cam-nang/cach-chung-yen-tao-do-ky-tu.html"><h3>Cách chưng yến đường phèn táo đỏ kỷ tử: tỉ lệ chuẩn và các bước</h3><p>Tỉ lệ cho 1 chén, 5 bước chưng cách thủy và thời điểm cho táo đỏ, kỷ tử để chén yến thanh ngọt, đẹp màu.</p><span>Đọc tiếp →</span></a>
+      <a class="pcard" href="/cam-nang/qua-20-10-yen-sao.html"><h3>Quà 20/10 ý nghĩa: tặng yến sào cho mẹ, vợ, chị em</h3><p>20/10 sắp tới, tặng gì cho mẹ, vợ, chị em vừa ý nghĩa vừa thiết thực — gợi ý set yến sào theo từng đối tượng.</p><span>Đọc tiếp →</span></a>
+      <a class="pcard" href="/cam-nang/to-yen-gia-lam-tu-gi.html"><h3>Tổ yến giả làm từ gì? Các dạng yến giả, yến độn và cách tự kiểm tra</h3><p>Các dạng tổ yến giả, yến độn hay được nhắc tới, tin đồn yến giả bằng nhựa, nước yến ít yến và cách tự kiểm tra trước khi mua.</p><span>Đọc tiếp →</span></a>
+      <a class="pcard" href="/cam-nang/yen-sao-va-can-nang.html"><h3>Ăn yến sào có tăng cân không? Người giữ dáng ăn được không</h3><p>Yến sào ít calo hay nhiều calo? Người đang giữ dáng, giảm cân có ăn yến sào được không?</p><span>Đọc tiếp →</span></a>
+      <a class="pcard" href="/cam-nang/cach-chung-yen-cho-be.html"><h3>Cách chưng yến cho bé đúng lượng, đúng tuổi</h3><p>Chưng yến cho bé từ 1 tuổi: lượng theo độ tuổi, các bước chưng loãng – ít đường – xé nhỏ, và những điều cần hỏi bác sĩ trước.</p><span>Đọc tiếp →</span></a>
+      <!--tnh-bai-moi:end-->
+    </div>
+    <p style="text-align:center;margin-top:18px"><a href="/cam-nang/" style="color:#8a6d3b;font-weight:700">Xem tất cả bài cẩm nang →</a></p>
   </div>
 </section>
 
