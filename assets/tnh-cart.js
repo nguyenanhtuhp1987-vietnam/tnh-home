@@ -25,12 +25,12 @@
   var P = {
     sd30: ["/yen-sao/tinh-che/soi-dai/", "Yến sợi dài loại 1 — 30G + hộp túi (3 tổ)", G.sd, "30G + hộp túi", 900000, "/assets/30G-yen-tinh-che-hop-xanh.jpg"],
     sd50: ["/yen-sao/tinh-che/soi-dai/", "Yến sợi dài loại 1 — 50G + hộp túi (5 tổ)", G.sd, "50G + hộp túi", 1450000, "/assets/50G-soi-dai.jpg"],
-    sd100: ["/yen-sao/tinh-che/soi-dai/", "Yến sợi dài loại 1 — 100G + hộp túi (10–11 tổ)", G.sd, "100G + hộp túi", 2750000, "/assets/100G-soi-dai.jpg"],
+    sd100: ["/yen-sao/tinh-che/soi-dai/", "Yến sợi dài loại 1 — 100G + hộp túi (10 tổ)", G.sd, "100G + hộp túi", 2750000, "/assets/100G-soi-dai.jpg"],
     sn30: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 30G + hộp túi (4 tổ)", G.sn, "30G + hộp túi", 850000, "/assets/30G-yen-tinh-che-hop-xanh.jpg"],
     sn50: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 50G + hộp túi (7 tổ)", G.sn, "50G + hộp túi", 1250000, "/assets/50G-soi-ngan.jpg"],
-    sn100: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 100G + hộp túi (13–14 tổ)", G.sn, "100G + hộp túi", 2400000, "/assets/100g-yen-tinh-che-soi-ngan.jpg"],
+    sn100: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 100G + hộp túi (14 tổ)", G.sn, "100G + hộp túi", 2400000, "/assets/100g-yen-tinh-che-soi-ngan.jpg"],
     rl50: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 50G + hộp túi (4 tổ)", G.rl, "50G + hộp túi", 1750000, "/assets/100g-yen-tinh-che-rut-long.jpg"],
-    rl100: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 100G + hộp túi (8–9 tổ)", G.rl, "100G + hộp túi", 3400000, "/assets/100g-yen-tinh-che-rut-long.jpg"],
+    rl100: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 100G + hộp túi (9 tổ)", G.rl, "100G + hộp túi", 3400000, "/assets/100g-yen-tinh-che-rut-long.jpg"],
     cy50: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 50G + hộp túi", G.cy, "50G + hộp túi", 1450000, "/assets/chan-yen-rut-long.jpg"],
     cy100: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 100G + hộp túi", G.cy, "100G + hộp túi", 2850000, "/assets/chan-yen-rut-long.jpg"],
     th50: ["/yen-sao/yen-tho/", "Yến thô nguyên tổ — 50G", G.th, "50G", 1000000, "/assets/yen-tho-nguyen-to.jpg"],
@@ -165,7 +165,7 @@
     var cur = ids.indexOf(qc) > -1 ? qc : ids[ids.length > 2 ? ids.length - 1 : 0];
     var was = {}; try { was = JSON.parse(box.getAttribute("data-was") || "{}"); } catch (e) {}
     function pct(id) { return was[id] > P[id][4] ? Math.round((1 - P[id][4] / was[id]) * 100) : 0; }
-    // số tổ ghi trong tên, vd "(10–11 tổ)" → ra khoảng giá/tổ "250.000–275.000đ" (không lấy mỗi cận đẹp nhất để khỏi nói quá)
+    // số tổ ghi trong tên, vd "(10 tổ)" → ra khoảng giá/tổ "250.000–275.000đ" (không lấy mỗi cận đẹp nhất để khỏi nói quá)
     function perTo(id) {
       var m = P[id][1].match(/\((\d+)(?:\s*[–-]\s*(\d+))?\s*tổ\)/); if (!m) return "";
       var r = function (k) { return Math.round(P[id][4] / k / 1000) * 1000; }, lo = r(+(m[2] || m[1])), hi = r(+m[1]);
