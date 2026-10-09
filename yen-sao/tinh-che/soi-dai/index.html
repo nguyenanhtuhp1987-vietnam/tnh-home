@@ -104,6 +104,48 @@
   .note{background:var(--cream);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:.92rem;margin:16px 0}
   @media(max-width:560px){.prose table{font-size:.8rem}.prose th,.prose td{padding:7px 8px}}
 </style>
+<style>
+  /* Trang sản phẩm 100G: hero ảnh + hộp mua + quà + thanh mua dính (bản mẫu 10/10/2026) */
+  .pdp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px;align-items:start}
+  .pdp-img img{border-radius:16px;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #e8e0cc}
+  .pdp-img figcaption{font-size:.78rem;color:#6b7f79;text-align:center;margin-top:8px}
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold);font-weight:700;text-decoration:underline}
+  .offer-card{border:1.5px dashed var(--gold);background:#fffdf6;border-radius:14px;padding:14px 16px;margin:0 0 6px}
+  .offer-card b.t{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+  .offer-card ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+  .offer-card li{padding:3px 0 3px 26px;position:relative}
+  .offer-card li:before{content:"🎁";position:absolute;left:0}
+  .offer-card small{display:block;color:#5b6b66;margin-top:6px;font-size:.8rem}
+  .pdp-info .tnh-proof{margin:12px 0 0!important}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .st{color:#C1A374;letter-spacing:2px;font-size:.95rem;display:block;margin:2px 0}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+  .sbar{position:fixed;left:0;right:0;bottom:0;z-index:9990;background:var(--deep);border-top:2px solid var(--gold);padding:9px 14px calc(9px + env(safe-area-inset-bottom));display:none;align-items:center;gap:12px;transform:translateY(110%);transition:transform .25s}
+  .sbar.on{transform:none}
+  .sbar .nm{flex:1;min-width:0;color:var(--cream);font-size:.78rem;line-height:1.25}
+  .sbar .nm b{display:block;color:var(--gold-light);font-family:var(--sans);font-size:1.12rem;white-space:nowrap}
+  .sbar button{flex:0 0 auto;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font:700 15px/1.1 'Be Vietnam Pro',system-ui,sans-serif;padding:13px 22px;cursor:pointer}
+  @media(max-width:760px){
+    .pdp-grid{grid-template-columns:1fr;gap:16px}
+    .pdp-img img{aspect-ratio:16/9}.pdp-img figcaption{display:none}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}.offer-card{padding:11px 13px}.offer-card small{display:none}
+    .rv-grid{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}
+    .rv-tile .big{grid-row:1/3;min-width:64px}
+    .sbar{display:flex}
+    body.sbar-on{padding-bottom:70px}
+    body.sbar-on .tc-btn,body.sbar-on .tc-fz,body.sbar-on .tnhk-fab{transform:translateY(-70px);transition:transform .25s}
+    .head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}.pdp{padding-top:16px!important}
+  }
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -135,17 +177,33 @@
     <p>10 tổ mỗi 100g · tỉ lệ 50% sợi chuẩn công bố · kèm hộp túi quà tặng và nguyên liệu chưng — đền 10 lần nếu hàng không đúng mô tả.</p>
   </div>
 </div>
-<section style="padding-bottom:20px">
-  <div class="container prose">
-    <p>Mua yến biếu sếp, biếu bố mẹ mà <strong>sợ nhất là bị nói dối về tỉ lệ sợi</strong>: hộp nào cũng ghi "sợi dài cao cấp", nhưng mở ra toàn vụn đắp keo, chưng lên không nở. The Nest House xử lý nỗi lo đó bằng thứ anh/chị <strong>tự kiểm được bằng mắt</strong>: yến sợi dài loại 1 của chúng tôi mỗi 100g chỉ có <strong>10 tổ</strong> — tổ càng ít, sợi càng nhiều. Yến độn thường lên tới 14–20 tổ/100g vì phải đắp vụn cho đủ cân.</p>
-    <div id="dat-mua" data-tnh-buy="/yen-sao/tinh-che/soi-dai/" data-was='{"sd30": 1200000, "sd50": 1800000, "sd100": 3500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
-    <ul class="tnh-proof" style="list-style:none;margin:-4px 0 18px;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
+<section class="pdp" style="padding:26px 0 6px">
+  <div class="container pdp-grid">
+    <figure class="pdp-img"><img src="/assets/100G-soi-dai.jpg" alt="Tổ yến tinh chế sợi dài loại 1 100g The Nest House kèm hộp quà" fetchpriority="high"><figcaption>Set 100g yến tinh chế sợi dài loại 1 — kèm hộp túi quà tặng &amp; nguyên liệu chưng</figcaption></figure>
+    <div class="pdp-info">
+      <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 7.600 đánh giá gian hàng Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
+      <div class="offer-card">
+        <b class="t">Quà tặng khi đặt hộp 100G (2.750.000đ)</b>
+        <ul>
+          <li>Combo 3 quà: đông trùng hạ thảo · kỷ tử · thố chưng sứ</li>
+          <li>6 hũ yến chưng sẵn 70ml</li>
+        </ul>
+        <small>Chọn hộp 100G ở khung bên dưới để nhận quà. Giao trong ngày tại TP.HCM.</small>
+      </div>
+      <div id="dat-mua" data-tnh-buy="/yen-sao/tinh-che/soi-dai/" data-was='{"sd30": 1200000, "sd50": 1800000, "sd100": 3500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
+      <ul class="tnh-proof" style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
       <li>✔ 100g = <strong>10 tổ</strong>, tự đếm khi nhận hộp</li>
       <li>✔ Kiểm tra hàng trước khi thanh toán (COD)</li>
       <li>✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM</li>
-      <li>✔ Giao trong ngày tại TP.HCM</li>
+      <li>✔ Giao trong ngày tại TP.HCM · tỉnh khác 2–5 ngày làm việc (<a href="/chinh-sach/van-chuyen/" style="color:var(--gold);font-weight:600">xem chính sách</a>)</li>
+      <li>✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả</li>
     </ul>
-    <figure><img src="/assets/100G-soi-dai.jpg" alt="Tổ yến tinh chế sợi dài loại 1 100g The Nest House kèm hộp quà" loading="lazy"><figcaption>Set 100g yến tinh chế sợi dài loại 1 — kèm hộp túi quà tặng &amp; nguyên liệu chưng</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section style="padding-top:18px;padding-bottom:20px">
+  <div class="container prose">
+    <p>Mua yến biếu sếp, biếu bố mẹ mà <strong>sợ nhất là bị nói dối về tỉ lệ sợi</strong>: hộp nào cũng ghi "sợi dài cao cấp", nhưng mở ra toàn vụn đắp keo, chưng lên không nở. The Nest House xử lý nỗi lo đó bằng thứ anh/chị <strong>tự kiểm được bằng mắt</strong>: yến sợi dài loại 1 của chúng tôi mỗi 100g chỉ có <strong>10 tổ</strong> — tổ càng ít, sợi càng nhiều. Yến độn thường lên tới 14–20 tổ/100g vì phải đắp vụn cho đủ cân.</p>
 
     <h2 id="danh-cho-ai">Yến sợi dài loại 1 dành cho ai, chưa hợp với ai?</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0 18px">
@@ -207,6 +265,18 @@
     <h2>Mua yến sợi dài chính hãng ở đâu?</h2>
     <p>Đặt trực tiếp qua <a href="https://zalo.me/0969850153" style="color:var(--gold);font-weight:600">Zalo 0969.850.153</a> để nhận <strong>giá ưu đãi hơn niêm yết</strong> (xem <a href="/gia-yen-sao/" style="color:var(--gold);font-weight:600">bảng giá công khai</a>) — freeship đơn từ 1 triệu, đổi trả 90 ngày, kiểm tra hàng trước khi thanh toán. Hoặc bấm <a href="#dat-mua" style="color:var(--gold);font-weight:600">Đặt mua</a> ngay trên trang (COD hoặc chuyển khoản), hoặc ghé cửa hàng tại TTTM Tops Market, 685 Âu Cơ, TP.HCM.</p>
 
+    <div class="rv" id="danh-gia">
+      <h2>Khách đã mua nói gì về The Nest House</h2>
+      <p class="rv-note">Điểm đánh giá của khách mua hàng tại các gian hàng chính thức của The Nest House. Số liệu ghi nhận ngày 09/10/2026; mỗi sàn tự tính điểm theo cách riêng nên chúng tôi không cộng gộp hay làm tròn lại.</p>
+      <div class="rv-grid">
+        <div class="rv-tile"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><div><span class="lbl">Shopee</span><small>7.600 đánh giá · gian hàng The Nest House</small></div></div>
+        <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · gian hàng The Nest House</small></div></div>
+        <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày</small></div></div>
+      </div>
+      <p class="rv-note">Đây là điểm của cả gian hàng, không riêng một sản phẩm. Anh/chị đã mua yến của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý và luôn ẩn tên.</p>
+      <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
+    </div>
+
     <div class="faq" style="background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:20px 22px;margin:26px 0">
       <h2 style="border:none;padding:0;margin:0 0 12px">Câu hỏi thường gặp</h2>
       <p style="font-weight:700;margin-top:12px">100g yến sợi dài có mấy tổ?</p>
@@ -215,6 +285,10 @@
       <p>Ngâm 30–45 phút, chưng cách thủy 15–20 phút hoặc thố điện 40–45 phút; đường phèn cho 5 phút cuối.</p>
       <p style="font-weight:700;margin-top:12px">HSD và bảo quản thế nào?</p>
       <p>Yến tinh chế khô hạn dùng 12 tháng, bảo quản nơi khô ráo thoáng mát. Đổi trả trong 90 ngày nếu không đúng cam kết.</p>
+      <p style="font-weight:700;margin-top:12px">Đặt hộp 100G được tặng gì?</p>
+      <p>Đặt trực tiếp hộp yến sợi dài 100G (2.750.000đ) được tặng combo 3 quà — đông trùng hạ thảo, kỷ tử, thố chưng sứ — và 6 hũ yến chưng sẵn 70ml.</p>
+      <p style="font-weight:700;margin-top:12px">Giao hàng bao lâu, có được kiểm hàng không?</p>
+      <p>Giao trong ngày tại TP.HCM; tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.</p>
       <p style="font-weight:700;margin-top:12px">Giá yến sợi dài bao nhiêu?</p>
       <p>Niêm yết: 30g — 1.200.000đ · 50g — 1.800.000đ · 100g — 3.500.000đ (kèm hộp túi + nguyên liệu). Nhắn Zalo 0969.850.153 nhận giá ưu đãi đặt trực tiếp.</p>
     </div>
@@ -240,11 +314,19 @@
 </footer>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thenesthouse.com.vn/"}, {"@type": "ListItem", "position": 2, "name": "Sản phẩm", "item": "https://thenesthouse.com.vn/yen-sao/"}, {"@type": "ListItem", "position": 3, "name": "Yến tinh chế sợi dài", "item": "https://thenesthouse.com.vn/yen-sao/tinh-che/soi-dai/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Tổ yến tinh chế sợi dài loại 1 The Nest House", "image": "/assets/100G-soi-dai.jpg", "description": "Tổ yến tinh chế sợi dài loại 1 Nha Trang – Khánh Hòa: 10 tổ/100g, 50% sợi, kèm hộp túi quà tặng và nguyên liệu chưng. HSD 12 tháng, đổi trả 90 ngày.", "brand": {"@type": "Brand", "name": "The Nest House"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "VND", "lowPrice": "900000", "highPrice": "2750000", "offerCount": "3", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Công ty TNHH The Nest House Việt Nam"}}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "100g yến sợi dài có mấy tổ?", "acceptedAnswer": {"@type": "Answer", "text": "10 tổ. Tổ càng ít trên cùng khối lượng nghĩa là sợi càng nhiều — khách tự đếm được khi nhận hộp."}}, {"@type": "Question", "name": "Yến sợi dài chưng bao lâu?", "acceptedAnswer": {"@type": "Answer", "text": "Ngâm 30–45 phút, chưng cách thủy 15–20 phút hoặc thố chưng điện 40–45 phút; đường phèn cho vào 5 phút cuối."}}, {"@type": "Question", "name": "Giá yến sợi dài The Nest House bao nhiêu?", "acceptedAnswer": {"@type": "Answer", "text": "Giá đặt trực tiếp: 30g 900.000đ, 50g 1.450.000đ, 100g 2.750.000đ (niêm yết sàn 1.200.000đ / 1.800.000đ / 3.500.000đ) — kèm hộp túi và nguyên liệu chưng. Đặt mua ngay trên trang hoặc nhắn Zalo 0969.850.153."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "100g yến sợi dài có mấy tổ?", "acceptedAnswer": {"@type": "Answer", "text": "10 tổ. Tổ càng ít trên cùng khối lượng nghĩa là sợi càng nhiều — khách tự đếm được khi nhận hộp."}}, {"@type": "Question", "name": "Yến sợi dài chưng bao lâu?", "acceptedAnswer": {"@type": "Answer", "text": "Ngâm 30–45 phút, chưng cách thủy 15–20 phút hoặc thố chưng điện 40–45 phút; đường phèn cho vào 5 phút cuối."}}, {"@type": "Question", "name": "Đặt hộp 100G được tặng gì?", "acceptedAnswer": {"@type": "Answer", "text": "Đặt trực tiếp hộp yến sợi dài 100G (2.750.000đ) được tặng combo 3 quà — đông trùng hạ thảo, kỷ tử, thố chưng sứ — và 6 hũ yến chưng sẵn 70ml."}}, {"@type": "Question", "name": "Giao hàng bao lâu, có được kiểm hàng không?", "acceptedAnswer": {"@type": "Answer", "text": "Giao trong ngày tại TP.HCM; tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Khách được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận và The Nest House gửi lại đơn mới."}}, {"@type": "Question", "name": "Giá yến sợi dài The Nest House bao nhiêu?", "acceptedAnswer": {"@type": "Answer", "text": "Giá đặt trực tiếp: 30g 900.000đ, 50g 1.450.000đ, 100g 2.750.000đ (niêm yết sàn 1.200.000đ / 1.800.000đ / 3.500.000đ) — kèm hộp túi và nguyên liệu chưng. Đặt mua ngay trên trang hoặc nhắn Zalo 0969.850.153."}}]}</script>
 <script>/* do luot bam Zalo, goi dien, gian hang san -> su kien GA4 (dung lam chuyen doi Google Ads) */
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',ev='',ch='';
 if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
 if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
+<div class="sbar" id="sbar" aria-label="Mua nhanh"><div class="nm"><span id="sbar-n">Hộp 100G sợi dài</span><b id="sbar-p">2.750.000đ</b></div><button type="button" id="sbar-b">Mua ngay</button></div>
+<script>/* thanh mua dính trên điện thoại: hiện khi khung "Đặt mua" khuất khỏi màn hình; bấm = bấm "Mua ngay" của khung (cùng đường thêm giỏ + sự kiện Pixel) */
+(function(){var box=document.getElementById('dat-mua'),bar=document.getElementById('sbar');if(!box||!bar||!('IntersectionObserver' in window))return;
+var inView=true,ready=false;function upd(){var on=ready&&!inView;bar.classList.toggle('on',on);document.body.classList.toggle('sbar-on',on);}
+function sync(){var n=box.querySelector('.tnhk-name'),p=box.querySelector('.tnhk-now');if(n&&p){ready=true;document.getElementById('sbar-p').textContent=p.textContent;var t=n.textContent.replace(/ \+ hộp túi/,'').replace(/^Yến sợi dài loại 1 — /,'Sợi dài ');document.getElementById('sbar-n').textContent=t;}upd();}
+new MutationObserver(sync).observe(box,{childList:true,subtree:true,characterData:true});sync();
+new IntersectionObserver(function(e){inView=e[0].isIntersecting;upd();},{threshold:0.05}).observe(box);
+document.getElementById('sbar-b').onclick=function(){var b=box.querySelector('[data-act=now]');if(b)b.click();else location.href='https://zalo.me/0969850153';};})();</script>
 <script src="/assets/tnh-chat.js" defer></script>
 </body>
 </html>
