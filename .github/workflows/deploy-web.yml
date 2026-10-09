@@ -1,0 +1,88 @@
+# Đưa bản sửa website lên chạy thật — CHỈ chạy khi CEO bấm ✅ trên Telegram (Worker tnh-duyet-bai gọi workflow_dispatch).
+# Không chạy khi push. Cách làm giống bước cuối của auto-publish.yml: gộp commit trên main vào gh-pages (GitHub Pages chạy từ gh-pages).
+# mode=deploy   : gộp ĐÚNG commit `sha` (phải nằm trên main) vào gh-pages.
+# mode=rollback : khôi phục nội dung gh-pages về đúng commit `sha` (bản đang chạy trước đó) bằng 1 commit mới — không xoá lịch sử.
+# Thư mục .github KHÔNG bao giờ bị đổi trên gh-pages (token mặc định không được phép đẩy file workflow lên nhánh).
+name: deploy-web
+run-name: "deploy-web · ${{ inputs.note }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "deploy (đưa lên) hoặc rollback (quay lại)"
+        required: true
+        type: choice
+        options: [deploy, rollback]
+      sha:
+        description: "Mã commit (deploy: trên main · rollback: bản gh-pages cần khôi phục)"
+        required: true
+        type: string
+      note:
+        description: "Mã yêu cầu (bot gửi)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+# cùng nhóm với đăng bài tự động để hai bên không đẩy gh-pages cùng lúc
+concurrency:
+  group: tnh-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MODE: ${{ inputs.mode }}
+      SHA: ${{ inputs.sha }}
+      NOTE: ${{ inputs.note }}
+    steps:
+      - name: Kiểm tra đầu vào
+        run: |
+          [[ "$SHA" =~ ^[0-9a-f]{7,40}$ ]] || { echo "sha không hợp lệ"; exit 1; }
+          [[ "$NOTE" =~ ^[A-Za-z0-9]{3,20}$ ]] || { echo "mã yêu cầu không hợp lệ"; exit 1; }
+
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: Lấy main mới nhất
+        run: |
+          git fetch origin main gh-pages
+          git config user.name "TNH Web Deploy"
+          git config user.email "nguyenanhtuhp1987@gmail.com"
+
+      - name: Đưa lên (gộp main vào gh-pages)
+        if: env.MODE == 'deploy'
+        run: |
+          git merge-base --is-ancestor "$SHA" origin/main || { echo "Commit $SHA không nằm trên main — dừng"; exit 1; }
+          if git merge-base --is-ancestor "$SHA" HEAD; then echo "gh-pages đã có commit này rồi — không có gì để đưa lên"; exit 1; fi
+          if ! git merge --no-commit --no-ff "$SHA"; then echo "Gộp bị xung đột — dừng, gh-pages giữ nguyên"; git merge --abort; exit 1; fi
+          # giữ nguyên .github của gh-pages (không đẩy file workflow bằng token mặc định)
+          git reset -q HEAD -- .github
+          git checkout -- .github 2>/dev/null || true
+          git clean -fdq .github
+          git commit -m "Deploy web (${NOTE}): $(git rev-parse --short "$SHA")"
+
+      - name: Quay lại (khôi phục nội dung gh-pages cũ)
+        if: env.MODE == 'rollback'
+        run: |
+          git merge-base --is-ancestor "$SHA" HEAD || { echo "Commit $SHA không nằm trong lịch sử gh-pages — dừng"; exit 1; }
+          git read-tree -u --reset "$SHA"
+          git reset -q HEAD -- .github
+          git checkout -- .github 2>/dev/null || true
+          git clean -fdq .github
+          git diff --cached --quiet && { echo "Nội dung đã giống bản $SHA — không có gì để quay lại"; exit 1; }
+          git commit -m "Rollback web (${NOTE}): khôi phục nội dung $(git rev-parse --short "$SHA")"
+
+      - name: Kiểm tra nhanh trước khi đẩy
+        run: |
+          for f in index.html CNAME .nojekyll sitemap.xml; do [ -f "$f" ] || { echo "Thiếu $f — dừng, không đẩy"; exit 1; }; done
+          grep -q "thenesthouse.com.vn" CNAME
+
+      - name: Đẩy lên gh-pages
+        run: git push origin HEAD:gh-pages
