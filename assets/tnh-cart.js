@@ -12,10 +12,14 @@
   var API = "https://tnh-chatbot.telegram-duyet-worker.workers.dev/cart/order";
   var KEY = "tnh_cart_v1";
   var SHIP = 50000, FREESHIP = 1000000;
+  // Quà theo mốc đơn (CEO 10/10/2026): từ 1.250.000đ tặng combo 3 quà; từ 2.400.000đ tặng combo 3 quà + 6 hũ yến chưng sẵn.
+  // Quà NHÂN theo giá trị đơn: mỗi `from` đồng là 1 phần (vd 2 hộp 100G = 5,5tr → 2 phần). Chỉ tính yến tinh chế · thô · vụn · set quà biếu;
+  // yến chưng sẵn KHÔNG nằm trong chương trình (NOGIFT). Worker (cart.js/payment.js) phải dùng cùng công thức.
   var GIFTS = [
-    { from: 2400000, text: "Combo 3 quà (đông trùng · kỷ tử · thố chưng sứ) + yến chưng sẵn" },
+    { from: 2400000, text: "Combo 3 quà (đông trùng · kỷ tử · thố chưng sứ) + 6 hũ yến chưng sẵn 70ml" },
     { from: 1250000, text: "Combo 3 quà (đông trùng · kỷ tử · thố chưng sứ)" }
   ];
+  var NOGIFT = { hk15: 1, hk10: 1, yc6: 1, yc10: 1 };
   var G = {
     sd: "🕊️ Yến tinh chế sợi dài loại 1", sn: "🕊️ Yến tinh chế sợi ngắn", rl: "👑 Yến rút lông xuất khẩu",
     th: "🌿 Yến thô nguyên tổ", vun: "🍥 Yến vụn tinh chế", cy: "🪺 Chân yến rút lông",
@@ -83,8 +87,8 @@
   function totals(c) {
     var sub = c.reduce(function (a, x) { return a + P[x.id][4] * x.sl; }, 0);
     var ship = sub >= FREESHIP || !sub ? 0 : SHIP;
-    var gift = null;
-    for (var i = 0; i < GIFTS.length; i++) if (sub >= GIFTS[i].from) { gift = GIFTS[i]; break; }
+    var gsub = c.reduce(function (a, x) { return a + (NOGIFT[x.id] ? 0 : P[x.id][4] * x.sl); }, 0), gift = null;
+    for (var i = 0; i < GIFTS.length; i++) if (gsub >= GIFTS[i].from) { gift = { text: GIFTS[i].text, n: Math.floor(gsub / GIFTS[i].from) }; break; }
     return { sub: sub, ship: ship, total: sub + ship, gift: gift };
   }
 
@@ -213,10 +217,11 @@
       nm.textContent = P[cur][1];
       // freeship + quà theo mốc, tính trên tạm tính của khối này (giỏ có món khác thì ở trang giỏ hàng tính lại đủ)
       var sub = pr * q, nxt = null, got = null;
-      for (var i = GIFTS.length - 1; i >= 0; i--) { if (sub >= GIFTS[i].from) got = GIFTS[i]; else if (!nxt) nxt = GIFTS[i]; }
+      if (!NOGIFT[cur]) for (var i = GIFTS.length - 1; i >= 0; i--) { if (sub >= GIFTS[i].from) got = GIFTS[i]; else if (!nxt) nxt = GIFTS[i]; }
       var lines = [];
       lines.push(sub >= FREESHIP ? "<span class='tnhk-ok-l'>🚚 Được freeship toàn quốc</span>" : "🚚 Mua thêm <b>" + money(FREESHIP - sub) + "</b> để được freeship");
-      if (got) lines.push("<span class='tnhk-ok-l'>🎁 Đơn này được tặng: " + esc(got.text) + "</span>");
+      var gn = got ? Math.floor(sub / got.from) : 0;
+      if (got) lines.push("<span class='tnhk-ok-l'>🎁 Đơn này được tặng" + (gn > 1 ? " " + gn + " phần quà, mỗi phần" : "") + ": " + esc(got.text) + "</span>");
       if (nxt) {
         lines.push("🎁 Mua thêm <b>" + money(nxt.from - sub) + "</b> để nhận: " + esc(nxt.text) +
           "<div class='tnhk-bar'><b style='width:" + Math.min(100, Math.round(sub / nxt.from * 100)) + "%'></b></div>");
@@ -284,8 +289,8 @@
     html += "</div><div class='tnhk-sum'><div><span>Tạm tính</span><b>" + money(t.sub) + "</b></div><div><span>Phí ship</span><b>" + (t.ship ? money(t.ship) : "Miễn phí") + "</b></div>" +
       (t.ship ? "<div style='font-size:.85rem;color:#5b6b66'><span>Mua thêm " + money(FREESHIP - t.sub) + " để được freeship</span></div>" : "") +
       "<div class='tt'><span>Tổng thanh toán</span><span>" + money(t.total) + "</span></div></div>" +
-      (t.gift ? "<div class='tnhk-gift'>🎁 <b>Quà tặng kèm (0đ):</b> " + esc(t.gift.text) + "</div>" :
-        "<div class='tnhk-gift'>🎁 Đơn từ 1.250.000đ tặng combo 3 quà (đông trùng · kỷ tử · thố chưng sứ); từ 2.400.000đ tặng thêm yến chưng sẵn.</div>") +
+      (t.gift ? "<div class='tnhk-gift'>🎁 <b>Quà tặng kèm (0đ)" + (t.gift.n > 1 ? " — " + t.gift.n + " phần, mỗi phần" : "") + ":</b> " + esc(t.gift.text) + "</div>" :
+        "<div class='tnhk-gift'>🎁 Đơn từ 1.250.000đ tặng combo 3 quà (đông trùng · kỷ tử · thố chưng sứ); từ 2.400.000đ tặng combo 3 quà + 6 hũ yến chưng sẵn 70ml; giá trị đơn càng cao, quà nhân theo (mỗi 2.400.000đ một phần). Áp dụng khi mua yến tinh chế, yến thô, yến vụn, set quà biếu (không áp dụng cho yến chưng sẵn).</div>") +
       "<form class='tnhk-form' novalidate><h2 style='margin:18px 0 0;font-size:1.2rem;color:#0E3B33'>Thông tin nhận hàng</h2>" +
       "<label for='tk-name'>Họ tên người nhận *</label><input id='tk-name' name='name' autocomplete='name' required maxlength='80'>" +
       "<label for='tk-phone'>Số điện thoại *</label><input id='tk-phone' name='phone' type='tel' inputmode='tel' autocomplete='tel' required maxlength='15'>" +
