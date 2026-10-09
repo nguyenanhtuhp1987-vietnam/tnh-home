@@ -8,6 +8,10 @@
   if (!window.__tnhCart && !document.querySelector('script[src*="tnh-cart.js"]')) {
     var cs = document.createElement("script"); cs.src = "/assets/tnh-cart.js"; cs.defer = true; document.head.appendChild(cs);
   }
+  // Meta Pixel (CEO 10/10/2026) — nạp bất đồng bộ, không chặn hiển thị; cấu hình Pixel ID nằm ở tnh-pixel.js
+  if (!window.__tnhPixel && !document.querySelector('script[src*="tnh-pixel.js"]')) {
+    var ps = document.createElement("script"); ps.src = "/assets/tnh-pixel.js"; ps.async = true; document.head.appendChild(ps);
+  }
   var API = "https://tnh-chatbot.telegram-duyet-worker.workers.dev/chat";
   var ZALO = "https://zalo.me/0969850153";
   var KEY = "tnh_chat_v1";
