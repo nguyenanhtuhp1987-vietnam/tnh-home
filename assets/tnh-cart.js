@@ -58,6 +58,15 @@
   function save(c) { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} fab(); }
   function count(c) { return c.reduce(function (a, x) { return a + x.sl; }, 0); }
   function ga(ev, p) { try { if (typeof gtag === "function") gtag("event", ev, p || {}); } catch (e) {} }
+  // Meta Pixel + CAPI (CEO 10/10/2026): chỉ gửi mã sản phẩm, giá, số lượng — KHÔNG SĐT/tên/địa chỉ. KHÔNG phát Purchase ở trình duyệt (Worker phát khi nhân viên ✅).
+  function px(name, ids, value, n, nameTxt) {
+    var d = { content_ids: ids, content_type: "product", value: value, currency: "VND", num_items: n };
+    if (nameTxt) d.content_name = nameTxt;
+    try {
+      if (typeof window.tnhTrack === "function") window.tnhTrack(name, d);
+      else (window.__tnhPxQ = window.__tnhPxQ || []).push([name, d]); // tnh-pixel.js chưa nạp xong → xếp hàng, nạp xong tự gửi
+    } catch (e) {}
+  }
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function item(id) { var p = P[id]; return { item_id: id, item_name: p[1], price: p[4], quantity: 1 }; }
@@ -68,6 +77,7 @@
     save(c);
     var it = item(id); it.quantity = sl;
     ga("add_to_cart", { currency: "VND", value: P[id][4] * sl, items: [it] });
+    px("AddToCart", [id], P[id][4] * sl, sl, P[id][1]);
   }
 
   function totals(c) {
@@ -220,6 +230,7 @@
     box.querySelector("[data-act=now]").onclick = function () { add(cur, n()); location.href = "/gio-hang/"; };
     paint();
     ga("view_item", { currency: "VND", value: P[cur][4], items: [item(cur)] });
+    px("ViewContent", [cur], P[cur][4], 1, P[cur][1]);
   }
 
   // ---------- Đơn chuyển khoản: chờ nhân viên bấm "💰 Đã nhận tiền" trên Telegram (CEO chốt 05/10/2026) ----------
@@ -298,6 +309,7 @@
     var form = root.querySelector("form"), err = root.querySelector(".tnhk-err"), btn = form.querySelector("[type=submit]");
     var gaItems = c.map(function (x) { var it = item(x.id); it.quantity = x.sl; return it; });
     ga("begin_checkout", { currency: "VND", value: t.total, items: gaItems });
+    if (!window.__tnhPxIC) { window.__tnhPxIC = 1; px("InitiateCheckout", c.map(function (x) { return x.id; }), t.total, count(c)); } // 1 lần/lượt mở trang (checkout() vẽ lại mỗi lần đổi số lượng)
     form.onsubmit = function (e) {
       e.preventDefault();
       var f = form.elements, msg = "";
@@ -310,6 +322,7 @@
       var method = form.querySelector("input[name=method]:checked").value;
       var body = { items: c.map(function (x) { return { nhom: P[x.id][2], quy_cach: P[x.id][3], sl: x.sl }; }), name: f.name.value, phone: phone,
         address: f.address.value, note: f.note.value, method: method, website: f.website.value, expect: t.total, page: location.pathname };
+      try { var ck = window.tnhCookies ? window.tnhCookies() : null; if (ck) { if (ck.fbp) body.fbp = ck.fbp; if (ck.fbc) body.fbc = ck.fbc; } } catch (e) {} // cookie của Pixel, để Worker nối Purchase về lượt bấm quảng cáo
       fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
         .then(function (r) { return r.json(); })
         .then(function (j) {
