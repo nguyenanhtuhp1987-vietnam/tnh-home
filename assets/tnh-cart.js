@@ -236,6 +236,32 @@
     paint();
     ga("view_item", { currency: "VND", value: P[cur][4], items: [item(cur)] });
     px("ViewContent", [cur], P[cur][4], 1, P[cur][1]);
+    sticky(box);
+  }
+
+  // Thanh "Mua ngay" dính đáy màn hình điện thoại (CEO duyệt 10/10/2026): hiện khi khung Đặt mua khuất khỏi màn hình;
+  // bấm = bấm nút "Mua ngay" của khung (cùng đường thêm giỏ + sự kiện Pixel). Trang đã tự có #sbar (trang 100G sợi dài) thì bỏ qua.
+  function sticky(box) {
+    if (document.getElementById("sbar") || !("IntersectionObserver" in window)) return;
+    var st4 = document.createElement("style");
+    st4.textContent = ".tnhk-sbar{position:fixed;left:0;right:0;bottom:0;z-index:9990;background:#072E2C;border-top:2px solid #C1A374;padding:9px 14px calc(9px + env(safe-area-inset-bottom));display:none;align-items:center;gap:12px;transform:translateY(110%);transition:transform .25s}" +
+      ".tnhk-sbar.on{transform:none}.tnhk-sbar .nm{flex:1;min-width:0;color:#F4ECD6;font:500 12.5px/1.25 'Be Vietnam Pro',system-ui,sans-serif}.tnhk-sbar .nm span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}" +
+      ".tnhk-sbar .nm b{display:block;color:#E3C97A;font-size:1.12rem;white-space:nowrap}.tnhk-sbar button{flex:0 0 auto;border:0;border-radius:999px;background:linear-gradient(135deg,#C1A374,#E3C97A);color:#072E2C;font:700 15px/1.1 'Be Vietnam Pro',system-ui,sans-serif;padding:13px 22px;cursor:pointer}" +
+      "@media(max-width:760px){.tnhk-sbar{display:flex}body.tnhk-sb-on{padding-bottom:70px}body.tnhk-sb-on .tc-btn,body.tnhk-sb-on .tc-fz,body.tnhk-sb-on .tnhk-fab{transform:translateY(-70px);transition:transform .25s}}";
+    document.head.appendChild(st4);
+    var bar = el("div", "tnhk-sbar", "<div class='nm'><span></span><b></b></div><button type='button'>Mua ngay</button>");
+    document.body.appendChild(bar);
+    var inView = true, ready = false;
+    function upd() { var on = ready && !inView; bar.classList.toggle("on", on); document.body.classList.toggle("tnhk-sb-on", on); }
+    function sync() {
+      var n = box.querySelector(".tnhk-name"), p = box.querySelector(".tnhk-now");
+      if (n && p) { ready = true; bar.querySelector("b").textContent = p.textContent; bar.querySelector(".nm span").textContent = n.textContent.replace(/ \+ hộp túi/, ""); }
+      upd();
+    }
+    new MutationObserver(sync).observe(box, { childList: true, subtree: true, characterData: true });
+    sync();
+    new IntersectionObserver(function (e) { inView = e[0].isIntersecting; upd(); }, { threshold: 0.05 }).observe(box);
+    bar.querySelector("button").onclick = function () { var b = box.querySelector("[data-act=now]"); if (b) b.click(); };
   }
 
   // ---------- Đơn chuyển khoản: chờ nhân viên bấm "💰 Đã nhận tiền" trên Telegram (CEO chốt 05/10/2026) ----------

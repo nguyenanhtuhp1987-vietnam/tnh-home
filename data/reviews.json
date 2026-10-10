@@ -1,0 +1,13 @@
+{
+  "_cach_them": "Chỉ thêm đánh giá THẬT do khách đặt trực tiếp trên website/Zalo để lại cho đúng sản phẩm đó, khách ĐÃ ĐỒNG Ý hiển thị. KHÔNG chép từ Shopee/Lazada/TikTok Shop. Mỗi đánh giá là một khối { } như mẫu trong _mau, cách nhau bằng dấu phẩy, đặt trong danh sách reviews. Sau đó chạy: python3 _scripts/build_product_schema.py",
+  "_mau": {
+    "product_id": "soi-dai",
+    "name": "Nguyễn Văn A",
+    "date": "2026-10-20",
+    "rating": 5,
+    "text": "Nội dung đánh giá của khách, nguyên văn.",
+    "consent": true
+  },
+  "_product_id_hop_le": ["soi-dai", "soi-ngan", "rut-long", "chan-yen", "yen-vun", "yen-tho", "yen-chung-100", "yen-chung-30", "tam-giao", "tu-quy", "sac-xuan-30g", "hop-1-to"],
+  "reviews": []
+}
