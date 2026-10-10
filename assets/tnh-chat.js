@@ -8,6 +8,10 @@
   if (!window.__tnhCart && !document.querySelector('script[src*="tnh-cart.js"]')) {
     var cs = document.createElement("script"); cs.src = "/assets/tnh-cart.js"; cs.defer = true; document.head.appendChild(cs);
   }
+  // Chân trang "Kết nối": bản đồ + fanpage Facebook + biểu tượng mạng xã hội (CEO 10/10/2026)
+  if (!window.__tnhFooter && !document.querySelector('script[src*="tnh-footer.js"]')) {
+    var fs = document.createElement("script"); fs.src = "/assets/tnh-footer.js"; fs.defer = true; document.head.appendChild(fs);
+  }
   // Meta Pixel (CEO 10/10/2026) — nạp bất đồng bộ, không chặn hiển thị; cấu hình Pixel ID nằm ở tnh-pixel.js
   if (!window.__tnhPixel && !document.querySelector('script[src*="tnh-pixel.js"]')) {
     var ps = document.createElement("script"); ps.src = "/assets/tnh-pixel.js"; ps.async = true; document.head.appendChild(ps);

@@ -103,6 +103,34 @@
   .prose tr:nth-child(even) td{background:#faf7ee}
   .note{background:var(--cream);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:.92rem;margin:16px 0}
   @media(max-width:560px){.prose table{font-size:.8rem}.prose th,.prose td{padding:7px 8px}}
+  /* khối đánh giá + dòng điểm (10/10/2026) */
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold);font-weight:700;text-decoration:underline}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .st{color:#C1A374;letter-spacing:2px;font-size:.95rem;display:block;margin:2px 0}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-main{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:14px 0}
+  .rv-score{text-align:center}.rv-score .big{font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--forest);display:block}
+  .rv-score .st{color:#C1A374;letter-spacing:2px;display:block}.rv-score small{display:block;color:#5b6b66;font-size:.78rem;line-height:1.4;margin-top:4px}
+  .rv-row{display:grid;grid-template-columns:28px 1fr 46px;gap:8px;align-items:center;font-size:.84rem;margin:4px 0}
+  .rv-bar{height:9px;background:#e6dcc3;border-radius:9px;overflow:hidden}.rv-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A)}
+  .rv-quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .rv-quotes blockquote{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:12px 14px;font-size:.95rem;font-style:italic}
+  .rv-quotes cite{display:block;font-style:normal;font-size:.76rem;color:#5b6b66;margin-top:6px}
+  .rv-grid{grid-template-columns:repeat(2,1fr)!important}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}.offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}
+    .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}
+    .rv-tile .big{grid-row:1/3;min-width:64px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  @media(max-width:760px){.rv-grid{grid-template-columns:1fr!important}.rv-main{grid-template-columns:1fr}.rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}}
 </style>
 </head>
 <body>
@@ -138,6 +166,7 @@
 <section style="padding-bottom:20px">
   <div class="container prose">
     <p>Có những người mình muốn bồi bổ <strong>thật sự</strong> — mẹ mới mổ, bố lớn tuổi, người thân đang cần sức. Lúc đó "có vị yến" là không đủ. Yến chưng 100% Hoàng Kim là dòng <strong>nguyên chất không pha</strong> của The Nest House: đậm sợi yến trong từng hũ 70ml, chưng tươi theo lô, <strong>tem đen – vàng</strong> nhận diện riêng, đóng set 15 hũ kèm hộp túi để biếu là trao được ngay.</p>
+    <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 1.732 đánh giá yến chưng sẵn trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
     <div id="dat-mua" data-tnh-buy="/yen-sao/yen-chung/yen-chung-100/" data-was='{"hk15": 1200000, "hk10": 600000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
     <figure><img src="/assets/yen-chung-hoang-kim-concept-1.jpg" alt="Set yến chưng 100% Hoàng Kim 15 hũ The Nest House tem đen vàng" loading="lazy"><figcaption>Set Hoàng Kim 15 hũ + hộp túi — dòng yến chưng nguyên chất 100%</figcaption></figure>
     <h2>Nguyên chất 100% nghĩa là gì?</h2>
@@ -166,6 +195,22 @@
     <figure><img src="/assets/yen-chung-hoang-kim-concept-6.jpg" alt="Hộp quà yến chưng Hoàng Kim The Nest House sẵn sàng làm quà biếu" loading="lazy"><figcaption>Hộp túi Hoàng Kim chỉn chu — trao quà được ngay, không cần gói thêm</figcaption></figure>
 <h2>Mua chính hãng ở đâu?</h2>
     <p>Đặt trực tiếp qua <a href="https://zalo.me/0969850153" style="color:var(--gold);font-weight:600">Zalo 0969.850.153</a> để nhận giá ưu đãi hơn niêm yết (xem <a href="/gia-yen-sao/" style="color:var(--gold);font-weight:600">bảng giá công khai</a>) — freeship đơn từ 1 triệu, giao chống sốc 3 lớp, kiểm tra hàng trước khi thanh toán. Hoặc bấm <a href="#dat-mua" style="color:var(--gold);font-weight:600">Đặt mua</a> ngay trên trang (COD hoặc chuyển khoản), hoặc ghé cửa hàng TTTM Tops Market, 685 Âu Cơ, TP.HCM.</p>
+    <div class="rv" id="danh-gia">
+      <h2>Khách đã mua nói gì về yến chưng sẵn The Nest House</h2>
+      <p class="rv-note">Số liệu lấy từ trang quản lý đánh giá của chính gian hàng chúng tôi trên Shopee, ngày 10/10/2026, cho các sản phẩm yến chưng sẵn (cả dòng 30% và 100% Hoàng Kim). Điểm và số lượng giữ nguyên như sàn hiển thị.</p>
+      <div class="rv-main">
+        <div class="rv-score"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><small>1.732 đánh giá cho các sản phẩm yến chưng sẵn trên Shopee</small></div>
+        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:96.1%"></b></div><span>96,1%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:1.7%"></b></div><span>1,7%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:1.3%"></b></div><span>1,3%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:0.3%"></b></div><span>0,3%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:0.5%"></b></div><span>0,5%</span></div></div>
+      </div>
+      <p class="rv-note">Có cả đánh giá 1–2 sao (khoảng 0,9%). Chúng tôi trả lời từng đánh giá trên Shopee.</p>
+      <div class="rv-grid">
+        <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · cả gian hàng, ngày 09/10/2026</small></div></div>
+        <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày, ngày 09/10/2026</small></div></div>
+      </div>
+      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã dùng yến chưng của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý.</p>
+      <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
+    </div>
+
     <div class="faq" style="background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:20px 22px;margin:26px 0">
       <h2 style="border:none;padding:0;margin:0 0 12px">Câu hỏi thường gặp</h2>
       <p style="font-weight:700;margin-top:12px">Làm sao phân biệt Hoàng Kim với dòng 30%?</p><p>Nhìn tem trên nắp: Hoàng Kim dán tem đen – vàng, dòng 30% dán tem tím. Ruột hũ nhìn mắt thường khó phân biệt nên tem là dấu nhận diện chính thức.</p>
@@ -192,7 +237,7 @@
   Thực phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh. · <a href="/">thenesthouse.com.vn</a>
 </footer>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thenesthouse.com.vn/"}, {"@type": "ListItem", "position": 2, "name": "Sản phẩm", "item": "https://thenesthouse.com.vn/yen-sao/"}, {"@type": "ListItem", "position": 3, "name": "Yến chưng 100% Hoàng Kim", "item": "https://thenesthouse.com.vn/yen-sao/yen-chung/yen-chung-100/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Yến chưng 100% Hoàng Kim The Nest House", "image": "/assets/yen-chung-hoang-kim-concept-1.jpg", "description": "Yến chưng nguyên chất 100% Hoàng Kim: hũ 70ml tem đen–vàng, chưng tươi theo lô, set 15 hũ kèm hộp túi quà biếu. HSD 12 tháng in trên nắp.", "brand": {"@type": "Brand", "name": "The Nest House"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "VND", "lowPrice": "480000", "highPrice": "960000", "offerCount": "2", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Công ty TNHH The Nest House Việt Nam"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Yến chưng 100% Hoàng Kim The Nest House", "url": "https://thenesthouse.com.vn/yen-sao/yen-chung/yen-chung-100/", "image": "https://thenesthouse.com.vn/assets/yen-chung-hoang-kim-concept-1.jpg", "description": "Yến chưng nguyên chất 100% Hoàng Kim: hũ 70ml tem đen–vàng, chưng tươi theo lô, set 15 hũ kèm hộp túi quà biếu. HSD 12 tháng in trên nắp.", "brand": {"@type": "Brand", "name": "The Nest House"}, "productID": "yen-chung-100", "offers": {"@type": "AggregateOffer", "priceCurrency": "VND", "lowPrice": "480000", "highPrice": "960000", "offerCount": "2", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Công ty TNHH The Nest House Việt Nam"}, "offers": [{"@type": "Offer", "name": "Yến chưng 100% Hoàng Kim — set 15 hũ 70ml + hộp túi", "sku": "HK15", "url": "https://thenesthouse.com.vn/yen-sao/yen-chung/yen-chung-100/?qc=hk15", "price": "960000", "priceCurrency": "VND", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Công ty TNHH The Nest House Việt Nam"}, "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "VN", "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 1, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility", "merchantReturnLink": "https://thenesthouse.com.vn/chinh-sach/doi-tra/"}}, {"@type": "Offer", "name": "Yến chưng 100% Hoàng Kim — 10 hũ 70ml (không hộp)", "sku": "HK10", "url": "https://thenesthouse.com.vn/yen-sao/yen-chung/yen-chung-100/?qc=hk10", "price": "480000", "priceCurrency": "VND", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Công ty TNHH The Nest House Việt Nam"}, "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": "VN", "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 1, "returnMethod": "https://schema.org/ReturnByMail", "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility", "merchantReturnLink": "https://thenesthouse.com.vn/chinh-sach/doi-tra/"}}]}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Phân biệt Hoàng Kim với dòng 30% thế nào?", "acceptedAnswer": {"@type": "Answer", "text": "Nhìn tem trên nắp: Hoàng Kim tem đen–vàng, dòng 30% tem tím — ruột hũ mắt thường khó phân biệt nên tem là dấu nhận diện chính thức."}}, {"@type": "Question", "name": "Yến chưng Hoàng Kim để được bao lâu?", "acceptedAnswer": {"@type": "Answer", "text": "HSD 12 tháng in trên nắp; bảo quản ngăn mát, mở nắp dùng trong 24 giờ."}}, {"@type": "Question", "name": "Giá yến chưng 100% Hoàng Kim?", "acceptedAnswer": {"@type": "Answer", "text": "Set 15 hũ + hộp túi: giá đặt trực tiếp 960.000đ (niêm yết sàn 1.200.000đ); gói 10 hũ không hộp 480.000đ."}}]}</script>
 <script>/* do luot bam Zalo, goi dien, gian hang san -> su kien GA4 (dung lam chuyen doi Google Ads) */
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',ev='',ch='';
