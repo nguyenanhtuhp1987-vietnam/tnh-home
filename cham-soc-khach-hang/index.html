@@ -257,6 +257,11 @@
     </div>
     <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo nhận quà</a>
     <a class="call-btn" href="tel:0969850153">☎ hoặc gọi 0969.850.153</a>
+    <div class="price-bridge" id="priceBridge" style="margin-top:26px;padding:18px 16px;border:1px solid rgba(193,163,116,.4);border-radius:16px;background:rgba(255,255,255,.04)">
+      <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:6px">Xem giá niêm yết trực tiếp tại web</h3>
+      <p style="font-size:.88rem;opacity:.85;margin-bottom:14px">Bảng giá công khai của The Nest House được cập nhật thường xuyên trên website. Anh chị ghé xem khi cần chọn thêm yến cho gia đình nhé.</p>
+      <a class="zalo-btn" id="toPriceBtn" href="https://thenesthouse.com.vn/gia-yen-sao/?utm_source=vong-quay&amp;utm_medium=web&amp;utm_campaign=sau-nhan-qua" rel="noopener">Xem bảng giá</a>
+    </div>
   </div>
 
   <div id="stepAlready" class="thanks" hidden>
@@ -315,6 +320,7 @@
 
   // ---- đo điểm chạm (GA4, CEO 11/10/2026): xem trang → quay 1 → quay 2 → chọn quà → chọn cách nhận → gửi SĐT ----
   function track(ev, p){ try{ if(typeof gtag === 'function') gtag('event', ev, Object.assign({ page_path: location.pathname }, p || {})); }catch(e){} }
+  (function(){ var pb = document.getElementById('toPriceBtn'); if(pb) pb.addEventListener('click', function(){ track('wheel_to_price', { link_url: pb.getAttribute('href') }); }); })();
   track('wheel_view', { stage: state.submitted ? 'returned' : (state.spins.length >= 2 ? 'compare' : state.spins.length === 1 ? 'spun1' : 'fresh') });
 
   // ---- countdown ----
