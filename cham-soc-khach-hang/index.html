@@ -153,7 +153,7 @@
       <li>Thực hiện tối đa <b>2 lượt quay</b> cho mỗi lượt tham gia</li>
       <li>Chọn kết quả <b>tốt nhất trong 2 lượt</b> để nhận quà</li>
       <li>Nhập số điện thoại → nhắn Zalo hotline The Nest House để nhận quà</li>
-      <li>Quý khách có thể <b>ghé cửa hàng lấy quà</b> hoặc shop <b>gửi vào đơn hàng kế tiếp</b></li>
+      <li>Quý khách có thể <b>ghé cửa hàng lấy quà</b>, shop <b>gửi vào đơn hàng kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship)</li>
       <li>Chương trình áp dụng đến hết <b>31/12/2026</b></li>
     </ul>
   </div>
@@ -202,6 +202,7 @@
         <div class="pickup-title">Chọn cách nhận quà <span class="req">*</span></div>
         <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
         <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
+        <button type="button" class="pickup-opt" data-m="ship_paid">🚚&nbsp; Nhận ngay — shop gửi, anh chị thanh toán phí ship</button>
         <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
       </div>
       <div class="err" id="pickupErr">Vui lòng chọn 1 cách nhận quà</div>
@@ -223,6 +224,7 @@
       <div class="pickup-title">Cách nhận quà · bấm để đổi</div>
       <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
       <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
+      <button type="button" class="pickup-opt" data-m="ship_paid">🚚&nbsp; Nhận ngay — shop gửi, anh chị thanh toán phí ship</button>
       <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
       <div class="pickup-status" id="pickupStatus" hidden></div>
     </div>
@@ -261,11 +263,11 @@
   var DEADLINE = new Date("2026-12-31T23:59:59+07:00").getTime();
 
   // ---- prize segments (order = wheel order). prob in %, sums to 100 ----
+  // 11/10/2026 (CEO): gộp đông trùng + kỷ tử thành 1 ô 40%; "10 hũ" giữ 0% (ô mồi); vòng còn 6 ô.
   var SEGMENTS = [
     { name: "Hộp yến vụn 3G",           lines: ["Hộp yến","vụn 3G"],           prob: 25, img: "/assets/wheel-hop-yen-vun-3g.jpg", icon: "🎁" },
     { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5,  img: "/assets/wheel-tra-thao-moc.jpg", icon: "🍵" },
-    { name: "Hũ đông trùng sấy thăng hoa", lines: ["Đông trùng","sấy thăng hoa"], prob: 20, img: "/assets/wheel-dong-trung.jpg", icon: "🍯" },
-    { name: "Hũ kỷ tử sấy thăng hoa",   lines: ["Kỷ tử","sấy thăng hoa"],      prob: 20, img: "/assets/wheel-ky-tu.jpg", icon: "🍯" },
+    { name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Combo đông trùng","+ kỷ tử"], prob: 40, img: "/assets/wheel-dong-trung-ky-tu.jpg", icon: "🍯" },
     { name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10, img: "/assets/wheel-voucher-100k.jpg", icon: "🏷️" },
     { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20, img: "/assets/wheel-yen-chung.jpg", icon: "🍯" },
     { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0,  img: "/assets/wheel-yen-chung.jpg", icon: "🍯" }
@@ -568,7 +570,7 @@
 
   // ---- Khách chọn cách nhận quà → ghi về Sheet (cột G) + báo Telegram cho shop ----
   var PICKUP_URL = WEBAPP_URL.replace('/wheel/submit', '/wheel/pickup');
-  var PICKUP_LABEL = { store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gửi kèm đơn hàng kế tiếp' };
+  var PICKUP_LABEL = { store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gửi kèm đơn hàng kế tiếp', ship_paid: 'Nhận ngay — shop gửi, anh chị thanh toán phí ship' };
   var pickupBox = document.getElementById('pickupBox');
   var pickupStatus = document.getElementById('pickupStatus');
   var pickupBtns = [].slice.call(pickupBox.querySelectorAll('.pickup-opt'));
