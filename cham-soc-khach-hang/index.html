@@ -284,6 +284,10 @@
   }
   var state = loadState();
 
+  // ---- đo điểm chạm (GA4, CEO 11/10/2026): xem trang → quay 1 → quay 2 → chọn quà → chọn cách nhận → gửi SĐT ----
+  function track(ev, p){ try{ if(typeof gtag === 'function') gtag('event', ev, Object.assign({ page_path: location.pathname }, p || {})); }catch(e){} }
+  track('wheel_view', { stage: state.submitted ? 'returned' : (state.spins.length >= 2 ? 'compare' : state.spins.length === 1 ? 'spun1' : 'fresh') });
+
   // ---- countdown ----
   function tickCountdown(){
     var now = Date.now();
@@ -409,8 +413,10 @@
   }
 
   window.choosePrize = function(which){
+    var firstChoice = state.chosenIndex === null || state.chosenIndex === undefined;
     state.chosenIndex = which;
     saveState(state);
+    if(firstChoice && state.spins.length >= 2) track('wheel_choose', { prize: SEGMENTS[state.spins[which]].name, other: SEGMENTS[state.spins[1 - which]].name });
     document.getElementById('pick0').classList.toggle('chosen', which===0);
     document.getElementById('pick1').classList.toggle('chosen', which===1);
     formZone.hidden = false;
@@ -424,6 +430,7 @@
     spin(function(idx){
       state.spins.push(idx);
       saveState(state);
+      track('wheel_spin', { spin_no: state.spins.length, prize: SEGMENTS[idx].name });
       resultCard.hidden = false;
       resultTag.textContent = 'Kết quả lượt ' + state.spins.length;
       resultPrize.textContent = SEGMENTS[idx].name;
@@ -450,6 +457,7 @@
   [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(b){
     b.addEventListener('click', function(){
       formPick = b.getAttribute('data-m');
+      track('wheel_pickup', { method: formPick });
       [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
       pickupErr.style.display = 'none';
       formPickupBox.classList.remove('need');
@@ -465,11 +473,13 @@
     var v = phoneInput.value.trim();
     if(!validPhone(v)){
       phoneErr.style.display = 'block';
+      track('wheel_submit', { status: 'invalid_phone' });
       return;
     }
     phoneErr.style.display = 'none';
     // BẮT BUỘC chọn cách nhận quà trước khi gửi (CEO chốt 02/10/2026)
     if(!formPick){
+      track('wheel_submit', { status: 'no_pickup' });
       pickupErr.style.display = 'block';
       formPickupBox.classList.add('need');
       formPickupBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -479,6 +489,7 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
+    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick });
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = null;
     getTurnstileToken().then(function(token){
@@ -493,6 +504,7 @@
       .then(function(json){
         if(timer) clearTimeout(timer);
         if(json && json.ok === false && json.error === 'duplicate'){
+          track('wheel_submit', { status: 'duplicate', prize: prizeName });
           state.submitted = true;
           saveState(state);
           stepCompare.hidden = true;
@@ -500,11 +512,13 @@
           return;
         }
         if(json && json.error === 'invalid_phone'){
+          track('wheel_submit', { status: 'server_invalid_phone' });
           resetSubmit();
           phoneErr.style.display = 'block';
           return;
         }
         if(!json || json.ok !== true) throw new Error(json && json.error || 'not saved');
+        track('wheel_submit', { status: 'ok', prize: prizeName, method: formPick });
         state.submitted = true;
         state.finalPrize = prizeName;
         state.ref = json.ref || null;
@@ -517,6 +531,7 @@
         // Không lưu được (mạng lỗi / quá 20s / chống bot không qua / gửi quá nhiều lần):
         // KHÔNG báo "Cảm ơn" — giữ nguyên form để khách thử lại hoặc nhắn Zalo.
         if(timer) clearTimeout(timer);
+        track('wheel_submit', { status: 'fail', prize: prizeName });
         resetSubmit();
         sendFail.hidden = false;
       });
