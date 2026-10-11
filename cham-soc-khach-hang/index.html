@@ -199,6 +199,8 @@
     </div>
 
     <div class="form-zone" id="formZone" hidden>
+      <label for="custName">Shop nên gọi anh/chị là gì? <span style="opacity:.7;font-weight:400">(không bắt buộc)</span></label>
+      <input type="text" id="custName" placeholder="VD: chị Lan" maxlength="40" autocomplete="given-name" style="margin-bottom:14px">
       <label for="phone">Số điện thoại nhận quà</label>
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
@@ -542,7 +544,7 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
-    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick });
+    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick, has_name: (document.getElementById('custName').value || '').trim() ? 'yes' : 'no' });
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = null;
     getTurnstileToken().then(function(token){
@@ -551,7 +553,8 @@
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick,
-          purchase: buyPick, channel: chPick, order_ref: (document.getElementById('orderRef').value || '').trim().slice(0, 40) }),
+          purchase: buyPick, channel: chPick, order_ref: (document.getElementById('orderRef').value || '').trim().slice(0, 40),
+          name: (document.getElementById('custName').value || '').trim().slice(0, 40) }),
         signal: ctrl ? ctrl.signal : undefined
       });
     }).then(function(res){ return res.json(); })
