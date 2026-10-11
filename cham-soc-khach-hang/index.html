@@ -110,6 +110,10 @@
   .pickup-status{font-size:.84rem;margin-top:8px;line-height:1.5;color:var(--gold-light)}
   .pickup-status.err{color:#ff9d9d}
   .form-pickup{margin:16px 0 0;max-width:none}
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pills .pickup-opt{width:auto;margin:0;padding:8px 12px;font-size:.84rem}
+  .ref-input{margin-top:8px;width:100%;padding:10px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem}
+  .ref-input::placeholder{color:rgba(244,236,214,.55)}
   .form-pickup.need{border-color:#ff9d9d}
   .pickup-title .req{color:#ff9d9d}
   .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
@@ -198,6 +202,27 @@
       <label for="phone">Số điện thoại nhận quà</label>
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
+      <div class="pickup form-pickup" id="formBuy">
+        <div class="pickup-title">Anh chị vừa mua sản phẩm nào? <span class="req">*</span></div>
+        <div class="pills">
+          <button type="button" class="pickup-opt" data-buy="Yến chưng sẵn">🥣 Yến chưng sẵn</button>
+          <button type="button" class="pickup-opt" data-buy="Yến tinh chế 50G">🪺 Tinh chế 50G</button>
+          <button type="button" class="pickup-opt" data-buy="Yến tinh chế 100G">🪺 Tinh chế 100G</button>
+          <button type="button" class="pickup-opt" data-buy="Set quà / Hộp 1 tổ">🎁 Set quà / Hộp 1 tổ</button>
+          <button type="button" class="pickup-opt" data-buy="Khác">Khác</button>
+        </div>
+        <div class="pickup-title" style="margin-top:12px">Mua ở đâu? <span class="req">*</span></div>
+        <div class="pills">
+          <button type="button" class="pickup-opt" data-ch="Shopee">Shopee</button>
+          <button type="button" class="pickup-opt" data-ch="Lazada">Lazada</button>
+          <button type="button" class="pickup-opt" data-ch="TikTok Shop">TikTok Shop</button>
+          <button type="button" class="pickup-opt" data-ch="Website/Zalo">Website / Zalo</button>
+          <button type="button" class="pickup-opt" data-ch="Cửa hàng">Cửa hàng</button>
+        </div>
+        <input class="ref-input" id="orderRef" maxlength="40" placeholder="Mã đơn hàng trên app (nếu tiện, không bắt buộc)" autocomplete="off">
+        <div class="pickup-note">Shop dùng thông tin này để chăm sóc đúng sản phẩm anh chị đã mua.</div>
+      </div>
+      <div class="err" id="buyErr">Vui lòng chọn sản phẩm đã mua và nơi mua</div>
       <div class="pickup form-pickup" id="formPickup">
         <div class="pickup-title">Chọn cách nhận quà <span class="req">*</span></div>
         <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
@@ -466,6 +491,25 @@
     });
   });
 
+  // ---- khách khai mua gì / ở đâu (CEO 11/10/2026) ----
+  var formBuyBox = document.getElementById('formBuy');
+  var buyErr = document.getElementById('buyErr');
+  var buyPick = null, chPick = null;
+  [].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      buyPick = b.getAttribute('data-buy');
+      [].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+      buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
+    });
+  });
+  [].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      chPick = b.getAttribute('data-ch');
+      [].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+      buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
+    });
+  });
+
   function validPhone(v){
     var clean = v.replace(/[\s.\-]/g,'');
     return /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(clean);
@@ -479,6 +523,13 @@
       return;
     }
     phoneErr.style.display = 'none';
+    if(!buyPick || !chPick){
+      track('wheel_submit', { status: 'no_purchase' });
+      buyErr.style.display = 'block';
+      formBuyBox.classList.add('need');
+      formBuyBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
     // BẮT BUỘC chọn cách nhận quà trước khi gửi (CEO chốt 02/10/2026)
     if(!formPick){
       track('wheel_submit', { status: 'no_pickup' });
@@ -491,7 +542,7 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
-    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick });
+    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick });
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = null;
     getTurnstileToken().then(function(token){
@@ -499,7 +550,8 @@
       return fetch(WEBAPP_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick }),
+        body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick,
+          purchase: buyPick, channel: chPick, order_ref: (document.getElementById('orderRef').value || '').trim().slice(0, 40) }),
         signal: ctrl ? ctrl.signal : undefined
       });
     }).then(function(res){ return res.json(); })
