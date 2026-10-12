@@ -88,6 +88,13 @@ def geo_fix_post(path, html):
     ogs = list(re.finditer(r'<meta property="og:[^>]*>\n?', new))
     if add and ogs:
         new = new[:ogs[-1].end()] + add + new[ogs[-1].end():]
+    # tốc độ trang (CEO 12/10/2026): font tự host + robots + ảnh đầu ưu tiên; webp/kích thước ảnh chỉ khi máy có Pillow
+    try:
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        from toi_uu_toc_do import toi_uu_html
+        new = toi_uu_html(new)
+    except Exception as e:
+        print(f"  (bỏ qua tối ưu tốc độ: {e})")
     if new != html:
         path.write_text(new)
     return new
