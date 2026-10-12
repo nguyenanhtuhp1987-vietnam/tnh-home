@@ -102,7 +102,7 @@
     ".tnhk-opt small{display:block;font-weight:500;color:#5b6b66;margin-top:2px}" +
     ".tnhk-opt[aria-pressed=true]{border-color:#0E3B33;background:#0E3B33;color:#F4ECD6}.tnhk-opt[aria-pressed=true] small{color:#e6d9b8}" +
     ".tnhk-price{font-size:1.5rem;font-weight:800;color:#0E3B33;margin:4px 0}" +
-    ".tnhk-was{color:#7a847f;text-decoration:line-through;font-size:.95rem;margin-left:8px;font-weight:500}" +
+    ".tnhk-was{color:#5b6b66;text-decoration:line-through;font-size:.95rem;margin-left:8px;font-weight:500}" +
     ".tnhk-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}" +
     ".tnhk-qty{display:inline-flex;align-items:center;border:1.5px solid #cdbf9f;border-radius:10px;overflow:hidden;background:#fff}" +
     ".tnhk-qty button{width:38px;height:40px;border:0;background:#f4ecd6;font-size:18px;cursor:pointer;color:#0E3B33}" +
@@ -148,13 +148,13 @@
     ".tnhk-in{padding:16px 18px 18px}" +
     ".tnhk-buy .tnhk-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px;margin-top:6px}" +
     ".tnhk-opt{position:relative;font-family:'Be Vietnam Pro',system-ui,sans-serif}" +
-    ".tnhk-opt s{display:block;font-weight:500;font-size:12px;color:#8a948f;margin-top:1px}.tnhk-opt[aria-pressed=true] s{color:#bfb59a}" +
+    ".tnhk-opt s{display:block;font-weight:500;font-size:12px;color:#5b6b66;margin-top:1px}.tnhk-opt[aria-pressed=true] s{color:#bfb59a}" +
     ".tnhk-opt i{position:absolute;top:-9px;right:-6px;background:#B8322A;color:#fff;font:800 11px/1 'Be Vietnam Pro',system-ui,sans-serif;font-style:normal;padding:4px 6px;border-radius:999px}" +
     ".tnhk-pbox{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 2px}" +
     ".tnhk-now{font:800 2.1rem/1 'Be Vietnam Pro',system-ui,sans-serif;color:#0E3B33;letter-spacing:-.01em}" +
     ".tnhk-off{background:#B8322A;color:#fff;font:800 1rem/1 'Be Vietnam Pro',system-ui,sans-serif;padding:7px 10px;border-radius:8px}" +
     ".tnhk-cmp{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 4px;font-size:.92rem;color:#5b6b66}" +
-    ".tnhk-cmp s{color:#7a847f}" +
+    ".tnhk-cmp s{color:#5b6b66}" +
     ".tnhk-save{background:#f6e7c4;color:#7a4f00;font-weight:800;padding:4px 10px;border-radius:999px}" +
     ".tnhk-unit{font-size:.88rem;color:#4b5a55;margin-top:2px}" +
     ".tnhk-perk{margin-top:12px;background:#f7f2e4;border-radius:12px;padding:10px 12px;font-size:.9rem;line-height:1.45}" +
