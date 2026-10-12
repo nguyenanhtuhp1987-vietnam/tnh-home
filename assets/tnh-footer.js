@@ -7,7 +7,7 @@
   function go() {
     var ft = document.querySelector("footer");
     if (!ft || document.querySelector(".ft-connect")) return;
-    var MAP = "https://maps.google.com/maps?q=The+Nest+House+Y%E1%BA%BFn+S%C3%A0o+Nha+Trang%2C+685+%C3%82u+C%C6%A1%2C+T%C3%A2n+Ph%C3%BA%2C+TP.HCM&z=17&output=embed";
+    var MAP = "https://maps.google.com/maps?q=10.7896536,106.6392679&z=18&hl=vi&output=embed"; // ghim đúng toạ độ cửa hàng (Kios A126, Tầng 2, Tops Market · Oriental Plaza) — CEO 12/10
     var FB = "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthenesthouse&tabs=timeline&width=340&height=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false";
     var GM = "https://share.google/Jlp2IjomZLla08vaa";
     var css = ".tnhft{background:#0a2f2c;color:#F4ECD6;padding:34px 0 10px;margin-top:30px;border-top:2px solid #C1A374;font-family:'Be Vietnam Pro',system-ui,sans-serif}" +
