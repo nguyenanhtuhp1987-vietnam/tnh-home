@@ -22,13 +22,54 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 GF_RE = re.compile(r'[ \t]*<link[^>]+href="https://fonts\.googleapis\.com/css2\?family=Playfair\+Display:wght@600;700;800&family=Be\+Vietnam\+Pro:wght@400;500;600;700&display=swap"[^>]*>\n?')
 PRECONNECT_RE = re.compile(r'[ \t]*<link rel="preconnect" href="https://fonts\.(?:googleapis|gstatic)\.com"(?: crossorigin)?>\n?')
-FONT_TAGS = ('<link rel="preload" href="/assets/fonts/bvp-400-latin.woff2" as="font" type="font/woff2" crossorigin>'
-             '<link rel="preload" href="/assets/fonts/bvp-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>'
-             '<link rel="stylesheet" href="/assets/fonts/fonts.css">\n')
+FONT_LINK_RE = re.compile(r'<link rel="stylesheet" href="/assets/fonts/fonts\.css">')
+FONT_STYLE_RE = re.compile(r'<style data-tnh="fonts">.*?</style>', re.S)
+
+
+def font_tags():
+    """Đợt 2 (CEO 12/10): nhúng @font-face thẳng vào HTML (bỏ 1 request chặn hiển thị ~150 ms); 2 file chữ thường vẫn preload."""
+    css = (ASSETS / "fonts/fonts.css").read_text(encoding="utf-8")
+    css = re.sub(r'/\*.*?\*/\s*', '', css, flags=re.S)          # bỏ chú thích
+    css = re.sub(r'\s*\n\s*', '', css).replace(': ', ':').replace(' {', '{')
+    return ('<link rel="preload" href="/assets/fonts/bvp-400-latin.woff2" as="font" type="font/woff2" crossorigin>'
+            '<link rel="preload" href="/assets/fonts/bvp-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>'
+            f'<style data-tnh="fonts">{css}</style>\n')
+
+
 IMG_CSS = "<style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>\n"
 ROBOTS = '<meta name="robots" content="max-image-preview:large">\n'
 IMG_RE = re.compile(r'<img\b[^>]*>', re.I)
 MAXW = 1600
+VARIANTS = (480, 960)   # đợt 2: ảnh theo cỡ màn hình — điện thoại lấy 480, máy tính 960, màn to lấy bản gốc
+SIZES = "(max-width:640px) 100vw, 50vw"
+
+
+def srcset_for(src, size):
+    """'/assets/x.webp' rộng ≥700 → chuỗi srcset với bản 480/960 (tạo nếu chưa có). Không đủ điều kiện → None."""
+    m = re.fullmatch(r'/assets/([^"?#]+)\.webp', src)
+    if not m or not size or size[0] < 700:
+        return None
+    base = m.group(1)
+    f = ASSETS / f"{base}.webp"
+    if not f.exists():
+        return None
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    parts = []
+    for w in VARIANTS:
+        if w >= size[0]:
+            continue
+        out = ASSETS / f"{base}-{w}.webp"
+        if not out.exists() or out.stat().st_mtime < f.stat().st_mtime:
+            with Image.open(f) as im:
+                im.resize((w, round(im.height * w / im.width)), Image.LANCZOS).save(out, "WEBP", quality=80, method=6)
+        parts.append(f"/assets/{base}-{w}.webp {w}w")
+    if not parts:
+        return None
+    parts.append(f"{src} {size[0]}w")
+    return ", ".join(parts)
 
 
 def webp_for(src):
@@ -78,10 +119,18 @@ def fix_img(tag, first):
     if r:
         new, size = r
         tag = tag.replace(f'src="{src}"', f'src="{new}"')
+    cur = re.search(r'\bsrc="([^"]+)"', tag).group(1)
     if not re.search(r'\bwidth=', tag) and not re.search(r'\bheight=', tag):
-        size = size or dims_of(re.search(r'\bsrc="([^"]+)"', tag).group(1))
+        size = size or dims_of(cur)
         if size:
             tag = tag.replace("<img", f'<img width="{size[0]}" height="{size[1]}"', 1)
+    if "srcset=" not in tag and "logo" not in cur:
+        wm = re.search(r'\bwidth="(\d+)"', tag)
+        hm = re.search(r'\bheight="(\d+)"', tag)
+        sz = size or ((int(wm.group(1)), int(hm.group(1))) if wm and hm else dims_of(cur))
+        ss = srcset_for(cur, sz)
+        if ss:
+            tag = tag.replace("<img", f'<img srcset="{ss}" sizes="{SIZES}"', 1)
     if first:
         tag = re.sub(r'\s+loading="lazy"', "", tag)
         if "fetchpriority" not in tag:
@@ -91,8 +140,12 @@ def fix_img(tag, first):
 
 def toi_uu_html(html, img=True):
     if GF_RE.search(html):
-        html = GF_RE.sub(FONT_TAGS, html, count=1)
+        html = GF_RE.sub(lambda _: font_tags(), html, count=1)
         html = PRECONNECT_RE.sub("", html)
+    elif FONT_LINK_RE.search(html):                       # trang đã qua đợt 1 → nhúng thẳng
+        html = FONT_LINK_RE.sub(lambda _: font_tags().split("crossorigin>", 2)[-1].rstrip("\n"), html, count=1)
+    else:                                                  # chạy lại: cập nhật khối font nhúng nếu fonts.css đổi
+        html = FONT_STYLE_RE.sub(lambda _: font_tags().split("crossorigin>", 2)[-1].rstrip("\n"), html, count=1)
     noindex_forever = re.search(r'<meta name="robots" content="[^"]*noindex[^"]*"(?![^>]*data-tnh)', html)
     if not noindex_forever and "max-image-preview" not in html:
         html = re.sub(r'(<meta name="viewport"[^>]*>\n?)', lambda m: m.group(1) + ROBOTS, html, count=1)

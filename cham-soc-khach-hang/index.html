@@ -13,121 +13,121 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--forest:#0E3B33;--deep:#072E2C;--gold:#C1A374;--gold-light:#E3C97A;--cream:#F4ECD6;--white:#fff;--serif:'Playfair Display',serif;--sans:'Be Vietnam Pro',sans-serif}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{max-width:100%;overflow-x:hidden}
-  body{font-family:var(--sans);color:var(--cream);background:radial-gradient(ellipse at top,#134a40,var(--deep) 60%);line-height:1.6;min-height:100vh}
-  img{max-width:100%;display:block}
-  a{color:inherit}
-  .wrap{max-width:480px;margin:0 auto;padding:0 18px 40px}
-  h1,h2{font-family:var(--serif)}
+:root{--gold-text:#7D5F2C;--forest:#0E3B33;--deep:#072E2C;--gold:#C1A374;--gold-light:#E3C97A;--cream:#F4ECD6;--white:#fff;--serif:'Playfair Display',serif;--sans:'Be Vietnam Pro',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--cream);background:radial-gradient(ellipse at top,#134a40,var(--deep) 60%);line-height:1.6;min-height:100vh}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:480px;margin:0 auto;padding:0 18px 40px}
+h1,h2{font-family:var(--serif)}
 
   /* header */
-  .topbar{padding:16px 0;text-align:center;border-bottom:1px solid rgba(193,163,116,.28)}
-  .topbar .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--gold-light);letter-spacing:.02em}
+.topbar{padding:16px 0;text-align:center;border-bottom:1px solid rgba(193,163,116,.28)}
+.topbar .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--gold-light);letter-spacing:.02em}
 
   /* hero */
-  .hero{text-align:center;padding:26px 0 6px}
-  .hero .eyebrow{display:inline-block;background:rgba(193,163,116,.16);border:1px solid var(--gold);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px}
-  .hero h1{font-size:clamp(1.5rem,7vw,2rem);color:var(--white);line-height:1.25}
-  .hero h1 em{font-style:normal;color:var(--gold-light)}
-  .hero p{font-size:.9rem;opacity:.85;margin-top:8px}
+.hero{text-align:center;padding:26px 0 6px}
+.hero .eyebrow{display:inline-block;background:rgba(193,163,116,.16);border:1px solid var(--gold);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(1.5rem,7vw,2rem);color:var(--white);line-height:1.25}
+.hero h1 em{font-style:normal;color:var(--gold-light)}
+.hero p{font-size:.9rem;opacity:.85;margin-top:8px}
 
   /* countdown */
-  .countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 6px}
-  .countdown .u{background:rgba(255,255,255,.06);border:1px solid rgba(193,163,116,.35);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center}
-  .countdown .u b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--gold-light)}
-  .countdown .u span{display:block;font-size:.62rem;opacity:.75;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
-  .cd-note{text-align:center;font-size:.74rem;opacity:.65;margin-bottom:6px}
+.countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 6px}
+.countdown .u{background:rgba(255,255,255,.06);border:1px solid rgba(193,163,116,.35);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center}
+.countdown .u b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--gold-light)}
+.countdown .u span{display:block;font-size:.62rem;opacity:.75;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.cd-note{text-align:center;font-size:.74rem;opacity:.65;margin-bottom:6px}
 
   /* rules */
-  .rules{background:rgba(255,255,255,.05);border:1px solid rgba(193,163,116,.3);border-radius:16px;padding:16px 18px;margin:20px 0}
-  .rules h3{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
-  .rules ul{list-style:none}
-  .rules li{position:relative;padding-left:22px;font-size:.85rem;opacity:.92;margin-bottom:8px}
-  .rules li:last-child{margin-bottom:0}
-  .rules li::before{content:'✓';position:absolute;left:0;top:0;color:var(--gold-light);font-weight:700}
+.rules{background:rgba(255,255,255,.05);border:1px solid rgba(193,163,116,.3);border-radius:16px;padding:16px 18px;margin:20px 0}
+.rules h3{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.rules ul{list-style:none}
+.rules li{position:relative;padding-left:22px;font-size:.85rem;opacity:.92;margin-bottom:8px}
+.rules li:last-child{margin-bottom:0}
+.rules li::before{content:'✓';position:absolute;left:0;top:0;color:var(--gold-light);font-weight:700}
 
   /* wheel */
-  .wheel-zone{display:flex;flex-direction:column;align-items:center;margin:26px 0 10px}
-  .wheel-outer{position:relative;width:min(84vw,320px);height:min(84vw,320px)}
-  .pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--gold-light);z-index:5;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
-  .wheel-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--gold-light),var(--gold),var(--gold-light));padding:8px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
-  #wheelCanvas{display:block;width:100%;height:100%;border-radius:50%;background:var(--white);transition:transform 4.2s cubic-bezier(.17,.67,.16,1)}
-  .hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:27%;height:27%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--deep);font-size:.58rem;letter-spacing:.02em;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4;text-align:center;line-height:1.25;cursor:pointer;transition:transform .15s;border:2px solid rgba(255,255,255,.5)}
-  .hub:active{transform:translate(-50%,-50%) scale(.93)}
+.wheel-zone{display:flex;flex-direction:column;align-items:center;margin:26px 0 10px}
+.wheel-outer{position:relative;width:min(84vw,320px);height:min(84vw,320px)}
+.pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--gold-light);z-index:5;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+.wheel-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--gold-light),var(--gold),var(--gold-light));padding:8px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
+#wheelCanvas{display:block;width:100%;height:100%;border-radius:50%;background:var(--white);transition:transform 4.2s cubic-bezier(.17,.67,.16,1)}
+.hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:27%;height:27%;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--deep);font-size:.58rem;letter-spacing:.02em;box-shadow:0 3px 10px rgba(0,0,0,.35);z-index:4;text-align:center;line-height:1.25;cursor:pointer;transition:transform .15s;border:2px solid rgba(255,255,255,.5)}
+.hub:active{transform:translate(-50%,-50%) scale(.93)}
 
-  .spin-btn{margin-top:22px;width:100%;max-width:280px;padding:15px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-family:var(--sans);font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;box-shadow:0 8px 22px rgba(193,163,116,.35);transition:.2s}
-  .spin-btn:active{transform:scale(.97)}
-  .spin-btn:disabled{opacity:.5;cursor:not-allowed}
-  .spin-hint{text-align:center;font-size:.78rem;opacity:.7;margin-top:10px}
+.spin-btn{margin-top:22px;width:100%;max-width:280px;padding:15px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-family:var(--sans);font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;box-shadow:0 8px 22px rgba(193,163,116,.35);transition:.2s}
+.spin-btn:active{transform:scale(.97)}
+.spin-btn:disabled{opacity:.5;cursor:not-allowed}
+.spin-hint{text-align:center;font-size:.78rem;opacity:.7;margin-top:10px}
 
   /* result cards */
-  .result-card{background:rgba(255,255,255,.06);border:1.5px solid var(--gold);border-radius:16px;padding:18px;text-align:center;margin-top:16px}
-  .result-card .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-light);font-weight:700;margin-bottom:6px}
-  .result-card .prize{font-family:var(--serif);font-size:1.25rem;color:var(--white)}
+.result-card{background:rgba(255,255,255,.06);border:1.5px solid var(--gold);border-radius:16px;padding:18px;text-align:center;margin-top:16px}
+.result-card .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-light);font-weight:700;margin-bottom:6px}
+.result-card .prize{font-family:var(--serif);font-size:1.25rem;color:var(--white)}
 
-  .compare{display:flex;flex-direction:column;gap:12px;margin-top:16px}
-  .pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:14px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s}
-  .pick:hover{border-color:var(--gold)}
-  .pick.chosen{border-color:var(--gold-light);background:rgba(193,163,116,.14);box-shadow:0 0 0 2px var(--gold-light) inset}
-  .pick .thumb{width:64px;height:64px;flex:0 0 64px;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,var(--forest),#1a5a4d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid rgba(193,163,116,.4)}
-  .pick .thumb img{width:100%;height:100%;object-fit:cover}
-  .pick .info{flex:1;min-width:0}
-  .pick .l{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
-  .pick .p{font-family:var(--serif);font-size:1.05rem;color:var(--white);margin-top:2px;line-height:1.25}
-  .pick .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold-light)}
-  .pick.chosen .check{background:var(--gold-light);color:var(--deep);border-color:var(--gold-light)}
+.compare{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:14px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s}
+.pick:hover{border-color:var(--gold)}
+.pick.chosen{border-color:var(--gold-light);background:rgba(193,163,116,.14);box-shadow:0 0 0 2px var(--gold-light) inset}
+.pick .thumb{width:64px;height:64px;flex:0 0 64px;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,var(--forest),#1a5a4d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid rgba(193,163,116,.4)}
+.pick .thumb img{width:100%;height:100%;object-fit:cover}
+.pick .info{flex:1;min-width:0}
+.pick .l{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
+.pick .p{font-family:var(--serif);font-size:1.05rem;color:var(--white);margin-top:2px;line-height:1.25}
+.pick .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold-light)}
+.pick.chosen .check{background:var(--gold-light);color:var(--deep);border-color:var(--gold-light)}
 
   /* form */
-  .form-zone{margin-top:22px}
-  .form-zone label{display:block;font-size:.82rem;font-weight:600;color:var(--gold-light);margin-bottom:8px}
-  .form-zone input{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(193,163,116,.5);background:rgba(255,255,255,.06);color:var(--white);font-size:1rem;font-family:var(--sans)}
-  .form-zone input::placeholder{color:rgba(244,236,214,.4)}
-  .form-zone input:focus{outline:none;border-color:var(--gold-light)}
-  .err{color:#ff9d9d;font-size:.78rem;margin-top:6px;display:none}
-  .send-fail{margin-top:14px;padding:12px 14px;border:1px solid #ff9d9d;border-radius:12px;background:rgba(255,157,157,.08);color:#F4ECD6;font-size:.86rem;line-height:1.5}
-  .send-fail[hidden]{display:none}
-  .ts-box{display:flex;justify-content:center;margin-top:10px}
-  .ts-box:empty{margin-top:0}
-  .send-fail .zalo-btn{margin-top:10px}
-  .submit-btn{margin-top:14px;width:100%;padding:15px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--forest),#1a5a4d);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;border:1.5px solid var(--gold)}
-  .submit-btn:disabled{opacity:.55;cursor:not-allowed}
+.form-zone{margin-top:22px}
+.form-zone label{display:block;font-size:.82rem;font-weight:600;color:var(--gold-light);margin-bottom:8px}
+.form-zone input{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(193,163,116,.5);background:rgba(255,255,255,.06);color:var(--white);font-size:1rem;font-family:var(--sans)}
+.form-zone input::placeholder{color:rgba(244,236,214,.4)}
+.form-zone input:focus{outline:none;border-color:var(--gold-light)}
+.err{color:#ff9d9d;font-size:.78rem;margin-top:6px;display:none}
+.send-fail{margin-top:14px;padding:12px 14px;border:1px solid #ff9d9d;border-radius:12px;background:rgba(255,157,157,.08);color:#F4ECD6;font-size:.86rem;line-height:1.5}
+.send-fail[hidden]{display:none}
+.ts-box{display:flex;justify-content:center;margin-top:10px}
+.ts-box:empty{margin-top:0}
+.send-fail .zalo-btn{margin-top:10px}
+.submit-btn{margin-top:14px;width:100%;padding:15px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--forest),#1a5a4d);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;border:1.5px solid var(--gold)}
+.submit-btn:disabled{opacity:.55;cursor:not-allowed}
 
   /* thank you */
-  .thanks{text-align:center;padding:20px 0}
-  .thanks .ico{font-size:2.6rem;margin-bottom:8px}
-  .thanks h2{color:var(--white);font-size:1.4rem;margin-bottom:8px}
-  .thanks p{font-size:.9rem;opacity:.85;margin-bottom:18px}
-  .pickup{margin:0 auto 18px;max-width:340px;padding:12px 16px;border:1px solid rgba(193,163,116,.45);border-radius:14px;background:rgba(193,163,116,.08);text-align:left}
-  .pickup-title{color:var(--gold-light);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-  .pickup-opt{display:flex;align-items:center;gap:4px;width:100%;margin:6px 0;padding:11px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
-  .pickup-opt:hover{border-color:var(--gold-light)}
-  .pickup-opt.chosen{background:var(--gold);border-color:var(--gold-light);color:var(--deep);font-weight:700}
-  .pickup-opt.chosen::after{content:"✓";margin-left:auto;font-weight:800}
-  .pickup-opt:disabled{opacity:.6;cursor:wait}
-  .pickup-note{font-size:.82rem;opacity:.85;margin-top:8px;line-height:1.5}
-  .pickup-status{font-size:.84rem;margin-top:8px;line-height:1.5;color:var(--gold-light)}
-  .pickup-status.err{color:#ff9d9d}
-  .form-pickup{margin:16px 0 0;max-width:none}
-  .pills{display:flex;flex-wrap:wrap;gap:6px}
-  .pills .pickup-opt{width:auto;margin:0;padding:8px 12px;font-size:.84rem}
-  .ref-input{margin-top:8px;width:100%;padding:10px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem}
-  .ref-input::placeholder{color:rgba(244,236,214,.55)}
-  .form-pickup.need{border-color:#ff9d9d}
-  .pickup-title .req{color:#ff9d9d}
-  .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
-  .call-btn{display:block;margin-top:10px;font-size:.85rem;color:var(--gold-light);text-decoration:underline}
+.thanks{text-align:center;padding:20px 0}
+.thanks .ico{font-size:2.6rem;margin-bottom:8px}
+.thanks h2{color:var(--white);font-size:1.4rem;margin-bottom:8px}
+.thanks p{font-size:.9rem;opacity:.85;margin-bottom:18px}
+.pickup{margin:0 auto 18px;max-width:340px;padding:12px 16px;border:1px solid rgba(193,163,116,.45);border-radius:14px;background:rgba(193,163,116,.08);text-align:left}
+.pickup-title{color:var(--gold-light);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.pickup-opt{display:flex;align-items:center;gap:4px;width:100%;margin:6px 0;padding:11px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+.pickup-opt:hover{border-color:var(--gold-light)}
+.pickup-opt.chosen{background:var(--gold);border-color:var(--gold-light);color:var(--deep);font-weight:700}
+.pickup-opt.chosen::after{content:"✓";margin-left:auto;font-weight:800}
+.pickup-opt:disabled{opacity:.6;cursor:wait}
+.pickup-note{font-size:.82rem;opacity:.85;margin-top:8px;line-height:1.5}
+.pickup-status{font-size:.84rem;margin-top:8px;line-height:1.5;color:var(--gold-light)}
+.pickup-status.err{color:#ff9d9d}
+.form-pickup{margin:16px 0 0;max-width:none}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pills .pickup-opt{width:auto;margin:0;padding:8px 12px;font-size:.84rem}
+.ref-input{margin-top:8px;width:100%;padding:10px 12px;border:1px solid rgba(193,163,116,.5);border-radius:12px;background:rgba(7,46,44,.55);color:var(--cream);font:inherit;font-size:.9rem}
+.ref-input::placeholder{color:rgba(244,236,214,.55)}
+.form-pickup.need{border-color:#ff9d9d}
+.pickup-title .req{color:#ff9d9d}
+.zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
+.call-btn{display:block;margin-top:10px;font-size:.85rem;color:var(--gold-light);text-decoration:underline}
 
-  footer{margin-top:34px;text-align:center;font-size:.72rem;opacity:.6;line-height:1.7;padding:0 8px}
-  footer a{color:var(--gold-light)}
+footer{margin-top:34px;text-align:center;font-size:.72rem;opacity:.6;line-height:1.7;padding:0 8px}
+footer a{color:var(--gold-light)}
 
-  .float-zalo{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:10px}
-  .float-zalo a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 8px 22px rgba(0,0,0,.3)}
-  .fz{background:#0068ff;color:#fff;font-weight:800;font-size:.8rem!important;font-family:var(--sans)}
-  .fp{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep)}
+.float-zalo{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:10px}
+.float-zalo a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 8px 22px rgba(0,0,0,.3)}
+.fz{background:#0068ff;color:#fff;font-weight:800;font-size:.8rem!important;font-family:var(--sans)}
+.fp{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep)}
 
-  [hidden]{display:none!important}
+[hidden]{display:none!important}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
@@ -298,34 +298,34 @@
   // ---- prize segments (order = wheel order). prob in %, sums to 100 ----
   // 11/10/2026 (CEO): gộp đông trùng + kỷ tử thành 1 ô 40%; "10 hũ" giữ 0% (ô mồi); vòng còn 6 ô.
   var SEGMENTS = [
-    { name: "Hộp yến vụn 3G",           lines: ["Hộp yến","vụn 3G"],           prob: 25, img: "/assets/wheel-hop-yen-vun-3g.jpg", icon: "🎁" },
-    { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5,  img: "/assets/wheel-tra-thao-moc.jpg", icon: "🍵" },
-    { name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Combo đông trùng","+ kỷ tử"], prob: 40, img: "/assets/wheel-dong-trung-ky-tu.jpg", icon: "🍯" },
-    { name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10, img: "/assets/wheel-voucher-100k.jpg", icon: "🏷️" },
-    { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20, img: "/assets/wheel-yen-chung.jpg", icon: "🍯" },
-    { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0,  img: "/assets/wheel-yen-chung.jpg", icon: "🍯" }
+{ name: "Hộp yến vụn 3G",           lines: ["Hộp yến","vụn 3G"],           prob: 25, img: "/assets/wheel-hop-yen-vun-3g.jpg", icon: "🎁" },
+{ name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5,  img: "/assets/wheel-tra-thao-moc.jpg", icon: "🍵" },
+{ name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Combo đông trùng","+ kỷ tử"], prob: 40, img: "/assets/wheel-dong-trung-ky-tu.jpg", icon: "🍯" },
+{ name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10, img: "/assets/wheel-voucher-100k.jpg", icon: "🏷️" },
+{ name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20, img: "/assets/wheel-yen-chung.jpg", icon: "🍯" },
+{ name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0,  img: "/assets/wheel-yen-chung.jpg", icon: "🍯" }
   ];
 
   // ---- state ----
   function loadState(){
     try{
       var raw = localStorage.getItem(STORE_KEY);
-      if(!raw) return { spins: [], chosenIndex: null, submitted: false };
+if(!raw) return{ spins: [], chosenIndex: null, submitted: false };
       return JSON.parse(raw);
-    }catch(e){ return { spins: [], chosenIndex: null, submitted: false }; }
+    }catch(e){return{ spins: [], chosenIndex: null, submitted: false }; }
   }
   function saveState(s){
-    try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){}
+try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){}
   }
   var state = loadState();
 
   // ---- đo điểm chạm (GA4, CEO 11/10/2026): xem trang → quay 1 → quay 2 → chọn quà → chọn cách nhận → gửi SĐT ----
-  function track(ev, p){ try{ if(typeof gtag === 'function') gtag('event', ev, Object.assign({ page_path: location.pathname }, p || {})); }catch(e){} }
-  (function(){ var pb = document.getElementById('toPriceBtn'); if(pb) pb.addEventListener('click', function(){ track('wheel_to_price', { link_url: pb.getAttribute('href') }); }); })();
-  track('wheel_view', { stage: state.submitted ? 'returned' : (state.spins.length >= 2 ? 'compare' : state.spins.length === 1 ? 'spun1' : 'fresh') });
+  function track(ev, p){ try{if(typeof gtag === 'function') gtag('event', ev, Object.assign({ page_path: location.pathname }, p ||{})); }catch(e){} }
+  (function(){ var pb = document.getElementById('toPriceBtn'); if(pb) pb.addEventListener('click', function(){track('wheel_to_price',{ link_url: pb.getAttribute('href') }); }); })();
+track('wheel_view',{ stage: state.submitted ? 'returned' : (state.spins.length >= 2 ? 'compare' : state.spins.length === 1 ? 'spun1' : 'fresh') });
 
   // ---- countdown ----
-  function tickCountdown(){
+function tickCountdown(){
     var now = Date.now();
     var diff = Math.max(0, DEADLINE - now);
     var d = Math.floor(diff/86400000);
@@ -373,7 +373,7 @@
       var lines = seg.lines;
       var lineH = 30;
       var startY = -((lines.length-1)*lineH)/2;
-      lines.forEach(function(line, li){
+lines.forEach(function(line, li){
         ctx.fillText(line, R-30, startY + li*lineH + 8);
       });
       ctx.restore();
@@ -385,13 +385,13 @@
   function pickPrizeIndex(){
     var r = Math.random()*100;
     var cum = 0;
-    for(var i=0;i<SEGMENTS.length;i++){
+for(var i=0;i<SEGMENTS.length;i++){
       cum += SEGMENTS[i].prob;
       if(SEGMENTS[i].prob>0 && r<=cum) return i;
     }
     // fallback: pick a random non-zero-prob segment
     var pool = [];
-    SEGMENTS.forEach(function(s,i){ if(s.prob>0) pool.push(i); });
+SEGMENTS.forEach(function(s,i){ if(s.prob>0) pool.push(i); });
     return pool[Math.floor(Math.random()*pool.length)];
   }
 
@@ -410,7 +410,7 @@
     var targetDeg = 360*6 + (360 - segCenterDeg + jitter);
     currentRotation += targetDeg;
     canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
-    setTimeout(function(){
+setTimeout(function(){
       spinning = false;
       cb(idx);
     }, 4300);
@@ -430,14 +430,14 @@
   var hubSpin = document.getElementById('hubSpin');
 
   function fillThumb(el, seg){
-    if(seg.img){
+if(seg.img){
       el.innerHTML = '<img src="' + seg.img + '" alt="' + seg.name + '" loading="lazy">';
-    } else {
+    }else{
       el.textContent = seg.icon || '🎁';
     }
   }
 
-  function showCompare(){
+function showCompare(){
     stepWheel.hidden = true;
     stepCompare.hidden = false;
     var seg0 = SEGMENTS[state.spins[0]];
@@ -452,29 +452,29 @@
     var firstChoice = state.chosenIndex === null || state.chosenIndex === undefined;
     state.chosenIndex = which;
     saveState(state);
-    if(firstChoice && state.spins.length >= 2) track('wheel_choose', { prize: SEGMENTS[state.spins[which]].name, other: SEGMENTS[state.spins[1 - which]].name });
+if(firstChoice && state.spins.length >= 2) track('wheel_choose',{ prize: SEGMENTS[state.spins[which]].name, other: SEGMENTS[state.spins[1 - which]].name });
     document.getElementById('pick0').classList.toggle('chosen', which===0);
     document.getElementById('pick1').classList.toggle('chosen', which===1);
     formZone.hidden = false;
   };
 
   function triggerSpin(){
-    if(state.submitted){ renderState(); return; }
+if(state.submitted){ renderState(); return; }
     if(state.spins.length >= 2) return;
     if(spinBtn.disabled) return;
     spinBtn.disabled = true;
     spin(function(idx){
       state.spins.push(idx);
       saveState(state);
-      track('wheel_spin', { spin_no: state.spins.length, prize: SEGMENTS[idx].name });
+track('wheel_spin',{ spin_no: state.spins.length, prize: SEGMENTS[idx].name });
       resultCard.hidden = false;
       resultTag.textContent = 'Kết quả lượt ' + state.spins.length;
       resultPrize.textContent = SEGMENTS[idx].name;
-      if(state.spins.length === 1){
+if(state.spins.length === 1){
         spinBtn.textContent = '🎯 Quay ngay — Lượt 2 (cuối)';
         spinHint.textContent = 'Còn 1 lượt quay';
         spinBtn.disabled = false;
-      } else {
+      }else{
         spinBtn.disabled = true;
         setTimeout(showCompare, 900);
       }
@@ -493,8 +493,8 @@
   [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(b){
     b.addEventListener('click', function(){
       formPick = b.getAttribute('data-m');
-      track('wheel_pickup', { method: formPick });
-      [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+track('wheel_pickup',{ method: formPick });
+[].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
       pickupErr.style.display = 'none';
       formPickupBox.classList.remove('need');
     });
@@ -507,59 +507,59 @@
   [].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(b){
     b.addEventListener('click', function(){
       buyPick = b.getAttribute('data-buy');
-      [].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+[].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
       buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
     });
   });
   [].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(b){
     b.addEventListener('click', function(){
       chPick = b.getAttribute('data-ch');
-      [].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
+[].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
       buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
     });
   });
 
   function validPhone(v){
     var clean = v.replace(/[\s.\-]/g,'');
-    return /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(clean);
+return /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(clean);
   }
 
   submitBtn.addEventListener('click', function(){
     var v = phoneInput.value.trim();
     if(!validPhone(v)){
       phoneErr.style.display = 'block';
-      track('wheel_submit', { status: 'invalid_phone' });
+track('wheel_submit',{ status: 'invalid_phone' });
       return;
     }
     phoneErr.style.display = 'none';
     if(!buyPick || !chPick){
-      track('wheel_submit', { status: 'no_purchase' });
+track('wheel_submit',{ status: 'no_purchase' });
       buyErr.style.display = 'block';
       formBuyBox.classList.add('need');
-      formBuyBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+formBuyBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
       return;
     }
     // BẮT BUỘC chọn cách nhận quà trước khi gửi (CEO chốt 02/10/2026)
     if(!formPick){
-      track('wheel_submit', { status: 'no_pickup' });
+track('wheel_submit',{ status: 'no_pickup' });
       pickupErr.style.display = 'block';
       formPickupBox.classList.add('need');
-      formPickupBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+formPickupBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
       return;
     }
     sendFail.hidden = true;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
-    track('wheel_submit', { status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick, has_name: (document.getElementById('custName').value || '').trim() ? 'yes' : 'no' });
+track('wheel_submit',{ status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick, has_name: (document.getElementById('custName').value || '').trim() ? 'yes' : 'no' });
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = null;
     getTurnstileToken().then(function(token){
-      timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
+timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
       return fetch(WEBAPP_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick,
+headers:{ 'Content-Type': 'text/plain;charset=utf-8' },
+body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick,
           purchase: buyPick, channel: chPick, order_ref: (document.getElementById('orderRef').value || '').trim().slice(0, 40),
           name: (document.getElementById('custName').value || '').trim().slice(0, 40) }),
         signal: ctrl ? ctrl.signal : undefined
@@ -568,7 +568,7 @@
       .then(function(json){
         if(timer) clearTimeout(timer);
         if(json && json.ok === false && json.error === 'duplicate'){
-          track('wheel_submit', { status: 'duplicate', prize: prizeName });
+track('wheel_submit',{ status: 'duplicate', prize: prizeName });
           state.submitted = true;
           saveState(state);
           stepCompare.hidden = true;
@@ -576,13 +576,13 @@
           return;
         }
         if(json && json.error === 'invalid_phone'){
-          track('wheel_submit', { status: 'server_invalid_phone' });
+track('wheel_submit',{ status: 'server_invalid_phone' });
           resetSubmit();
           phoneErr.style.display = 'block';
           return;
         }
         if(!json || json.ok !== true) throw new Error(json && json.error || 'not saved');
-        track('wheel_submit', { status: 'ok', prize: prizeName, method: formPick });
+track('wheel_submit',{ status: 'ok', prize: prizeName, method: formPick });
         state.submitted = true;
         state.finalPrize = prizeName;
         state.ref = json.ref || null;
@@ -595,7 +595,7 @@
         // Không lưu được (mạng lỗi / quá 20s / chống bot không qua / gửi quá nhiều lần):
         // KHÔNG báo "Cảm ơn" — giữ nguyên form để khách thử lại hoặc nhắn Zalo.
         if(timer) clearTimeout(timer);
-        track('wheel_submit', { status: 'fail', prize: prizeName });
+track('wheel_submit',{ status: 'fail', prize: prizeName });
         resetSubmit();
         sendFail.hidden = false;
       });
@@ -604,7 +604,7 @@
   function resetSubmit(){
     submitBtn.disabled = false;
     submitBtn.textContent = '🎁 Nhận quà ngay';
-    if(window.turnstile && tsWidget !== null){ try{ turnstile.reset(tsWidget); }catch(e){} }
+    if(window.turnstile && tsWidget !== null){try{ turnstile.reset(tsWidget); }catch(e){} }
   }
 
   // ---- Cloudflare Turnstile: chống bot, chỉ hiện ô xác minh khi nghi ngờ ----
@@ -612,18 +612,18 @@
   function getTurnstileToken(){
     return new Promise(function(resolve, reject){
       if(!window.turnstile) return reject(new Error('turnstile-missing'));
-      tsPending = { resolve: resolve, reject: reject };
+tsPending ={ resolve: resolve, reject: reject };
       if(tsWidget === null){
         tsWidget = turnstile.render('#tsBox', {
           sitekey: TURNSTILE_SITEKEY,
           execution: 'execute',
           appearance: 'interaction-only',
           language: 'vi',
-          callback: function(t){ submitBtn.textContent = 'Đang gửi...'; if(tsPending){ tsPending.resolve(t); tsPending = null; } },
+          callback: function(t){submitBtn.textContent = 'Đang gửi...'; if(tsPending){ tsPending.resolve(t); tsPending = null; } },
           // Turnstile nghi ngờ → hiện ô tick: chỉ cho khách thấy cần bấm vào đó
-          'before-interactive-callback': function(){ submitBtn.textContent = '☝️ Bấm ô xác minh phía trên để gửi'; },
-          'error-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-error')); tsPending = null; } },
-          'timeout-callback': function(){ if(tsPending){ tsPending.reject(new Error('turnstile-timeout')); tsPending = null; } }
+'before-interactive-callback': function(){ submitBtn.textContent = '☝️ Bấm ô xác minh phía trên để gửi'; },
+          'error-callback': function(){if(tsPending){ tsPending.reject(new Error('turnstile-error')); tsPending = null; } },
+          'timeout-callback': function(){if(tsPending){ tsPending.reject(new Error('turnstile-timeout')); tsPending = null; } }
         });
       }
       turnstile.execute(tsWidget);
@@ -632,15 +632,15 @@
 
   // ---- Khách chọn cách nhận quà → ghi về Sheet (cột G) + báo Telegram cho shop ----
   var PICKUP_URL = WEBAPP_URL.replace('/wheel/submit', '/wheel/pickup');
-  var PICKUP_LABEL = { store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gửi kèm đơn hàng kế tiếp', ship_paid: 'Nhận ngay — shop gửi, anh chị thanh toán phí ship' };
+var PICKUP_LABEL ={ store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gửi kèm đơn hàng kế tiếp', ship_paid: 'Nhận ngay — shop gửi, anh chị thanh toán phí ship' };
   var pickupBox = document.getElementById('pickupBox');
   var pickupStatus = document.getElementById('pickupStatus');
   var pickupBtns = [].slice.call(pickupBox.querySelectorAll('.pickup-opt'));
 
   function renderPickup(){
     pickupBox.hidden = !state.ref; // khách cũ (trước khi có tính năng) không có ref → ẩn nút, vẫn nhắn Zalo
-    pickupBtns.forEach(function(b){ b.classList.toggle('chosen', b.getAttribute('data-m') === state.pickup); });
-    if(state.pickup){
+pickupBtns.forEach(function(b){ b.classList.toggle('chosen', b.getAttribute('data-m') === state.pickup); });
+if(state.pickup){
       pickupStatus.hidden = false;
       pickupStatus.className = 'pickup-status';
       pickupStatus.textContent = '✓ Shop đã ghi nhận: ' + PICKUP_LABEL[state.pickup] + '. Bấm "Nhắn Zalo" bên dưới để báo shop nhé.';
@@ -651,13 +651,13 @@
     btn.addEventListener('click', function(){
       var m = btn.getAttribute('data-m');
       if(!state.ref || m === state.pickup) return;
-      pickupBtns.forEach(function(b){ b.disabled = true; });
+pickupBtns.forEach(function(b){ b.disabled = true; });
       fetch(PICKUP_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ ref: state.ref, method: m })
+headers:{ 'Content-Type': 'text/plain;charset=utf-8' },
+body: JSON.stringify({ ref: state.ref, method: m })
       }).then(function(res){ return res.json(); })
-        .then(function(json){
+.then(function(json){
           if(!json || json.ok !== true) throw new Error('not saved');
           state.pickup = m;
           saveState(state);
@@ -666,13 +666,13 @@
           pickupStatus.hidden = false;
           pickupStatus.className = 'pickup-status err';
           pickupStatus.textContent = 'Chưa lưu được lựa chọn — bạn bấm lại, hoặc nhắn Zalo báo shop giúp nhé.';
-        }).then(function(){ pickupBtns.forEach(function(b){ b.disabled = false; }); });
+        }).then(function(){pickupBtns.forEach(function(b){ b.disabled = false; }); });
     });
   });
 
   // ---- resume state on load ----
   function renderState(){
-    if(state.submitted && state.ref){
+if(state.submitted && state.ref){
       // đã gửi SĐT thành công trên máy này → quay lại màn Chúc mừng để chọn/đổi cách nhận quà
       stepWheel.hidden = true;
       stepCompare.hidden = true;
@@ -681,7 +681,7 @@
       renderPickup();
       return;
     }
-    if(state.submitted){
+if(state.submitted){
       stepWheel.hidden = true;
       stepCompare.hidden = true;
       stepThanks.hidden = true;
@@ -690,7 +690,7 @@
     }
     if(state.spins.length >= 2){
       showCompare();
-      if(state.chosenIndex !== null && state.chosenIndex !== undefined){
+if(state.chosenIndex !== null && state.chosenIndex !== undefined){
         window.choosePrize(state.chosenIndex);
       }
       return;
@@ -707,7 +707,7 @@
       currentRotation = 360*6 + (360 - segCenterDeg);
       canvas.style.transition = 'none';
       canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
-      setTimeout(function(){ canvas.style.transition = ''; }, 50);
+setTimeout(function(){ canvas.style.transition = ''; }, 50);
     }
   }
   renderState();

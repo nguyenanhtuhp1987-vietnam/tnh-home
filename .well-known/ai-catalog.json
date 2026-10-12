@@ -1,0 +1,30 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "The Nest House — Yến sào cao cấp Nha Trang",
+    "documentationUrl": "https://thenesthouse.com.vn/agents.md"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:thenesthouse.com.vn:guides:agents-md",
+      "displayName": "The Nest House agent guide",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://thenesthouse.com.vn/agents.md",
+      "description": "Quy ước cho trợ lý AI dùng thenesthouse.com.vn: yến sào là thực phẩm không phải thuốc, giá lấy ở trang đang chạy, trích dẫn bằng URL chuẩn, không đặt đơn thay người dùng khi chưa xác nhận, chỉ nêu chính sách có thật.",
+      "tags": ["yen-sao", "bird-nest", "vietnam", "food", "ecommerce", "citation"],
+      "capabilities": ["ContentNavigation", "ProductDiscovery", "CanonicalCitation"],
+      "representativeQueries": [
+        "Yến sào The Nest House giá bao nhiêu, mua ở đâu?",
+        "Cách chưng yến sào đúng theo hướng dẫn của The Nest House",
+        "How should an agent cite articles and product pages from thenesthouse.com.vn?"
+      ]
+    },
+    {
+      "identifier": "urn:air:thenesthouse.com.vn:guides:llms-txt",
+      "displayName": "Mục lục cho LLM",
+      "type": "text/markdown",
+      "url": "https://thenesthouse.com.vn/llms.txt",
+      "description": "Tổng quan thương hiệu, trang chính, sản phẩm và bài cẩm nang đã đăng, kèm mô tả từng trang."
+    }
+  ]
+}

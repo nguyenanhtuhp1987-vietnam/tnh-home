@@ -12,9 +12,18 @@
   if (!window.__tnhFooter && !document.querySelector('script[src*="tnh-footer.js"]')) {
     var fs = document.createElement("script"); fs.src = "/assets/tnh-footer.js"; fs.defer = true; document.head.appendChild(fs);
   }
-  // Meta Pixel (CEO 10/10/2026) — nạp bất đồng bộ, không chặn hiển thị; cấu hình Pixel ID nằm ở tnh-pixel.js
+  // Meta Pixel (CEO 10/10/2026) — cấu hình Pixel ID nằm ở tnh-pixel.js.
+  // Đợt 2 tốc độ (CEO 12/10/2026): nạp SAU khi trang tải xong + trình duyệt rảnh, hoặc ngay khi khách chạm/cuộn — không chặn luồng chính lúc mở trang.
+  // GA4 (gtag trong <head>) giữ nguyên. PageView Pixel có thể muộn 1–3 giây; sự kiện giỏ hàng vẫn xếp hàng ở __tnhPxQ nên không mất.
   if (!window.__tnhPixel && !document.querySelector('script[src*="tnh-pixel.js"]')) {
-    var ps = document.createElement("script"); ps.src = "/assets/tnh-pixel.js"; ps.async = true; document.head.appendChild(ps);
+    var pxDone = false;
+    var loadPx = function () {
+      if (pxDone) return; pxDone = true;
+      var ps = document.createElement("script"); ps.src = "/assets/tnh-pixel.js"; ps.async = true; document.head.appendChild(ps);
+    };
+    ["scroll", "touchstart", "pointerdown", "keydown"].forEach(function (ev) { window.addEventListener(ev, loadPx, { once: true, passive: true }); });
+    var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(loadPx); };
+    if (document.readyState === "complete") idle(); else window.addEventListener("load", idle);
   }
   var API = "https://tnh-chatbot.telegram-duyet-worker.workers.dev/chat";
   var ZALO = "https://zalo.me/0969850153";
@@ -217,4 +226,23 @@
   ta.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send.onclick(); }
   });
+
+  // "Bài này có hữu ích không?" cuối bài cẩm nang (CEO 12/10/2026, học herb.vn) → sự kiện GA4 article_feedback {answer: yes|no}
+  var art = /^\/cam-nang\/[^/]+\.html$/.test(location.pathname) && document.querySelector("article");
+  if (art && !document.querySelector(".tnh-fb")) {
+    var fb = document.createElement("div"); fb.className = "tnh-fb";
+    fb.innerHTML = "<style>.tnh-fb{margin:26px 0 10px;padding:14px 16px;border:1px solid #e8e0cc;border-radius:12px;background:#faf7f0;font:500 .92rem/1.5 'Be Vietnam Pro',system-ui,sans-serif;color:#0E3B33;display:flex;flex-wrap:wrap;gap:10px;align-items:center}" +
+      ".tnh-fb button{border:1.5px solid #0E3B33;background:#fff;color:#0E3B33;border-radius:999px;padding:7px 16px;font:600 .88rem 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer}.tnh-fb button:hover{background:#0E3B33;color:#fff}.tnh-fb .ok{flex-basis:100%;color:#536862;font-size:.88rem}</style>" +
+      "<span>Bài này có hữu ích với anh/chị không?</span><button data-a=\"yes\">👍 Có</button><button data-a=\"no\">👎 Chưa</button>";
+    var dis = art.querySelector("p.disclaimer");
+    if (dis) dis.parentNode.insertBefore(fb, dis); else art.appendChild(fb);
+    fb.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      ga("article_feedback", { answer: b.getAttribute("data-a"), page_path: location.pathname });
+      fb.querySelectorAll("button").forEach(function (x) { x.remove(); });
+      var ok = document.createElement("span"); ok.className = "ok";
+      ok.textContent = b.getAttribute("data-a") === "yes" ? "Cảm ơn anh/chị! " : "Cảm ơn anh/chị đã góp ý — nhắn Zalo 0969.850.153 cho shop biết chỗ cần bổ sung nhé.";
+      fb.appendChild(ok);
+    });
+  }
 })();
