@@ -81,11 +81,11 @@ OFFER = """      <div class="offer-card">
 PROOF_COMMON = [
     "✔ Kiểm tra hàng trước khi thanh toán (COD)",
     "✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM (<a href=\"https://share.google/Jlp2IjomZLla08vaa\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--gold-text);font-weight:600\">chỉ đường</a>)",
-    "✔ Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc qua Zalo) · tỉnh khác 2–5 ngày làm việc (<a href=\"/chinh-sach/van-chuyen/\" style=\"color:var(--gold-text);font-weight:600\">xem chính sách</a>)",
+    "✔ Có giao trong ngày tại TP.HCM (khung 09:00–18:00, tuỳ đơn) · tỉnh khác 2–5 ngày làm việc (<a href=\"/chinh-sach/van-chuyen/\" style=\"color:var(--gold-text);font-weight:600\">xem chính sách</a>)",
     "✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả",
 ]
 FAQ_SHIP = ("Giao hàng bao lâu, có được kiểm hàng không?",
-            "Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc trong ngày qua Zalo khi cần gấp); tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.")
+            "Tại TP.HCM có giao trong ngày (khung 09:00–18:00, tùy giờ đặt và địa chỉ nhận): khoảng một nửa số đơn giao được cùng ngày, các đơn còn lại 1–2 ngày làm việc; tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.")
 FAQ_GIFT = ("Mua yến được tặng quà gì?",
             "Đơn từ 1.250.000đ được tặng combo 3 quà (đông trùng hạ thảo, kỷ tử, thố chưng sứ); đơn từ 2.400.000đ được tặng combo 3 quà và 6 hũ yến chưng sẵn 70ml. Quà nhân theo giá trị đơn, mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu; không áp dụng cho yến chưng sẵn.")
 LAZ_TT = """      <div class="rv-grid">
