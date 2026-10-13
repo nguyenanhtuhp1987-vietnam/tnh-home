@@ -40,13 +40,13 @@ def load_cart():
     return byp
 
 
-def ship_free():
+def ship_free():  # transit 0–5 ngày: TP.HCM có giao trong ngày (CEO 13/10/2026), tỉnh khác 2–5 ngày làm việc
     return {"@type": "OfferShippingDetails",
             "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "VND"},
             "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "VN"},
             "deliveryTime": {"@type": "ShippingDeliveryTime",
                              "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
-                             "transitTime": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY"}}}
+                             "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 5, "unitCode": "DAY"}}}
 
 
 def return_policy(pid):
