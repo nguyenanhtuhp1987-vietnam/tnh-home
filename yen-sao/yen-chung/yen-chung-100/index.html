@@ -132,7 +132,52 @@ footer a{color:var(--gold-light)}
 .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
   @media(max-width:760px){.rv-grid{grid-template-columns:1fr!important}.rv-main{grid-template-columns:1fr}.rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}}
 </style>
-<style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
+<style>:where(img){max-width:100%}:where(img[height]){height:auto}
+  /* Khuôn trang sản phẩm (nhân từ 100G sợi dài 13/10/2026) */
+  .pdp{padding-top:16px!important}
+  .pdp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px;align-items:start}
+  .pdp-img img{border-radius:16px;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #e8e0cc}
+  .pdp-img figcaption{font-size:.78rem;color:#536862;text-align:center;margin-top:8px}
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold-text);font-weight:700;text-decoration:underline}
+  .offer-card{border:1.5px dashed var(--gold);background:#fffdf6;border-radius:14px;padding:14px 16px;margin:0 0 6px}
+  .offer-card b.t{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+  .offer-card ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+  .offer-card li{padding:3px 0 3px 26px;position:relative}
+  .offer-card li:before{content:"🎁";position:absolute;left:0}
+  .offer-card small{display:block;color:#5b6b66;margin-top:6px;font-size:.8rem}
+  .pdp-info .tnh-proof{margin:12px 0 0!important}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-main{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:14px 0}
+  .rv-score{text-align:center}
+  .rv-score .big{font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--forest);display:block}
+  .rv-score .st{color:#C1A374;letter-spacing:2px;display:block}
+  .rv-score small{display:block;color:#5b6b66;font-size:.78rem;line-height:1.4;margin-top:4px}
+  .rv-row{display:grid;grid-template-columns:28px 1fr 46px;gap:8px;align-items:center;font-size:.84rem;margin:4px 0}
+  .rv-bar{height:9px;background:#e6dcc3;border-radius:9px;overflow:hidden}
+  .rv-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A)}
+  .rv-quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .rv-quotes blockquote{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:12px 14px;font-size:.95rem;font-style:italic;margin:0}
+  .rv-quotes cite{display:block;font-style:normal;font-size:.76rem;color:#5b6b66;margin-top:6px}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0 18px}
+  .who-grid>div{background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:16px 18px}
+  .who-grid p{font-weight:700;margin-bottom:8px}
+  .who-grid ul{margin:0 0 0 18px;font-size:.93rem}
+  .who-grid a{color:var(--gold-text);font-weight:600}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:1fr;gap:16px}.pdp-img img{aspect-ratio:16/9}.pdp-img figcaption{display:none}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}
+    .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
+    .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -164,12 +209,32 @@ footer a{color:var(--gold-light)}
     <p>Đậm sợi yến trong từng hũ 70ml · chưng tươi theo lô · tem đen – vàng · set 15 hũ + hộp túi biếu được ngay.</p>
   </div>
 </div>
+<section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
+  <div class="container pdp-grid">
+    <figure class="pdp-img"><img srcset="/assets/yen-chung-hoang-kim-concept-1-480.webp 480w, /assets/yen-chung-hoang-kim-concept-1.webp 899w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="899" height="1600" src="/assets/yen-chung-hoang-kim-concept-1.webp" alt="Set yến chưng 100% Hoàng Kim 15 hũ The Nest House tem đen vàng"><figcaption>Set Hoàng Kim 15 hũ + hộp túi — dòng yến chưng nguyên chất 100%</figcaption></figure>
+    <div class="pdp-info">
+      <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 502 đánh giá yến chưng 100% Hoàng Kim trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
+<div id="dat-mua" data-tnh-buy="/yen-sao/yen-chung/yen-chung-100/" data-was='{"hk15": 1200000, "hk10": 600000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
+      <ul class="tnh-proof" style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
+      <li>✔ 100% sợi yến, không pha — đã kiểm nghiệm NEWCENLAB 06/2026 (<a href="/kiem-nghiem/" style="color:var(--gold-text);font-weight:600">xem phiếu</a>)</li>
+      <li>✔ Tem đen–vàng Hoàng Kim, HSD in trên nắp</li>
+      <li>✔ Kiểm tra hàng trước khi thanh toán (COD)</li>
+      <li>✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM (<a href="https://share.google/Jlp2IjomZLla08vaa" target="_blank" rel="noopener" style="color:var(--gold-text);font-weight:600">chỉ đường</a>)</li>
+      <li>✔ Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc qua Zalo) · tỉnh khác 2–5 ngày làm việc (<a href="/chinh-sach/van-chuyen/" style="color:var(--gold-text);font-weight:600">xem chính sách</a>)</li>
+      <li>✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả</li>
+    </ul>
+    </div>
+  </div>
+</section>
 <section style="padding-bottom:20px">
   <div class="container prose">
     <p>Có những người mình muốn bồi bổ <strong>thật sự</strong> — mẹ mới mổ, bố lớn tuổi, người thân đang cần sức. Lúc đó "có vị yến" là không đủ. Yến chưng 100% Hoàng Kim là dòng <strong>nguyên chất không pha</strong> của The Nest House: đậm sợi yến trong từng hũ 70ml, chưng tươi theo lô, <strong>tem đen – vàng</strong> nhận diện riêng, đóng set 15 hũ kèm hộp túi để biếu là trao được ngay.</p>
-    <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 1.732 đánh giá yến chưng sẵn trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
-<div id="dat-mua" data-tnh-buy="/yen-sao/yen-chung/yen-chung-100/" data-was='{"hk15": 1200000, "hk10": 600000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
-    <figure><img srcset="/assets/yen-chung-hoang-kim-concept-1-480.webp 480w, /assets/yen-chung-hoang-kim-concept-1.webp 899w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="899" height="1600" src="/assets/yen-chung-hoang-kim-concept-1.webp" alt="Set yến chưng 100% Hoàng Kim 15 hũ The Nest House tem đen vàng"><figcaption>Set Hoàng Kim 15 hũ + hộp túi — dòng yến chưng nguyên chất 100%</figcaption></figure>
+    <h2 id="danh-cho-ai">Yến chưng 100% Hoàng Kim dành cho ai, chưa hợp với ai?</h2>
+    <div class="who-grid">
+      <div><p>Phù hợp nếu anh/chị</p><ul><li>Bồi bổ thật sự cho bố mẹ, người mới ốm dậy, mẹ sau sinh: mỗi hũ đậm sợi yến, không pha loãng.</li><li>Biếu sang mà người nhận dùng được ngay: set 15 hũ + hộp túi tem đen–vàng.</li><li>Muốn có phiếu kiểm nghiệm độc lập để yên tâm: dòng này đã kiểm NEWCENLAB.</li></ul></div>
+      <div><p>Có thể chưa hợp nếu anh/chị</p><ul><li>Chỉ cần dùng thử hoặc quà tầm 250.000đ: xem <a href="/yen-sao/yen-chung/yen-chung-30/">yến chưng 30%</a>.</li><li>Thích tự chưng để kiểm soát độ ngọt: xem <a href="/yen-sao/tinh-che/soi-ngan/">yến tinh chế</a>.</li><li>Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh.</li></ul></div>
+    </div>
+
     <h2>Nguyên chất 100% nghĩa là gì?</h2>
     <p>Là hũ yến chưng <strong>không pha loãng tỉ lệ</strong> — lượng sợi yến đậm gấp nhiều lần dòng 30%, ăn rõ độ dai giòn của sợi, vị thanh tự nhiên. Mỗi lô chưng tươi tại cửa hàng rồi mới đóng tem, không phải hàng để kho dài ngày. HSD 12 tháng in trên nắp; bảo quản ngăn mát, mở nắp dùng trong 24 giờ. Cả 4 vị của dòng 100% đã được <strong>kiểm nghiệm tại phòng lab độc lập NEWCENLAB</strong> (VILAS 1118, phiếu 2606137/KQ, 06/2026): 8/8 chỉ tiêu vi sinh không phát hiện, chì không phát hiện.</p>
     <h2>Quy cách &amp; giá</h2>
@@ -197,18 +262,19 @@ footer a{color:var(--gold-light)}
 <h2>Mua chính hãng ở đâu?</h2>
     <p>Đặt trực tiếp qua <a href="https://zalo.me/0969850153" style="color:var(--gold-text);font-weight:600">Zalo 0969.850.153</a> để nhận giá ưu đãi hơn niêm yết (xem <a href="/gia-yen-sao/" style="color:var(--gold-text);font-weight:600">bảng giá công khai</a>) — freeship đơn từ 1 triệu, giao chống sốc 3 lớp, kiểm tra hàng trước khi thanh toán. Hoặc bấm <a href="#dat-mua" style="color:var(--gold-text);font-weight:600">Đặt mua</a> ngay trên trang (COD hoặc chuyển khoản), hoặc ghé cửa hàng TTTM Tops Market, 685 Âu Cơ, TP.HCM.</p>
     <div class="rv" id="danh-gia">
-      <h2>Khách đã mua nói gì về yến chưng sẵn The Nest House</h2>
-      <p class="rv-note">Số liệu lấy từ trang quản lý đánh giá của chính gian hàng chúng tôi trên Shopee, ngày 10/10/2026, cho các sản phẩm yến chưng sẵn (cả dòng 30% và 100% Hoàng Kim). Điểm và số lượng giữ nguyên như sàn hiển thị.</p>
+      <h2>Khách đã mua nói gì về yến chưng 100% Hoàng Kim The Nest House</h2>
+      <p class="rv-note">Số liệu lấy từ phần đánh giá công khai của chính gian hàng chúng tôi trên Shopee, ngày 13/10/2026, cộng đúng các listing của sản phẩm này. Điểm và số lượng giữ nguyên như sàn hiển thị; nhận xét bên dưới là đánh giá thật, ghi tên tài khoản Shopee như sàn hiển thị.</p>
       <div class="rv-main">
-        <div class="rv-score"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><small>1.732 đánh giá cho các sản phẩm yến chưng sẵn trên Shopee</small></div>
-        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:96.1%"></b></div><span>96,1%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:1.7%"></b></div><span>1,7%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:1.3%"></b></div><span>1,3%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:0.3%"></b></div><span>0,3%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:0.5%"></b></div><span>0,5%</span></div></div>
+        <div class="rv-score"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><small>502 đánh giá cho các sản phẩm yến chưng sẵn 100% sợi yến (10 · 15 · 20 hũ) trên Shopee</small></div>
+        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:96.8%"></b></div><span>96,8%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:1.6%"></b></div><span>1,6%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:1.0%"></b></div><span>1,0%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:0.2%"></b></div><span>0,2%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:0.4%"></b></div><span>0,4%</span></div></div>
       </div>
-      <p class="rv-note">Có cả đánh giá 1–2 sao (khoảng 0,9%). Chúng tôi trả lời từng đánh giá trên Shopee.</p>
+      <p class="rv-note">Có cả đánh giá 1–2 sao (khoảng 0,6%). Chúng tôi trả lời từng đánh giá trên Shopee.</p>
+      <div class="rv-quotes"><blockquote>“Độ ngọt: ít ngọt, rất dễ ăn · Hương vị: rất vừa miệng · Chất lượng: sánh đặc.”<cite>hcofsezg_8 · mua 20 hũ 100% trên Shopee · 07/2026</cite></blockquote><blockquote>“Thấy review đúng nha, hộp đẹp, yến ăn không bị lỏng lỏng như mấy loại khác.”<cite>7*****b · mua 15 hũ tam vị trên Shopee · 04/2026</cite></blockquote></div>
       <div class="rv-grid">
         <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · cả gian hàng, ngày 09/10/2026</small></div></div>
         <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày, ngày 09/10/2026</small></div></div>
       </div>
-      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã dùng yến chưng của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý.</p>
+      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã mua yến của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý và luôn ẩn tên.</p>
       <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
     </div>
 
@@ -217,7 +283,9 @@ footer a{color:var(--gold-light)}
       <p style="font-weight:700;margin-top:12px">Làm sao phân biệt Hoàng Kim với dòng 30%?</p><p>Nhìn tem trên nắp: Hoàng Kim dán tem đen – vàng, dòng 30% dán tem tím. Ruột hũ nhìn mắt thường khó phân biệt nên tem là dấu nhận diện chính thức.</p>
       <p style="font-weight:700;margin-top:12px">Hoàng Kim để được bao lâu?</p><p>HSD 12 tháng in trên nắp từng hũ. Bảo quản ngăn mát tủ lạnh; đã mở nắp nên dùng trong 24 giờ.</p>
       <p style="font-weight:700;margin-top:12px">Giá yến chưng 100% Hoàng Kim?</p><p>Set 15 hũ + hộp túi: giá đặt trực tiếp 960.000đ (niêm yết sàn 1.200.000đ); gói 10 hũ không hộp 480.000đ. Đặt mua ngay trên trang hoặc nhắn Zalo 0969.850.153.</p>
-    </div>
+          <p style="font-weight:700;margin-top:12px">Giao hàng bao lâu, có được kiểm hàng không?</p>
+      <p>Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc trong ngày qua Zalo khi cần gấp); tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.</p>
+</div>
         <!--tnh-lq-->
     <h2>Bài cẩm nang liên quan</h2>
     <ul style="margin:0 0 18px 20px;font-size:.95rem"><li style="margin:6px 0"><a href="/cam-nang/yen-sao-cho-phu-nu-sau-sinh.html" style="color:var(--gold-text);font-weight:600">Yến sào cho phụ nữ sau sinh: thời điểm và cách dùng</a></li><li style="margin:6px 0"><a href="/cam-nang/yen-sao-cho-nguoi-tap-gym.html" style="color:var(--gold-text);font-weight:600">Yến sào cho người tập gym, vận động viên — ăn sao cho đúng</a></li><li style="margin:6px 0"><a href="/cam-nang/yen-sao-va-lan-da.html" style="color:var(--gold-text);font-weight:600">Yến sào với làn da: ăn đều đặn có giúp da đẹp hơn không?</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-chung-yen-tao-do-ky-tu.html" style="color:var(--gold-text);font-weight:600">Cách chưng yến đường phèn táo đỏ kỷ tử: tỉ lệ chuẩn và các bước</a></li><li style="margin:6px 0"><a href="/cam-nang/nuoc-yen-sao.html" style="color:var(--gold-text);font-weight:600">Nước yến sào là gì? Phân biệt với nước yến đóng lon</a></li></ul>
