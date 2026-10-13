@@ -104,7 +104,52 @@ footer a{color:var(--gold-light)}
 .note{background:var(--cream);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:.92rem;margin:16px 0}
   @media(max-width:560px){.prose table{font-size:.8rem}.prose th,.prose td{padding:7px 8px}}
 </style>
-<style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
+<style>:where(img){max-width:100%}:where(img[height]){height:auto}
+  /* Khuôn trang sản phẩm (nhân từ 100G sợi dài 13/10/2026) */
+  .pdp{padding-top:16px!important}
+  .pdp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px;align-items:start}
+  .pdp-img img{border-radius:16px;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #e8e0cc}
+  .pdp-img figcaption{font-size:.78rem;color:#536862;text-align:center;margin-top:8px}
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold-text);font-weight:700;text-decoration:underline}
+  .offer-card{border:1.5px dashed var(--gold);background:#fffdf6;border-radius:14px;padding:14px 16px;margin:0 0 6px}
+  .offer-card b.t{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+  .offer-card ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+  .offer-card li{padding:3px 0 3px 26px;position:relative}
+  .offer-card li:before{content:"🎁";position:absolute;left:0}
+  .offer-card small{display:block;color:#5b6b66;margin-top:6px;font-size:.8rem}
+  .pdp-info .tnh-proof{margin:12px 0 0!important}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-main{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:14px 0}
+  .rv-score{text-align:center}
+  .rv-score .big{font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--forest);display:block}
+  .rv-score .st{color:#C1A374;letter-spacing:2px;display:block}
+  .rv-score small{display:block;color:#5b6b66;font-size:.78rem;line-height:1.4;margin-top:4px}
+  .rv-row{display:grid;grid-template-columns:28px 1fr 46px;gap:8px;align-items:center;font-size:.84rem;margin:4px 0}
+  .rv-bar{height:9px;background:#e6dcc3;border-radius:9px;overflow:hidden}
+  .rv-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A)}
+  .rv-quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .rv-quotes blockquote{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:12px 14px;font-size:.95rem;font-style:italic;margin:0}
+  .rv-quotes cite{display:block;font-style:normal;font-size:.76rem;color:#5b6b66;margin-top:6px}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0 18px}
+  .who-grid>div{background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:16px 18px}
+  .who-grid p{font-weight:700;margin-bottom:8px}
+  .who-grid ul{margin:0 0 0 18px;font-size:.93rem}
+  .who-grid a{color:var(--gold-text);font-weight:600}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:1fr;gap:16px}.pdp-img img{aspect-ratio:16/9}.pdp-img figcaption{display:none}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}
+    .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
+    .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -136,10 +181,45 @@ footer a{color:var(--gold-light)}
     <p>Vụn tách từ chính tổ tinh chế (không đắp keo) · set 3g = 1 lần chưng cho bé chỉ 90.000đ · ngâm nhanh, chưng nhanh.</p>
   </div>
 </div>
+<section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
+  <div class="container pdp-grid">
+    <figure class="pdp-img"><img srcset="/assets/yen-vun-8-480.webp 480w, /assets/yen-vun-8-960.webp 960w, /assets/yen-vun-8.webp 1000w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1000" height="1000" src="/assets/yen-vun-8.webp" alt="Yến vụn tinh chế The Nest House kèm hộp quà xanh"><figcaption>Yến vụn tinh chế The Nest House — vụn từ chính tổ tinh chế, không đắp keo</figcaption></figure>
+    <div class="pdp-info">
+      <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 623 đánh giá yến vụn trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
+      <div class="offer-card">
+        <b class="t">Quà tặng theo giá trị đơn hàng</b>
+        <ul>
+          <li>Đơn từ <strong>1.250.000đ</strong>: tặng combo 3 quà — đông trùng hạ thảo · kỷ tử · thố chưng sứ</li>
+          <li>Đơn từ <strong>2.400.000đ</strong>: tặng combo 3 quà + <strong>6 hũ yến chưng sẵn 70ml</strong></li>
+        </ul>
+        <small>Quà nhân theo giá trị đơn: mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu (không áp dụng cho yến chưng sẵn). Khung "Đặt mua" bên dưới tự báo quà của quy cách anh/chị đang chọn.</small>
+      </div>
+<div id="dat-mua" class="offer-card" style="border-style:solid;background:#FFFDF7">
+        <b class="t">Đặt mua yến vụn — nhắn Zalo, giao COD toàn quốc</b>
+        <ul style="list-style:none">
+          <li style="padding-left:0">Set 3g (1 lần chưng) — <strong>90.000đ</strong> · 50g + hộp + nguyên liệu — <strong>1.300.000đ</strong> · 100g + hộp + nguyên liệu — <strong>2.500.000đ</strong></li>
+        </ul>
+        <p style="margin:10px 0 0;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo đặt mua</a><a class="btn btn-outline" style="color:var(--forest)" href="tel:0969850153">☎ 0969.850.153</a></p>
+        <small>Giá niêm yết; nhắn Zalo nhận giá đặt trực tiếp. Kiểm hàng trước khi thanh toán.</small>
+      </div>
+      <ul class="tnh-proof" style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
+      <li>✔ Tách từ chính tổ yến The Nest House, không đắp keo — ngâm nhanh, chưng 15–20 phút</li>
+      <li>✔ Kiểm tra hàng trước khi thanh toán (COD)</li>
+      <li>✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM (<a href="https://share.google/Jlp2IjomZLla08vaa" target="_blank" rel="noopener" style="color:var(--gold-text);font-weight:600">chỉ đường</a>)</li>
+      <li>✔ Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc qua Zalo) · tỉnh khác 2–5 ngày làm việc (<a href="/chinh-sach/van-chuyen/" style="color:var(--gold-text);font-weight:600">xem chính sách</a>)</li>
+      <li>✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả</li>
+    </ul>
+    </div>
+  </div>
+</section>
 <section style="padding-bottom:20px">
   <div class="container prose">
-    <p>Muốn cho con ăn yến đều, muốn tự mình dùng thử trước khi mua hộp lớn — nhưng <strong>ngại xuống tiền tiền triệu ngay lần đầu?</strong> Yến vụn tinh chế sinh ra cho đúng tình huống đó: <strong>vụn tách ra từ chính tổ tinh chế của The Nest House</strong> (không phải vụn trôi nổi đắp keo), giá chỉ từ <strong>90.000đ/set 3g</strong> — một lần chưng vừa đủ cho bé.</p>
-    <figure><img srcset="/assets/yen-vun-8-480.webp 480w, /assets/yen-vun-8-960.webp 960w, /assets/yen-vun-8.webp 1000w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1000" height="1000" src="/assets/yen-vun-8.webp" alt="Yến vụn tinh chế The Nest House kèm hộp quà xanh"><figcaption>Yến vụn tinh chế The Nest House — vụn từ chính tổ tinh chế, không đắp keo</figcaption></figure>
+    <p>Muốn cho con ăn yến đều, muốn tự mình dùng thử trước khi mua hộp lớn — nhưng <strong>ngại xuống tiền tiền triệu ngay lần đầu?</strong> Yến vụn tinh chế sinh ra cho đúng tình huống đó: <strong>vụn tách ra từ chính tổ tinh chế của The Nest House</strong> (không phải vụn trôi nổi đắp keo), giá chỉ từ <strong>90.000đ/set 3g</strong> — một lần chưng vừa đủ cho bé.</p>    <h2 id="danh-cho-ai">Yến vụn dành cho ai, chưa hợp với ai?</h2>
+    <div class="who-grid">
+      <div><p>Phù hợp nếu anh/chị</p><ul><li>Cho bé mới tập ăn yến hoặc muốn thử trước: set 3g đúng một lần chưng, không phải mua hộp lớn.</li><li>Nhà dùng đều, ưu tiên tiết kiệm: 50g/100g vụn cùng nguồn tổ, chỉ khác dạng.</li><li>Người bận: ngâm nhanh, chưng 15–20 phút là xong.</li></ul></div>
+      <div><p>Có thể chưa hợp nếu anh/chị</p><ul><li>Cần quà biếu nhìn nguyên tổ: xem <a href="/yen-sao/tinh-che/soi-dai/">yến sợi dài loại 1</a> hoặc <a href="/yen-sao/set-qua-bieu/hop-1-to/">hộp 1 tổ</a>.</li><li>Thích sợi dài rõ miếng khi chưng: xem <a href="/yen-sao/tinh-che/soi-ngan/">sợi ngắn</a> hoặc <a href="/yen-sao/tinh-che/soi-dai/">sợi dài</a>.</li><li>Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh.</li></ul></div>
+    </div>
+
     <h2>Yến vụn có "kém" hơn tổ nguyên không?</h2>
     <p>Về nguồn gốc thì <strong>cùng một tổ yến</strong>: trong quá trình nhặt lông và định hình, những mảnh sợi gãy được tách riêng thành yến vụn. Khác biệt nằm ở <strong>hình thức</strong> (không còn dáng tổ) chứ không nằm ở bản chất — vì vậy vụn hợp để <em>ăn thật</em>, còn biếu tặng thì nên chọn tổ nguyên. Điểm cộng riêng của vụn: <strong>ngâm nhanh, chưng nhanh, dễ nấu cháo/soup cho bé</strong>.</p>
     <figure><img srcset="/assets/yen-vun-6-480.webp 480w, /assets/yen-vun-6-960.webp 960w, /assets/yen-vun-6.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" width="1200" height="1200" src="/assets/yen-vun-6.webp" alt="Yến vụn tinh chế cận cảnh trên thìa gỗ với táo đỏ" loading="lazy"><figcaption>Cận cảnh yến vụn tinh chế — mảnh sợi thật từ tổ, ngâm nở nhanh</figcaption></figure>
@@ -162,12 +242,33 @@ footer a{color:var(--gold-light)}
     <p>Khi anh/chị đã quen dùng và muốn <strong>sợi dài rõ miếng, độ giòn dai đầy đủ</strong> → nâng lên <a href="/yen-sao/tinh-che/soi-ngan/" style="color:var(--gold-text);font-weight:600">sợi ngắn</a> (dùng đều) hoặc <a href="/yen-sao/tinh-che/soi-dai/" style="color:var(--gold-text);font-weight:600">sợi dài loại 1</a> (biếu tặng).</p>
 <h2>Mua chính hãng ở đâu?</h2>
     <p>Đặt trực tiếp qua <a href="https://zalo.me/0969850153" style="color:var(--gold-text);font-weight:600">Zalo 0969.850.153</a> để nhận giá ưu đãi hơn niêm yết (xem <a href="/gia-yen-sao/" style="color:var(--gold-text);font-weight:600">bảng giá công khai</a>) — freeship đơn từ 1 triệu, đổi trả 90 ngày, kiểm tra hàng trước khi thanh toán. Hoặc ghé cửa hàng TTTM Tops Market, 685 Âu Cơ, TP.HCM.</p>
+    <div class="rv" id="danh-gia">
+      <h2>Khách đã mua nói gì về yến vụn The Nest House</h2>
+      <p class="rv-note">Số liệu lấy từ phần đánh giá công khai của chính gian hàng chúng tôi trên Shopee, ngày 13/10/2026, cộng đúng các listing của sản phẩm này. Điểm và số lượng giữ nguyên như sàn hiển thị; nhận xét bên dưới là đánh giá thật, ghi tên tài khoản Shopee như sàn hiển thị.</p>
+      <div class="rv-main">
+        <div class="rv-score"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><small>623 đánh giá cho các sản phẩm yến vụn tinh chế (set 3g · 50g · 100g) trên Shopee</small></div>
+        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:95.3%"></b></div><span>95,3%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:2.9%"></b></div><span>2,9%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:1.0%"></b></div><span>1,0%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:0.3%"></b></div><span>0,3%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:0.5%"></b></div><span>0,5%</span></div></div>
+      </div>
+      <p class="rv-note">Có cả đánh giá 1–2 sao (khoảng 0,8%): về độ nở của một lô 50g năm 2023 và giao hàng. Chúng tôi trả lời từng đánh giá trên Shopee.</p>
+      <div class="rv-quotes"><blockquote>“Hàng dùng ok, giao hàng đúng hạn. Gói hàng cẩn thận, rất ưng ý nha.”<cite>l*****6 · mua yến vụn 100g trên Shopee · 03/2026</cite></blockquote><blockquote>“Shop đóng gói hàng cẩn thận, mỗi set yến để riêng 1 hộp nên rất dễ bảo quản.”<cite>b*****m · mua 5 set yến vụn 3g trên Shopee · 09/2022</cite></blockquote></div>
+      <div class="rv-grid">
+        <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · cả gian hàng, ngày 09/10/2026</small></div></div>
+        <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày, ngày 09/10/2026</small></div></div>
+      </div>
+      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã mua yến của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý và luôn ẩn tên.</p>
+      <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
+    </div>
+
     <div class="faq" style="background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:20px 22px;margin:26px 0">
       <h2 style="border:none;padding:0;margin:0 0 12px">Câu hỏi thường gặp</h2>
       <p style="font-weight:700;margin-top:12px">Yến vụn có phải yến thật không?</p><p>Vụn của The Nest House tách từ chính tổ tinh chế trong quá trình nhặt lông — cùng nguồn tổ, chỉ khác hình thức. Tránh vụn trôi nổi không rõ nguồn vì có loại đắp keo định hình.</p>
       <p style="font-weight:700;margin-top:12px">Yến vụn cho bé mấy tuổi ăn được?</p><p>Thường từ 1 tuổi trở lên với lượng nhỏ tăng dần; trẻ dưới 1 tuổi nên hỏi ý kiến bác sĩ. Set 3g một lần chưng rất tiện chia bữa cho bé.</p>
       <p style="font-weight:700;margin-top:12px">Giá yến vụn bao nhiêu?</p><p>Niêm yết: set 3g 90.000đ · 50g 1.300.000đ · 100g 2.500.000đ. Nhắn Zalo 0969.850.153 nhận giá ưu đãi đặt trực tiếp.</p>
-    </div>
+          <p style="font-weight:700;margin-top:12px">Mua yến được tặng quà gì?</p>
+      <p>Đơn từ 1.250.000đ được tặng combo 3 quà (đông trùng hạ thảo, kỷ tử, thố chưng sứ); đơn từ 2.400.000đ được tặng combo 3 quà và 6 hũ yến chưng sẵn 70ml. Quà nhân theo giá trị đơn, mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu; không áp dụng cho yến chưng sẵn.</p>
+      <p style="font-weight:700;margin-top:12px">Giao hàng bao lâu, có được kiểm hàng không?</p>
+      <p>Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc trong ngày qua Zalo khi cần gấp); tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.</p>
+</div>
         <!--tnh-lq-->
     <h2>Bài cẩm nang liên quan</h2>
     <ul style="margin:0 0 18px 20px;font-size:.95rem"><li style="margin:6px 0"><a href="/cam-nang/yen-sao-cho-be.html" style="color:var(--gold-text);font-weight:600">Yến sào cho bé: mấy tuổi ăn được, cho ăn bao nhiêu là vừa?</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-chung-yen-cho-be.html" style="color:var(--gold-text);font-weight:600">Cách chưng yến cho bé đúng lượng, đúng tuổi</a></li><li style="margin:6px 0"><a href="/cam-nang/yen-sao-va-can-nang.html" style="color:var(--gold-text);font-weight:600">Ăn yến sào có tăng cân không? Người giữ dáng ăn được không</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-chung-yen-sao.html" style="color:var(--gold-text);font-weight:600">Cách chưng yến sào chuẩn: mềm ngon, giữ trọn sợi yến</a></li></ul>

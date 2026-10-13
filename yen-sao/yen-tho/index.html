@@ -119,7 +119,52 @@ footer a{color:var(--gold-light)}
 .card .price small{display:inline}
   @media(max-width:560px){.hero-btns .btn{width:100%;justify-content:center}}
 </style>
-<style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
+<style>:where(img){max-width:100%}:where(img[height]){height:auto}
+  /* Khuôn trang sản phẩm (nhân từ 100G sợi dài 13/10/2026) */
+  .pdp{padding-top:16px!important}
+  .pdp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px;align-items:start}
+  .pdp-img img{border-radius:16px;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #e8e0cc}
+  .pdp-img figcaption{font-size:.78rem;color:#536862;text-align:center;margin-top:8px}
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold-text);font-weight:700;text-decoration:underline}
+  .offer-card{border:1.5px dashed var(--gold);background:#fffdf6;border-radius:14px;padding:14px 16px;margin:0 0 6px}
+  .offer-card b.t{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+  .offer-card ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+  .offer-card li{padding:3px 0 3px 26px;position:relative}
+  .offer-card li:before{content:"🎁";position:absolute;left:0}
+  .offer-card small{display:block;color:#5b6b66;margin-top:6px;font-size:.8rem}
+  .pdp-info .tnh-proof{margin:12px 0 0!important}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-main{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:14px 0}
+  .rv-score{text-align:center}
+  .rv-score .big{font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--forest);display:block}
+  .rv-score .st{color:#C1A374;letter-spacing:2px;display:block}
+  .rv-score small{display:block;color:#5b6b66;font-size:.78rem;line-height:1.4;margin-top:4px}
+  .rv-row{display:grid;grid-template-columns:28px 1fr 46px;gap:8px;align-items:center;font-size:.84rem;margin:4px 0}
+  .rv-bar{height:9px;background:#e6dcc3;border-radius:9px;overflow:hidden}
+  .rv-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A)}
+  .rv-quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .rv-quotes blockquote{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:12px 14px;font-size:.95rem;font-style:italic;margin:0}
+  .rv-quotes cite{display:block;font-style:normal;font-size:.76rem;color:#5b6b66;margin-top:6px}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0 18px}
+  .who-grid>div{background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:16px 18px}
+  .who-grid p{font-weight:700;margin-bottom:8px}
+  .who-grid ul{margin:0 0 0 18px;font-size:.93rem}
+  .who-grid a{color:var(--gold-text);font-weight:600}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:1fr;gap:16px}.pdp-img img{aspect-ratio:16/9}.pdp-img figcaption{display:none}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}
+    .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
+    .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -149,15 +194,42 @@ footer a{color:var(--gold-light)}
     <nav class="crumb"><a href="/">Trang chủ</a> › <a href="/yen-sao/">Sản phẩm</a> › Yến thô nguyên tổ</nav>
     <h1>Yến thô nguyên tổ Nha Trang — giá đặt trực tiếp 2026</h1>
     <p>Tổ yến nguyên bản từ nhà yến, chưa nhặt lông · 100g 1.900.000đ · 50g 1.000.000đ · kiểm hàng khi nhận, đền 10 lần nếu sai mô tả.</p>
-    <div class="hero-btns"><a class="btn btn-gold" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo đặt yến thô</a><a class="btn btn-outline" href="tel:0969850153">☎ Gọi 0969.850.153</a></div>
   </div>
 </div>
 
+<section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
+  <div class="container pdp-grid">
+    <figure class="pdp-img"><img srcset="/assets/yen-tho-nguyen-to-480.webp 480w, /assets/yen-tho-nguyen-to-960.webp 960w, /assets/yen-tho-nguyen-to.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/yen-tho-nguyen-to.webp" alt="Tổ yến thô nguyên tổ chưa nhặt lông The Nest House"><figcaption>Tổ yến thô nguyên bản, còn lông và tạp chất tự nhiên</figcaption></figure>
+    <div class="pdp-info">
+      <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,8/5</strong> · 101 đánh giá yến thô trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
+      <div class="offer-card">
+        <b class="t">Quà tặng theo giá trị đơn hàng</b>
+        <ul>
+          <li>Đơn từ <strong>1.250.000đ</strong>: tặng combo 3 quà — đông trùng hạ thảo · kỷ tử · thố chưng sứ</li>
+          <li>Đơn từ <strong>2.400.000đ</strong>: tặng combo 3 quà + <strong>6 hũ yến chưng sẵn 70ml</strong></li>
+        </ul>
+        <small>Quà nhân theo giá trị đơn: mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu (không áp dụng cho yến chưng sẵn). Khung "Đặt mua" bên dưới tự báo quà của quy cách anh/chị đang chọn.</small>
+      </div>
+<div id="dat-mua" data-tnh-buy="/yen-sao/yen-tho/" data-was='{"th50": 1300000, "th100": 2500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
+      <ul class="tnh-proof" style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
+      <li>✔ Tổ nguyên chưa làm sạch, ít lông — tự nhặt bằng nhíp (kèm hướng dẫn)</li>
+      <li>✔ Kiểm tra hàng trước khi thanh toán (COD)</li>
+      <li>✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM (<a href="https://share.google/Jlp2IjomZLla08vaa" target="_blank" rel="noopener" style="color:var(--gold-text);font-weight:600">chỉ đường</a>)</li>
+      <li>✔ Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc qua Zalo) · tỉnh khác 2–5 ngày làm việc (<a href="/chinh-sach/van-chuyen/" style="color:var(--gold-text);font-weight:600">xem chính sách</a>)</li>
+      <li>✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả</li>
+    </ul>
+    </div>
+  </div>
+</section>
 <section style="padding-bottom:20px">
   <div class="container prose">
     <p>Người mua yến thô thường muốn một điều: <strong>tận mắt thấy tổ yến nguyên bản</strong> trước khi nó qua bất kỳ công đoạn xử lý nào, rồi tự tay nhặt lông cho yên tâm. Nỗi lo đi kèm cũng rõ: thị trường có tổ thô bị ngâm, tẩm cho nặng cân, hoặc trộn tổ kém chất lượng, mà người mua lần đầu khó phân biệt. Yến thô của The Nest House là tổ Nha Trang – Khánh Hòa <strong>giữ nguyên dáng tổ, nguyên lông</strong>, bán theo giá công khai và áp cùng cam kết đền 10 lần như mọi dòng yến khác.</p>
-<div id="dat-mua" data-tnh-buy="/yen-sao/yen-tho/" data-was='{"th50": 1300000, "th100": 2500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
-    <figure><img srcset="/assets/yen-tho-nguyen-to-480.webp 480w, /assets/yen-tho-nguyen-to-960.webp 960w, /assets/yen-tho-nguyen-to.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/yen-tho-nguyen-to.webp" alt="Tổ yến thô nguyên tổ chưa nhặt lông The Nest House"><figcaption>Tổ yến thô nguyên bản, còn lông và tạp chất tự nhiên</figcaption></figure>
+
+    <h2 id="danh-cho-ai">Yến thô dành cho ai, chưa hợp với ai?</h2>
+    <div class="who-grid">
+      <div><p>Phù hợp nếu anh/chị</p><ul><li>Muốn thấy tổ yến nguyên bản chưa qua xử lý và tự tay làm sạch cho yên tâm.</li><li>Có thời gian nhặt lông (30–60 phút/tổ) và muốn giá mỗi gram thấp nhất.</li><li>Đã quen dùng yến, biết cách ngâm – nhặt – chưng.</li></ul></div>
+      <div><p>Có thể chưa hợp nếu anh/chị</p><ul><li>Chưa từng nhặt lông yến hoặc không có thời gian: <a href="/yen-sao/tinh-che/soi-ngan/">yến tinh chế</a> đã làm sạch sẵn.</li><li>Mua để biếu: xem <a href="/yen-sao/tinh-che/soi-dai/">yến sợi dài loại 1</a> hoặc <a href="/yen-sao/set-qua-bieu/">set quà biếu</a>.</li><li>Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh.</li></ul></div>
+    </div>
 
     <h2>Giá yến thô The Nest House</h2>
     <table>
@@ -197,6 +269,23 @@ footer a{color:var(--gold-light)}
 
     <figure><img srcset="/assets/100g-yen-tinh-che-rut-long-480.webp 480w, /assets/100g-yen-tinh-che-rut-long.webp 960w" sizes="(max-width:640px) 100vw, 50vw" width="960" height="1280" src="/assets/100g-yen-tinh-che-rut-long.webp" alt="Yến rút lông nguyên tổ đã nhặt sạch lông so với yến thô" loading="lazy"><figcaption>Không có thời gian nhặt lông? Yến rút lông nguyên tổ đã sơ chế sẵn, giữ dáng tổ</figcaption></figure>
 
+    <div class="rv" id="danh-gia">
+      <h2>Khách đã mua nói gì về yến thô The Nest House</h2>
+      <p class="rv-note">Số liệu lấy từ phần đánh giá công khai của chính gian hàng chúng tôi trên Shopee, ngày 13/10/2026, cộng đúng các listing của sản phẩm này. Điểm và số lượng giữ nguyên như sàn hiển thị; nhận xét bên dưới là đánh giá thật, ghi tên tài khoản Shopee như sàn hiển thị.</p>
+      <div class="rv-main">
+        <div class="rv-score"><span class="big">4,8</span><span class="st" aria-hidden="true">★★★★★</span><small>101 đánh giá cho sản phẩm yến thô ít lông nguyên tổ 50–100g trên Shopee</small></div>
+        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:86.1%"></b></div><span>86,1%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:6.9%"></b></div><span>6,9%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:5.0%"></b></div><span>5,0%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:1.0%"></b></div><span>1,0%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:1.0%"></b></div><span>1,0%</span></div></div>
+      </div>
+      <p class="rv-note">Yến thô là tổ chưa làm sạch nên có góp ý 3–4 sao (khoảng 12%), chủ yếu về lượng lông phải nhặt. Chúng tôi ghi rõ điều này ở trên và trả lời từng đánh giá trên Shopee.</p>
+      <div class="rv-quotes"><blockquote>“Lượng lông yến không quá nhiều, dễ xử lý, có cửa hàng nên yên tâm mua sử dụng.”<cite>ohu6bbm608 · mua yến thô 100g trên Shopee · 07/2026</cite></blockquote><blockquote>“Đã mua lần hai. Được cái khá ít lông.”<cite>dg0fqxru5j · mua yến thô 50g + 100g trên Shopee · 10/2025</cite></blockquote></div>
+      <div class="rv-grid">
+        <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · cả gian hàng, ngày 09/10/2026</small></div></div>
+        <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày, ngày 09/10/2026</small></div></div>
+      </div>
+      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã mua yến của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý và luôn ẩn tên.</p>
+      <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
+    </div>
+
     <div class="faq" style="background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:20px 22px;margin:26px 0">
       <h2 style="border:none;padding:0;margin:0 0 12px">Câu hỏi thường gặp</h2>
       <p style="font-weight:700;margin-top:12px">Giá yến thô bao nhiêu 1 lạng (100g)?</p>
@@ -207,7 +296,11 @@ footer a{color:var(--gold-light)}
       <p>Từ vài chục phút đến hàng giờ mỗi tổ, tùy độ dày và lượng lông. Cần ngâm cho tổ tơi hẳn trước khi nhặt.</p>
       <p style="font-weight:700;margin-top:12px">Yến thô bảo quản được bao lâu?</p>
       <p>Yến tổ khô hạn dùng 12 tháng, để nơi khô ráo thoáng mát. Yến đã ngâm, nhặt lông nên chưng ngay hoặc giữ ngăn mát.</p>
-    </div>
+          <p style="font-weight:700;margin-top:12px">Mua yến được tặng quà gì?</p>
+      <p>Đơn từ 1.250.000đ được tặng combo 3 quà (đông trùng hạ thảo, kỷ tử, thố chưng sứ); đơn từ 2.400.000đ được tặng combo 3 quà và 6 hũ yến chưng sẵn 70ml. Quà nhân theo giá trị đơn, mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu; không áp dụng cho yến chưng sẵn.</p>
+      <p style="font-weight:700;margin-top:12px">Giao hàng bao lâu, có được kiểm hàng không?</p>
+      <p>Nội thành TP.HCM 1–2 ngày làm việc (hỏa tốc trong ngày qua Zalo khi cần gấp); tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.</p>
+</div>
 
         <!--tnh-lq-->
     <h2>Bài cẩm nang liên quan</h2>
