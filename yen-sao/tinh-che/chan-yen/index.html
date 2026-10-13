@@ -104,7 +104,52 @@ footer a{color:var(--gold-light)}
 .note{background:var(--cream);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:.92rem;margin:16px 0}
   @media(max-width:560px){.prose table{font-size:.8rem}.prose th,.prose td{padding:7px 8px}}
 </style>
-<style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
+<style>:where(img){max-width:100%}:where(img[height]){height:auto}
+  /* Khuôn trang sản phẩm (nhân từ 100G sợi dài 13/10/2026) */
+  .pdp{padding-top:16px!important}
+  .pdp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px;align-items:start}
+  .pdp-img img{border-radius:16px;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #e8e0cc}
+  .pdp-img figcaption{font-size:.78rem;color:#536862;text-align:center;margin-top:8px}
+  .rate-strip{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:.9rem;color:#33443f;margin-bottom:12px}
+  .rate-strip .st{color:#C1A374;letter-spacing:1px;font-size:1rem}
+  .rate-strip a{color:var(--gold-text);font-weight:700;text-decoration:underline}
+  .offer-card{border:1.5px dashed var(--gold);background:#fffdf6;border-radius:14px;padding:14px 16px;margin:0 0 6px}
+  .offer-card b.t{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:6px}
+  .offer-card ul{list-style:none;margin:0;padding:0;font-size:.92rem}
+  .offer-card li{padding:3px 0 3px 26px;position:relative}
+  .offer-card li:before{content:"🎁";position:absolute;left:0}
+  .offer-card small{display:block;color:#5b6b66;margin-top:6px;font-size:.8rem}
+  .pdp-info .tnh-proof{margin:12px 0 0!important}
+  .rv{background:#faf7ee;border:1px solid #e8e0cc;border-radius:16px;padding:22px 20px;margin:26px 0}
+  .rv h2{margin-top:0!important}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+  .rv-tile{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:14px;text-align:center}
+  .rv-tile .big{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;color:var(--forest)}
+  .rv-tile .lbl{font-weight:700;font-size:.88rem;display:block;margin-top:4px}
+  .rv-tile small{display:block;color:#5b6b66;font-size:.78rem;margin-top:2px;line-height:1.4}
+  .rv-main{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:center;margin:14px 0}
+  .rv-score{text-align:center}
+  .rv-score .big{font-family:var(--serif);font-weight:700;font-size:3.2rem;line-height:1;color:var(--forest);display:block}
+  .rv-score .st{color:#C1A374;letter-spacing:2px;display:block}
+  .rv-score small{display:block;color:#5b6b66;font-size:.78rem;line-height:1.4;margin-top:4px}
+  .rv-row{display:grid;grid-template-columns:28px 1fr 46px;gap:8px;align-items:center;font-size:.84rem;margin:4px 0}
+  .rv-bar{height:9px;background:#e6dcc3;border-radius:9px;overflow:hidden}
+  .rv-bar b{display:block;height:100%;background:linear-gradient(90deg,#C1A374,#E3C97A)}
+  .rv-quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .rv-quotes blockquote{background:#fff;border:1px solid #e8e0cc;border-radius:12px;padding:12px 14px;font-size:.95rem;font-style:italic;margin:0}
+  .rv-quotes cite{display:block;font-style:normal;font-size:.76rem;color:#5b6b66;margin-top:6px}
+  .rv-note{font-size:.84rem;color:#5b6b66;margin:4px 0 12px}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0 18px}
+  .who-grid>div{background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:16px 18px}
+  .who-grid p{font-weight:700;margin-bottom:8px}
+  .who-grid ul{margin:0 0 0 18px;font-size:.93rem}
+  .who-grid a{color:var(--gold-text);font-weight:600}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:1fr;gap:16px}.pdp-img img{aspect-ratio:16/9}.pdp-img figcaption{display:none}
+    .rate-strip{font-size:.82rem;margin-bottom:8px;gap:2px 10px}.rate-strip .st{display:none}.rate-strip strong:before{content:"★ ";color:#C1A374}
+    .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
+    .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
+    .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -136,11 +181,39 @@ footer a{color:var(--gold-light)}
     <p>Phần "chân đế" dày nhất của tổ yến · nở nhiều hơn tổ sợi trên cùng khối lượng · 2 loại chân cục & chân rìa, đã rút lông thủ công.</p>
   </div>
 </div>
+<section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
+  <div class="container pdp-grid">
+    <figure class="pdp-img"><img srcset="/assets/chan-yen-rut-long-480.webp 480w, /assets/chan-yen-rut-long-960.webp 960w, /assets/chan-yen-rut-long.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/chan-yen-rut-long.webp" alt="Chân yến rút lông làm sạch The Nest House 100g"><figcaption>Chân yến rút lông làm sạch — phần dày nhất của tổ, đã nhặt lông thủ công</figcaption></figure>
+    <div class="pdp-info">
+      <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 57 đánh giá chân yến trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
+      <div class="offer-card">
+        <b class="t">Quà tặng theo giá trị đơn hàng</b>
+        <ul>
+          <li>Đơn từ <strong>1.250.000đ</strong>: tặng combo 3 quà — đông trùng hạ thảo · kỷ tử · thố chưng sứ</li>
+          <li>Đơn từ <strong>2.400.000đ</strong>: tặng combo 3 quà + <strong>6 hũ yến chưng sẵn 70ml</strong></li>
+        </ul>
+        <small>Quà nhân theo giá trị đơn: mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu (không áp dụng cho yến chưng sẵn). Khung "Đặt mua" bên dưới tự báo quà của quy cách anh/chị đang chọn.</small>
+      </div>
+<div id="dat-mua" data-tnh-buy="/yen-sao/tinh-che/chan-yen/" data-was='{"cy50": 1800000, "cy100": 3500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
+      <ul class="tnh-proof" style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#4a5f59;display:flex;flex-wrap:wrap;gap:6px 18px">
+      <li>✔ Chân cục và chân rìa — phần dày nhất của tổ, nở nhiều</li>
+      <li>✔ Kiểm tra hàng trước khi thanh toán (COD)</li>
+      <li>✔ Cửa hàng thật: Kios A126, Tầng 2, TTTM Tops Market, 685 Âu Cơ, TP.HCM (<a href="https://share.google/Jlp2IjomZLla08vaa" target="_blank" rel="noopener" style="color:var(--gold-text);font-weight:600">chỉ đường</a>)</li>
+      <li>✔ Có giao trong ngày tại TP.HCM (khung 09:00–18:00, tuỳ đơn) · tỉnh khác 2–5 ngày làm việc (<a href="/chinh-sach/van-chuyen/" style="color:var(--gold-text);font-weight:600">xem chính sách</a>)</li>
+      <li>✔ Đổi trả 90 ngày · đền 10 lần nếu sai mô tả</li>
+    </ul>
+    </div>
+  </div>
+</section>
 <section style="padding-bottom:20px">
   <div class="container prose">
     <p>Khách sành yến lâu năm hay rỉ tai nhau một bí mật: <strong>chân yến — phần "chân đế" gắn tổ vào vách nhà yến — là chỗ dày và giòn nhất của cả tổ</strong>. Cùng khối lượng, chân yến ngâm nở nhiều, chưng lên sần sật đã miệng, mà giá lại mềm hơn tổ sợi. Đây là dòng "người biết mới mua" của The Nest House.</p>
-<div id="dat-mua" data-tnh-buy="/yen-sao/tinh-che/chan-yen/" data-was='{"cy50": 1800000, "cy100": 3500000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
-    <figure><img srcset="/assets/chan-yen-rut-long-480.webp 480w, /assets/chan-yen-rut-long-960.webp 960w, /assets/chan-yen-rut-long.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/chan-yen-rut-long.webp" alt="Chân yến rút lông làm sạch The Nest House 100g"><figcaption>Chân yến rút lông làm sạch — phần dày nhất của tổ, đã nhặt lông thủ công</figcaption></figure>
+    <h2 id="danh-cho-ai">Chân yến dành cho ai, chưa hợp với ai?</h2>
+    <div class="who-grid">
+      <div><p>Phù hợp nếu anh/chị</p><ul><li>Nhà dùng đều, ăn thật chứ không biếu: chân yến giòn sần sật, nở nhiều, giá mềm hơn tổ sợi.</li><li>Thích chưng lâu, ăn miếng dày: chân cục hợp; thích mỏng dễ nở: chân rìa.</li><li>Muốn tiết kiệm mà vẫn đúng yến The Nest House (cùng tổ, chỉ khác phần).</li></ul></div>
+      <div><p>Có thể chưa hợp nếu anh/chị</p><ul><li>Cần hộp quà biếu nhìn nguyên tổ: xem <a href="/yen-sao/tinh-che/soi-dai/">yến sợi dài loại 1</a> hoặc <a href="/yen-sao/tinh-che/rut-long/">rút lông nguyên tổ</a>.</li><li>Không muốn tự ngâm, tự chưng: xem <a href="/yen-sao/yen-chung/yen-chung-100/">yến chưng sẵn</a>.</li><li>Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh.</li></ul></div>
+    </div>
+
     <h2>Chân yến là gì?</h2>
     <p>Mỗi tổ yến chỉ có một phần chân nhỏ — nơi chim yến "neo" tổ vào vách, kết cấu sợi ép chặt nhiều lớp. The Nest House tách riêng phần này, <strong>rút lông làm sạch thủ công</strong>, chia 2 loại: <strong>chân cục</strong> (khối dày, nở bung nhiều) và <strong>chân rìa</strong> (lát mỏng hơn, nhanh mềm). Vì mỗi tổ chỉ cho một ít chân nên hàng về theo đợt, không phải lúc nào cũng sẵn.</p>
     <h2>Quy cách &amp; giá</h2>
@@ -162,12 +235,32 @@ footer a{color:var(--gold-light)}
     </ul>
 <h2>Mua chính hãng ở đâu?</h2>
     <p>Đặt trực tiếp qua <a href="https://zalo.me/0969850153" style="color:var(--gold-text);font-weight:600">Zalo 0969.850.153</a> để nhận giá ưu đãi hơn niêm yết (xem <a href="/gia-yen-sao/" style="color:var(--gold-text);font-weight:600">bảng giá công khai</a>) — freeship đơn từ 1 triệu, đổi trả 90 ngày, kiểm tra hàng trước khi thanh toán. Hoặc bấm <a href="#dat-mua" style="color:var(--gold-text);font-weight:600">Đặt mua</a> ngay trên trang (COD hoặc chuyển khoản), hoặc ghé cửa hàng TTTM Tops Market, 685 Âu Cơ, TP.HCM.</p>
+    <div class="rv" id="danh-gia">
+      <h2>Khách đã mua nói gì về chân yến The Nest House</h2>
+      <p class="rv-note">Số liệu lấy từ phần đánh giá công khai của chính gian hàng chúng tôi trên Shopee, ngày 13/10/2026, cộng đúng các listing của sản phẩm này. Điểm và số lượng giữ nguyên như sàn hiển thị; nhận xét bên dưới là đánh giá thật, ghi tên tài khoản Shopee như sàn hiển thị.</p>
+      <div class="rv-main">
+        <div class="rv-score"><span class="big">4,9</span><span class="st" aria-hidden="true">★★★★★</span><small>57 đánh giá cho sản phẩm chân yến tinh chế rút lông 50–100g trên Shopee</small></div>
+        <div class="rv-dist"><div class="rv-row"><span>5★</span><div class="rv-bar"><b style="width:96.5%"></b></div><span>96,5%</span></div><div class="rv-row"><span>4★</span><div class="rv-bar"><b style="width:1.8%"></b></div><span>1,8%</span></div><div class="rv-row"><span>3★</span><div class="rv-bar"><b style="width:1.8%"></b></div><span>1,8%</span></div><div class="rv-row"><span>2★</span><div class="rv-bar"><b style="width:0.0%"></b></div><span>0,0%</span></div><div class="rv-row"><span>1★</span><div class="rv-bar"><b style="width:0.0%"></b></div><span>0,0%</span></div></div>
+      </div>
+      <div class="rv-quotes"><blockquote>“Chân yến làm sạch rất chất lượng, chưng lên giòn dai rất ngon luôn. Lại được tặng kèm đủ nguyên liệu chưng yến nữa.”<cite>s*****e · mua chân yến trên Shopee · 10/2022</cite></blockquote><blockquote>“Yến ngon đảm bảo chất lượng, đã mua nhiều lần và sẽ ủng hộ lâu dài.”<cite>lienbui1102 · mua chân cục 100g trên Shopee · 09/2025</cite></blockquote></div>
+      <div class="rv-grid">
+        <div class="rv-tile"><span class="big">99%</span><div><span class="lbl">Lazada</span><small>đánh giá tích cực · cả gian hàng, ngày 09/10/2026</small></div></div>
+        <div class="rv-tile"><span class="big">0%</span><div><span class="lbl">TikTok Shop</span><small>đánh giá tiêu cực · 97 lượt chấm trong 30 ngày, ngày 09/10/2026</small></div></div>
+      </div>
+      <p class="rv-note">Hai khung trên là điểm của cả gian hàng, mỗi sàn tính theo cách riêng. Anh/chị đã mua yến của The Nest House? Gửi cảm nhận qua Zalo — chúng tôi chỉ đăng khi anh/chị đồng ý và luôn ẩn tên.</p>
+      <p><a class="btn btn-forest" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Gửi cảm nhận của anh/chị</a></p>
+    </div>
+
     <div class="faq" style="background:#faf7ee;border:1px solid #e8e0cc;border-radius:14px;padding:20px 22px;margin:26px 0">
       <h2 style="border:none;padding:0;margin:0 0 12px">Câu hỏi thường gặp</h2>
       <p style="font-weight:700;margin-top:12px">Chân yến khác gì tổ yến thường?</p><p>Là phần chân gắn tổ vào vách — sợi ép chặt nhiều lớp nên dày, giòn, nở nhiều nhất; giá mềm hơn tổ sợi trên cùng khối lượng.</p>
       <p style="font-weight:700;margin-top:12px">Chân cục và chân rìa chọn loại nào?</p><p>Chân cục: khối dày, nở bung, ngâm lâu hơn. Chân rìa: lát mỏng, nhanh mềm, dễ chưng. Nhắn Zalo để được tư vấn theo đợt hàng đang có.</p>
       <p style="font-weight:700;margin-top:12px">Giá chân yến bao nhiêu?</p><p>Niêm yết 50g 1.800.000đ, 100g 3.500.000đ (kèm hộp túi + nguyên liệu). Nhắn Zalo 0969.850.153 nhận giá ưu đãi.</p>
-    </div>
+          <p style="font-weight:700;margin-top:12px">Mua yến được tặng quà gì?</p>
+      <p>Đơn từ 1.250.000đ được tặng combo 3 quà (đông trùng hạ thảo, kỷ tử, thố chưng sứ); đơn từ 2.400.000đ được tặng combo 3 quà và 6 hũ yến chưng sẵn 70ml. Quà nhân theo giá trị đơn, mỗi 2.400.000đ là 1 phần. Áp dụng khi mua yến tinh chế, yến thô, yến vụn hoặc set quà biếu; không áp dụng cho yến chưng sẵn.</p>
+      <p style="font-weight:700;margin-top:12px">Giao hàng bao lâu, có được kiểm hàng không?</p>
+      <p>Tại TP.HCM có giao trong ngày (khung 09:00–18:00, tùy giờ đặt và địa chỉ nhận): khoảng một nửa số đơn giao được cùng ngày, các đơn còn lại 1–2 ngày làm việc; tỉnh thành khác 2–5 ngày làm việc tùy khu vực. Anh/chị được kiểm hàng cùng shipper trước khi thanh toán; vỡ, móp hoặc sai hàng thì từ chối nhận, The Nest House gửi lại đơn mới.</p>
+</div>
         <!--tnh-lq-->
     <h2>Bài cẩm nang liên quan</h2>
     <ul style="margin:0 0 18px 20px;font-size:.95rem"><li style="margin:6px 0"><a href="/cam-nang/cach-so-che-yen-tho.html" style="color:var(--gold-text);font-weight:600">Cách làm yến thô tại nhà: sơ chế đúng chuẩn từng bước</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-che-bien-yen-sao.html" style="color:var(--gold-text);font-weight:600">Cách chế biến yến sào: cháo, súp, chè yến ngon</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-chung-yen-sao.html" style="color:var(--gold-text);font-weight:600">Cách chưng yến sào chuẩn: mềm ngon, giữ trọn sợi yến</a></li><li style="margin:6px 0"><a href="/cam-nang/cach-bao-quan-yen-sao.html" style="color:var(--gold-text);font-weight:600">Cách bảo quản yến sào đúng chuẩn cho từng loại</a></li></ul>
