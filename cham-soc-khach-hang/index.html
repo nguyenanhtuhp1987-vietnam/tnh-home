@@ -200,6 +200,7 @@ footer a{color:var(--gold-light)}
     </div>
 
     <div class="form-zone" id="formZone" hidden>
+      <div class="pickup-note voucher-note" id="voucherNoteForm" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:0 0 14px;opacity:1"></div>
       <label for="custName">Shop nên gọi anh/chị là gì? <span style="opacity:.7;font-weight:400">(không bắt buộc)</span></label>
       <input type="text" id="custName" placeholder="VD: chị Lan" maxlength="40" autocomplete="given-name" style="margin-bottom:14px">
       <label for="phone">Số điện thoại nhận quà</label>
@@ -226,6 +227,10 @@ footer a{color:var(--gold-light)}
         <div class="pickup-note">Shop dùng thông tin này để chăm sóc đúng sản phẩm anh chị đã mua.</div>
       </div>
       <div class="err" id="buyErr">Vui lòng chọn sản phẩm đã mua và nơi mua</div>
+      <div class="pickup form-pickup" id="formPickupVoucher" hidden>
+        <div class="pickup-title">Cách nhận voucher</div>
+        <div class="pickup-note" style="opacity:1">🏷️ Voucher dùng cho <b>lần mua kế tiếp</b>. Anh chị nhắn Zalo shop khi đặt đơn sau để được trừ 5% (tối đa 100.000đ).</div>
+      </div>
       <div class="pickup form-pickup" id="formPickup">
         <div class="pickup-title">Chọn cách nhận quà <span class="req">*</span></div>
         <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
@@ -248,6 +253,7 @@ footer a{color:var(--gold-light)}
     <div class="ico">🎉</div>
     <h2>Chúc mừng bạn!</h2>
     <p>Cảm ơn bạn đã tham gia. Nhắn Zalo cho The Nest House kèm số điện thoại vừa đăng ký để nhận quà nhé.</p>
+    <div class="pickup-note voucher-note" id="voucherNoteThanks" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:14px auto 0;max-width:460px;opacity:1"></div>
     <div class="pickup" id="pickupBox">
       <div class="pickup-title">Cách nhận quà · bấm để đổi</div>
       <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
@@ -297,11 +303,13 @@ footer a{color:var(--gold-light)}
 
   // ---- prize segments (order = wheel order). prob in %, sums to 100 ----
   // 11/10/2026 (CEO): gộp đông trùng + kỷ tử thành 1 ô 40%; "10 hũ" giữ 0% (ô mồi); vòng còn 6 ô.
+  // 13/10/2026 (CEO): voucher đổi luật — 5% giá trị đơn mua kế tiếp, tối đa 100k; liên hệ shop để nhận (khách đơn 200k đòi đủ 100k).
+  //   Giữ name "Voucher 100k" (Worker/Sheet/CRM nhận đúng tên này); khách thấy label + VOUCHER_NOTE; không chọn cách nhận (luôn next_order).
   var SEGMENTS = [
 { name: "Hộp yến vụn 3G",           lines: ["Hộp yến","vụn 3G"],           prob: 25, img: "/assets/wheel-hop-yen-vun-3g.jpg", icon: "🎁" },
 { name: "Set trà thảo mộc",         lines: ["Set trà","thảo mộc"],         prob: 5,  img: "/assets/wheel-tra-thao-moc.jpg", icon: "🍵" },
 { name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Combo đông trùng","+ kỷ tử"], prob: 40, img: "/assets/wheel-dong-trung-ky-tu.jpg", icon: "🍯" },
-{ name: "Voucher 100k",             lines: ["Voucher","100k"],             prob: 10, img: "/assets/wheel-voucher-100k.jpg", icon: "🏷️" },
+{ name: "Voucher 100k",             lines: ["Voucher 5%","tối đa 100k"],   prob: 10, img: "/assets/wheel-voucher-5pt.jpg", icon: "🏷️", label: "Voucher 5% (tối đa 100k)", voucher: true },
 { name: "4 hũ yến chưng",           lines: ["4 hũ","yến chưng"],           prob: 20, img: "/assets/wheel-yen-chung.jpg", icon: "🍯" },
 { name: "10 hũ yến chưng",          lines: ["10 hũ","yến chưng"],          prob: 0,  img: "/assets/wheel-yen-chung.jpg", icon: "🍯" }
   ];
@@ -429,6 +437,10 @@ setTimeout(function(){
   var formZone = document.getElementById('formZone');
   var hubSpin = document.getElementById('hubSpin');
 
+  var VOUCHER_NOTE = 'Điều kiện voucher: trị giá 5% giá trị đơn hàng anh chị mua lần kế tiếp, giảm tối đa 100.000đ. Anh chị liên hệ shop qua Zalo 0969.850.153 để nhận voucher khi mua lần sau.';
+  function prizeLabel(seg){ return (seg && (seg.label || seg.name)) || '—'; }
+  function isVoucherName(n){ for(var i=0;i<SEGMENTS.length;i++){ if(SEGMENTS[i].name === n) return !!SEGMENTS[i].voucher; } return false; }
+
   function fillThumb(el, seg){
 if(seg.img){
       el.innerHTML = '<img src="' + seg.img + '" alt="' + seg.name + '" loading="lazy">';
@@ -442,8 +454,8 @@ function showCompare(){
     stepCompare.hidden = false;
     var seg0 = SEGMENTS[state.spins[0]];
     var seg1 = SEGMENTS[state.spins[1]];
-    document.getElementById('pickPrize0').textContent = seg0.name;
-    document.getElementById('pickPrize1').textContent = seg1.name;
+    document.getElementById('pickPrize0').textContent = prizeLabel(seg0);
+    document.getElementById('pickPrize1').textContent = prizeLabel(seg1);
     fillThumb(document.getElementById('pickThumb0'), seg0);
     fillThumb(document.getElementById('pickThumb1'), seg1);
   }
@@ -456,6 +468,7 @@ if(firstChoice && state.spins.length >= 2) track('wheel_choose',{ prize: SEGMENT
     document.getElementById('pick0').classList.toggle('chosen', which===0);
     document.getElementById('pick1').classList.toggle('chosen', which===1);
     formZone.hidden = false;
+    setVoucherMode(!!SEGMENTS[state.spins[which]].voucher);
   };
 
   function triggerSpin(){
@@ -469,7 +482,7 @@ if(state.submitted){ renderState(); return; }
 track('wheel_spin',{ spin_no: state.spins.length, prize: SEGMENTS[idx].name });
       resultCard.hidden = false;
       resultTag.textContent = 'Kết quả lượt ' + state.spins.length;
-      resultPrize.textContent = SEGMENTS[idx].name;
+      resultPrize.textContent = prizeLabel(SEGMENTS[idx]);
 if(state.spins.length === 1){
         spinBtn.textContent = '🎯 Quay ngay — Lượt 2 (cuối)';
         spinHint.textContent = 'Còn 1 lượt quay';
@@ -489,7 +502,20 @@ if(state.spins.length === 1){
   var sendFail = document.getElementById('sendFail');
   var pickupErr = document.getElementById('pickupErr');
   var formPickupBox = document.getElementById('formPickup');
+  var formPickupVoucher = document.getElementById('formPickupVoucher');
+  var voucherNoteForm = document.getElementById('voucherNoteForm');
   var formPick = null;
+  var voucherMode = false;
+  // Voucher không phải quà hiện vật → không hỏi cách nhận, luôn "dùng cho đơn kế tiếp" (next_order)
+  function setVoucherMode(on){
+    voucherNoteForm.textContent = VOUCHER_NOTE;
+    voucherNoteForm.hidden = !on;
+    formPickupVoucher.hidden = !on;
+    formPickupBox.hidden = on;
+    if(on){ formPick = 'next_order'; pickupErr.style.display = 'none'; formPickupBox.classList.remove('need'); }
+    else if(voucherMode){ formPick = null; [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(x){ x.classList.remove('chosen'); }); }
+    voucherMode = on;
+  }
   [].slice.call(formPickupBox.querySelectorAll('.pickup-opt')).forEach(function(b){
     b.addEventListener('click', function(){
       formPick = b.getAttribute('data-m');
@@ -638,7 +664,11 @@ var PICKUP_LABEL ={ store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gử
   var pickupBtns = [].slice.call(pickupBox.querySelectorAll('.pickup-opt'));
 
   function renderPickup(){
-    pickupBox.hidden = !state.ref; // khách cũ (trước khi có tính năng) không có ref → ẩn nút, vẫn nhắn Zalo
+    var vn = document.getElementById('voucherNoteThanks');
+    var isV = isVoucherName(state.finalPrize);
+    vn.textContent = VOUCHER_NOTE;
+    vn.hidden = !isV;
+    pickupBox.hidden = !state.ref || isV; // khách cũ (trước khi có tính năng) không có ref → ẩn nút, vẫn nhắn Zalo; voucher không có cách nhận
 pickupBtns.forEach(function(b){ b.classList.toggle('chosen', b.getAttribute('data-m') === state.pickup); });
 if(state.pickup){
       pickupStatus.hidden = false;
@@ -698,7 +728,7 @@ if(state.chosenIndex !== null && state.chosenIndex !== undefined){
     if(state.spins.length === 1){
       resultCard.hidden = false;
       resultTag.textContent = 'Kết quả lượt 1';
-      resultPrize.textContent = SEGMENTS[state.spins[0]].name;
+      resultPrize.textContent = prizeLabel(SEGMENTS[state.spins[0]]);
       spinBtn.textContent = '🎯 Quay ngay — Lượt 2 (cuối)';
       spinHint.textContent = 'Còn 1 lượt quay';
       // snap wheel visually without re-animating
