@@ -3,7 +3,6 @@
 
 Nguồn chọn ảnh: _scripts/pdp_anh_8.json — {trang: {slug, items: [[nguồn, alt], ...8]}}.
   nguồn "asset:<tên>"  = ảnh đã có trong assets/ (giữ nguyên)
-  nguồn "file:<đường dẫn>" = ảnh CEO chỉ định thẳng
   nguồn "<bảng>:<số>"  = ảnh gốc trong kho ảnh của CEO, đã chọn bằng mắt trên bảng ảnh đánh số (đường dẫn trong --nguon <thư mục chứa <bảng>.json>)
 Chạy:  python3 _scripts/pdp_gallery.py --nguon <thư mục bảng ảnh>   (chép ảnh mới vào assets/sp/, rồi chạy toi_uu_toc_do.py)
        python3 _scripts/pdp_gallery.py --html-only [<thư mục web vault>]   (chỉ sửa HTML, ảnh đã có)
@@ -34,8 +33,6 @@ CSS = """
 def src_path(ref, nguon):
     if ref.startswith("asset:"):
         return None
-    if ref.startswith("file:"):  # CEO chỉ định thẳng đường dẫn ảnh
-        return Path(ref[5:])
     sheet, i = ref.split(":")
     return Path(json.loads((Path(nguon) / f"{sheet}.json").read_text())[i])
 
