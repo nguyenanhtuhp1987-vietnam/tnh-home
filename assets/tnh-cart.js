@@ -33,12 +33,12 @@
     sn30: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 30G + hộp túi (4 tổ)", G.sn, "30G + hộp túi", 850000, "/assets/30G-yen-tinh-che-hop-xanh.jpg"],
     sn50: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 50G + hộp túi (7 tổ)", G.sn, "50G + hộp túi", 1250000, "/assets/50G-soi-ngan.jpg"],
     sn100: ["/yen-sao/tinh-che/soi-ngan/", "Yến sợi ngắn — 100G + hộp túi (14 tổ)", G.sn, "100G + hộp túi", 2400000, "/assets/100g-yen-tinh-che-soi-ngan.jpg"],
-    rl50: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 50G + hộp túi (4 tổ)", G.rl, "50G + hộp túi", 1750000, "/assets/100g-yen-tinh-che-rut-long.jpg"],
-    rl100: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 100G + hộp túi (9 tổ)", G.rl, "100G + hộp túi", 3400000, "/assets/100g-yen-tinh-che-rut-long.jpg"],
-    cy50: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 50G + hộp túi", G.cy, "50G + hộp túi", 1450000, "/assets/chan-yen-rut-long.jpg"],
-    cy100: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 100G + hộp túi", G.cy, "100G + hộp túi", 2850000, "/assets/chan-yen-rut-long.jpg"],
-    th50: ["/yen-sao/yen-tho/", "Yến thô nguyên tổ — 50G", G.th, "50G", 1000000, "/assets/yen-tho-nguyen-to.jpg"],
-    th100: ["/yen-sao/yen-tho/", "Yến thô nguyên tổ — 100G", G.th, "100G", 1900000, "/assets/yen-tho-nguyen-to.jpg"],
+    rl50: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 50G + hộp túi (4 tổ)", G.rl, "50G + hộp túi", 1750000, "/assets/yen-rut-long-nguyen-to-3-hop.jpg"],
+    rl100: ["/yen-sao/tinh-che/rut-long/", "Yến rút lông nguyên tổ — 100G + hộp túi (9 tổ)", G.rl, "100G + hộp túi", 3400000, "/assets/yen-rut-long-nguyen-to-3-hop.jpg"],
+    cy50: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 50G + hộp túi", G.cy, "50G + hộp túi", 1450000, "/assets/chan-yen-tinh-che-hop-tron.jpg"],
+    cy100: ["/yen-sao/tinh-che/chan-yen/", "Chân yến rút lông — 100G + hộp túi", G.cy, "100G + hộp túi", 2850000, "/assets/chan-yen-tinh-che-hop-tron.jpg"],
+    th50: ["/yen-sao/yen-tho/", "Yến thô nguyên tổ — 50G", G.th, "50G", 1000000, "/assets/yen-tho-nguyen-to-50-100g.jpg"],
+    th100: ["/yen-sao/yen-tho/", "Yến thô nguyên tổ — 100G", G.th, "100G", 1900000, "/assets/yen-tho-nguyen-to-50-100g.jpg"],
     hk15: ["/yen-sao/yen-chung/yen-chung-100/", "Yến chưng 100% Hoàng Kim — set 15 hũ 70ml + hộp túi", G.hk, "Set Yến Chưng Hoàng Kim (15 hũ)", 960000, "/assets/yen-chung-hoang-kim-concept-1.jpg"],
     hk10: ["/yen-sao/yen-chung/yen-chung-100/", "Yến chưng 100% Hoàng Kim — 10 hũ 70ml (không hộp)", G.hk, "10 hũ · 100% sợi yến", 480000, "/assets/yen-chung-hoang-kim-concept-1.jpg"],
     yc6: ["/yen-sao/yen-chung/yen-chung-30/", "Yến chưng 30% — set 6 hũ 70ml + hộp túi", G.c30, "Set 6 hũ + hộp túi", 200000, "/assets/yen-chung-6-hu-concept-1.jpg"],
@@ -57,9 +57,12 @@
     yc6: "Set 6 hũ có hộp", yc10: "10 hũ không hộp", tgn: "Sợi ngắn", tgd: "Sợi dài", tq: "Set Tứ Quý", sxn: "Sợi ngắn", sxd: "Sợi dài",
     h1n: "Sợi ngắn 8g", h1d: "Sợi dài 9g" };
 
+  // Hết hàng (kho = 0) — không cho đặt; giỏ cũ tự bỏ món. Bán lại: xoá mã khỏi HET. CEO 15/10/2026: Set Tứ Quý.
+  var HET = { tq: 1 };
+
   function money(n) { return Number(n).toLocaleString("vi-VN").replace(/,/g, ".") + "đ"; }
   function load() { try { var c = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(c) ? c.filter(function (x) { return P[x.id] && x.sl > 0; }) : []; } catch (e) { return []; } }
-  function save(c) { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} fab(); }
+  function save(c) { c = c.filter(function (x) { return !HET[x.id]; }); try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} fab(); }
   function count(c) { return c.reduce(function (a, x) { return a + x.sl; }, 0); }
   function ga(ev, p) { try { if (typeof gtag === "function") gtag("event", ev, p || {}); } catch (e) {} }
   // Meta Pixel + CAPI (CEO 10/10/2026): chỉ gửi mã sản phẩm, giá, số lượng — KHÔNG SĐT/tên/địa chỉ. KHÔNG phát Purchase ở trình duyệt (Worker phát khi nhân viên ✅).
@@ -76,6 +79,7 @@
   function item(id) { var p = P[id]; return { item_id: id, item_name: p[1], price: p[4], quantity: 1 }; }
 
   function add(id, sl) {
+    if (HET[id]) { alert("Sản phẩm này tạm hết hàng. Anh/chị nhắn Zalo 0969.850.153 để được báo khi có lại."); return; }
     var c = load(), f = c.filter(function (x) { return x.id === id; })[0];
     if (f) f.sl = Math.min(50, f.sl + sl); else c.push({ id: id, sl: sl });
     save(c);

@@ -149,6 +149,14 @@ footer a{color:var(--gold-light)}
     .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
     .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
     .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+
+  /* bộ 8 ảnh (15/10/2026) */
+  .pdp-gal{min-width:0;max-width:100%}.pdp-gal figcaption{min-height:1.2em}
+  .gal-th{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px}
+  .gal-th button{padding:0;border:2px solid transparent;border-radius:9px;background:none;cursor:pointer;overflow:hidden;aspect-ratio:1/1}
+  .gal-th button.on{border-color:var(--gold)}
+  .gal-th img{width:100%;height:100%;object-fit:cover;display:block;border-radius:7px;border:0!important;aspect-ratio:auto!important}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:minmax(0,1fr)!important}.gal-th{grid-template-columns:repeat(8,64px);overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}}
 </style>
 </head>
 <body>
@@ -177,13 +185,13 @@ footer a{color:var(--gold-light)}
 <div class="head">
   <div class="container">
     <nav class="crumb"><a href="/">Trang chủ</a> › <a href="/yen-sao/">Sản phẩm</a> › <a href="/yen-sao/#yen-chung">Yến chưng sẵn</a> › Yến chưng 30%</nav>
-    <h1>Yến chưng 30% sợi yến — cả nhà dùng đều, khỏi mất công chưng</h1>
+    <h1>Yến chưng 30% sợi yến — cả nhà dùng đều, không mất công chưng</h1>
     <p>Hũ 70ml · 30% sợi yến thật, chưng tươi theo lô · 4 vị mix theo yêu cầu · từ 35.000đ/hũ.</p>
   </div>
 </div>
 <section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
   <div class="container pdp-grid">
-    <figure class="pdp-img"><img srcset="/assets/yen-chung-6-hu-concept-1-480.webp 480w, /assets/yen-chung-6-hu-concept-1-960.webp 960w, /assets/yen-chung-6-hu-concept-1.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/yen-chung-6-hu-concept-1.webp" alt="Set 6 hũ yến chưng 30% sợi yến The Nest House kèm hộp túi"><figcaption>Set 6 hũ + hộp túi — mix 4 vị cho cả nhà dùng thử</figcaption></figure>
+    <figure class="pdp-img pdp-gal"><img class="gal-main" srcset="/assets/yen-chung-6-hu-concept-1-480.webp 480w, /assets/yen-chung-6-hu-concept-1-960.webp 960w, /assets/yen-chung-6-hu-concept-1.webp 1200w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="1200" height="1200" src="/assets/yen-chung-6-hu-concept-1.webp" alt="Set 6 hũ yến chưng 30% kèm hộp túi"><figcaption>Set 6 hũ yến chưng 30% kèm hộp túi</figcaption><div class="gal-th"><button type="button" class="on" data-i="1" data-src="/assets/yen-chung-6-hu-concept-1.webp" data-srcset="/assets/yen-chung-6-hu-concept-1-480.webp 480w, /assets/yen-chung-6-hu-concept-1-960.webp 960w, /assets/yen-chung-6-hu-concept-1.webp 1200w" data-alt="Set 6 hũ yến chưng 30% kèm hộp túi" aria-label="Ảnh 1: Set 6 hũ yến chưng 30% kèm hộp túi"><img src="/assets/yen-chung-6-hu-concept-1-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="2" data-src="/assets/sp/yen-chung-30-02.webp" data-srcset="/assets/sp/yen-chung-30-02-480.webp 480w, /assets/sp/yen-chung-30-02-960.webp 960w, /assets/sp/yen-chung-30-02.webp 1194w" data-alt="Hộp 6 hũ yến chưng 30% mở nắp cùng túi quà" aria-label="Ảnh 2: Hộp 6 hũ yến chưng 30% mở nắp cùng túi quà"><img src="/assets/sp/yen-chung-30-02-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="3" data-src="/assets/sp/yen-chung-30-03.webp" data-srcset="/assets/sp/yen-chung-30-03-480.webp 480w, /assets/sp/yen-chung-30-03-960.webp 960w, /assets/sp/yen-chung-30-03.webp 1600w" data-alt="Hũ yến chưng 30% đặt trên bục" aria-label="Ảnh 3: Hũ yến chưng 30% đặt trên bục"><img src="/assets/sp/yen-chung-30-03-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="4" data-src="/assets/sp/yen-chung-30-04.webp" data-srcset="/assets/sp/yen-chung-30-04-480.webp 480w, /assets/sp/yen-chung-30-04-960.webp 960w, /assets/sp/yen-chung-30-04.webp 1086w" data-alt="Sợi yến trong hũ yến chưng 30% nhấc bằng muỗng" aria-label="Ảnh 4: Sợi yến trong hũ yến chưng 30% nhấc bằng muỗng"><img src="/assets/sp/yen-chung-30-04-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="5" data-src="/assets/sp/yen-chung-30-05.webp" data-srcset="/assets/sp/yen-chung-30-05-480.webp 480w, /assets/sp/yen-chung-30-05-960.webp 960w, /assets/sp/yen-chung-30-05.webp 1086w" data-alt="Hũ yến chưng 30% nhìn từ trên" aria-label="Ảnh 5: Hũ yến chưng 30% nhìn từ trên"><img src="/assets/sp/yen-chung-30-05-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="6" data-src="/assets/sp/yen-chung-30-06.webp" data-srcset="/assets/sp/yen-chung-30-06-480.webp 480w, /assets/sp/yen-chung-30-06-960.webp 960w, /assets/sp/yen-chung-30-06.webp 1600w" data-alt="Ba hũ yến chưng 30% xếp chồng" aria-label="Ảnh 6: Ba hũ yến chưng 30% xếp chồng"><img src="/assets/sp/yen-chung-30-06-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="7" data-src="/assets/sp/yen-chung-30-07.webp" data-srcset="/assets/sp/yen-chung-30-07-480.webp 480w, /assets/sp/yen-chung-30-07-960.webp 960w, /assets/sp/yen-chung-30-07.webp 1439w" data-alt="Rót yến chưng 30% ra chén" aria-label="Ảnh 7: Rót yến chưng 30% ra chén"><img src="/assets/sp/yen-chung-30-07-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="8" data-src="/assets/sp/yen-chung-30-08.webp" data-srcset="/assets/sp/yen-chung-30-08-480.webp 480w, /assets/sp/yen-chung-30-08-960.webp 960w, /assets/sp/yen-chung-30-08.webp 1222w" data-alt="Nhiều hũ yến chưng 30% bày cùng tổ yến" aria-label="Ảnh 8: Nhiều hũ yến chưng 30% bày cùng tổ yến"><img src="/assets/sp/yen-chung-30-08-480.webp" alt="" loading="lazy" width="120" height="120"></button></div></figure>
     <div class="pdp-info">
       <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 1.250 đánh giá yến chưng sẵn 30% trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
 <div id="dat-mua" data-tnh-buy="/yen-sao/yen-chung/yen-chung-30/" data-was='{"yc6": 250000, "yc10": 350000}'><p>Đặt mua: nhắn <a href="https://zalo.me/0969850153">Zalo 0969.850.153</a>.</p></div>
@@ -286,5 +294,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
 if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
 <script src="/assets/tnh-chat.js" defer></script>
+<script>/* bộ ảnh trang sản phẩm: bấm ô nhỏ → đổi ảnh chính */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.gal-th button');if(!b)return;var g=b.closest('.pdp-gal'),m=g.querySelector('.gal-main');
+m.src=b.dataset.src;m.srcset=b.dataset.srcset||'';m.alt=b.dataset.alt;g.querySelector('figcaption').textContent=b.dataset.alt;
+g.querySelectorAll('.gal-th button').forEach(function(x){x.classList.toggle('on',x===b)});
+if(typeof gtag==='function')gtag('event','pdp_gallery',{index:b.dataset.i,page_path:location.pathname});});</script>
 </body>
 </html>
