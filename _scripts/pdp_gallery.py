@@ -22,6 +22,8 @@ if(typeof gtag==='function')gtag('event','pdp_gallery',{index:b.dataset.i,page_p
 """
 CSS = """
   /* bộ 8 ảnh (15/10/2026) */
+  .pdp-gal .gal-main{object-fit:contain!important;background:#faf7ee;aspect-ratio:1/1!important}
+  @media(max-width:900px){.pdp-gal .gal-main{aspect-ratio:4/5!important}}
   .pdp-gal{min-width:0;max-width:100%}.pdp-gal figcaption{min-height:1.2em}
   .gal-th{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px}
   .gal-th button{padding:0;border:2px solid transparent;border-radius:9px;background:none;cursor:pointer;overflow:hidden;aspect-ratio:1/1}
