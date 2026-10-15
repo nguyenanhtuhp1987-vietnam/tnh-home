@@ -107,7 +107,24 @@ def apply_html(root):
     print(n, "trang có bộ 8 ảnh")
 
 
+def thay(page, pos, path, alt):
+    """Thay 1 ô ảnh: python3 _scripts/pdp_gallery.py --thay tinh-che/soi-ngan 3 "/đường/dẫn.jpg" "chú thích" """
+    import sys as _s; _s.path.insert(0, str(ROOT / "_scripts")); import toi_uu_toc_do as t
+    from PIL import Image, ImageOps
+    d = CFG[page]; slug = d["slug"]; pos = int(pos)
+    for f in SP.glob(f"{slug}-{pos:02d}*.webp"): f.unlink()
+    im = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
+    if im.width > 1600: im = im.resize((1600, round(im.height * 1600 / im.width)), Image.LANCZOS)
+    SP.mkdir(exist_ok=True); out = SP / f"{slug}-{pos:02d}.jpg"; im.save(out, quality=86)
+    r = t.webp_for("/assets/sp/" + out.name); t.srcset_for(r[0], r[1]); out.unlink()
+    d["items"][pos - 1] = ["file:" + str(path), alt]
+    (ROOT / "_scripts/pdp_anh_8.json").write_text(json.dumps(CFG, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("  thay", page, "ô", pos, "←", Path(path).name)
+
+
 if __name__ == "__main__":
+    if "--thay" in sys.argv:
+        i = sys.argv.index("--thay"); thay(*sys.argv[i + 1:i + 5]); apply_html(ROOT); sys.exit()
     if "--nguon" in sys.argv:
         copy_images(sys.argv[sys.argv.index("--nguon") + 1])
     else:
