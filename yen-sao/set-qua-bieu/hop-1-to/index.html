@@ -164,6 +164,14 @@ footer a{color:var(--gold-light)}
     .offer-card{padding:11px 13px}.offer-card small{font-size:.76rem}.head{padding:22px 0}.head p,.head .crumb{display:none}.head h1{font-size:1.35rem}
     .rv-grid{grid-template-columns:1fr!important}.rv-main,.rv-quotes{grid-template-columns:1fr}
     .rv-tile{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;text-align:left;align-items:center}.rv-tile .big{grid-row:1/3;min-width:64px}}
+
+  /* bộ 8 ảnh (15/10/2026) */
+  .pdp-gal{min-width:0;max-width:100%}.pdp-gal figcaption{min-height:1.2em}
+  .gal-th{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px}
+  .gal-th button{padding:0;border:2px solid transparent;border-radius:9px;background:none;cursor:pointer;overflow:hidden;aspect-ratio:1/1}
+  .gal-th button.on{border-color:var(--gold)}
+  .gal-th img{width:100%;height:100%;object-fit:cover;display:block;border-radius:7px;border:0!important;aspect-ratio:auto!important}
+  @media(max-width:900px){.pdp-grid{grid-template-columns:minmax(0,1fr)!important}.gal-th{grid-template-columns:repeat(8,64px);overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}}
 </style>
 </head>
 <body>
@@ -197,7 +205,7 @@ footer a{color:var(--gold-light)}
 </div>
 <section class="pdp" style="padding:26px 0 6px"><!--pdp-mau-->
   <div class="container pdp-grid">
-    <figure class="pdp-img"><img srcset="/assets/hop-1-to-yen-tinh-che-tao-do-480.webp 480w, /assets/hop-1-to-yen-tinh-che-tao-do.webp 900w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="900" height="1125" src="/assets/hop-1-to-yen-tinh-che-tao-do.webp" alt="Hộp 1 tổ yến tinh chế kèm táo đỏ The Nest House"><figcaption>Hộp 1 tổ yến tinh chế kèm táo đỏ</figcaption></figure>
+    <figure class="pdp-img pdp-gal"><img class="gal-main" srcset="/assets/hop-1-to-yen-tinh-che-tao-do-480.webp 480w, /assets/hop-1-to-yen-tinh-che-tao-do.webp 900w" sizes="(max-width:640px) 100vw, 50vw" fetchpriority="high" width="900" height="1125" src="/assets/hop-1-to-yen-tinh-che-tao-do.webp" alt="Hộp 1 tổ yến tinh chế cùng táo đỏ"><figcaption>Hộp 1 tổ yến tinh chế cùng táo đỏ</figcaption><div class="gal-th"><button type="button" class="on" data-i="1" data-src="/assets/hop-1-to-yen-tinh-che-tao-do.webp" data-srcset="/assets/hop-1-to-yen-tinh-che-tao-do-480.webp 480w, /assets/hop-1-to-yen-tinh-che-tao-do.webp 900w" data-alt="Hộp 1 tổ yến tinh chế cùng táo đỏ" aria-label="Ảnh 1: Hộp 1 tổ yến tinh chế cùng táo đỏ"><img src="/assets/hop-1-to-yen-tinh-che-tao-do-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="2" data-src="/assets/sp/hop-1-to-02.webp" data-srcset="/assets/sp/hop-1-to-02-480.webp 480w, /assets/sp/hop-1-to-02.webp 941w" data-alt="Hộp 1 tổ yến trên khay gỗ cùng thiệp" aria-label="Ảnh 2: Hộp 1 tổ yến trên khay gỗ cùng thiệp"><img src="/assets/sp/hop-1-to-02-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="3" data-src="/assets/sp/hop-1-to-03.webp" data-srcset="/assets/sp/hop-1-to-03-480.webp 480w, /assets/sp/hop-1-to-03.webp 941w" data-alt="Hộp 1 tổ yến bên chén yến đã chưng" aria-label="Ảnh 3: Hộp 1 tổ yến bên chén yến đã chưng"><img src="/assets/sp/hop-1-to-03-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="4" data-src="/assets/sp/hop-1-to-04.webp" data-srcset="/assets/sp/hop-1-to-04-480.webp 480w, /assets/sp/hop-1-to-04.webp 941w" data-alt="Hộp 1 tổ yến buộc nơ xanh cùng tổ yến" aria-label="Ảnh 4: Hộp 1 tổ yến buộc nơ xanh cùng tổ yến"><img src="/assets/sp/hop-1-to-04-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="5" data-src="/assets/sp/hop-1-to-05.webp" data-srcset="/assets/sp/hop-1-to-05-480.webp 480w, /assets/sp/hop-1-to-05.webp 941w" data-alt="Tổ yến tinh chế cạnh hộp quà 1 tổ" aria-label="Ảnh 5: Tổ yến tinh chế cạnh hộp quà 1 tổ"><img src="/assets/sp/hop-1-to-05-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="6" data-src="/assets/sp/hop-1-to-06.webp" data-srcset="/assets/sp/hop-1-to-06-480.webp 480w, /assets/sp/hop-1-to-06.webp 940w" data-alt="Hộp 1 tổ yến mở nhìn từ trên" aria-label="Ảnh 6: Hộp 1 tổ yến mở nhìn từ trên"><img src="/assets/sp/hop-1-to-06-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="7" data-src="/assets/sp/hop-1-to-07.webp" data-srcset="/assets/sp/hop-1-to-07-480.webp 480w, /assets/sp/hop-1-to-07-960.webp 960w, /assets/sp/hop-1-to-07.webp 1024w" data-alt="Hộp 1 tổ yến cùng táo đỏ, kỷ tử, đường phèn, đông trùng" aria-label="Ảnh 7: Hộp 1 tổ yến cùng táo đỏ, kỷ tử, đường phèn, đông trùng"><img src="/assets/sp/hop-1-to-07-480.webp" alt="" loading="lazy" width="120" height="120"></button><button type="button" data-i="8" data-src="/assets/sp/hop-1-to-08.webp" data-srcset="/assets/sp/hop-1-to-08-480.webp 480w, /assets/sp/hop-1-to-08-960.webp 960w, /assets/sp/hop-1-to-08.webp 1024w" data-alt="Hộp 1 tổ yến trên bàn cùng chén yến đã chưng" aria-label="Ảnh 8: Hộp 1 tổ yến trên bàn cùng chén yến đã chưng"><img src="/assets/sp/hop-1-to-08-480.webp" alt="" loading="lazy" width="120" height="120"></button></div></figure>
     <div class="pdp-info">
       <div class="rate-strip"><span class="st" aria-hidden="true">★★★★★</span><span><strong>4,9/5</strong> · 298 đánh giá hộp 1 tổ yến trên Shopee</span><a href="#danh-gia">Xem đánh giá</a></div>
       <div class="offer-card">
@@ -316,5 +324,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
 if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
 <script src="/assets/tnh-chat.js" defer></script>
+<script>/* bộ ảnh trang sản phẩm: bấm ô nhỏ → đổi ảnh chính */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.gal-th button');if(!b)return;var g=b.closest('.pdp-gal'),m=g.querySelector('.gal-main');
+m.src=b.dataset.src;m.srcset=b.dataset.srcset||'';m.alt=b.dataset.alt;g.querySelector('figcaption').textContent=b.dataset.alt;
+g.querySelectorAll('.gal-th button').forEach(function(x){x.classList.toggle('on',x===b)});
+if(typeof gtag==='function')gtag('event','pdp_gallery',{index:b.dataset.i,page_path:location.pathname});});</script>
 </body>
 </html>
