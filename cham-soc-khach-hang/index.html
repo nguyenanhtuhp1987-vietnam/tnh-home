@@ -132,7 +132,18 @@ footer a{color:var(--gold-light)}
 
 .float-zalo{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:10px}
 .float-zalo a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 8px 22px rgba(0,0,0,.3)}
-.fz{background:#0068ff;color:#fff;font-weight:800;font-size:.8rem!important;font-family:var(--sans)}
+.fz{background:#0068ff;color:#fff;font-weight:800;font-size:.85rem!important;font-family:var(--sans);width:auto!important;padding:0 18px;border-radius:28px!important;text-decoration:none;white-space:nowrap}
+/* 17/10/2026 (CEO): mọi hỗ trợ quà qua Zalo — không qua khung chat sàn (sàn quét tin, cảnh báo giao dịch ngoài sàn) */
+.zalo-bar{position:sticky;top:0;z-index:70;background:#0068ff;color:#fff;font-size:.82rem;line-height:1.45;padding:9px 14px;text-align:center}
+.zalo-bar a{color:#fff;font-weight:800;text-decoration:underline}
+.rules ol.steps{list-style:none;padding:0;margin:6px 0 10px}
+.rules ol.steps li{padding:7px 0;border-bottom:1px dashed rgba(193,163,116,.35)}
+.rules ol.steps .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--deep);font-weight:800;font-size:.8rem;margin-right:6px}
+.rules .help{font-size:.86rem;margin:6px 0 10px;padding:10px 12px;border:1px solid rgba(0,104,255,.6);border-radius:12px;background:rgba(0,104,255,.12)}
+.rules .help a{color:#fff;font-weight:700}
+.rules ul.small li{font-size:.8rem;opacity:.85}
+.claim{margin:14px auto 4px;max-width:460px;padding:12px;border:2px dashed var(--gold);border-radius:14px;font-size:.95rem}
+.claim b{font-size:1.25rem;letter-spacing:.08em;color:var(--gold-light);white-space:nowrap;display:inline-block}
 .fp{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep)}
 
 [hidden]{display:none!important}
@@ -141,6 +152,7 @@ footer a{color:var(--gold-light)}
 <style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
 </head>
 <body>
+<div class="zalo-bar">💬 Mọi hỗ trợ quay số &amp; nhận quà chỉ qua <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Zalo The Nest House 0969.850.153</a>. Khung chat Shopee/Lazada/TikTok <b>không xử lý quà tặng</b> — anh chị nhắn ở đó shop sẽ không hỗ trợ được.</div>
 
 <header class="topbar"><div class="brand">THE NEST HOUSE</div></header>
 
@@ -161,14 +173,16 @@ footer a{color:var(--gold-light)}
   <p class="cd-note">Thời gian tham gia còn lại — hết hạn 31/12/2026</p>
 
   <div class="rules">
-    <h3>Cách thức tham gia</h3>
-    <ul>
-      <li>Thực hiện tối đa <b>2 lượt quay</b> cho mỗi lượt tham gia</li>
-      <li>Chọn kết quả <b>tốt nhất trong 2 lượt</b> để nhận quà</li>
-      <li>Nhập số điện thoại → nhắn Zalo hotline The Nest House để nhận quà</li>
-      <li>Quý khách có thể <b>ghé cửa hàng lấy quà</b>, shop <b>gửi vào đơn hàng kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship)</li>
-      <li>Áp dụng cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>; mỗi mã đơn tham gia <b>1 lần</b></li>
-      <li>Quà được xác nhận sau khi shop <b>kiểm tra đơn hàng</b></li>
+    <h3>Cách tham gia — 3 bước</h3>
+    <ol class="steps">
+      <li><span class="n">1</span> Nhập <b>mã đơn</b> (mua trên sàn) hoặc <b>SĐT đã mua</b> (website, Zalo, cửa hàng)</li>
+      <li><span class="n">2</span> Bấm <b>Quay ngay</b> — 2 lượt, chọn quà anh chị thích hơn</li>
+      <li><span class="n">3</span> Nhập <b>SĐT nhận quà</b> (số có Zalo) → shop nhắn Zalo cho anh chị</li>
+    </ol>
+    <p class="help">📷 <b>Không quét được mã hoặc không biết quay?</b> <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Chụp thư cảm ơn gửi Zalo 0969.850.153</a>, shop quay giúp.</p>
+    <ul class="small">
+      <li>Áp dụng cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>; mỗi mã đơn tham gia <b>1 lần</b>; quà được xác nhận sau khi shop kiểm tra đơn</li>
+      <li>Nhận quà: <b>ghé cửa hàng</b>, shop <b>gửi kèm đơn kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship)</li>
       <li>Chương trình áp dụng đến hết <b>31/12/2026</b></li>
     </ul>
   </div>
@@ -232,7 +246,7 @@ footer a{color:var(--gold-light)}
       <div class="pickup-note voucher-note" id="voucherNoteForm" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:0 0 14px;opacity:1"></div>
       <label for="custName">Shop nên gọi anh/chị là gì? <span style="opacity:.7;font-weight:400">(không bắt buộc)</span></label>
       <input type="text" id="custName" placeholder="VD: chị Lan" maxlength="40" autocomplete="given-name" style="margin-bottom:14px">
-      <label for="phone">Số điện thoại nhận quà</label>
+      <label for="phone">Số điện thoại nhận quà <span style="opacity:.7;font-weight:400">(số có Zalo — shop nhắn Zalo số này)</span></label>
       <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
       <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
       <div class="pickup form-pickup" id="formBuy">
@@ -265,7 +279,7 @@ footer a{color:var(--gold-light)}
         <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
         <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
         <button type="button" class="pickup-opt" data-m="ship_paid">🚚&nbsp; Nhận ngay — shop gửi, anh chị thanh toán phí ship</button>
-        <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
+        <div class="pickup-note">Shop sẽ nhắn Zalo để hẹn giờ trao quà theo cách anh chị chọn.</div>
       </div>
       <div class="err" id="pickupErr">Vui lòng chọn 1 cách nhận quà</div>
       <div id="tsBox" class="ts-box"></div>
@@ -281,7 +295,8 @@ footer a{color:var(--gold-light)}
   <div id="stepThanks" class="thanks" hidden>
     <div class="ico">🎉</div>
     <h2>Chúc mừng bạn!</h2>
-    <p>Cảm ơn bạn đã tham gia. Nhắn Zalo cho The Nest House kèm số điện thoại vừa đăng ký để nhận quà nhé.</p>
+    <div class="claim" id="claimBox" hidden>🎁 Mã nhận quà của anh chị: <b id="claimCode">—</b></div>
+    <p>Shop sẽ <b>chủ động nhắn Zalo</b> cho anh chị trong vòng <b>48 giờ</b> (giờ làm việc). Cần gấp, anh chị bấm nút dưới và gửi <b>mã nhận quà</b> này.</p>
     <div class="pickup-note" style="opacity:.9;margin-top:10px">🔎 Quà được xác nhận sau khi shop kiểm tra đơn hàng (thanh toán thực tế từ 1.000.000đ).</div>
     <div class="pickup-note voucher-note" id="voucherNoteThanks" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:14px auto 0;max-width:460px;opacity:1"></div>
     <div class="pickup" id="pickupBox">
@@ -289,10 +304,10 @@ footer a{color:var(--gold-light)}
       <button type="button" class="pickup-opt" data-m="store">🏬&nbsp; Ghé cửa hàng lấy quà</button>
       <button type="button" class="pickup-opt" data-m="next_order">📦&nbsp; Shop gửi kèm đơn hàng kế tiếp của bạn</button>
       <button type="button" class="pickup-opt" data-m="ship_paid">🚚&nbsp; Nhận ngay — shop gửi, anh chị thanh toán phí ship</button>
-      <div class="pickup-note">Anh chị chọn phương án nào thì cũng báo shop trước nhé.</div>
+      <div class="pickup-note">Shop sẽ nhắn Zalo để hẹn giờ trao quà theo cách anh chị chọn.</div>
       <div class="pickup-status" id="pickupStatus" hidden></div>
     </div>
-    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo nhận quà</a>
+    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo shop</a>
     <a class="call-btn" href="tel:0969850153">☎ hoặc gọi 0969.850.153</a>
     <div class="price-bridge" id="priceBridge" style="margin-top:26px;padding:18px 16px;border:1px solid rgba(193,163,116,.4);border-radius:16px;background:rgba(255,255,255,.04)">
       <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:6px">Xem giá niêm yết trực tiếp tại web</h3>
@@ -317,7 +332,7 @@ footer a{color:var(--gold-light)}
 </div>
 
 <div class="float-zalo">
-  <a class="fz" href="https://zalo.me/0969850153" target="_blank" title="Nhắn Zalo">Zalo</a>
+  <a class="fz" href="https://zalo.me/0969850153" target="_blank" title="Hỗ trợ quay số qua Zalo">💬 Hỗ trợ quay số</a>
   <a class="fp" href="tel:0969850153" title="Gọi hotline">☎</a>
 </div>
 
@@ -716,6 +731,7 @@ track('wheel_submit',{ status: 'ok', prize: prizeName, method: formPick });
         state.submitted = true;
         state.finalPrize = prizeName;
         state.ref = json.ref || null;
+        state.code = json.code || null; // 17/10: mã nhận quà VQ-XXXXXX do máy sinh, không trùng
         state.pickup = formPick;
         saveState(state);
         stepCompare.hidden = true;
@@ -769,6 +785,8 @@ var PICKUP_LABEL ={ store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gử
   var pickupBtns = [].slice.call(pickupBox.querySelectorAll('.pickup-opt'));
 
   function renderPickup(){
+    var cb = document.getElementById('claimBox');
+    if(state.code){ document.getElementById('claimCode').textContent = state.code; cb.hidden = false; } else cb.hidden = true;
     var vn = document.getElementById('voucherNoteThanks');
     var isV = isVoucherName(state.finalPrize);
     vn.textContent = VOUCHER_NOTE;
@@ -778,7 +796,7 @@ pickupBtns.forEach(function(b){ b.classList.toggle('chosen', b.getAttribute('dat
 if(state.pickup){
       pickupStatus.hidden = false;
       pickupStatus.className = 'pickup-status';
-      pickupStatus.textContent = '✓ Shop đã ghi nhận: ' + PICKUP_LABEL[state.pickup] + '. Bấm "Nhắn Zalo" bên dưới để báo shop nhé.';
+      pickupStatus.textContent = '✓ Shop đã ghi nhận: ' + PICKUP_LABEL[state.pickup] + '. Shop sẽ nhắn Zalo hẹn giờ trao quà.';
     }
   }
 
