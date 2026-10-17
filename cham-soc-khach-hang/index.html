@@ -122,6 +122,13 @@ h1,h2{font-family:var(--serif)}
 .gate .chk input{margin-top:3px;width:18px;height:18px;flex:none}
 .gate .ok{font-size:.85rem;color:#9fe0b0;margin-top:8px}
 .gate.done .gate-form{display:none}
+/* 17/10/2026 (CEO): điền 1 lần — SĐT + tên + nơi mua + mã đơn ngay bước 1; tra SĐT trước khi quay */
+.gate label{display:block;font-size:.82rem;font-weight:600;color:var(--gold-light);margin-bottom:6px}
+.gate input[type=tel],.gate input[type=text]{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid rgba(193,163,116,.5);background:rgba(255,255,255,.06);color:var(--white);font-size:1rem;font-family:var(--sans)}
+.gate input::placeholder{color:rgba(244,236,214,.4)}
+.copy-btn{margin-top:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--gold);background:transparent;color:var(--gold-light);font:inherit;font-size:.85rem;cursor:pointer}
+.inapp{margin:10px auto 0;max-width:460px;font-size:.8rem;opacity:.9;line-height:1.5}
+.lookup{margin:12px auto;max-width:460px;text-align:left;font-size:.9rem;line-height:1.7;border:1px solid rgba(193,163,116,.5);border-radius:14px;padding:12px 14px}
 .form-pickup.need{border-color:#ff9d9d}
 .pickup-title .req{color:#ff9d9d}
 .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--deep);font-weight:800;font-size:.98rem;text-decoration:none}
@@ -188,26 +195,32 @@ footer a{color:var(--gold-light)}
   </div>
 
   <!-- WHEEL STEP -->
-  <div id="stepWheel">
-    <div class="gate" id="gateBox">
-      <h3>Điều kiện tham gia</h3>
-      <p class="cond">Vòng quay dành cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>. Anh chị nhập <b>mã đơn hàng</b> (mua trên sàn) hoặc <b>số điện thoại đã dùng để mua</b> (mua tại website, Zalo, cửa hàng). Shop sẽ kiểm tra đơn trước khi gửi quà.</p>
-      <div class="gate-form">
-        <div class="pickup-title">Anh chị mua ở đâu? <span class="req">*</span></div>
-        <div class="pills" id="gateCh">
-          <button type="button" class="pickup-opt" data-gch="Shopee">Shopee</button>
-          <button type="button" class="pickup-opt" data-gch="Lazada">Lazada</button>
-          <button type="button" class="pickup-opt" data-gch="TikTok Shop">TikTok Shop</button>
-          <button type="button" class="pickup-opt" data-gch="Website/Zalo">Website / Zalo</button>
-          <button type="button" class="pickup-opt" data-gch="Cửa hàng">Cửa hàng</button>
-        </div>
-        <input class="ref-input" id="gateRef" maxlength="40" placeholder="Chọn nơi mua trước" autocomplete="off" disabled>
-        <label class="chk"><input type="checkbox" id="gateOk"> <span>Tôi xác nhận đơn hàng này thanh toán thực tế <b>từ 1.000.000đ</b></span></label>
-        <div class="err" id="gateErr">—</div>
-        <button type="button" class="submit-btn" id="gateBtn" style="margin-top:12px">🔓 Mở lượt quay</button>
+  <div class="gate" id="gateBox">
+    <h3>Bước 1 — Thông tin nhận quà</h3>
+    <p class="cond">Vòng quay dành cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>; shop kiểm tra đơn trước khi gửi quà. <b>Đã tham gia rồi?</b> Nhập lại SĐT và bấm nút — trang hiện lại quà + mã nhận quà của anh chị.</p>
+    <div class="gate-form">
+      <label for="gatePhone">Số điện thoại nhận quà <span class="req">*</span> <span style="opacity:.7;font-weight:400">(số có Zalo)</span></label>
+      <input type="tel" id="gatePhone" placeholder="VD: 0912 345 678" inputmode="tel" autocomplete="tel">
+      <label for="gateName" style="margin-top:12px">Tên người nhận quà <span style="opacity:.7;font-weight:400">(không bắt buộc)</span></label>
+      <input type="text" id="gateName" placeholder="VD: chị Lan" maxlength="40" autocomplete="name">
+      <div class="pickup-title" style="margin-top:14px">Anh chị mua ở đâu? <span class="req">*</span></div>
+      <div class="pills" id="gateCh">
+        <button type="button" class="pickup-opt" data-gch="Shopee">Shopee</button>
+        <button type="button" class="pickup-opt" data-gch="Lazada">Lazada</button>
+        <button type="button" class="pickup-opt" data-gch="TikTok Shop">TikTok Shop</button>
+        <button type="button" class="pickup-opt" data-gch="Website/Zalo">Website / Zalo</button>
+        <button type="button" class="pickup-opt" data-gch="Cửa hàng">Cửa hàng</button>
       </div>
-      <div class="ok" id="gateOkMsg" hidden></div>
+      <input class="ref-input" id="gateRef" maxlength="40" placeholder="Mã đơn hàng" autocomplete="off" hidden>
+      <div class="pickup-note" id="gateRefNote" hidden>✓ SĐT ở trên là SĐT mua hàng — không cần nhập thêm.</div>
+      <p class="pickup-note">Bấm <b>Mở lượt quay</b> là anh chị xác nhận đơn hàng thanh toán thực tế <b>từ 1.000.000đ</b>.</p>
+      <div class="err" id="gateErr">—</div>
+      <button type="button" class="submit-btn" id="gateBtn" style="margin-top:12px">🔓 Mở lượt quay</button>
     </div>
+    <div class="ok" id="gateOkMsg" hidden></div>
+  </div>
+
+  <div id="stepWheel">
     <div class="wheel-zone">
       <div class="wheel-outer">
         <div class="pointer"></div>
@@ -244,32 +257,6 @@ footer a{color:var(--gold-light)}
 
     <div class="form-zone" id="formZone" hidden>
       <div class="pickup-note voucher-note" id="voucherNoteForm" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:0 0 14px;opacity:1"></div>
-      <label for="custName">Shop nên gọi anh/chị là gì? <span style="opacity:.7;font-weight:400">(không bắt buộc)</span></label>
-      <input type="text" id="custName" placeholder="VD: chị Lan" maxlength="40" autocomplete="given-name" style="margin-bottom:14px">
-      <label for="phone">Số điện thoại nhận quà <span style="opacity:.7;font-weight:400">(số có Zalo — shop nhắn Zalo số này)</span></label>
-      <input type="tel" id="phone" placeholder="VD: 0912 345 678" inputmode="tel">
-      <div class="err" id="phoneErr">Vui lòng nhập đúng số điện thoại Việt Nam</div>
-      <div class="pickup form-pickup" id="formBuy">
-        <div class="pickup-title">Anh chị vừa mua sản phẩm nào? <span class="req">*</span></div>
-        <div class="pills">
-          <button type="button" class="pickup-opt" data-buy="Yến chưng sẵn">🥣 Yến chưng sẵn</button>
-          <button type="button" class="pickup-opt" data-buy="Yến tinh chế 50G">🪺 Tinh chế 50G</button>
-          <button type="button" class="pickup-opt" data-buy="Yến tinh chế 100G">🪺 Tinh chế 100G</button>
-          <button type="button" class="pickup-opt" data-buy="Set quà / Hộp 1 tổ">🎁 Set quà / Hộp 1 tổ</button>
-          <button type="button" class="pickup-opt" data-buy="Khác">Khác</button>
-        </div>
-        <div class="pickup-title" id="chTitle" style="margin-top:12px">Mua ở đâu? <span class="req">*</span></div>
-        <div class="pills" id="chPills">
-          <button type="button" class="pickup-opt" data-ch="Shopee">Shopee</button>
-          <button type="button" class="pickup-opt" data-ch="Lazada">Lazada</button>
-          <button type="button" class="pickup-opt" data-ch="TikTok Shop">TikTok Shop</button>
-          <button type="button" class="pickup-opt" data-ch="Website/Zalo">Website / Zalo</button>
-          <button type="button" class="pickup-opt" data-ch="Cửa hàng">Cửa hàng</button>
-        </div>
-        <input class="ref-input" id="orderRef" maxlength="40" placeholder="Mã đơn hàng (hoặc SĐT đã dùng để mua) — bắt buộc" autocomplete="off">
-        <div class="pickup-note">Shop dùng thông tin này để chăm sóc đúng sản phẩm anh chị đã mua.</div>
-      </div>
-      <div class="err" id="buyErr">Vui lòng chọn sản phẩm đã mua và nơi mua</div>
       <div class="pickup form-pickup" id="formPickupVoucher" hidden>
         <div class="pickup-title">Cách nhận voucher</div>
         <div class="pickup-note" style="opacity:1">🏷️ Voucher dùng cho <b>lần mua kế tiếp</b>. Anh chị nhắn Zalo shop khi đặt đơn sau để được trừ 5% (tối đa 100.000đ).</div>
@@ -295,7 +282,8 @@ footer a{color:var(--gold-light)}
   <div id="stepThanks" class="thanks" hidden>
     <div class="ico">🎉</div>
     <h2>Chúc mừng bạn!</h2>
-    <div class="claim" id="claimBox" hidden>🎁 Mã nhận quà của anh chị: <b id="claimCode">—</b></div>
+    <div class="claim" id="claimBox" hidden>🎁 Mã nhận quà của anh chị: <b id="claimCode">—</b><br><button type="button" class="copy-btn" data-copy="claimCode">📋 Sao chép mã</button></div>
+    <p class="inapp" id="inappThanks" hidden>📵 Không chụp được màn hình? Bấm <b>Sao chép mã</b> rồi dán vào ghi chú/Zalo, hoặc mở trang bằng Safari/Chrome. Quét lại QR và nhập SĐT là xem lại quà bất cứ lúc nào.</p>
     <p>Shop sẽ <b>chủ động nhắn Zalo</b> cho anh chị trong vòng <b>48 giờ</b> (giờ làm việc). Cần gấp, anh chị bấm nút dưới và gửi <b>mã nhận quà</b> này.</p>
     <div class="pickup-note" style="opacity:.9;margin-top:10px">🔎 Quà được xác nhận sau khi shop kiểm tra đơn hàng (thanh toán thực tế từ 1.000.000đ).</div>
     <div class="pickup-note voucher-note" id="voucherNoteThanks" hidden style="border:1px solid rgba(193,163,116,.55);border-radius:12px;padding:10px 12px;margin:14px auto 0;max-width:460px;opacity:1"></div>
@@ -317,10 +305,18 @@ footer a{color:var(--gold-light)}
   </div>
 
   <div id="stepAlready" class="thanks" hidden>
-    <div class="ico">🙏</div>
-    <h2>Bạn đã tham gia rồi!</h2>
-    <p>Mỗi khách chỉ tham gia quay số một lần. Nhắn Zalo để The Nest House hỗ trợ nhận quà.</p>
-    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo ngay</a>
+    <div class="ico">🎁</div>
+    <h2>Anh chị đã tham gia rồi!</h2>
+    <p>Mỗi số điện thoại tham gia 1 lần. Thông tin quà của anh chị:</p>
+    <div class="lookup" id="lookupBox" hidden>
+      <div>🎁 Quà: <b id="lkPrize">—</b></div>
+      <div>🎟 Mã nhận quà: <b id="lkCode">—</b> <button type="button" class="copy-btn" data-copy="lkCode" style="margin:0 0 0 6px;padding:4px 10px">📋 Sao chép</button></div>
+      <div>📦 Cách nhận: <b id="lkPickup">—</b></div>
+      <div style="opacity:.8">🕒 Ngày tham gia: <span id="lkAt">—</span></div>
+    </div>
+    <p>Shop sẽ <b>chủ động nhắn Zalo</b> cho anh chị trong vòng <b>48 giờ</b>. Cần gấp hoặc muốn đổi cách nhận, anh chị nhắn Zalo kèm <b>mã nhận quà</b>.</p>
+    <p class="inapp" id="inappAlready" hidden>📵 Không chụp được màn hình? Bấm <b>Sao chép</b> mã, hoặc mở trang bằng Safari/Chrome.</p>
+    <a class="zalo-btn" href="https://zalo.me/0969850153" target="_blank" rel="noopener">💬 Nhắn Zalo shop</a>
   </div>
 
   <footer>
@@ -383,38 +379,78 @@ try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){}
     'Cửa hàng':     { re: /^((0|84)(3|5|7|8|9)\d{8}|TNH\d{3,6})$/, ph: 'Số điện thoại đã dùng để mua', bad: 'Nhập số điện thoại đã dùng để mua (10 số)' }
   };
   function normRef(v){ return String(v || '').toUpperCase().replace(/[\s.\-]/g, '').replace(/^\+/, ''); }
-  function gateNeeded(){ return !state.gate && !(state.spins && state.spins.length) && !state.submitted; }
+  // 17/10/2026 (CEO): điền 1 LẦN ở bước 1 — SĐT nhận quà (có Zalo) + tên (tuỳ chọn) + nơi mua + mã đơn (chỉ khi mua trên sàn;
+  // mua ngoài sàn thì SĐT chính là SĐT mua hàng). Tra SĐT trước khi quay: đã tham gia → hiện lại quà + mã + cách nhận.
+  var SAN = { 'Shopee': 1, 'Lazada': 1, 'TikTok Shop': 1 };
+  var CHECK_URL = WEBAPP_URL.replace('/wheel/submit', '/wheel/check');
+  function gateNeeded(){ return !state.gate && !state.submitted; }
+  function normPhone(v){ var c = String(v || '').replace(/[\s.\-]/g, ''); if(/^\+?84/.test(c)) c = '0' + c.replace(/^\+?84/, ''); return c; }
+  function inApp(){ return /Zalo|Shopee|FBAN|FBAV|FB_IAB|Instagram|musical_ly|TikTok|Lazada|Line\//i.test(navigator.userAgent || ''); }
+  function checkPhone(p, r){
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var t = ctrl ? setTimeout(function(){ ctrl.abort(); }, 8000) : null;
+    return fetch(CHECK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ phone: p, order_ref: r }), signal: ctrl ? ctrl.signal : undefined })
+      .then(function(res){ return res.json(); })
+      .catch(function(){ return null; })
+      .then(function(j){ if(t) clearTimeout(t); return j; });
+  }
+  function prizeLabelByName(n){ for(var i = 0; i < SEGMENTS.length; i++){ if(SEGMENTS[i].name === n) return prizeLabel(SEGMENTS[i]); } return n || '—'; }
+  function showLookup(j){
+    document.getElementById('lkPrize').textContent = prizeLabelByName(j.prize);
+    document.getElementById('lkCode').textContent = j.code || '(lượt trước 17/10 — nhắn Zalo kèm SĐT)';
+    document.getElementById('lkPickup').textContent = j.pickup_label || 'chưa chọn — shop sẽ hỏi khi nhắn Zalo';
+    document.getElementById('lkAt').textContent = j.at || '—';
+    document.getElementById('lookupBox').hidden = false;
+    document.getElementById('inappAlready').hidden = !inApp();
+    ['gateBox', 'stepWheel', 'stepCompare', 'stepThanks'].forEach(function(id){ var el = document.getElementById(id); if(el) el.hidden = true; });
+    document.getElementById('stepAlready').hidden = false;
+    document.getElementById('stepAlready').scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
   (function(){
-    var box = document.getElementById('gateBox'), ref = document.getElementById('gateRef'), ok = document.getElementById('gateOk');
+    var box = document.getElementById('gateBox'), phone = document.getElementById('gatePhone'), name = document.getElementById('gateName');
+    var ref = document.getElementById('gateRef'), note = document.getElementById('gateRefNote');
     var err = document.getElementById('gateErr'), btn = document.getElementById('gateBtn'), msg = document.getElementById('gateOkMsg');
     var ch = null;
     function showErr(t, why){ err.textContent = t; err.style.display = 'block'; track('wheel_gate', { status: why, channel: ch || '' }); }
     function done(){
       box.classList.add('done');
       msg.hidden = false;
-      msg.textContent = '✓ Đã ghi nhận ' + (state.gate.ch === 'Website/Zalo' || state.gate.ch === 'Cửa hàng' ? 'SĐT mua hàng' : 'mã đơn') + ' ' + state.gate.ref + ' (' + state.gate.ch + '). Mời anh chị quay!';
+      var g = state.gate;
+      msg.textContent = '✓ ' + (g.name ? g.name + ' · ' : '') + (g.phone || '') + ' · ' + g.ch + (SAN[g.ch] ? ' · mã đơn ' + g.ref : '') + '. Mời anh chị quay!';
     }
-    window.__gateDone = done;
     [].slice.call(document.querySelectorAll('[data-gch]')).forEach(function(b){
       b.addEventListener('click', function(){
         ch = b.getAttribute('data-gch');
         [].slice.call(document.querySelectorAll('[data-gch]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
-        ref.disabled = false; ref.placeholder = GATE_RULES[ch].ph; ref.focus();
+        if(SAN[ch]){ ref.hidden = false; note.hidden = true; ref.placeholder = GATE_RULES[ch].ph; ref.focus(); }
+        else { ref.hidden = true; note.hidden = false; }
         err.style.display = 'none';
       });
     });
     btn.addEventListener('click', function(){
+      var p = normPhone(phone.value);
+      if(!/^0(3|5|7|8|9)\d{8}$/.test(p)) return showErr('Vui lòng nhập đúng số điện thoại nhận quà (10 số, có Zalo)', 'invalid_phone');
       if(!ch) return showErr('Vui lòng chọn nơi mua hàng', 'no_channel');
-      var v = normRef(ref.value);
-      if(!GATE_RULES[ch].re.test(v)) return showErr(GATE_RULES[ch].bad, 'invalid_ref');
-      if(!ok.checked) return showErr('Vui lòng xác nhận đơn hàng thanh toán thực tế từ 1.000.000đ', 'no_confirm');
-      if(/^84/.test(v) && v.length === 11) v = '0' + v.slice(2);
-      state.gate = { ch: ch, ref: v };
-      saveState(state);
+      var r = SAN[ch] ? normRef(ref.value) : p;
+      if(SAN[ch] && !GATE_RULES[ch].re.test(r)) return showErr(GATE_RULES[ch].bad, 'invalid_ref');
       err.style.display = 'none';
-      track('wheel_gate', { status: 'pass', channel: ch });
-      done();
-      var sb = document.getElementById('spinBtn'); if(sb) sb.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      btn.disabled = true; btn.textContent = 'Đang kiểm tra…';
+      checkPhone(p, r).then(function(j){
+        btn.disabled = false; btn.textContent = '🔓 Mở lượt quay';
+        if(j && j.ok && j.status === 'joined'){
+          track('wheel_gate', { status: 'joined', channel: ch });
+          state.submitted = true; state.lookup = j; saveState(state);
+          return showLookup(j);
+        }
+        if(j && j.ok && j.status === 'order_used') return showErr('Mã đơn này đã tham gia vòng quay. Mỗi đơn hàng tham gia 1 lần — có nhầm lẫn, anh chị nhắn Zalo shop giúp nhé.', 'order_used');
+        if(j && j.error === 'invalid_phone') return showErr('Vui lòng nhập đúng số điện thoại nhận quà (10 số, có Zalo)', 'invalid_phone');
+        // số mới, hoặc mạng lỗi (máy vẫn kiểm lại lúc gửi) → mở lượt quay
+        state.gate = { ch: ch, ref: r, phone: p, name: (name.value || '').replace(/\s+/g, ' ').trim().slice(0, 40) };
+        saveState(state);
+        track('wheel_gate', { status: j ? 'pass' : 'pass_offline', channel: ch, has_name: state.gate.name ? 'yes' : 'no' });
+        done();
+        var sb = document.getElementById('spinBtn'); if(sb) sb.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
     });
     if(!gateNeeded()){ if(state.gate) done(); else box.hidden = true; }
   })();
@@ -595,8 +631,6 @@ if(state.spins.length === 1){
   spinBtn.addEventListener('click', triggerSpin);
   hubSpin.addEventListener('click', triggerSpin);
 
-  var phoneInput = document.getElementById('phone');
-  var phoneErr = document.getElementById('phoneErr');
   var submitBtn = document.getElementById('submitBtn');
   var sendFail = document.getElementById('sendFail');
   var SEND_FAIL_HTML = sendFail.innerHTML; // giữ câu gốc để khôi phục sau khi báo lỗi mã đơn
@@ -626,54 +660,22 @@ track('wheel_pickup',{ method: formPick });
     });
   });
 
-  // ---- khách khai mua gì / ở đâu (CEO 11/10/2026) ----
-  var formBuyBox = document.getElementById('formBuy');
-  var buyErr = document.getElementById('buyErr');
-  var buyPick = null, chPick = null;
-  // đã qua bước lọc → nơi mua + mã đơn lấy từ đó, ẩn khỏi form sau (không hỏi 2 lần)
-  if(state.gate){
-    chPick = state.gate.ch;
-    document.getElementById('chTitle').hidden = true;
-    document.getElementById('chPills').hidden = true;
-    var orx = document.getElementById('orderRef'); orx.value = state.gate.ref; orx.hidden = true;
-  }
-  [].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(b){
-    b.addEventListener('click', function(){
-      buyPick = b.getAttribute('data-buy');
-[].slice.call(formBuyBox.querySelectorAll('[data-buy]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
-      buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
-    });
-  });
-  [].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(b){
-    b.addEventListener('click', function(){
-      chPick = b.getAttribute('data-ch');
-[].slice.call(formBuyBox.querySelectorAll('[data-ch]')).forEach(function(x){ x.classList.toggle('chosen', x === b); });
-      buyErr.style.display = 'none'; formBuyBox.classList.remove('need');
-    });
-  });
-
   function validPhone(v){
     var clean = v.replace(/[\s.\-]/g,'');
 return /^(0|\+84)(3|5|7|8|9)\d{8}$/.test(clean);
   }
 
   submitBtn.addEventListener('click', function(){
-    var v = phoneInput.value.trim();
-    if(!validPhone(v)){
-      phoneErr.style.display = 'block';
-track('wheel_submit',{ status: 'invalid_phone' });
+    // 17/10: SĐT, tên, nơi mua, mã đơn đã điền ở bước 1 — không hỏi lại
+    if(!state.gate){
+      var ge = document.getElementById('gateErr'), gb = document.getElementById('gateBox');
+      gb.hidden = false; gb.classList.remove('done');
+      ge.textContent = 'Anh chị điền Bước 1 (SĐT nhận quà, nơi mua) rồi bấm Mở lượt quay — kết quả quay vẫn được giữ.'; ge.style.display = 'block';
+      gb.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      track('wheel_submit',{ status: 'no_gate' });
       return;
     }
-    phoneErr.style.display = 'none';
-    if(!state.gate){ var r0 = normRef(document.getElementById('orderRef').value); if(r0.length < 6){ track('wheel_submit',{ status: 'no_order' }); buyErr.textContent = 'Vui lòng nhập mã đơn hàng (hoặc SĐT đã dùng để mua)'; buyErr.style.display = 'block'; formBuyBox.classList.add('need'); formBuyBox.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; } }
-    if(!buyPick || !chPick){
-track('wheel_submit',{ status: 'no_purchase' });
-      buyErr.textContent = 'Vui lòng chọn sản phẩm đã mua và nơi mua';
-      buyErr.style.display = 'block';
-      formBuyBox.classList.add('need');
-formBuyBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      return;
-    }
+    var v = state.gate.phone;
     // BẮT BUỘC chọn cách nhận quà trước khi gửi (CEO chốt 02/10/2026)
     if(!formPick){
 track('wheel_submit',{ status: 'no_pickup' });
@@ -686,7 +688,7 @@ formPickupBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
     submitBtn.disabled = true;
     submitBtn.textContent = 'Đang gửi...';
     var prizeName = SEGMENTS[state.spins[state.chosenIndex]].name;
-track('wheel_submit',{ status: 'sent', prize: prizeName, method: formPick, purchase: buyPick, channel: chPick, has_name: (document.getElementById('custName').value || '').trim() ? 'yes' : 'no' });
+track('wheel_submit',{ status: 'sent', prize: prizeName, method: formPick, channel: state.gate.ch, has_name: state.gate.name ? 'yes' : 'no' });
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = null;
     getTurnstileToken().then(function(token){
@@ -695,8 +697,7 @@ timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
         method: 'POST',
 headers:{ 'Content-Type': 'text/plain;charset=utf-8' },
 body: JSON.stringify({ phone: v, prize: prizeName, token: token, pickup: formPick,
-          purchase: buyPick, channel: chPick, order_ref: (state.gate ? state.gate.ref : normRef(document.getElementById('orderRef').value)).slice(0, 40),
-          name: (document.getElementById('custName').value || '').trim().slice(0, 40) }),
+          channel: state.gate.ch, order_ref: String(state.gate.ref || '').slice(0, 40), name: state.gate.name || '' }),
         signal: ctrl ? ctrl.signal : undefined
       });
     }).then(function(res){ return res.json(); })
@@ -708,6 +709,7 @@ track('wheel_submit',{ status: 'duplicate', prize: prizeName });
           saveState(state);
           stepCompare.hidden = true;
           stepAlready.hidden = false;
+          checkPhone(v, '').then(function(j){ if(j && j.status === 'joined'){ state.lookup = j; saveState(state); showLookup(j); } });
           return;
         }
         if(json && (json.error === 'order_used' || json.error === 'no_order')){
@@ -723,7 +725,8 @@ track('wheel_submit',{ status: json.error, prize: prizeName });
         if(json && json.error === 'invalid_phone'){
 track('wheel_submit',{ status: 'server_invalid_phone' });
           resetSubmit();
-          phoneErr.style.display = 'block';
+          sendFail.hidden = false;
+          sendFail.innerHTML = '<strong>⚠️ Số điện thoại chưa đúng.</strong> Anh chị tải lại trang, nhập lại SĐT nhận quà ở Bước 1 nhé.';
           return;
         }
         if(!json || json.ok !== true) throw new Error(json && json.error || 'not saved');
@@ -787,6 +790,7 @@ var PICKUP_LABEL ={ store: 'Ghé cửa hàng lấy quà', next_order: 'Shop gử
   function renderPickup(){
     var cb = document.getElementById('claimBox');
     if(state.code){ document.getElementById('claimCode').textContent = state.code; cb.hidden = false; } else cb.hidden = true;
+    document.getElementById('inappThanks').hidden = !(state.code && inApp());
     var vn = document.getElementById('voucherNoteThanks');
     var isV = isVoucherName(state.finalPrize);
     vn.textContent = VOUCHER_NOTE;
@@ -823,6 +827,16 @@ body: JSON.stringify({ ref: state.ref, method: m })
     });
   });
 
+  // ---- nút Sao chép mã (17/10: nhiều app chặn chụp màn hình) ----
+  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = (document.getElementById(b.getAttribute('data-copy')) || {}).textContent || '';
+      function ok(){ var o = b.textContent; b.textContent = '✓ Đã sao chép'; setTimeout(function(){ b.textContent = o; }, 1800); track('wheel_copy_code', {}); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok, function(){ fallback(); }); } else fallback();
+      function fallback(){ var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+    });
+  });
+
   // ---- resume state on load ----
   function renderState(){
 if(state.submitted && state.ref){
@@ -839,6 +853,7 @@ if(state.submitted){
       stepCompare.hidden = true;
       stepThanks.hidden = true;
       stepAlready.hidden = false;
+      if(state.lookup) showLookup(state.lookup);
       return;
     }
     if(state.spins.length >= 2){
