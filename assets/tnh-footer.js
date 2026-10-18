@@ -8,13 +8,13 @@
     var ft = document.querySelector("footer");
     if (!ft || document.querySelector(".ft-connect")) return;
     var MAP = "https://maps.google.com/maps?q=10.7896536,106.6392679&z=18&hl=vi&output=embed"; // ghim đúng toạ độ cửa hàng (Kios A126, Tầng 2, Tops Market · Oriental Plaza) — CEO 12/10
-    var FB = "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthenesthouse&tabs=timeline&width=340&height=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false";
+    var FB = "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthenesthouse&tabs=&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false";
     var GM = "https://share.google/Jlp2IjomZLla08vaa";
     var css = ".tnhft{background:#0a2f2c;color:#F4ECD6;padding:34px 0 10px;margin-top:30px;border-top:2px solid #C1A374;font-family:'Be Vietnam Pro',system-ui,sans-serif}" +
       ".tnhft *{box-sizing:border-box}.tnhft-in{max-width:1120px;margin:0 auto;padding:0 20px}" +
       ".tnhft h3{font:700 .95rem/1.3 'Be Vietnam Pro',system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#E3C97A;text-align:center;margin:0 0 14px}" +
       ".tnhft-g{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:26px;align-items:start}" +
-      ".tnhft iframe{width:100%;height:340px;border:0;border-radius:12px;background:#fff;display:block}.tnhft-fb iframe{max-width:340px;margin:0 auto}" +
+      ".tnhft iframe{width:100%;height:340px;border:0;border-radius:12px;background:#fff;display:block}.tnhft-fb iframe{max-width:340px;margin:0 auto;height:130px!important;border-radius:12px 12px 0 0}.tnhft-fbc{max-width:340px;margin:0 auto;background:#fff;border-radius:0 0 12px 12px;overflow:hidden;color:#072E2C;text-align:left}.tnhft-fbc img{display:block;width:100%;height:120px;object-fit:cover}.tnhft-fbc p{margin:10px 14px 4px;font-size:.88rem;line-height:1.5}.tnhft-fbc a{display:block;margin:8px 14px 14px;padding:10px;border-radius:99px;text-align:center;font-weight:700;text-decoration:none;background:#1877F2;color:#fff}" +
       ".tnhft-l{text-align:center}.tnhft-i{display:flex;justify-content:center;gap:12px;margin:2px 0 16px}" +
       ".tnhft-i a{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:800 .8rem 'Be Vietnam Pro',system-ui,sans-serif;text-decoration:none}" +
       ".tnhft-i svg{width:26px;height:26px;fill:#fff}.tnhft-i .fb{background:#1877f2}.tnhft-i .yt{background:#e62117}.tnhft-i .zl{background:#0068ff}.tnhft-i .mp{background:#34a853}" +
@@ -26,7 +26,7 @@
     var s = document.createElement("section"); s.className = "tnhft ft-connect"; s.setAttribute("aria-label", "Kết nối The Nest House");
     s.innerHTML = "<div class='tnhft-in'><div class='tnhft-g'>" +
       "<div><h3>Cửa hàng The Nest House</h3><iframe data-src='" + MAP + "' title='Bản đồ cửa hàng The Nest House' referrerpolicy='no-referrer-when-downgrade'></iframe></div>" +
-      "<div class='tnhft-fb'><h3>Fanpage Facebook</h3><iframe data-src='" + FB + "' title='Fanpage Facebook The Nest House' scrolling='no' allow='encrypted-media'></iframe></div>" +
+      "<div class='tnhft-fb'><h3>Fanpage Facebook</h3><iframe data-src='" + FB + "' title='Fanpage Facebook The Nest House' scrolling='no' allow='encrypted-media'></iframe><div class='tnhft-fbc'><img src='/assets/cua-hang-the-nest-house-480.webp' width='480' height='320' loading='lazy' alt='Cửa hàng The Nest House tại TTTM Tops Market'><p>Mẹo chưng yến, gợi ý quà biếu và chương trình mới — đăng mỗi trưa trên fanpage.</p><a href='https://www.facebook.com/thenesthouse' target='_blank' rel='noopener'>Xem bài mới trên fanpage</a></div></div>" +
       "<div class='tnhft-l'><h3>Mạng liên kết</h3><div class='tnhft-i'>" +
       "<a class='fb' href='https://www.facebook.com/thenesthouse' target='_blank' rel='noopener' aria-label='Facebook'><svg viewBox='0 0 24 24'><path d='M13.5 21v-8h2.7l.5-3.2h-3.2V7.7c0-.9.4-1.7 1.8-1.7h1.5V3.2S15.5 3 14.3 3C11.8 3 10.2 4.5 10.2 7.3v2.5H7.5V13h2.7v8z'/></svg></a>" +
       "<a class='yt' href='https://www.youtube.com/@nhatrangyensaonguyenchat2932' target='_blank' rel='noopener' aria-label='YouTube'><svg viewBox='0 0 24 24'><path d='M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z'/></svg></a>" +
