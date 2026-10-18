@@ -305,5 +305,6 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 m.src=b.dataset.src;m.srcset=b.dataset.srcset||'';m.alt=b.dataset.alt;g.querySelector('figcaption').textContent=b.dataset.alt;
 g.querySelectorAll('.gal-th button').forEach(function(x){x.classList.toggle('on',x===b)});
 if(typeof gtag==='function')gtag('event','pdp_gallery',{index:b.dataset.i,page_path:location.pathname});});</script>
+<script src="/assets/tnh-wow.js" defer></script>
 </body>
 </html>

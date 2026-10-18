@@ -8,7 +8,12 @@
   var css = d.createElement('style'); css.setAttribute('data-tnh', 'wow');
   css.textContent = [
     '.wow-bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:9999;background:linear-gradient(90deg,#C1A374,#E3C97A,#fff6d8,#C1A374);pointer-events:none}',
-    '.head{position:relative;overflow:hidden}.head .container{position:relative;z-index:1}',
+    '.head,section.hero{position:relative;overflow:hidden}.head .container,section.hero .container{position:relative;z-index:1}',
+    'section.hero .container>div:first-child>*{opacity:0;transform:translateY(18px);animation:wowUp .8s cubic-bezier(.2,.7,.2,1) forwards}',
+    'section.hero h1 em{background:linear-gradient(100deg,#E3C97A 40%,#fff6d8 50%,#E3C97A 60%) 120% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:wowSweep 2.4s 1.2s ease-in-out 1 forwards}',
+    '.hero-img{perspective:1100px}.hero-img img{transition:transform .3s ease-out}',
+    '.card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}',
+    '@media (hover:hover){.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(7,46,44,.16)}}',
     '.wow-dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}',
     '.head h1 .w{display:inline-block;opacity:0;transform:translateY(.6em);animation:wowUp .7s cubic-bezier(.2,.7,.2,1) forwards}',
     '.head h1.wow-shine{background:linear-gradient(100deg,#fff 42%,#E3C97A 48%,#fff6d8 50%,#E3C97A 52%,#fff 58%) 120% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:wowSweep 2.2s .2s ease-in-out 1 forwards}',
@@ -49,13 +54,21 @@
   }, { passive: true });
 
   /* 1 tiêu đề hiện từng chữ + bụi vàng */
-  var head = d.querySelector('.head'), h1 = head && head.querySelector('h1');
+  var head = d.querySelector('.head') || d.querySelector('section.hero'), h1 = head && head.querySelector('h1');
   if (h1 && !h1.children.length) {
     var words = h1.textContent.trim().split(/\s+/);
     h1.setAttribute('aria-label', h1.textContent.trim());
     h1.innerHTML = words.map(function (w, i) { return '<span class="w" aria-hidden="true" style="animation-delay:' + (i * 45) + 'ms">' + w.replace(/</g, '&lt;') + '</span>'; }).join(' ');
     var txt = h1.getAttribute('aria-label');
     setTimeout(function () { h1.textContent = txt; h1.removeAttribute('aria-label'); h1.classList.add('wow-shine'); }, words.length * 45 + 800);
+  }
+  if (head && head.matches('section.hero')) {
+    head.querySelectorAll('.container>div:first-child>*').forEach(function (el, i) { el.style.animationDelay = (i * 140) + 'ms'; });
+    var hi = head.querySelector('.hero-img img');
+    if (hi && fine) {
+      head.querySelector('.hero-img').addEventListener('mousemove', function (e) { var r = hi.getBoundingClientRect(); hi.style.transform = 'rotateX(' + ((e.clientY - r.top) / r.height - .5) * -6 + 'deg) rotateY(' + ((e.clientX - r.left) / r.width - .5) * 8 + 'deg)'; });
+      head.querySelector('.hero-img').addEventListener('mouseleave', function () { hi.style.transform = ''; });
+    }
   }
   if (head) {
     var cv = d.createElement('canvas'); cv.className = 'wow-dust'; cv.setAttribute('aria-hidden', 'true');
@@ -90,7 +103,7 @@
     var lp = d.createElement('div'); lp.className = 'wow-loupe'; lp.setAttribute('aria-hidden', 'true'); wrap.appendChild(lp);
     var hint = d.createElement('div'); hint.className = 'wow-hint'; hint.textContent = fine ? '🔍 Rê chuột để soi sợi yến' : '🔍 Giữ trên ảnh để soi sợi yến'; wrap.appendChild(hint);
     var Z = 2.6;
-    function big() { return img.currentSrc || img.src; }
+    function big() { return img.src || img.currentSrc; }
     function at(x, y) {
       var r = wrap.getBoundingClientRect(), px = x - r.left, py = y - r.top;
       if (px < 0 || py < 0 || px > r.width || py > r.height) { lp.classList.remove('on'); return; }
@@ -131,7 +144,7 @@
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -8% 0px' });
-  var sel = 'main h2, article h2, section > .container > h2, .rv-main, .rv-quotes > *, .rv-tile, .faq details, table, figure:not(.pdp-gal), .ft-connect';
+  var sel = '.grid > .card, main h2, article h2, section > .container > h2, .rv-main, .rv-quotes > *, .rv-tile, .faq details, table, figure:not(.pdp-gal), .ft-connect';
   d.querySelectorAll(sel).forEach(function (el, i) {
     if (el.getBoundingClientRect().top < innerHeight) return;
     el.classList.add('wow-in'); el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el);
