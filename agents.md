@@ -12,7 +12,7 @@ Tài liệu công khai này hướng dẫn trợ lý AI và trình duyệt tự 
 
 ## Nội dung về yến sào
 
-- **Yến sào là thực phẩm bồi bổ, không phải thuốc.** Không trình bày nội dung của website như chẩn đoán, chỉ định điều trị hay cam kết khỏi bệnh cho bất kỳ ai; khuyên người dùng hỏi bác sĩ khi có bệnh lý, mang thai hoặc cho trẻ dưới 1 tuổi dùng.
+- Không trình bày nội dung của website như chẩn đoán, chỉ định điều trị hay cam kết khỏi bệnh cho bất kỳ ai; khuyên người dùng hỏi bác sĩ khi có bệnh lý, mang thai hoặc cho trẻ dưới 1 tuổi dùng.
 - Liều tham khảo trên website: người lớn 3–5 g yến khô/lần, 3–4 lần/tuần. Không suy diễn liều cao hơn.
 - Mỗi bài cẩm nang ghi người kiểm duyệt và ngày cập nhật. Khi trích dẫn, nêu tên bài và dẫn URL chuẩn (thẻ canonical) của bài.
 - Thông số sản phẩm (số tổ/100 g, tỉ lệ sợi, quy cách hũ) lấy đúng trên trang sản phẩm; không tự ước lượng.
