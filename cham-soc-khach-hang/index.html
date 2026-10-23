@@ -188,7 +188,7 @@ footer a{color:var(--gold-light)}
     </ol>
     <p class="help">📷 <b>Không quét được mã hoặc không biết quay?</b> <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Chụp thư cảm ơn gửi Zalo 0969.850.153</a>, shop quay giúp.</p>
     <ul class="small">
-      <li>Áp dụng cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>; mỗi mã đơn tham gia <b>1 lần</b>; quà được xác nhận sau khi shop kiểm tra đơn</li>
+      <li>Áp dụng cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>, <b>đặt trong 30 ngày gần nhất</b>; mỗi mã đơn tham gia <b>1 lần</b>; quà được xác nhận sau khi shop kiểm tra đơn</li>
       <li>Nhận quà: <b>ghé cửa hàng</b>, shop <b>gửi kèm đơn kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship)</li>
       <li>Chương trình áp dụng đến hết <b>31/12/2026</b></li>
     </ul>
@@ -443,6 +443,7 @@ try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){}
           return showLookup(j);
         }
         if(j && j.ok && j.status === 'order_used') return showErr('Mã đơn này đã tham gia vòng quay. Mỗi đơn hàng tham gia 1 lần — có nhầm lẫn, anh chị nhắn Zalo shop giúp nhé.', 'order_used');
+        if(j && j.ok && j.status === 'order_old') return showErr('Mã đơn này đã quá 30 ngày kể từ ngày đặt. Vòng quay dành cho đơn đặt trong 30 ngày gần nhất — anh chị dùng mã đơn mới hơn, hoặc nhắn Zalo shop giúp nhé.', 'order_old');
         if(j && j.error === 'invalid_phone') return showErr('Vui lòng nhập đúng số điện thoại nhận quà (10 số, có Zalo)', 'invalid_phone');
         // số mới, hoặc mạng lỗi (máy vẫn kiểm lại lúc gửi) → mở lượt quay
         state.gate = { ch: ch, ref: r, phone: p, name: (name.value || '').replace(/\s+/g, ' ').trim().slice(0, 40) };
@@ -712,13 +713,15 @@ track('wheel_submit',{ status: 'duplicate', prize: prizeName });
           checkPhone(v, '').then(function(j){ if(j && j.status === 'joined'){ state.lookup = j; saveState(state); showLookup(j); } });
           return;
         }
-        if(json && (json.error === 'order_used' || json.error === 'no_order')){
+        if(json && (json.error === 'order_used' || json.error === 'no_order' || json.error === 'order_old')){
           // 14/10: mã đơn đã tham gia / thiếu mã đơn → báo ngay, không mất kết quả quay
 track('wheel_submit',{ status: json.error, prize: prizeName });
           resetSubmit();
           sendFail.hidden = false;
           sendFail.innerHTML = json.error === 'order_used'
             ? '<strong>⚠️ Mã đơn này đã tham gia vòng quay.</strong> Mỗi đơn hàng chỉ tham gia 1 lần. Nếu có nhầm lẫn, anh chị nhắn Zalo shop giúp nhé.'
+            : json.error === 'order_old'
+            ? '<strong>⚠️ Mã đơn này đã quá 30 ngày kể từ ngày đặt.</strong> Vòng quay dành cho đơn đặt trong 30 ngày gần nhất. Anh chị dùng mã đơn mới hơn, hoặc nhắn Zalo shop giúp nhé.'
             : '<strong>⚠️ Thiếu mã đơn hàng.</strong> Anh chị tải lại trang và nhập mã đơn (hoặc SĐT đã mua) để tham gia nhé.';
           return;
         }
