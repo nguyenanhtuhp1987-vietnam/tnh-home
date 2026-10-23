@@ -106,7 +106,7 @@ PAGES = {
   quotes=[("Yến sào của The Nest House có chất lượng tốt. Mình mua lần này là lần thứ 3 rồi. Giá cả vừa phải, người có thu nhập trung bình cũng sử dụng được.","lethuha5","mua 100g sợi ngắn trên Shopee","08/2026"),
           ("Shop gửi hàng rất cẩn thận, quà tặng rất đầy đủ. Khâu đóng gói bao bì làm rất ổn, đem tặng quà rất đẹp.","quynh_anh_31117","mua 100g sợi ngắn trên Shopee","09/2025")],
   who_ok=["Dùng đều cho người nhà: bố mẹ lớn tuổi, trẻ em, người mới ốm dậy — sợi ngắn nở mềm, dễ ăn, giá mỗi gram mềm hơn sợi dài.","Muốn tự kiểm hàng bằng mắt: 100g có 14 tổ, đếm được khi nhận hộp.","Muốn hộp quà tươm tất mà ngân sách vừa phải: vẫn kèm hộp túi và nguyên liệu chưng."],
-  who_no=["Cần món quà biếu sếp, đối tác cần \"nhìn là biết\": <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ</a> hợp hơn.","Không muốn tự ngâm, tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Cần món quà biếu sếp, đối tác cần \"nhìn là biết\": <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ</a> hợp hơn.","Không muốn tự ngâm, tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/tinh-che/rut-long": dict(
   gift=True, short="yến rút lông nguyên tổ", group="sản phẩm yến rút lông nguyên tổ xuất khẩu 100g trên Shopee", cnt=[2,1,1,2,156],
   proof=["✔ 100g = <strong>9 tổ</strong>, 90% sợi phủ 2 mặt, giữ nguyên dáng tổ"],
@@ -114,7 +114,7 @@ PAGES = {
   quotes=[("Yến rút lông nguyên tổ có mùi thơm tự nhiên, dễ sử dụng, sợi yến dai, tổ lớn, chất lượng cao cấp.","t*****l","mua rút lông xuất khẩu trên Shopee","09/2026"),
           ("Mình xem review rồi mua theo, hộp sang trọng, shop tặng luôn đồ để chưng yến luôn, mãi iu shop.","n*****9","mua yến sợi dài/rút lông trên Shopee","08/2026")],
   who_ok=["Biếu sếp, đối tác, bố mẹ chồng/vợ dịp quan trọng: dòng cao nhất của The Nest House, tổ nguyên dáng, sợi nhiều nhất.","Thích sợi yến dài rõ miếng, giòn dai khi chưng; muốn tỉ lệ sợi cao hơn dòng sợi dài loại 1.","Muốn tự kiểm: 100g có 9 tổ, nhặt lông bằng nhíp nên nhìn rõ từng sợi."],
-  who_no=["Dùng đều trong nhà và muốn tiết kiệm: <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến sợi ngắn</a> hoặc <a href=\"/yen-sao/tinh-che/chan-yen/\">chân yến</a> hợp hơn.","Cần quà tầm 500.000–1.000.000đ: xem <a href=\"/yen-sao/set-qua-bieu/\">set quà biếu</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Dùng đều trong nhà và muốn tiết kiệm: <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến sợi ngắn</a> hoặc <a href=\"/yen-sao/tinh-che/chan-yen/\">chân yến</a> hợp hơn.","Cần quà tầm 500.000–1.000.000đ: xem <a href=\"/yen-sao/set-qua-bieu/\">set quà biếu</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/tinh-che/chan-yen": dict(
   gift=True, short="chân yến", group="sản phẩm chân yến tinh chế rút lông 50–100g trên Shopee", cnt=[0,0,1,1,55],
   proof=["✔ Chân cục và chân rìa — phần dày nhất của tổ, nở nhiều"],
@@ -122,7 +122,7 @@ PAGES = {
   quotes=[("Chân yến làm sạch rất chất lượng, chưng lên giòn dai rất ngon luôn. Lại được tặng kèm đủ nguyên liệu chưng yến nữa.","s*****e","mua chân yến trên Shopee","10/2022"),
           ("Yến ngon đảm bảo chất lượng, đã mua nhiều lần và sẽ ủng hộ lâu dài.","lienbui1102","mua chân cục 100g trên Shopee","09/2025")],
   who_ok=["Nhà dùng đều, ăn thật chứ không biếu: chân yến giòn sần sật, nở nhiều, giá mềm hơn tổ sợi.","Thích chưng lâu, ăn miếng dày: chân cục hợp; thích mỏng dễ nở: chân rìa.","Muốn tiết kiệm mà vẫn đúng yến The Nest House (cùng tổ, chỉ khác phần)."],
-  who_no=["Cần hộp quà biếu nhìn nguyên tổ: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ</a>.","Không muốn tự ngâm, tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Cần hộp quà biếu nhìn nguyên tổ: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ</a>.","Không muốn tự ngâm, tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/tinh-che/yen-vun": dict(
   zalo_buy='''<div id="dat-mua" class="offer-card" style="border-style:solid;background:#FFFDF7">
         <b class="t">Đặt mua yến vụn — nhắn Zalo, giao COD toàn quốc</b>
@@ -138,7 +138,7 @@ PAGES = {
   quotes=[("Hàng dùng ok, giao hàng đúng hạn. Gói hàng cẩn thận, rất ưng ý nha.","l*****6","mua yến vụn 100g trên Shopee","03/2026"),
           ("Shop đóng gói hàng cẩn thận, mỗi set yến để riêng 1 hộp nên rất dễ bảo quản.","b*****m","mua 5 set yến vụn 3g trên Shopee","09/2022")],
   who_ok=["Cho bé mới tập ăn yến hoặc muốn thử trước: set 3g đúng một lần chưng, không phải mua hộp lớn.","Nhà dùng đều, ưu tiên tiết kiệm: 50g/100g vụn cùng nguồn tổ, chỉ khác dạng.","Người bận: ngâm nhanh, chưng 15–20 phút là xong."],
-  who_no=["Cần quà biếu nhìn nguyên tổ: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/set-qua-bieu/hop-1-to/\">hộp 1 tổ</a>.","Thích sợi dài rõ miếng khi chưng: xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">sợi ngắn</a> hoặc <a href=\"/yen-sao/tinh-che/soi-dai/\">sợi dài</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Cần quà biếu nhìn nguyên tổ: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/set-qua-bieu/hop-1-to/\">hộp 1 tổ</a>.","Thích sợi dài rõ miếng khi chưng: xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">sợi ngắn</a> hoặc <a href=\"/yen-sao/tinh-che/soi-dai/\">sợi dài</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/yen-tho": dict(
   gift=True, short="yến thô", group="sản phẩm yến thô ít lông nguyên tổ 50–100g trên Shopee", cnt=[1,1,5,7,87],
   proof=["✔ Tổ nguyên chưa làm sạch, ít lông — tự nhặt bằng nhíp (kèm hướng dẫn)"],
@@ -146,7 +146,7 @@ PAGES = {
   quotes=[("Lượng lông yến không quá nhiều, dễ xử lý, có cửa hàng nên yên tâm mua sử dụng.","ohu6bbm608","mua yến thô 100g trên Shopee","07/2026"),
           ("Đã mua lần hai. Được cái khá ít lông.","dg0fqxru5j","mua yến thô 50g + 100g trên Shopee","10/2025")],
   who_ok=["Muốn thấy tổ yến nguyên bản chưa qua xử lý và tự tay làm sạch cho yên tâm.","Có thời gian nhặt lông (30–60 phút/tổ) và muốn giá mỗi gram thấp nhất.","Đã quen dùng yến, biết cách ngâm – nhặt – chưng."],
-  who_no=["Chưa từng nhặt lông yến hoặc không có thời gian: <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến tinh chế</a> đã làm sạch sẵn.","Mua để biếu: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/set-qua-bieu/\">set quà biếu</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Chưa từng nhặt lông yến hoặc không có thời gian: <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến tinh chế</a> đã làm sạch sẵn.","Mua để biếu: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">yến sợi dài loại 1</a> hoặc <a href=\"/yen-sao/set-qua-bieu/\">set quà biếu</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/yen-chung/yen-chung-30": dict(
   gift=False, short="yến chưng sẵn 30%", group="các sản phẩm yến chưng sẵn 30% sợi yến (set 6 hũ, từng vị, 20 hũ) trên Shopee", cnt=[6,3,17,23,1201],
   proof=["✔ 30% sợi yến thật, chưng tươi theo lô, HSD in trên nắp","✔ Giao chống sốc từng hũ"],
@@ -154,7 +154,7 @@ PAGES = {
   quotes=[("Có nhiều hương vị thơm ngon, dễ uống cho mọi lứa tuổi. Hộp đẹp, shop đóng gói cẩn thận, sang trọng, thích hợp làm quà tặng.","h*****8","mua set 6 hũ trên Shopee","10/2026"),
           ("Yến thơm, ngon, ngọt thanh hợp khẩu vị. Vị đông trùng ngon tuyệt luôn.","h*****j","mua 6 hũ đông trùng trên Shopee","11/2025")],
   who_ok=["Cả nhà dùng đều mà không ai muốn chưng: mở nắp là dùng, 4 vị để mỗi người một hũ đúng ý.","Quà biếu tầm 250.000–450.000đ cho đồng nghiệp, hàng xóm, thầy cô: set 6–10 hũ có hộp túi.","Người mới bắt đầu dùng yến: giá mỗi hũ mềm, thử vị trước khi lên dòng 100%."],
-  who_no=["Muốn đậm sợi yến, dùng cho người cần bồi bổ thật sự: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng 100% Hoàng Kim</a>.","Thích tự chưng để kiểm soát độ ngọt: xem <a href=\"/yen-sao/tinh-che/yen-vun/\">yến vụn</a> hoặc <a href=\"/yen-sao/tinh-che/soi-ngan/\">sợi ngắn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Muốn đậm sợi yến, dùng cho người cần bồi bổ thật sự: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng 100% Hoàng Kim</a>.","Thích tự chưng để kiểm soát độ ngọt: xem <a href=\"/yen-sao/tinh-che/yen-vun/\">yến vụn</a> hoặc <a href=\"/yen-sao/tinh-che/soi-ngan/\">sợi ngắn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/yen-chung/yen-chung-100": dict(
   gift=False, short="yến chưng 100% Hoàng Kim", group="các sản phẩm yến chưng sẵn 100% sợi yến (10 · 15 · 20 hũ) trên Shopee", cnt=[2,1,5,8,486],
   proof=["✔ 100% sợi yến, không pha — đã kiểm nghiệm NEWCENLAB 06/2026 (<a href=\"/kiem-nghiem/\" style=\"color:var(--gold-text);font-weight:600\">xem phiếu</a>)","✔ Tem đen–vàng Hoàng Kim, HSD in trên nắp"],
@@ -162,7 +162,7 @@ PAGES = {
   quotes=[("Độ ngọt: ít ngọt, rất dễ ăn · Hương vị: rất vừa miệng · Chất lượng: sánh đặc.","hcofsezg_8","mua 20 hũ 100% trên Shopee","07/2026"),
           ("Thấy review đúng nha, hộp đẹp, yến ăn không bị lỏng lỏng như mấy loại khác.","7*****b","mua 15 hũ tam vị trên Shopee","04/2026")],
   who_ok=["Bồi bổ thật sự cho bố mẹ, người mới ốm dậy, mẹ sau sinh: mỗi hũ đậm sợi yến, không pha loãng.","Biếu sang mà người nhận dùng được ngay: set 15 hũ + hộp túi tem đen–vàng.","Muốn có phiếu kiểm nghiệm độc lập để yên tâm: dòng này đã kiểm NEWCENLAB."],
-  who_no=["Chỉ cần dùng thử hoặc quà tầm 250.000đ: xem <a href=\"/yen-sao/yen-chung/yen-chung-30/\">yến chưng 30%</a>.","Thích tự chưng để kiểm soát độ ngọt: xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến tinh chế</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Chỉ cần dùng thử hoặc quà tầm 250.000đ: xem <a href=\"/yen-sao/yen-chung/yen-chung-30/\">yến chưng 30%</a>.","Thích tự chưng để kiểm soát độ ngọt: xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến tinh chế</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/set-qua-bieu/hop-1-to": dict(
   gift=True, short="hộp 1 tổ yến", group="sản phẩm hộp 1 tổ yến tinh chế trên Shopee", cnt=[1,4,5,10,278],
   proof=["✔ 1 tổ yến tinh chế nguyên dáng trong hộp quà nhỏ — chọn sợi ngắn hoặc sợi dài"],
@@ -170,7 +170,7 @@ PAGES = {
   quotes=[("Hàng gói đẹp và chất lượng cao nha mọi người, mình chưng ăn thử hôm qua và khá hài lòng về sản phẩm, sẽ ủng hộ nhiều hơn.","minu1512","mua hộp 1 tổ trên Shopee","11/2023"),
           ("Hàng ổn áp, như hình, giao nhanh, để ăn thử rồi sẽ ủng hộ tiếp, đóng gói rất là đẹp, phù hợp đem biếu tặng.","n*****1","mua hộp 1 tổ trên Shopee","12/2022")],
   who_ok=["Quà nhỏ nhưng có ý: thầy cô, đồng nghiệp, khách hàng, bạn bè — tặng nhiều người cùng lúc.","Muốn cho người thân dùng thử yến The Nest House trước khi mua hộp lớn.","Kèm thiệp và túi, cầm đi tặng ngay không phải gói thêm."],
-  who_no=["Biếu sếp/đối tác quan trọng: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">hộp 50g–100g sợi dài</a> hoặc <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">set Sắc Xuân 30g</a>.","Nhà dùng đều: 1 tổ chỉ đủ 1–2 lần chưng — xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến sợi ngắn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Biếu sếp/đối tác quan trọng: xem <a href=\"/yen-sao/tinh-che/soi-dai/\">hộp 50g–100g sợi dài</a> hoặc <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">set Sắc Xuân 30g</a>.","Nhà dùng đều: 1 tổ chỉ đủ 1–2 lần chưng — xem <a href=\"/yen-sao/tinh-che/soi-ngan/\">yến sợi ngắn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/set-qua-bieu/tam-giao": dict(
   gift=True, short="set quà Tâm Giao", group="bộ set quà biếu (Tâm Giao · Tứ Quý · Sắc Xuân) trên Shopee", cnt=[0,0,0,1,68],
   proof=["✔ 2 tổ yến tinh chế trong hộp quà — chọn sợi ngắn hoặc sợi dài"],
@@ -178,7 +178,7 @@ PAGES = {
   quotes=[("Em nhận được hàng rồi, chất lượng lắm ạ, đóng gói kỹ lưỡng, giao hàng nhanh lắm, sẽ ủng hộ shop dài dài.","uyenthi341","mua set Tâm Giao trên Shopee","01/2025"),
           ("Shop giao nhanh, đóng gói rất kỹ, được tặng kèm nhiều quà tặng, hộp rất đẹp sang trọng.","t*****k","mua set Sắc Xuân 30g trên Shopee","01/2026")],
   who_ok=["Quà Tết, 20/10, 20/11 cho người quen tầm 600.000–800.000đ: có hộp, túi, thiệp, 2 tổ đủ 2 lần chưng.","Tặng nhiều người cùng lúc (đối tác, khách hàng) mà vẫn muốn quà \"có yến thật\".","Muốn người nhận dùng thử trước khi mua hộp lớn."],
-  who_no=["Biếu sếp/đối tác lớn: xem <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">Sắc Xuân 30g</a> hoặc <a href=\"/yen-sao/tinh-che/soi-dai/\">hộp 50g–100g sợi dài</a>.","Người nhận không tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng 100% Hoàng Kim</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Biếu sếp/đối tác lớn: xem <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">Sắc Xuân 30g</a> hoặc <a href=\"/yen-sao/tinh-che/soi-dai/\">hộp 50g–100g sợi dài</a>.","Người nhận không tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-100/\">yến chưng 100% Hoàng Kim</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/set-qua-bieu/tu-quy": dict(
   gift=True, short="set quà Tứ Quý", group="bộ set quà biếu (Tâm Giao · Tứ Quý · Sắc Xuân) trên Shopee", cnt=[0,0,0,1,68],
   proof=["✔ 4 hộp yến vụn 3g — mỗi hộp đúng 1 lần chưng"],
@@ -186,7 +186,7 @@ PAGES = {
   quotes=[("Shop giao nhanh, đóng gói rất kỹ, được tặng kèm nhiều quà tặng, hộp rất đẹp sang trọng.","t*****k","mua set Sắc Xuân 30g trên Shopee","01/2026"),
           ("Em nhận được hàng rồi, chất lượng lắm ạ, đóng gói kỹ lưỡng, giao hàng nhanh lắm, sẽ ủng hộ shop dài dài.","uyenthi341","mua set Tâm Giao trên Shopee","01/2025")],
   who_ok=["Quà cho gia đình có trẻ nhỏ hoặc người lớn tuổi: 4 lần chưng chia sẵn, không phải cân đong.","Quà Tết, quà cảm ơn tầm 500.000đ cho nhiều người.","Người nhận chưa quen chưng yến: lượng nhỏ, hướng dẫn kèm hộp."],
-  who_no=["Muốn quà nhìn nguyên tổ: xem <a href=\"/yen-sao/set-qua-bieu/tam-giao/\">Tâm Giao 2 tổ</a> hoặc <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">Sắc Xuân 30g</a>.","Người nhận không tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-30/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Muốn quà nhìn nguyên tổ: xem <a href=\"/yen-sao/set-qua-bieu/tam-giao/\">Tâm Giao 2 tổ</a> hoặc <a href=\"/yen-sao/set-qua-bieu/sac-xuan-30g/\">Sắc Xuân 30g</a>.","Người nhận không tự chưng: xem <a href=\"/yen-sao/yen-chung/yen-chung-30/\">yến chưng sẵn</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
  "yen-sao/set-qua-bieu/sac-xuan-30g": dict(
   gift=True, short="set Sắc Xuân 30g", group="bộ set quà biếu (Tâm Giao · Tứ Quý · Sắc Xuân) trên Shopee", cnt=[0,0,0,1,68],
   proof=["✔ 30g yến tinh chế (sợi ngắn hoặc sợi dài) trong hộp quà Tết"],
@@ -194,7 +194,7 @@ PAGES = {
   quotes=[("Shop giao nhanh, đóng gói rất kỹ, được tặng kèm nhiều quà tặng, hộp rất đẹp sang trọng.","t*****k","mua set Sắc Xuân 30g trên Shopee","01/2026"),
           ("Giao hàng nhanh, hộp đẹp rất xịn để mang đi biếu, lần sau sẽ ủng hộ tiếp.","92yz2rnd2_","mua set Sắc Xuân 30g trên Shopee","02/2025")],
   who_ok=["Biếu sếp, đối tác, bố mẹ dịp Tết tầm 1.000.000đ: hộp quà Tết đủ hộp – túi – thiệp, 30g đủ 3 tổ.","Muốn chọn sợi: sợi dài để biếu sang, sợi ngắn để người nhận dùng đều.","Mua số lượng cho công ty: mẫu đồng nhất, có hoá đơn."],
-  who_no=["Quà tầm dưới 600.000đ: xem <a href=\"/yen-sao/set-qua-bieu/tam-giao/\">Tâm Giao</a> hoặc <a href=\"/yen-sao/set-qua-bieu/hop-1-to/\">hộp 1 tổ</a>.","Biếu người đặc biệt quan trọng: xem <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ 100g</a>.","Mong yến thay thế thuốc hay điều trị bệnh: yến sào là thực phẩm bồi bổ, không phải thuốc và không có tác dụng thay thế thuốc chữa bệnh."]),
+  who_no=["Quà tầm dưới 600.000đ: xem <a href=\"/yen-sao/set-qua-bieu/tam-giao/\">Tâm Giao</a> hoặc <a href=\"/yen-sao/set-qua-bieu/hop-1-to/\">hộp 1 tổ</a>.","Biếu người đặc biệt quan trọng: xem <a href=\"/yen-sao/tinh-che/rut-long/\">rút lông nguyên tổ 100g</a>.","Mong yến thay thế thuốc hay điều trị bệnh: không nên kỳ vọng — yến dùng để bồi bổ hằng ngày; bệnh cần điều trị theo chỉ định của bác sĩ."]),
 }
 
 
