@@ -10,7 +10,7 @@
       "displayName": "The Nest House agent guide",
       "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://thenesthouse.com.vn/agents.md",
-      "description": "Quy ước cho trợ lý AI dùng thenesthouse.com.vn: yến sào là thực phẩm không phải thuốc, giá lấy ở trang đang chạy, trích dẫn bằng URL chuẩn, không đặt đơn thay người dùng khi chưa xác nhận, chỉ nêu chính sách có thật.",
+      "description": "Quy ước cho trợ lý AI dùng thenesthouse.com.vn: yến sào là thực phẩm bồi bổ, không mô tả công dụng chữa bệnh, giá lấy ở trang đang chạy, trích dẫn bằng URL chuẩn, không đặt đơn thay người dùng khi chưa xác nhận, chỉ nêu chính sách có thật.",
       "tags": ["yen-sao", "bird-nest", "vietnam", "food", "ecommerce", "citation"],
       "capabilities": ["ContentNavigation", "ProductDiscovery", "CanonicalCitation"],
       "representativeQueries": [
