@@ -49,13 +49,13 @@
     sxn: ["/yen-sao/set-qua-bieu/sac-xuan-30g/", "Set Sắc Xuân 30G — sợi ngắn (4 tổ)", G.sn, "30G + hộp túi", 850000, "/assets/30G-yen-tinh-che-hop-xanh.jpg"],
     sxd: ["/yen-sao/set-qua-bieu/sac-xuan-30g/", "Set Sắc Xuân 30G — sợi dài (3 tổ)", G.sd, "30G + hộp túi", 900000, "/assets/30G-yen-tinh-che-hop-xanh.jpg"],
     h1n: ["/yen-sao/set-qua-bieu/hop-1-to/", "Hộp 1 tổ yến — sợi ngắn (8g)", G.sn, "1 tổ (8g)", 200000, "/assets/hop-1-to-yen-tinh-che-tao-do.jpg"],
-    h1d: ["/yen-sao/set-qua-bieu/hop-1-to/", "Hộp 1 tổ yến — sợi dài (9g)", G.sd, "1 tổ (9g)", 280000, "/assets/hop-1-to-yen-tinh-che-tao-do.jpg"]
+    h1d: ["/yen-sao/set-qua-bieu/hop-1-to/", "Hộp 1 tổ yến — sợi dài (10g)", G.sd, "1 tổ (10g)", 300000, "/assets/hop-1-to-yen-tinh-che-tao-do.jpg"]
   };
   // Nhãn ngắn trên nút chọn quy cách ở trang sản phẩm
   var SHORT = { sd30: "30G", sd50: "50G", sd100: "100G", sn30: "30G", sn50: "50G", sn100: "100G", rl50: "50G", rl100: "100G",
     cy50: "50G", cy100: "100G", th50: "50G", th100: "100G", hk15: "Set 15 hũ có hộp", hk10: "10 hũ không hộp",
     yc6: "Set 6 hũ có hộp", yc10: "10 hũ không hộp", tgn: "Sợi ngắn", tgd: "Sợi dài", tq: "Set Tứ Quý", sxn: "Sợi ngắn", sxd: "Sợi dài",
-    h1n: "Sợi ngắn 8g", h1d: "Sợi dài 9g" };
+    h1n: "Sợi ngắn 8g", h1d: "Sợi dài 10g" };
 
   // Hết hàng (kho = 0) — không cho đặt; giỏ cũ tự bỏ món. Bán lại: xoá mã khỏi HET. CEO 15/10/2026: Set Tứ Quý.
   var HET = { tq: 1 };
