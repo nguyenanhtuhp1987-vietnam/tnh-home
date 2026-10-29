@@ -65,8 +65,12 @@ def ensure_gtag():
     return n
 
 
-BY_OLD_NOLINK = "Kiểm duyệt: <strong>Nguyễn Anh Tú</strong>, nhà sáng lập The Nest House · Cập nhật"
-BY_NEW_LINK = "Kiểm duyệt: <strong>Nguyễn Anh Tú</strong>, nhà sáng lập The Nest House · <a href=\"/quy-trinh-bien-tap/\">Quy trình biên tập</a> · Cập nhật"
+BY_OLD_NOLINK = "Kiểm duyệt: <strong>Phòng marketing The Nest House</strong> · Cập nhật"
+BY_NEW_LINK = "Kiểm duyệt: <strong>Phòng marketing The Nest House</strong> · <a href=\"/quy-trinh-bien-tap/\">Quy trình biên tập</a> · Cập nhật"
+# CEO chốt 29/10/2026: bỏ tên cá nhân, kiểm duyệt = Phòng marketing (byline + schema editor Organization); bài cũ còn tên CEO đổi khi đăng
+BY_CEO_OLD = "Kiểm duyệt: <strong>Nguyễn Anh Tú</strong>, nhà sáng lập The Nest House"
+ED_CEO_OLD = re.compile(r'"editor":\s?\{"@type": "Person", "@id": "https://thenesthouse\.com\.vn/#nguyen-anh-tu".*?"worksFor":\s?\{"@id": "https://thenesthouse\.com\.vn/#organization"\}\}')
+ED_NEW = '"editor": {"@type": "Organization", "name": "Phòng marketing The Nest House", "url": "https://thenesthouse.com.vn/quy-trinh-bien-tap/", "parentOrganization": {"@id": "https://thenesthouse.com.vn/#organization"}}'
 
 
 def geo_fix_post(path, html):
@@ -76,15 +80,15 @@ def geo_fix_post(path, html):
     if m and '"dateModified"' not in new:
         iso = f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
         new = re.sub(r'("datePublished"\s*:\s*"[^"]+")', rf'\1, "dateModified": "{iso}"', new, count=1)
-    # người kiểm duyệt (CEO chốt 02/10/2026): author = tổ chức, editor = Nguyễn Anh Tú
+    # người kiểm duyệt (CEO chốt 02/10/2026, đổi 29/10/2026): author = tổ chức, editor = Phòng marketing The Nest House
     new = new.replace("Cẩm nang yến sào · The Nest House · Cập nhật",
-                      "Cẩm nang yến sào · Kiểm duyệt: <strong>Nguyễn Anh Tú</strong>, nhà sáng lập The Nest House · <a href=\"/quy-trinh-bien-tap/\">Quy trình biên tập</a> · Cập nhật", 1)
+                      "Cẩm nang yến sào · " + BY_NEW_LINK, 1)
+    new = new.replace(BY_CEO_OLD, "Kiểm duyệt: <strong>Phòng marketing The Nest House</strong>")
+    new = ED_CEO_OLD.sub(ED_NEW, new)
     new = new.replace(BY_OLD_NOLINK, BY_NEW_LINK, 1) if "quy-trinh-bien-tap" not in new else new
     if '"editor"' not in new:
         new = new.replace('"author": {"@type": "Organization", "name": "The Nest House"}',
-                          '"author": {"@type": "Organization", "name": "The Nest House", "@id": "https://thenesthouse.com.vn/#organization"}, '
-                          '"editor": {"@type": "Person", "@id": "https://thenesthouse.com.vn/#nguyen-anh-tu", "name": "Nguyễn Anh Tú", '
-                          '"jobTitle": "Nhà sáng lập", "url": "https://thenesthouse.com.vn/quy-trinh-bien-tap/", "worksFor": {"@id": "https://thenesthouse.com.vn/#organization"}}', 1)
+                          '"author": {"@type": "Organization", "name": "The Nest House", "@id": "https://thenesthouse.com.vn/#organization"}, ' + ED_NEW, 1)
     add = ""
     if 'property="og:site_name"' not in new:
         add += '<meta property="og:site_name" content="The Nest House">\n'
