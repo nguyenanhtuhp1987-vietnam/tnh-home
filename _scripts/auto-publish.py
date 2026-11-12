@@ -22,7 +22,7 @@ Thêm 02/10/2026 (SEO):
     dù mở được bằng link để duyệt qua Telegram). Lúc đăng → gỡ thẻ, bài được index bình thường.
   - Mọi trang .html thiếu mã GA4 → tự gắn GTAG ngay sau <head> (bài mới không cần nhớ gắn tay).
 """
-import re, sys, json, html as htmllib, datetime, pathlib
+import re, sys, json, html as htmllib, datetime, pathlib, subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "cam-nang" / "index.html"
@@ -219,6 +219,19 @@ def sync_home_latest(n=6):
     return False
 
 
+def chay_chu_de():
+    """Xếp bài vừa đăng vào chủ đề (đọc thẻ tnh-chu-de trong bài): dựng lại 3 trang chủ đề + ô chủ đề + khối «Cùng chủ đề».
+    Lỗi chỗ này không được chặn việc đăng bài (CEO 12/11/2026)."""
+    try:
+        r = subprocess.run([sys.executable, str(ROOT / "_scripts" / "chu_de_cam_nang.py"), str(ROOT), "--bai"],
+                           capture_output=True, text=True, timeout=120)
+        print(r.stdout.strip())
+        if r.returncode:
+            print("!! chu_de_cam_nang.py lỗi, bỏ qua:", r.stderr.strip()[-300:], file=sys.stderr)
+    except Exception as e:  # noqa: BLE001
+        print("!! không chạy được chu_de_cam_nang.py:", e, file=sys.stderr)
+
+
 def main():
     today = datetime.datetime.now(TZ_VN).date()
     index_html = INDEX.read_text()
@@ -293,6 +306,7 @@ def main():
     if published:
         INDEX.write_text(sync_itemlist(index_html))
         SITEMAP.write_text(sitemap)
+        chay_chu_de()
     k = activate_planned_links(INDEX.read_text())
     if k:
         print(f"✓ Bật {k} link nội bộ đặt sẵn")
