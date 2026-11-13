@@ -122,7 +122,7 @@ footer a{color:var(--gold-light)}
   <p class="cd-intro" style="padding-top:18px">Chưng yến không khó, chỉ cần đúng bước. Các bài dưới đây xếp theo việc anh/chị đang làm: <b>công thức</b>, <b>mẹo và lỗi hay gặp</b>, <b>sơ chế và dụng cụ</b>, kèm cách chưng cho bé.</p>
   <h2 class="cd-h2">Nên đọc trước</h2>
   <div class="cd-pick"><a href="/cam-nang/cach-chung-yen-sao.html">Cách chưng yến sào chuẩn: mềm ngon, giữ trọn sợi yến</a><a href="/cam-nang/loi-sai-khi-chung-yen.html">8 lỗi sai khi chưng yến khiến yến bị nát, tanh, nhạt vị</a><a href="/cam-nang/cach-chung-yen-tao-do-ky-tu.html">Cách chưng yến đường phèn táo đỏ kỷ tử: tỉ lệ chuẩn và các bước</a><a href="/cam-nang/cach-ngam-yen-kho-truoc-khi-chung.html">Ngâm yến khô bao lâu trước khi chưng? Cách chưng yến khô đúng chuẩn</a></div>
-  <div class="cd-chips"><button class="cd-chip on" data-nhan="">Tất cả (26)</button><button class="cd-chip" data-nhan="Công thức">Công thức (12)</button><button class="cd-chip" data-nhan="Mẹo &amp; lỗi">Mẹo &amp; lỗi (8)</button><button class="cd-chip" data-nhan="Sơ chế &amp; dụng cụ">Sơ chế &amp; dụng cụ (5)</button><button class="cd-chip" data-nhan="Cho bé">Cho bé (1)</button></div>
+  <div class="cd-chips"><button class="cd-chip on" data-nhan="">Tất cả (27)</button><button class="cd-chip" data-nhan="Công thức">Công thức (12)</button><button class="cd-chip" data-nhan="Mẹo &amp; lỗi">Mẹo &amp; lỗi (8)</button><button class="cd-chip" data-nhan="Sơ chế &amp; dụng cụ">Sơ chế &amp; dụng cụ (5)</button><button class="cd-chip" data-nhan="Nguyên liệu &amp; dinh dưỡng">Nguyên liệu &amp; dinh dưỡng (1)</button><button class="cd-chip" data-nhan="Cho bé">Cho bé (1)</button></div>
   <div class="grid" id="cdList">
     <a class="card" href="/cam-nang/cach-chung-yen-sao.html" data-nhan="Công thức">
       <img src="/assets/100G-soi-dai.webp" alt="Cách chưng yến sào chuẩn" loading="lazy">
@@ -349,6 +349,15 @@ footer a{color:var(--gold-light)}
         <span class="date">Thứ Hai, 19/10/2026</span>
       </div>
     </a>
+    <a class="card" href="/cam-nang/tac-dung-cua-ky-tu-va-ai-nen-than-trong.html" data-nhan="Nguyên liệu &amp; dinh dưỡng">
+      <img src="/assets/yen-chung-hat-chia-chen-thuy-tinh.webp" alt="Tác dụng của kỷ tử: nghiên cứu nói gì, ai nên thận trọng" loading="lazy">
+      <div class="body">
+        <span class="cd-tag">Nguyên liệu &amp; dinh dưỡng</span>
+        <h2>Tác dụng của kỷ tử: nghiên cứu nói gì, ai nên thận trọng</h2>
+        <p>Tác dụng của kỷ tử theo nguồn dẫn, ai nên thận trọng và cách dùng trong bếp.</p>
+        <span class="date">Thứ Sáu, 13/11/2026</span>
+      </div>
+    </a>
     <a class="card" href="/cam-nang/cach-chung-yen-cho-be.html" data-nhan="Cho bé">
       <img src="/assets/yen-vun-8.webp" alt="Cách chưng yến cho bé đúng lượng, đúng tuổi" loading="lazy">
       <div class="body">
@@ -369,5 +378,10 @@ footer a{color:var(--gold-light)}
 b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.classList.remove('on')});x.classList.add('on');
 var n=x.getAttribute('data-nhan');c.forEach(function(k){k.style.display=(!n||k.getAttribute('data-nhan')===n)?'':'none'})})})})();
 </script>
+<script>/* do luot bam Zalo, goi dien, gian hang san -> su kien GA4 (dung lam chuyen doi Google Ads) */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'',ev='',ch='';
+if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
+if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
+<script src="/assets/tnh-chat.js" defer></script>
 </body>
 </html>
