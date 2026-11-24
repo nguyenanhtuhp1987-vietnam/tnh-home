@@ -116,6 +116,7 @@
   var ta = box.querySelector("textarea");
   var send = box.querySelector(".tc-ft button");
   var busy = false;
+  var lastAct = Date.now(); // lần tương tác gần nhất (vào trang / gửi tin) — dùng cho hỏi thăm 30 phút
 
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -174,6 +175,7 @@
     text = String(text || "").trim();
     if (!text || busy) return;
     busy = true;
+    lastAct = Date.now();
     send.disabled = true;
     var c = body.querySelector(".tc-chips");
     if (c) c.remove();
@@ -226,6 +228,45 @@
   ta.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send.onclick(); }
   });
+
+  // Hỏi thăm sau 30 phút (CEO duyệt 24/11/2026): khách còn mở trang mà 30 phút không tương tác (vào trang không chat, hoặc chat rồi im)
+  // → khung chat tự hỏi 1 câu, mỗi khách 1 lần/ngày. Khách đã rời trang thì không nhắn được (chưa có SĐT). Câu = câu chốt 05/10/2026.
+  // Tắt: xoá khối này (từ dòng "Hỏi thăm sau 30 phút" tới hết hàm nudgeTick) rồi bỏ dòng `lastAct = Date.now();` trong ask().
+  var NUDGE_MS = 30 * 60 * 1000;
+  var NUDGE_KEY = "tnh_chat_nudge_day";
+  var NUDGE_TEXT = "Dạ anh/chị ơi, không biết mình đã chọn được sản phẩm ưng ý chưa ạ?";
+  var nudgeBubble = null;
+  function today() { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function nudgeDone() { try { return localStorage.getItem(NUDGE_KEY) === today(); } catch (e) { return false; } }
+  function nudgeMark() { try { localStorage.setItem(NUDGE_KEY, today()); } catch (e) {} }
+  function nudgeShow() {
+    if (nudgeDone()) return;
+    nudgeMark();
+    ga("chat_nudge", { page_path: location.pathname });
+    if (box.classList.contains("open")) { add("b", NUDGE_TEXT); return; }
+    st.msgs.push(["b", NUDGE_TEXT]); save();
+    nudgeBubble = el("div", "tc-nudge", '<span>' + NUDGE_TEXT + '</span><i aria-label="Đóng">×</i>');
+    nudgeBubble.style.bottom = (parseInt(btn.style.bottom, 10) || 20) + 58 + "px";
+    nudgeBubble.querySelector("i").onclick = function (e) { e.stopPropagation(); nudgeBubble.remove(); nudgeBubble = null; };
+    nudgeBubble.onclick = function () { btn.onclick(); };
+    document.body.appendChild(nudgeBubble);
+  }
+  var nudgeStyle = document.createElement("style");
+  nudgeStyle.textContent =
+    ".tc-nudge{position:fixed;right:20px;z-index:9998;max-width:260px;background:#fff;color:#1d2a27;border:1px solid #C1A374;border-radius:14px 14px 4px 14px;padding:10px 28px 10px 12px;font:500 14px/1.45 'Be Vietnam Pro',system-ui,sans-serif;box-shadow:0 8px 22px rgba(0,0,0,.22);cursor:pointer}" +
+    ".tc-nudge i{position:absolute;top:4px;right:8px;font-style:normal;font-size:18px;line-height:1;color:#8a7d60}" +
+    "@media(max-width:480px){.tc-nudge{right:16px}}";
+  document.head.appendChild(nudgeStyle);
+  var origOpen = btn.onclick;
+  btn.onclick = function () { if (nudgeBubble) { nudgeBubble.remove(); nudgeBubble = null; } origOpen(); };
+  function nudgeTick() {
+    if (nudgeDone()) return;
+    var wait = NUDGE_MS - (Date.now() - lastAct);
+    if (wait > 1000) { setTimeout(nudgeTick, wait); return; }
+    if (document.hidden) { document.addEventListener("visibilitychange", function f() { if (!document.hidden) { document.removeEventListener("visibilitychange", f); nudgeTick(); } }); return; }
+    nudgeShow();
+  }
+  setTimeout(nudgeTick, NUDGE_MS);
 
   // "Bài này có hữu ích không?" cuối bài cẩm nang (CEO 12/10/2026, học herb.vn) → sự kiện GA4 article_feedback {answer: yes|no}
   var art = /^\/cam-nang\/[^/]+\.html$/.test(location.pathname) && document.querySelector("article");
