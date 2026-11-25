@@ -163,56 +163,6 @@ img{height:auto}
 
 /* ===== viet lai 26/11/2026 ===== */
 html{scroll-padding-top:76px}
-.hero .container>*{min-width:0}
-.hero h1{max-width:none}
-.btn-line{border-color:var(--gold);color:var(--gold-text);background:transparent}
-.btn-line:hover{background:rgba(193,163,116,.14)}
-.hero .btn-line{color:var(--gold-light)}
-.qcard{background:var(--cream);color:var(--forest);border-radius:18px;border:1px solid rgba(193,163,116,.6);box-shadow:0 24px 60px rgba(0,0,0,.35);padding:18px 18px 16px}
-.qcard h2{font-size:1.1rem;margin-bottom:10px;color:var(--forest)}
-.qcard table{min-width:0;font-size:.9rem;background:var(--white);border-radius:10px;overflow:hidden}
-.qcard thead th{padding:9px 12px;font-size:.78rem}
-.qcard tbody td{padding:8px 12px;white-space:normal}
-.qcard p{font-size:.84rem;margin-top:10px;color:#4a5f59}
-.qcard p a{color:var(--gold-text);font-weight:600;text-decoration:underline}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.cards{grid-template-columns:1fr}}
-.cards>*{min-width:0}
-.card{border:1px solid #e5dcc4;border-radius:16px;padding:20px 18px;background:linear-gradient(170deg,#fffdf6,var(--white));display:flex;flex-direction:column;gap:8px}
-.card h3{font-size:1.05rem;line-height:1.35}
-.card p{font-size:.88rem;color:#4a5f59}
-.card .tu{font-weight:700;color:var(--forest);font-size:.93rem}
-.card .acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
-.card .btn{padding:8px 16px;font-size:.85rem}
-.cmp td,.cmp th{white-space:normal;text-align:left}
-.cmp{min-width:560px}
-.trust{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:start}
-@media(max-width:820px){.trust{grid-template-columns:1fr}}
-.trust>*{min-width:0}
-.trust ul{list-style:none;font-size:.95rem}
-.trust li{padding:8px 0 8px 24px;position:relative;border-bottom:1px solid #efe9d8}
-.trust li::before{content:"✦";position:absolute;left:0;color:var(--gold)}
-.trust img{border-radius:14px;border:1px solid #e5dcc4;width:100%}
-.acts-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.acts-row .btn{padding:9px 18px;font-size:.88rem}
-.note-box{background:var(--cream);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:.93rem;line-height:1.65;max-width:860px;margin:22px auto 0}
-.faq-list{max-width:860px;margin:0 auto}
-.faq-list .qa{border-top:1px solid #e5dcc4;padding:14px 2px}
-.faq-list h3{font-family:var(--sans);font-size:1rem;font-weight:700;margin-bottom:6px}
-.faq-list p{font-size:.92rem;color:#2f4a44}
-.faq-list a,.tbl-note a,.note-box a,.card p a{color:var(--gold-text);text-decoration:underline}
-.grp-link{font-family:var(--sans);font-weight:500;font-size:.78rem;margin-left:10px}
-.grp-link a{color:var(--gold-text);text-decoration:underline}
-@media(max-width:560px){
-.hero .container{gap:22px}
-.qcard{padding:14px 12px}
-.cmp{min-width:0}
-.grp-link{display:block;margin:2px 0 0}
-}
-
-/* ===== viet lai 26/11/2026 ===== */
-html{scroll-padding-top:76px}
 nav a{white-space:nowrap}
 @media(min-width:821px){nav{gap:15px}nav a{font-size:.86rem}}
 .hero .container>*{min-width:0}
@@ -383,15 +333,45 @@ nav a{white-space:nowrap}
           </tr>
         </thead>
         <tbody>
-          <tr><td>1 tổ sợi ngắn (8g)</td><td class="gia">200.000đ</td></tr>
-          <tr><td>1 tổ sợi dài (10g)</td><td class="gia">300.000đ</td></tr>
-          <tr><td>50G sợi ngắn · hộp túi</td><td class="gia">1.250.000đ</td></tr>
-          <tr><td>50G sợi dài · hộp túi</td><td class="gia">1.450.000đ</td></tr>
-          <tr><td>1 lạng (100G) sợi ngắn · hộp túi</td><td class="gia">2.400.000đ</td></tr>
-          <tr><td>1 lạng (100G) sợi dài · hộp túi</td><td class="gia">2.750.000đ</td></tr>
-          <tr><td>1 lạng (100G) rút lông xuất khẩu · hộp túi</td><td class="gia">3.400.000đ</td></tr>
-          <tr><td>1 hũ yến chưng sẵn 70ml (30% sợi yến)</td><td class="gia">25.000đ</td></tr>
-          <tr><td>1 hũ yến chưng sẵn 70ml (100% sợi yến)</td><td class="gia">55.000đ</td></tr>
+          <tr class="group"><td colspan="4">🕊️ Yến tinh chế sợi ngắn<span class="grp-link"><a href="/yen-sao/tinh-che/soi-ngan/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G + hộp túi</td><td><span class="san">3.000.000</span></td><td class="gia">2.400.000</td><td class="save">−600.000</td></tr>
+          <tr><td>50G + hộp túi</td><td><span class="san">1.600.000</span></td><td class="gia">1.250.000</td><td class="save">−350.000</td></tr>
+          <tr><td>30G + hộp túi</td><td><span class="san">972.000</span></td><td class="gia">850.000</td><td class="save">−122.000</td></tr>
+          <tr><td>10 tổ</td><td><span class="san">2.400.000</span></td><td class="gia">1.900.000</td><td class="save">−500.000</td></tr>
+          <tr><td>1 tổ (8g)</td><td><span class="san">255.000</span></td><td class="gia">200.000</td><td class="save">−55.000</td></tr>
+          <tr><td>Set Tâm Giao (2 tổ)</td><td><span class="san">586.000</span></td><td class="gia">499.000</td><td class="save">−87.000</td></tr>
+          <tr class="group"><td colspan="4">🕊️ Yến tinh chế sợi dài loại 1<span class="grp-link"><a href="/yen-sao/tinh-che/soi-dai/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G + hộp túi</td><td><span class="san">3.500.000</span></td><td class="gia">2.750.000</td><td class="save">−750.000</td></tr>
+          <tr><td>50G + hộp túi</td><td><span class="san">1.800.000</span></td><td class="gia">1.450.000</td><td class="save">−350.000</td></tr>
+          <tr><td>30G + hộp túi</td><td><span class="san">1.200.000</span></td><td class="gia">900.000</td><td class="save">−300.000</td></tr>
+          <tr><td>8 tổ</td><td><span class="san">2.800.000</span></td><td class="gia">2.200.000</td><td class="save">−600.000</td></tr>
+          <tr><td>1 tổ (10g)</td><td><span class="san">350.000</span></td><td class="gia">300.000</td><td class="save">−50.000</td></tr>
+          <tr><td>Set Tâm Giao (2 tổ)</td><td><span class="san">786.000</span></td><td class="gia">650.000</td><td class="save">−136.000</td></tr>
+          <tr class="group"><td colspan="4">👑 Yến rút lông xuất khẩu<span class="grp-link"><a href="/yen-sao/tinh-che/rut-long/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G + hộp túi</td><td><span class="san">4.300.000</span></td><td class="gia">3.400.000</td><td class="save">−900.000</td></tr>
+          <tr><td>50G + hộp túi</td><td><span class="san">2.250.000</span></td><td class="gia">1.750.000</td><td class="save">−500.000</td></tr>
+          <tr class="group"><td colspan="4">🌿 Yến thô nguyên tổ<span class="grp-link"><a href="/yen-sao/yen-tho/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G</td><td><span class="san">2.500.000</span></td><td class="gia">1.900.000</td><td class="save">−600.000</td></tr>
+          <tr><td>50G</td><td><span class="san">1.300.000</span></td><td class="gia">1.000.000</td><td class="save">−300.000</td></tr>
+          <tr class="group"><td colspan="4">🍥 Yến vụn tinh chế<span class="grp-link"><a href="/yen-sao/tinh-che/yen-vun/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G</td><td><span class="san">2.500.000</span></td><td class="gia">1.900.000</td><td class="save">−600.000</td></tr>
+          <tr><td>50G</td><td><span class="san">1.300.000</span></td><td class="gia">1.000.000</td><td class="save">−300.000</td></tr>
+          <tr><td>Set 3G — yến vụn, 1 lần chưng cho bé</td><td><span class="san">90.000</span></td><td class="gia">70.000</td><td class="save">−20.000</td></tr>
+          <tr><td>Set quà Tứ Quý</td><td><span class="san">486.000</span></td><td class="gia">399.000</td><td class="save">−87.000</td></tr>
+          <tr class="group"><td colspan="4">🪺 Chân yến rút lông<span class="grp-link"><a href="/yen-sao/tinh-che/chan-yen/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>100G + hộp túi</td><td><span class="san">3.500.000</span></td><td class="gia">2.850.000</td><td class="save">−650.000</td></tr>
+          <tr><td>50G + hộp túi</td><td><span class="san">1.800.000</span></td><td class="gia">1.450.000</td><td class="save">−350.000</td></tr>
+          <tr class="group"><td colspan="4">🥣 Yến chưng sẵn 70ml<span class="grp-link"><a href="/yen-sao/yen-chung/yen-chung-100/" data-vitri="bang">Xem ảnh &amp; mô tả →</a></span></td></tr>
+          <tr><td>Set Yến Chưng Hoàng Kim (15 hũ)</td><td><span class="san">1.200.000</span></td><td class="gia">960.000</td><td class="save">−240.000</td></tr>
+          <tr><td>Set 6 hũ + hộp túi</td><td><span class="san">250.000</span></td><td class="gia">200.000</td><td class="save">−50.000</td></tr>
+          <tr><td>1 hũ · 30% sợi yến</td><td><span class="san">35.000</span></td><td class="gia">25.000</td><td class="save">−10.000</td></tr>
+          <tr><td>10 hũ · 30% sợi yến</td><td><span class="san">350.000</span></td><td class="gia">250.000</td><td class="save">−100.000</td></tr>
+          <tr><td>20 hũ · 30% sợi yến</td><td><span class="san">700.000</span></td><td class="gia">450.000</td><td class="save">−250.000</td></tr>
+          <tr><td>40 hũ · 30% sợi yến</td><td><span class="san">1.400.000</span></td><td class="gia">900.000</td><td class="save">−500.000</td></tr>
+          <tr><td>1 hũ · 100% sợi yến</td><td><span class="san">70.000</span></td><td class="gia">55.000</td><td class="save">−15.000</td></tr>
+          <tr><td>10 hũ · 100% sợi yến</td><td><span class="san">600.000</span></td><td class="gia">480.000</td><td class="save">−120.000</td></tr>
+          <tr><td>20 hũ · 100% sợi yến</td><td><span class="san">1.150.000</span></td><td class="gia">900.000</td><td class="save">−250.000</td></tr>
+          <tr><td>40 hũ · 100% sợi yến</td><td><span class="san">2.300.000</span></td><td class="gia">1.750.000</td><td class="save">−550.000</td></tr>
         </tbody>
       </table>
     </div>
@@ -506,7 +486,6 @@ nav a{white-space:nowrap}
       <figure class="gal"><img srcset="/assets/set-qua-tam-giao-480.webp 480w, /assets/set-qua-tam-giao.webp 940w" sizes="(max-width:640px) 100vw, 50vw" width="940" height="788" src="/assets/set-qua-tam-giao.webp" alt="Set quà Tâm Giao" loading="lazy"><figcaption>Set quà Tâm Giao</figcaption></figure>
       <figure class="gal"><img srcset="/assets/yen-chung-6-hu-480.webp 480w, /assets/yen-chung-6-hu-960.webp 960w, /assets/yen-chung-6-hu.webp 1024w" sizes="(max-width:640px) 100vw, 50vw" width="1024" height="1024" src="/assets/yen-chung-6-hu.webp" alt="Set yến chưng 6 hũ" loading="lazy"><figcaption>Yến chưng set 6 hũ</figcaption></figure>
       <figure class="gal"><img width="674" height="1200" src="/assets/yen-chung-hoang-kim-the-nest-house8.webp" alt="Set Yến Chưng Hoàng Kim" loading="lazy"><figcaption>Set Hoàng Kim</figcaption></figure>
-      <figure class="gal"><img srcset="/assets/100g-yen-tinh-che-rut-long-480.webp 480w, /assets/100g-yen-tinh-che-rut-long.webp 960w" sizes="(max-width:640px) 100vw, 50vw" width="960" height="1280" src="/assets/100g-yen-tinh-che-rut-long.webp" alt="100G yến rút lông xuất khẩu" loading="lazy"><figcaption>100G rút lông</figcaption></figure>
       <figure class="gal"><img srcset="/assets/100g-yen-tinh-che-rut-long-480.webp 480w, /assets/100g-yen-tinh-che-rut-long.webp 960w" sizes="(max-width:640px) 100vw, 50vw" width="960" height="1280" src="/assets/100g-yen-tinh-che-rut-long.webp" alt="100G yến rút lông xuất khẩu" loading="lazy"><figcaption>100G rút lông</figcaption></figure>
     </div>
   </div>
