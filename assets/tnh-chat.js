@@ -1,4 +1,4 @@
-/* Trợ lý chat The Nest House — widget nổi góc phải, gọi Worker tnh-chatbot.
+/* Khung chat tư vấn The Nest House — widget nổi góc phải, gọi Worker tnh-chatbot.
    Gắn vào trang: <script src="/assets/tnh-chat.js" defer></script>
    Nguồn: vault 09-marketing/website/assets/tnh-chat.js → copy sang repo tnh-home/assets/. */
 (function () {
@@ -28,7 +28,7 @@
   var API = "https://tnh-chatbot.telegram-duyet-worker.workers.dev/chat";
   var ZALO = "https://zalo.me/0969850153";
   var KEY = "tnh_chat_v1";
-  var HELLO = "Dạ, em là trợ lý của The Nest House. Anh/chị cần em tư vấn chọn yến, báo giá hay hướng dẫn cách chưng ạ?";
+  var HELLO = "Dạ, em là Đạt, nhân viên bán hàng của The Nest House. Mình cần em tư vấn chọn yến, báo giá hay hướng dẫn cách chưng ạ?";
   var CHIPS = ["Bảng giá yến sào", "Chọn quà biếu bố mẹ", "Cách chưng yến", "Đặt hàng thế nào?"];
 
   var st = load();
@@ -85,18 +85,18 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  var btn = el("button", "tc-btn", '<span class="d"></span>Hỏi trợ lý');
+  var btn = el("button", "tc-btn", '<span class="d"></span>Chat với Đạt');
   btn.type = "button";
   btn.setAttribute("aria-label", "Mở khung chat tư vấn");
   var box = el("div", "tc-box");
   box.setAttribute("role", "dialog");
-  box.setAttribute("aria-label", "Trợ lý The Nest House");
+  box.setAttribute("aria-label", "Tư vấn The Nest House");
   box.innerHTML =
-    '<div class="tc-hd"><div><b>The Nest House</b><small>Trợ lý tư vấn · trả lời trong vài giây</small></div><button class="tc-x" type="button" aria-label="Đóng">×</button></div>' +
+    '<div class="tc-hd"><div><b>The Nest House</b><small>Đạt · Tư vấn bán hàng · trả lời trong vài giây</small></div><button class="tc-x" type="button" aria-label="Đóng">×</button></div>' +
     '<div class="tc-body"></div>' +
     '<a class="tc-zalo" href="' + ZALO + '" target="_blank" rel="noopener">💬 Nhắn Zalo nhân viên · 0969.850.153</a>' +
     '<div class="tc-ft"><textarea rows="1" maxlength="600" placeholder="Nhập câu hỏi…"></textarea><button type="button">Gửi</button></div>' +
-    '<div class="tc-note">Trợ lý AI trả lời chính xác các thông tin về giá, thông tin sản phẩm, thời gian bảo hành, giao hàng.<br>Quý khách muốn được hỗ trợ gấp, yêu cầu đặc biệt liên hệ nhân viên qua Zalo ở trên.</div>';
+    '<div class="tc-note">Cần hỗ trợ gấp hoặc có yêu cầu đặc biệt, mình nhắn Zalo ở trên để được tư vấn trực tiếp.</div>';
   document.body.appendChild(btn);
   document.body.appendChild(box);
 
@@ -139,15 +139,18 @@
   }
   function add(role, text, keep) {
     var m;
-    if (role === "q") {
-      // Mã VietQR chuyển khoản do máy chủ tạo (chỉ nhận ảnh từ img.vietqr.io)
-      if (String(text).indexOf("https://img.vietqr.io/") !== 0) return null;
+    if (role === "q" || role === "p") {
+      // q = mã VietQR chuyển khoản do máy chủ tạo (chỉ nhận ảnh từ img.vietqr.io)
+      // p = ảnh thật sản phẩm khách xin xem (chỉ nhận ảnh từ thenesthouse.com.vn/assets/chat/) — CEO 25/11/2026
+      var okUrl = role === "q" ? String(text).indexOf("https://img.vietqr.io/") === 0 : String(text).indexOf("https://thenesthouse.com.vn/assets/chat/") === 0;
+      if (!okUrl) return null;
       m = el("div", "tc-m b tc-qr");
       var img = document.createElement("img");
       img.src = text;
-      img.alt = "Mã QR chuyển khoản";
+      img.alt = role === "q" ? "Mã QR chuyển khoản" : "Hình thật sản phẩm The Nest House";
       img.onload = function () { body.scrollTop = body.scrollHeight; };
-      m.appendChild(img);
+      if (role === "p") { var a = document.createElement("a"); a.href = text; a.target = "_blank"; a.rel = "noopener"; a.appendChild(img); m.appendChild(a); }
+      else m.appendChild(img);
     } else m = el("div", "tc-m " + role, fmt(text));
     body.appendChild(m);
     body.scrollTop = body.scrollHeight;
@@ -193,18 +196,19 @@
         if (d && d.ok) {
           add("b", d.reply);
           if (d.qr) add("q", d.qr);
+          (d.photos || []).forEach(function (p) { if (p && p.u) add("p", p.u); });
           if (d.handoff) ga("chat_handoff", { page_path: location.pathname });
         } else {
           var msg = {
-            rate: "Dạ anh/chị nhắn hơi nhanh, mình đợi chút rồi hỏi tiếp giúp em nhé.",
-            limit: "Dạ cuộc trò chuyện đã dài, anh/chị nhắn Zalo 0969.850.153 để nhân viên tư vấn tiếp giúp em nhé.",
-          }[d && d.error] || "Dạ hệ thống đang bận, anh/chị nhắn Zalo 0969.850.153 để được tư vấn ngay nhé.";
+            rate: "Dạ mình nhắn hơi nhanh, mình đợi chút rồi hỏi tiếp giúp em nhé.",
+            limit: "Dạ cuộc trò chuyện đã dài, mình nhắn Zalo 0969.850.153 để đồng nghiệp bên em tư vấn tiếp giúp em nhé.",
+          }[d && d.error] || "Dạ em đang hơi bận, mình nhắn Zalo 0969.850.153 để được tư vấn ngay nhé.";
           add("b", msg, false);
         }
       })
       .catch(function () {
         typing.remove();
-        add("b", "Dạ mạng đang chập chờn, anh/chị thử lại hoặc nhắn Zalo 0969.850.153 giúp em nhé.", false);
+        add("b", "Dạ mạng đang chập chờn, mình thử lại hoặc nhắn Zalo 0969.850.153 giúp em nhé.", false);
       })
       .then(function () {
         busy = false;
@@ -234,7 +238,7 @@
   // Tắt: xoá khối này (từ dòng "Hỏi thăm sau 30 phút" tới hết hàm nudgeTick) rồi bỏ dòng `lastAct = Date.now();` trong ask().
   var NUDGE_MS = 30 * 60 * 1000;
   var NUDGE_KEY = "tnh_chat_nudge_day";
-  var NUDGE_TEXT = "Dạ anh/chị ơi, không biết mình đã chọn được sản phẩm ưng ý chưa ạ?";
+  var NUDGE_TEXT = "Dạ mình đã chọn được sản phẩm ưng ý chưa ạ?";
   var nudgeBubble = null;
   function today() { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
   function nudgeDone() { try { return localStorage.getItem(NUDGE_KEY) === today(); } catch (e) { return false; } }
