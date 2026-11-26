@@ -85,6 +85,38 @@ h2 + .lead{margin-top:14px}
 .badge-float{position:absolute;left:14px;bottom:-18px;background:var(--surface);color:var(--brand-deep);border-radius:14px;padding:12px 16px;box-shadow:0 14px 30px -12px rgba(0,0,0,.35);font-size:.85rem;line-height:1.35;max-width:250px}
 .badge-float b{color:var(--accent-ink)}
 
+
+/* A' — Hero: lưới 5 ô cùng khuôn (CEO duyệt hướng A 26/11/2026) */
+.hero-gal{position:relative;order:-1}
+.hero{padding-top:26px}
+.gal-grid{display:grid;gap:10px;grid-template-columns:repeat(4,1fr);grid-template-areas:"b b b b" "t1 t2 t3 t4"}
+.tile{position:relative;display:block;padding:0;border:1px solid rgba(193,163,116,.55);border-radius:14px;overflow:hidden;background:#3a0f16;cursor:pointer;font:inherit;color:inherit;transition:border-color .25s,transform .25s}
+.tile:nth-child(1){grid-area:b;aspect-ratio:16/11}
+.tile:nth-child(2){grid-area:t1}.tile:nth-child(3){grid-area:t2}.tile:nth-child(4){grid-area:t3}.tile:nth-child(5){grid-area:t4}
+.tile:not(.big){aspect-ratio:4/5}
+.tile img{width:100%;height:100%;object-fit:cover;transition:opacity .35s ease,transform .6s ease}
+.tile.big img{object-position:50% 62%}
+.tile.swap img{opacity:0}
+.tile:hover{border-color:var(--accent)}
+.tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (hover:hover){.tile:hover img{transform:scale(1.04)}}
+.cap{position:absolute;left:10px;top:10px;display:flex;align-items:center;flex-wrap:wrap;gap:2px 7px;max-width:calc(100% - 20px);padding:6px 11px;border-radius:999px;background:rgba(7,46,44,.82);border:1px solid rgba(193,163,116,.5);color:#F4EEE2;font-size:.76rem;line-height:1.25;text-align:left;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cap i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+.cap b{font-weight:600}
+.cap em{font-style:normal;color:#E3C97A}
+.tile:not(.big) .cap{display:none}
+.gal-hint{margin:12px 2px 0;font-size:.8rem;color:#AFC0B8;letter-spacing:.02em}
+@media (min-width:980px){
+  .hero-grid{grid-template-columns:.92fr 1.12fr}
+  .hero-gal{order:0}
+  .hero{padding-top:56px}
+  .gal-grid{grid-template-columns:2fr 1fr 1fr;grid-template-areas:"b t1 t2" "b t3 t4";gap:12px}
+  .tile:nth-child(1){aspect-ratio:auto}
+  .tile:not(.big) .cap{display:flex;top:auto;bottom:8px;left:8px;padding:4px 9px;font-size:.68rem;max-width:calc(100% - 16px)}
+  .tile:not(.big) .cap i,.tile:not(.big) .cap em{display:none}
+}
+@media (prefers-reduced-motion:reduce){.tile img,.tile{transition:none}}
+
 /* Đếm ngày */
 .countdown{background:var(--cream);border-bottom:1px solid var(--line)}
 .countdown .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 18px;padding-top:16px;padding-bottom:16px;text-align:center;font-size:.95rem}
@@ -343,7 +375,7 @@ footer a{color:#E3D3B2}
     <div>
       <span class="eyebrow">Tết Đinh Mùi 2027 · Doanh nghiệp</span>
       <h1>Quà Tết doanh nghiệp: <em>người nhận trân trọng, người tặng yên tâm</em></h1>
-      <p class="sub">Yến sào Nha Trang trong hộp quà kèm túi xách, trao tay là đủ trang trọng. Chọn mức quà theo từng mối quan hệ, xuất hoá đơn công ty, giao đúng hẹn nhiều điểm. Phòng hành chính chỉ cần gửi danh sách.</p>
+      <p class="sub">Yến sào Nha Trang trong hộp quà kèm túi xách, trao tay là đủ trang trọng. Xuất hoá đơn công ty, giao đúng hẹn nhiều điểm. Phòng hành chính chỉ cần gửi danh sách.</p>
       <p class="unit" style="margin-bottom:6px">Giá doanh nghiệp từ</p>
       <div class="price">
         <span class="now">620.000đ</span>
@@ -361,10 +393,31 @@ footer a{color:#E3D3B2}
         <div><b>Hoá đơn</b>công ty, giao toàn quốc</div>
       </div>
     </div>
-    <div class="hero-media">
-      <img src="/assets/qua-tet-dn-2027/tet2027-c2b3-100g-soi-dai-hop-tui-nen-sach.jpg" width="960" height="1200" fetchpriority="high" alt="Quà Tết doanh nghiệp: hộp quà 100G yến sợi dài The Nest House mở nắp trên nền nhung đỏ Tết, kèm túi xách xanh">
-      <div class="badge-float"><b>Mùa cao điểm</b><br>Đặt trước khoảng 7 ngày để kịp đóng gói từng hộp</div>
+    <div class="hero-gal">
+    <div class="gal-grid" id="galGrid">
+      <button type="button" class="tile big" data-k="a" data-who="Lãnh đạo, đối tác lớn" data-what="100G sợi dài" data-alt="Quà Tết doanh nghiệp: hộp quà 100G yến sợi dài The Nest House mở nắp, kèm túi xách, nền rèm đỏ" aria-label="Xem ảnh: Lãnh đạo, đối tác lớn · 100G sợi dài">
+        <img src="/assets/qua-tet-dn-2027/hero/a-big.webp" width="900" height="1125" alt="Quà Tết doanh nghiệp: hộp quà 100G yến sợi dài The Nest House mở nắp, kèm túi xách, nền rèm đỏ" fetchpriority="high">
+        <span class="cap"><i></i><b>Lãnh đạo, đối tác lớn</b><em>100G sợi dài</em></span>
+      </button>
+      <button type="button" class="tile" data-k="b" data-who="Đối tác thân thiết" data-what="50G sợi dài" data-alt="Hộp quà 50G yến sợi dài The Nest House kèm túi xách và thiệp" aria-label="Xem ảnh: Đối tác thân thiết · 50G sợi dài">
+        <img src="/assets/qua-tet-dn-2027/hero/b-thumb.webp" width="420" height="525" alt="Hộp quà 50G yến sợi dài The Nest House kèm túi xách và thiệp" loading="lazy" decoding="async">
+        <span class="cap"><i></i><b>Đối tác thân thiết</b><em>50G sợi dài</em></span>
+      </button>
+      <button type="button" class="tile" data-k="c" data-who="Tri ân khách hàng" data-what="Set Tâm Giao" data-alt="Set quà Tâm Giao The Nest House: hai tổ yến trong hộp xanh kèm túi xách" aria-label="Xem ảnh: Tri ân khách hàng · Set Tâm Giao">
+        <img src="/assets/qua-tet-dn-2027/hero/c-thumb.webp" width="420" height="525" alt="Set quà Tâm Giao The Nest House: hai tổ yến trong hộp xanh kèm túi xách" loading="lazy" decoding="async">
+        <span class="cap"><i></i><b>Tri ân khách hàng</b><em>Set Tâm Giao</em></span>
+      </button>
+      <button type="button" class="tile" data-k="d" data-who="Nhân viên, người thân" data-what="Yến chưng sẵn" data-alt="Set Yến Chưng Hoàng Kim The Nest House kèm túi xách" aria-label="Xem ảnh: Nhân viên, người thân · Yến chưng sẵn">
+        <img src="/assets/qua-tet-dn-2027/hero/d-thumb.webp" width="420" height="525" alt="Set Yến Chưng Hoàng Kim The Nest House kèm túi xách" loading="lazy" decoding="async">
+        <span class="cap"><i></i><b>Nhân viên, người thân</b><em>Yến chưng sẵn</em></span>
+      </button>
+      <button type="button" class="tile" data-k="e" data-who="Khách quý" data-what="50G rút lông" data-alt="Hộp quà 50G yến rút lông The Nest House, hộp hồng mở nắp" aria-label="Xem ảnh: Khách quý · 50G rút lông">
+        <img src="/assets/qua-tet-dn-2027/hero/e-thumb.webp" width="420" height="525" alt="Hộp quà 50G yến rút lông The Nest House, hộp hồng mở nắp" loading="lazy" decoding="async">
+        <span class="cap"><i></i><b>Khách quý</b><em>50G rút lông</em></span>
+      </button>
     </div>
+    <p class="gal-hint">Chạm vào ảnh nhỏ để xem lớn · 5 mẫu hộp, cùng một bộ nhận diện</p>
+  </div>
   </div>
 </section>
 
@@ -796,5 +849,42 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 if(h.indexOf('zalo.me')>-1){ev='click_zalo';}else if(h.indexOf('tel:')===0){ev='click_call';}else if(/shopee\.vn|lazada\.vn|tiktok\.com\/@/.test(h)){ev='click_marketplace';ch=/shopee/.test(h)?'shopee':(/lazada/.test(h)?'lazada':'tiktok');}
 if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathname});}},true);</script>
 <script src="/assets/tnh-chat.js" defer></script>
+<script>
+(function(){
+  var g=document.getElementById('galGrid'); if(!g) return;
+  var tiles=[].slice.call(g.querySelectorAll('.tile'));
+  var items=tiles.map(function(t){return {k:t.dataset.k,who:t.dataset.who,what:t.dataset.what,alt:t.dataset.alt};});
+  var order=items.map(function(_,i){return i;});
+  var timer=null, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function src(it,big){return '/assets/qua-tet-dn-2027/hero/'+it.k+'-'+(big?'big':'thumb')+'.webp';}
+  function render(){
+    tiles.forEach(function(t,p){
+      var it=items[order[p]], im=t.querySelector('img'), c=t.querySelector('.cap');
+      im.src=src(it,p===0); im.alt=it.alt; im.width=p===0?900:420; im.height=p===0?1125:525;
+      c.querySelector('b').textContent=it.who; c.querySelector('em').textContent=it.what;
+      t.setAttribute('aria-label','Xem ảnh: '+it.who+' · '+it.what);
+    });
+  }
+  function fade(fn){
+    tiles.forEach(function(t){t.classList.add('swap');});
+    setTimeout(function(){fn();tiles.forEach(function(t){t.classList.remove('swap');});},300);
+  }
+  function rotate(){ if(document.hidden) return; fade(function(){order.push(order.shift());render();}); }
+  function stop(){ if(timer){clearInterval(timer);timer=null;} }
+  function start(){ if(reduce||timer) return; timer=setInterval(rotate,5200); }
+  tiles.forEach(function(t,p){
+    t.addEventListener('click',function(){
+      var pos=tiles.indexOf(t); if(pos===0) return;
+      stop();
+      fade(function(){var a=order[0];order[0]=order[pos];order[pos]=a;render();});
+      try{ if(window.gtag) gtag('event','click_cta_nhe',{vitri:'hero-gallery'}); }catch(e){}
+    });
+  });
+  g.addEventListener('mouseenter',stop); g.addEventListener('mouseleave',start);
+  g.addEventListener('focusin',stop);
+  // tải trước các ảnh lớn còn lại để đổi không bị mờ
+  window.addEventListener('load',function(){ items.forEach(function(it){ var i=new Image(); i.src=src(it,true); }); start(); });
+})();
+</script>
 </body>
 </html>
