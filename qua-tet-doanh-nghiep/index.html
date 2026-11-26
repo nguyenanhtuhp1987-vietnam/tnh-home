@@ -635,13 +635,16 @@ body{padding-bottom:78px}
           <label><input type="checkbox" id="f-logo" name="logo"> Muốn in logo công ty lên hộp</label>
         </div>
         <div class="quote" id="quote" aria-live="polite">—</div>
-        <div><label for="f-note">Ngày cần hàng, số điểm giao, ghi chú <span style="font-weight:400;color:var(--muted)">(không bắt buộc)</span></label><textarea id="f-note" name="note" placeholder="VD: cần trước 20/01, giao 2 điểm Quận 1 và Thủ Đức"></textarea></div>
+        <div id="date-field"><label for="f-ngay">Ngày cần giao</label><input id="f-ngay" name="ngay_can" type="date" required><div class="err">Vui lòng chọn ngày cần giao (từ hôm nay trở đi).</div></div>
+      <div><label for="f-note">Số điểm giao, ghi chú <span style="font-weight:400;color:var(--muted)">(không bắt buộc)</span></label><textarea id="f-note" name="note" placeholder="VD: giao 2 điểm Quận 1 và Thủ Đức"></textarea></div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn" type="submit">Gửi yêu cầu báo giá</button>
-        <p class="fine">Số trên là tạm tính theo bảng giá doanh nghiệp, chưa gồm in logo, thiệp, giao nhiều điểm. Bấm gửi sẽ mở Zalo để anh/chị nhắn trực tiếp cho The Nest House.</p>
+        <p class="fine">Số trên là tạm tính theo bảng giá doanh nghiệp, chưa gồm in logo, thiệp, giao nhiều điểm. Bấm gửi sẽ lưu yêu cầu để nhân viên liên hệ và mở Zalo để anh/chị nhắn trực tiếp cho The Nest House.</p>
       </form>
       <div class="thanks" role="status">
         <h3>Cảm ơn anh/chị!</h3>
         <p style="color:var(--muted)">Nội dung yêu cầu đã được sao chép. Nếu Zalo chưa mở, hãy nhắn hoặc gọi <a href="tel:0969850153"><b>0969 850 153</b></a> và dán nội dung vào.</p>
+      <p id="thanks-id" style="margin-top:8px;color:var(--brand);font-weight:600"></p>
       </div>
     </div>
   </div>
@@ -706,7 +709,7 @@ const SP = [
   { id: "100g-rl", ten: "Yến rút lông xuất khẩu 100G", gia: [3200000, 3150000, 3100000] }
 ];
 const TET = Date.UTC(2027, 1, 6);      // Tết Đinh Mùi 06/02/2027
-const FORM_ENDPOINT = '';              // Dán link Google Apps Script để lưu yêu cầu vào Google Sheet (không bắt buộc)
+const FORM_ENDPOINT = 'https://tnh-chatbot.telegram-duyet-worker.workers.dev/baogia'; // Worker tnh-chatbot POST /baogia: lưu Sheet «Báo giá DN» + báo Telegram (26/11/2026)
 
 // Đếm ngày đến Tết (giờ Việt Nam)
 (function(){
@@ -750,21 +753,47 @@ function tamTinh() {
 spSel.addEventListener('change', tamTinh); tamTinh();
 document.querySelectorAll('[data-sp]').forEach(a => a.addEventListener('click', () => { spSel.value = a.dataset.sp; tamTinh(); }));
 
-// Form → Zalo
+// Nguồn quảng cáo (utm_campaign / gclid) từ link, giữ trong phiên để khách bấm sang trang khác rồi quay lại vẫn còn
+let NGUON = '', GCLID = '';
+try {
+  const q = new URLSearchParams(location.search), st = JSON.parse(sessionStorage.getItem('tnh_qt') || '{}');
+  NGUON = (q.get('utm_campaign') || st.nguon || '').replace(/[^\w.\-]/g, '').slice(0, 64);
+  GCLID = (q.get('gclid') || st.gclid || '').replace(/[^\w.\-]/g, '').slice(0, 120);
+  if (!NGUON && GCLID) NGUON = 'google-ads';
+  sessionStorage.setItem('tnh_qt', JSON.stringify({ nguon: NGUON, gclid: GCLID }));
+} catch (_) {}
+const hom = () => new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10); // hôm nay giờ Việt Nam
+const dateIn = document.getElementById('f-ngay'); dateIn.min = hom();
+const fmtNgay = s => s.split('-').reverse().join('/');
+// Form → lưu Worker + mở Zalo (Zalo luôn mở, kể cả khi lưu lỗi)
 const form = document.getElementById('order-form');
-form.addEventListener('submit', async e => {
+form.addEventListener('submit', e => {
   e.preventDefault();
   const phone = form.phone.value.replace(/[\s.\-]/g, '');
   const field = document.getElementById('phone-field');
   if (!/^(0|\+84)(3|5|7|8|9)\d{8}$/.test(phone)) { field.classList.add('invalid'); form.phone.focus(); return; }
   field.classList.remove('invalid');
-  const data = { name: form.name.value.trim(), cty: form.cty.value.trim(), phone, sp: spSel.options[spSel.selectedIndex].text, qty: qtyIn.value, vat: vatCb.checked, logo: logoCb.checked, note: form.note.value.trim() };
-  const msg = `Báo giá quà Tết doanh nghiệp 2027\nNgười liên hệ: ${data.name}\nCông ty: ${data.cty || '—'}\nSĐT: ${data.phone}\nMón: ${data.sp}\nSố hộp: ${data.qty}\nHoá đơn công ty: ${data.vat ? 'có' : 'không'} · In logo: ${data.logo ? 'có' : 'không'}\nGhi chú: ${data.note || '—'}`;
-  try { await navigator.clipboard.writeText(msg); } catch (_) {}
-  if (FORM_ENDPOINT) { try { await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) }); } catch (_) {} }
+  const dField = document.getElementById('date-field');
+  if (!dateIn.value || dateIn.value < hom()) { dField.classList.add('invalid'); dateIn.focus(); return; }
+  dField.classList.remove('invalid');
+  const data = { name: form.name.value.trim(), cty: form.cty.value.trim(), phone, sp: spSel.options[spSel.selectedIndex].text, qty: qtyIn.value, ngay: dateIn.value, vat: vatCb.checked, logo: logoCb.checked, note: form.note.value.trim() };
+  const msg = `Báo giá quà Tết doanh nghiệp 2027\nNgười liên hệ: ${data.name}\nCông ty: ${data.cty || '—'}\nSĐT: ${data.phone}\nMón: ${data.sp}\nSố hộp: ${data.qty}\nNgày cần giao: ${fmtNgay(data.ngay)}\nHoá đơn công ty: ${data.vat ? 'có' : 'không'} · In logo: ${data.logo ? 'có' : 'không'}\nGhi chú: ${data.note || '—'}`;
+  try { navigator.clipboard.writeText(msg).catch(() => {}); } catch (_) {}
+  window.open('https://zalo.me/' + PHONE, '_blank', 'noopener'); // mở ngay trong lúc bấm để trình duyệt không chặn
   document.getElementById('form-box').classList.add('sent');
-  if(typeof gtag==='function')gtag('event','click_zalo',{link_url:'form-bao-gia',channel:'direct',page_path:location.pathname});
-  window.open('https://zalo.me/' + PHONE, '_blank', 'noopener');
+  if (typeof gtag === 'function') {
+    gtag('event', 'generate_lead', { value: 1, qty: Number(data.qty) || 0, ngay_can: data.ngay, nguon: NGUON || '(khong)', sp: data.sp, page_path: location.pathname });
+    gtag('event', 'click_zalo', { link_url: 'form-bao-gia', channel: 'direct', page_path: location.pathname });
+  }
+  const idEl = document.getElementById('thanks-id');
+  const loi = 'Hệ thống chưa ghi nhận được yêu cầu. Anh/chị vui lòng dán nội dung vào Zalo hoặc gọi 0969 850 153.';
+  if (FORM_ENDPOINT) {
+    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+      body: JSON.stringify({ name: data.name, cty: data.cty, phone, sp: data.sp, qty: Number(data.qty) || 1, ngay_can: data.ngay, vat: data.vat, logo: data.logo, note: data.note, nguon: NGUON, gclid: GCLID, page: location.pathname, website: form.website.value }) })
+      .then(r => r.json())
+      .then(j => { idEl.textContent = j && j.ok ? 'Đã ghi nhận yêu cầu, mã ' + j.id + '. Nhân viên sẽ liên hệ anh/chị qua Zalo hoặc điện thoại.' : loi; })
+      .catch(() => { idEl.textContent = loi; });
+  }
 });
 form.phone.addEventListener('input', () => document.getElementById('phone-field').classList.remove('invalid'));
 
