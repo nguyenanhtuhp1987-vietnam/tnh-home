@@ -107,14 +107,15 @@ h2 + .lead{margin-top:14px}
 .tile:not(.big) .cap{display:none}
 .gal-hint{margin:12px 2px 0;font-size:.8rem;color:#AFC0B8;letter-spacing:.02em}
 @media (min-width:980px){
-  .hero-grid{grid-template-columns:.92fr 1.12fr}
+  .hero-grid{grid-template-columns:.78fr 1.32fr;gap:40px}
   .hero-gal{order:0}
   .hero{padding-top:56px}
-  .gal-grid{grid-template-columns:2fr 1fr 1fr;grid-template-areas:"b t1 t2" "b t3 t4";gap:12px}
+  .gal-grid{grid-template-columns:2.05fr 1fr 1fr;grid-template-areas:"b t1 t2" "b t3 t4";gap:12px}
   .tile:nth-child(1){aspect-ratio:auto}
   .tile:not(.big) .cap{display:flex;top:auto;bottom:8px;left:8px;padding:4px 9px;font-size:.68rem;max-width:calc(100% - 16px)}
   .tile:not(.big) .cap i,.tile:not(.big) .cap em{display:none}
 }
+@media (min-width:1240px){.hero-gal{margin-right:calc((1160px - 100vw)/2 + 28px)}}
 @media (prefers-reduced-motion:reduce){.tile img,.tile{transition:none}}
 
 /* Đếm ngày */
