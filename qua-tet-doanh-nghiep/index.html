@@ -201,14 +201,7 @@ footer a{color:#E3D3B2}
 .disclaimer{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;font-style:italic}
 
 /* Thanh nút cố định (mobile) */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);transition:transform .25s}
-.dock a{min-height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:.92rem;text-decoration:none}
-.dock .d-call{background:var(--cream);color:var(--brand)}
-.dock .d-zalo{background:#E8F1FF;color:#0068FF}
-.dock .d-buy{background:var(--brand);color:#fff}
-.dock svg{width:18px;height:18px}
-.dock.hide{transform:translateY(110%)}
-body{padding-bottom:78px}
+
 
 /* Hero: link phụ "Xem quy trình" */
 .link-soft{display:inline-flex;align-items:center;min-height:48px;padding:0 6px;color:#E3D3B2;font-weight:600;text-decoration:underline;text-underline-offset:4px}
@@ -267,8 +260,7 @@ body{padding-bottom:78px}
   .gift-row{grid-template-columns:1fr 1fr}
   .proof-grid{grid-template-columns:repeat(3,1fr)}
   .plans{grid-template-columns:1fr 1fr 1fr}
-  .dock{display:none}
-  body{padding-bottom:0}
+    body{padding-bottom:0}
 }
 @media (min-width:980px){
   .nav-links{display:flex}
@@ -686,11 +678,6 @@ body{padding-bottom:78px}
   </div>
 </footer>
 
-<nav class="dock" id="dock" aria-label="Liên hệ nhanh">
-  <a class="d-call" href="tel:0969850153"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Gọi</a>
-  <a class="d-zalo" href="https://zalo.me/0969850153" target="_blank" rel="noopener">Zalo</a>
-  <a class="d-buy" href="#bao-gia">Nhận báo giá</a>
-</nav>
 
 <script>
 // TNH:CAU-HINH — giá 4 bậc trang doanhnghiep. (nguồn #2 mục 3, báo giá 3 mức CEO chốt 22/10/2026). Sửa ở đây.
@@ -801,10 +788,6 @@ form.phone.addEventListener('input', () => document.getElementById('phone-field'
 const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .12 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-// Ẩn thanh nút đáy khi form đang hiện
-const dock = document.getElementById('dock');
-const syncDock = () => { const r = form.getBoundingClientRect(); dock.classList.toggle('hide', r.height > 0 && r.top < innerHeight * .75 && r.bottom > innerHeight * .25); };
-addEventListener('scroll', syncDock, { passive: true }); syncDock();
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thenesthouse.com.vn/"}, {"@type": "ListItem", "position": 2, "name": "Quà Tết doanh nghiệp 2027", "item": "https://thenesthouse.com.vn/qua-tet-doanh-nghiep/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Giá trên đã gồm hộp quà chưa?", "acceptedAnswer": {"@type": "Answer", "text": "Đã gồm hộp túi quà tặng; dòng yến tổ kèm nguyên liệu chưng. Giá doanh nghiệp đã thấp hơn giá lẻ nên không kèm quà tặng theo mốc đơn và không áp dụng chồng ưu đãi khác."}}, {"@type": "Question", "name": "Xuất hoá đơn công ty thế nào?", "acceptedAnswer": {"@type": "Answer", "text": "Cộng 5% giá sản phẩm, chuyển khoản vào tài khoản công ty (số tài khoản gửi kèm khi chốt đơn). Đơn chuyển khoản trên 5.000.000đ được xuất hoá đơn cùng ngày chuyển khoản."}}, {"@type": "Question", "name": "In logo công ty lên hộp được không?", "acceptedAnswer": {"@type": "Answer", "text": "Được, với đơn từ 30 hộp, báo trước 7 ngày. Chi phí in logo, viết thiệp tay và giao nhiều điểm được trao đổi riêng theo từng đơn."}}, {"@type": "Question", "name": "Đặt cọc và thanh toán ra sao?", "acceptedAnswer": {"@type": "Answer", "text": "Đơn từ 31 hộp đặt cọc 30–50% khi chốt, phần còn lại thanh toán khi nhận. Riêng Set Hoàng Kim chưng tươi theo lô: cọc 50%."}}, {"@type": "Question", "name": "Làm sao biết hàng thật, đúng số tổ?", "acceptedAnswer": {"@type": "Answer", "text": "Mỗi hộp ghi số tổ trên khối lượng và dán tem chống hàng giả — người nhận đếm được ngay khi mở. Đơn lớn có thể gửi mẫu kiểm nghiệm theo yêu cầu trước khi đặt, hoặc ghé phòng trưng bày A113, tầng 2 TTTM Tops Market, 685 Âu Cơ."}}, {"@type": "Question", "name": "Nên chọn hộp quà hay giỏ quà Tết cho doanh nghiệp?", "acceptedAnswer": {"@type": "Answer", "text": "The Nest House làm hộp quà kèm túi xách, không làm giỏ. Hộp đóng gói chống sốc từng hộp, gọn khi giao nhiều điểm, và người nhận thấy rõ trong hộp có bao nhiêu tổ, bao nhiêu gam."}}, {"@type": "Question", "name": "Người nhận dùng yến thế nào?", "acceptedAnswer": {"@type": "Answer", "text": "Người lớn dùng 3–5g yến khô mỗi lần, 3–4 lần mỗi tuần. Một tổ sợi dài khoảng 10g. Trẻ dưới 1 tuổi chưa dùng."}}]}</script>
