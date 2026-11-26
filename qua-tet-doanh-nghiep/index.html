@@ -417,7 +417,7 @@ footer a{color:#E3D3B2}
         <span class="cap"><i></i><b>Khách quý</b><em>50G rút lông</em></span>
       </button>
     </div>
-    <p class="gal-hint">Chạm vào ảnh nhỏ để xem lớn · 5 mẫu hộp, cùng một bộ nhận diện</p>
+    <p class="gal-hint">Chạm vào ảnh nhỏ để xem lớn · ảnh tự đổi, 7 cách tặng cùng một bộ nhận diện</p>
   </div>
   </div>
 </section>
@@ -855,6 +855,10 @@ if(ev){gtag('event',ev,{link_url:h,channel:ch||'direct',page_path:location.pathn
   var g=document.getElementById('galGrid'); if(!g) return;
   var tiles=[].slice.call(g.querySelectorAll('.tile'));
   var items=tiles.map(function(t){return {k:t.dataset.k,who:t.dataset.who,what:t.dataset.what,alt:t.dataset.alt};});
+  items=items.concat([
+    {k:'f',who:'Trao tay trang trọng',what:'100G sợi dài',alt:'Hai bàn tay trao hộp quà yến sào 100G The Nest House trong phòng khách, bên cạnh là túi xách quà tặng'},
+    {k:'g',who:'Chọn cỡ theo ngân sách',what:'30G · 50G · 100G',alt:'Ba hộp quà yến sào The Nest House cỡ 30G, 50G và 100G xếp cạnh nhau'}
+  ]);
   var order=items.map(function(_,i){return i;});
   var timer=null, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function src(it,big){return '/assets/qua-tet-dn-2027/hero/'+it.k+'-'+(big?'big':'thumb')+'.webp';}
