@@ -54,7 +54,7 @@
   function ga(ev, p) { try { if (typeof gtag === "function") gtag("event", ev, p || {}); } catch (e) {} }
 
   var css =
-    ".tc-btn{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:8px;background:#0E3B33;color:#F4ECD6;border:1px solid #C1A374;border-radius:999px;padding:12px 18px;font:600 15px/1 'Be Vietnam Pro',system-ui,sans-serif;box-shadow:0 8px 22px rgba(0,0,0,.28);cursor:pointer}" +
+    ".tc-btn{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:7px;background:#0E3B33;color:#F4ECD6;border:1px solid #C1A374;border-radius:999px;padding:9px 16px;font:600 14px/1 'Be Vietnam Pro',system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}" +
     ".tc-btn:hover{background:#072E2C}.tc-btn .d{width:8px;height:8px;border-radius:50%;background:#E3C97A}" +
     ".tc-box{position:fixed;right:20px;bottom:20px;z-index:9999;width:370px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 40px);display:none;flex-direction:column;background:#FFFDF7;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.32);font:15px/1.5 'Be Vietnam Pro',system-ui,sans-serif;color:#1d2a27}" +
     ".tc-box.open{display:flex}" +
@@ -85,7 +85,7 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  var btn = el("button", "tc-btn", '<span class="d"></span>Chat với Đạt');
+  var btn = el("button", "tc-btn", '<span class="d"></span>Chat');
   btn.type = "button";
   btn.setAttribute("aria-label", "Mở khung chat tư vấn");
   var box = el("div", "tc-box");
