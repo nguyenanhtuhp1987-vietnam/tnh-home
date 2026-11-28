@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4S6DMJPX3"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R4S6DMJPX3');</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Vòng Quay May Mắn — The Nest House</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Quay số nhận quà từ The Nest House — tỉ lệ trúng 100%. Nhập số điện thoại để nhận quà tặng ngay.">
@@ -37,10 +37,26 @@ h1,h2{font-family:var(--serif)}
 /* 28/11/2026 (CEO): dải quà tặng ngay sau tiêu đề để kích thích quay */
 .gifts{margin:20px 0 6px}
 .gifts h2{font-size:1rem;color:var(--gold-light);text-align:center;letter-spacing:.03em;margin-bottom:12px}
-.gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.gift{border:1px solid rgba(193,163,116,.45);border-radius:9px;overflow:hidden;background:rgba(0,0,0,.18);box-shadow:0 6px 16px rgba(0,0,0,.28)}
-.gift img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.gift.last{grid-column:span 1}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gift{border:1px solid rgba(193,163,116,.45);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.18);box-shadow:0 6px 16px rgba(0,0,0,.28);padding:0;color:inherit;font:inherit;text-align:center;cursor:pointer;display:block;width:100%}
+.gift .gcap{display:block;padding:6px 4px 8px;font-size:.84rem;font-weight:700;line-height:1.25;color:var(--gold-light)}
+.gift .gzoom{display:block;font-size:.68rem;font-weight:500;opacity:.75;color:var(--white);margin-top:2px}
+.gift-tip{text-align:center;font-size:.78rem;opacity:.75;margin-top:8px}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px}
+.lb[hidden]{display:none!important}
+.lbbox{max-width:100%;max-height:62vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:2px solid var(--gold);cursor:zoom-in;touch-action:pan-x pan-y pinch-zoom}
+.lbbox img{width:min(92vw,500px);height:auto;display:block}
+.lbbox.zoomed{cursor:zoom-out}
+.lbbox.zoomed img{width:820px;max-width:none}
+.lb .lbcap{margin-top:12px;font-size:1.05rem;font-weight:700;color:var(--gold-light);text-align:center}
+.lb .lbhint{margin-top:4px;font-size:.8rem;opacity:.8;text-align:center}
+.lb .lbbar{display:flex;gap:10px;margin-top:12px}
+.lb .lbbar button{padding:13px 20px;border-radius:999px;border:none;background:var(--gold);color:var(--deep);font-weight:800;font-size:1rem;cursor:pointer;min-height:48px}
+.lb .lbbar button.sec{background:transparent;color:var(--gold-light);border:1.5px solid var(--gold)}
+.gift{position:relative}
+.gift .gimg{position:relative;display:block}
+.gift .gglass{position:absolute;bottom:6px;right:6px;width:30px;height:30px;border-radius:50%;background:rgba(7,46,44,.82);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:.9rem;pointer-events:none}
+.gift img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 6px}
 .countdown .u{background:rgba(255,255,255,.06);border:1px solid rgba(193,163,116,.35);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center}
 .countdown .u b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--gold-light)}
@@ -60,7 +76,7 @@ h1,h2{font-family:var(--serif)}
 .more li::before{content:'✓';position:absolute;left:0;color:var(--gold-light);font-weight:700}
 .help-line{font-size:.82rem;margin:12px 0 0;padding:9px 12px;border:1px solid rgba(0,104,255,.6);border-radius:12px;background:rgba(0,104,255,.12)}
 .help-line a{color:#fff;font-weight:700}
-.step2{text-align:center;font-size:.86rem;color:var(--gold-light);font-weight:600;margin:16px 0 4px}
+.step2{text-align:center;font-size:.9rem;color:var(--gold-light);font-weight:700;margin:20px 0 34px}
 
   /* rules */
 .rules{background:rgba(255,255,255,.05);border:1px solid rgba(193,163,116,.3);border-radius:16px;padding:16px 18px;margin:20px 0}
@@ -93,7 +109,7 @@ h1,h2{font-family:var(--serif)}
 .pick{background:rgba(255,255,255,.06);border:1.5px solid rgba(193,163,116,.4);border-radius:16px;padding:14px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s}
 .pick:hover{border-color:var(--gold)}
 .pick.chosen{border-color:var(--gold-light);background:rgba(193,163,116,.14);box-shadow:0 0 0 2px var(--gold-light) inset}
-.pick .thumb{width:64px;height:64px;flex:0 0 64px;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,var(--forest),#1a5a4d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid rgba(193,163,116,.4)}
+.pick .thumb{width:84px;height:84px;flex:0 0 84px;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,var(--forest),#1a5a4d);display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid rgba(193,163,116,.4)}
 .pick .thumb img{width:100%;height:100%;object-fit:cover}
 .pick .info{flex:1;min-width:0}
 .pick .l{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
@@ -193,7 +209,8 @@ footer a{color:var(--gold-light)}
     <p>Quay số nhận quà tặng từ The Nest House — ai quay cũng có quà!</p>
   </div>
 
-  <section class="gifts" id="giftShowcase" aria-label="Quà tặng vòng quay"><h2>🎁 7 phần quà đang chờ anh chị</h2><div class="gift-grid" id="giftGrid"></div></section>
+  <section class="gifts" id="giftShowcase" aria-label="Quà tặng vòng quay"><h2>🎁 7 phần quà đang chờ anh chị</h2><div class="gift-grid" id="giftGrid"></div><p class="gift-tip">🔍 Bấm vào ảnh để xem to, chụm hai ngón để phóng</p></section>
+  <div class="lb" id="giftLb" hidden role="dialog" aria-label="Xem ảnh quà"><div class="lbbox" id="lbBox"><img id="lbImg" alt=""></div><div class="lbcap" id="lbCap"></div><div class="lbhint">Chạm vào ảnh hoặc bấm nút để phóng to · chụm hai ngón để zoom</div><div class="lbbar"><button type="button" id="lbZoom">🔍 Phóng to</button><button type="button" class="sec" id="lbClose">Đóng</button></div></div>
 
   <p class="cd-line" id="cdLine">⏳ Còn <b id="cdD">--</b> ngày — chương trình đến hết 31/01/2027</p>
 
@@ -361,26 +378,44 @@ footer a{color:var(--gold-light)}
   // 11/10/2026 (CEO): gộp đông trùng + kỷ tử thành 1 ô 40%; "10 hũ" giữ 0% (ô mồi); vòng còn 6 ô.
   // 13/10/2026 (CEO): voucher đổi luật — 5% giá trị đơn mua kế tiếp, tối đa 100k; liên hệ shop để nhận (khách đơn 200k đòi đủ 100k).
   //   Giữ name "Voucher 100k" (Worker/Sheet/CRM nhận đúng tên này); khách thấy label + VOUCHER_NOTE; không chọn cách nhận (luôn next_order).
-  // 28/11/2026 (CEO): đổi bảng quà — 7 ô, không còn ô mồi; bỏ yến vụn 3G, set trà, voucher, 4 hũ, 10 hũ. Tên quà mới khớp PRIZES của Worker tnh-khach-hang.
+  // 28/11/2026 (CEO): đổi bảng quà — nay 6 ô (bỏ kỷ tử 180ml, dồn tỉ lệ sang 2 hũ yến chưng 25%), không còn ô mồi; bỏ yến vụn 3G, set trà, voucher, 4 hũ, 10 hũ. Tên quà mới khớp PRIZES của Worker tnh-khach-hang.
   var SEGMENTS = [
-{ name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Combo đông trùng","+ kỷ tử (hũ 70ml)"], prob: 20, img: "/assets/wheel-combo-dt-kt.jpg", icon: "🍯" },
-{ name: "2 hũ yến chưng",           lines: ["2 hũ","yến chưng 30%"],       prob: 20, img: "/assets/wheel-2hu-yen-chung.jpg", icon: "🍯" },
-{ name: "Hũ cúc vàng 180ml",        lines: ["Hũ cúc vàng","180ml"],        prob: 10, img: "/assets/wheel-cuc-vang-180.jpg", icon: "🌼" },
-{ name: "Hũ atiso đỏ 180ml",        lines: ["Hũ atiso đỏ","180ml"],        prob: 20, img: "/assets/wheel-atiso-do-180.jpg", icon: "🌺" },
-{ name: "Hũ hoa đậu biếc 180ml",    lines: ["Hũ hoa đậu biếc","180ml"],    prob: 20, img: "/assets/wheel-dau-biec-180.jpg", icon: "🪻" },
-{ name: "Hũ đông trùng 180ml",      lines: ["Hũ đông trùng","180ml"],      prob: 5,  img: "/assets/wheel-dong-trung-180.jpg", icon: "🍯" },
-{ name: "Hũ kỷ tử 180ml",           lines: ["Hũ kỷ tử","180ml"],           prob: 5,  img: "/assets/wheel-ky-tu-180.jpg", icon: "🍒" }
+{ name: "Combo đông trùng hạ thảo + kỷ tử", lines: ["Đông trùng","+ kỷ tử"], cap: "Combo đông trùng + kỷ tử", prob: 20, img: "/assets/wheel-combo-dt-kt.jpg", icon: "🍯" },
+{ name: "2 hũ yến chưng",           lines: ["2 hũ","yến chưng"],         cap: "2 hũ yến chưng 30%",       prob: 25, img: "/assets/wheel-2hu-yen-chung.jpg", icon: "🍯" },
+{ name: "Hũ cúc vàng 180ml",        lines: ["Hũ cúc","vàng"],            cap: "Hũ cúc vàng 180ml",        prob: 10, img: "/assets/wheel-cuc-vang-180.jpg", icon: "🌼" },
+{ name: "Hũ atiso đỏ 180ml",        lines: ["Hũ atiso","đỏ"],            cap: "Hũ atiso đỏ 180ml",        prob: 20, img: "/assets/wheel-atiso-do-180.jpg", icon: "🌺" },
+{ name: "Hũ hoa đậu biếc 180ml",    lines: ["Hũ đậu","biếc"],            cap: "Hũ hoa đậu biếc 180ml",    prob: 20, img: "/assets/wheel-dau-biec-180.jpg", icon: "🪻" },
+{ name: "Hũ đông trùng 180ml",      lines: ["Hũ đông","trùng"],          cap: "Hũ đông trùng 180ml",      prob: 5,  img: "/assets/wheel-dong-trung-180.jpg", icon: "🍯" }
   ];
 
   // ---- dải quà ngay sau tiêu đề (tự lấy từ SEGMENTS để luôn khớp vòng quay) ----
   (function(){
     var g = document.getElementById('giftGrid'); if(!g) return;
     var list = SEGMENTS.filter(function(s){ return s.prob > 0; });
-    list.forEach(function(s, i){
-      var d = document.createElement('div'); d.className = 'gift';
-      var im = document.createElement('img'); im.src = s.img; im.alt = s.label || s.name; im.loading = 'lazy'; im.width = 400; im.height = 400;
-      d.appendChild(im); g.appendChild(d);
+    var lb = document.getElementById('giftLb'), box = document.getElementById('lbBox'), zb = document.getElementById('lbZoom');
+    function setZoom(on){ box.classList.toggle('zoomed', on); zb.textContent = on ? '🔍 Thu nhỏ' : '🔍 Phóng to'; if(on){ box.scrollLeft = (box.scrollWidth - box.clientWidth)/2; box.scrollTop = (box.scrollHeight - box.clientHeight)/2; } }
+    function openLb(s){
+      document.getElementById('lbImg').src = s.img; document.getElementById('lbImg').alt = s.cap || s.name;
+      document.getElementById('lbCap').textContent = s.cap || s.name; setZoom(false); lb.hidden = false;
+    }
+    list.forEach(function(s){
+      var d = document.createElement('button'); d.type = 'button'; d.className = 'gift';
+      d.setAttribute('aria-label', 'Xem to: ' + (s.cap || s.name));
+      var im = document.createElement('img'); im.src = s.img; im.alt = s.cap || s.name; im.loading = 'lazy'; im.width = 400; im.height = 400;
+      var c = document.createElement('span'); c.className = 'gcap'; c.textContent = s.cap || s.name;
+      var gl = document.createElement('span'); gl.className = 'gglass'; gl.textContent = '🔍'; gl.setAttribute('aria-hidden', 'true');
+      var w = document.createElement('span'); w.className = 'gimg'; w.appendChild(im); w.appendChild(gl);
+      d.appendChild(w); d.appendChild(c);
+      d.addEventListener('click', function(){ openLb(s); });
+      g.appendChild(d);
     });
+    if(lb){
+      zb.addEventListener('click', function(){ setZoom(!box.classList.contains('zoomed')); });
+      box.addEventListener('click', function(){ setZoom(!box.classList.contains('zoomed')); });
+      document.getElementById('lbClose').addEventListener('click', function(){ lb.hidden = true; });
+      lb.addEventListener('click', function(e){ if(e.target === lb) lb.hidden = true; });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') lb.hidden = true; });
+    }
     var h = document.querySelector('#giftShowcase h2'); if(h) h.textContent = '🎁 ' + list.length + ' phần quà đang chờ anh chị';
   })();
 
@@ -531,12 +566,12 @@ function tickCountdown(){
       ctx.rotate(mid);
       ctx.textAlign = 'right';
       ctx.fillStyle = (i%2===0) ? '#F4ECD6' : '#072E2C';
-      ctx.font = '700 26px "Be Vietnam Pro", sans-serif';
+      ctx.font = '800 30px "Be Vietnam Pro", sans-serif';
       var lines = seg.lines;
-      var lineH = 30;
+      var lineH = 35;
       var startY = -((lines.length-1)*lineH)/2;
 lines.forEach(function(line, li){
-        ctx.fillText(line, R-30, startY + li*lineH + 8);
+        ctx.fillText(line, R-34, startY + li*lineH + 10);
       });
       ctx.restore();
     });
