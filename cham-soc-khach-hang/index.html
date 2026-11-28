@@ -37,16 +37,30 @@ h1,h2{font-family:var(--serif)}
 /* 28/11/2026 (CEO): dải quà tặng ngay sau tiêu đề để kích thích quay */
 .gifts{margin:20px 0 6px}
 .gifts h2{font-size:1rem;color:var(--gold-light);text-align:center;letter-spacing:.03em;margin-bottom:12px}
-.gift-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.gift{border:1px solid rgba(193,163,116,.45);border-radius:14px;overflow:hidden;background:rgba(0,0,0,.18);box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.gift{border:1px solid rgba(193,163,116,.45);border-radius:9px;overflow:hidden;background:rgba(0,0,0,.18);box-shadow:0 6px 16px rgba(0,0,0,.28)}
 .gift img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.gift.last{grid-column:1/-1;display:flex;justify-content:center}
-.gift.last img{width:calc(50% - 5px)}
+.gift.last{grid-column:span 1}
 .countdown{display:flex;justify-content:center;gap:8px;margin:18px 0 6px}
 .countdown .u{background:rgba(255,255,255,.06);border:1px solid rgba(193,163,116,.35);border-radius:10px;padding:8px 4px;min-width:54px;text-align:center}
 .countdown .u b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--gold-light)}
 .countdown .u span{display:block;font-size:.62rem;opacity:.75;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
 .cd-note{text-align:center;font-size:.74rem;opacity:.65;margin-bottom:6px}
+/* 28/11/2026 (CEO): gọn trang — đồng hồ 1 dòng, bỏ khối hướng dẫn, Bước 1 lên trước, điều kiện phụ gập */
+.cd-line{text-align:center;font-size:.86rem;color:var(--gold-light);margin:12px 0 4px}
+.cd-line b{font-size:1rem}
+#gateBox,#stepAlready{scroll-margin-top:70px}
+.more{max-width:520px;margin:12px auto 0;border:1px solid rgba(193,163,116,.3);border-radius:12px;background:rgba(255,255,255,.04)}
+.more summary{cursor:pointer;padding:11px 14px;font-size:.84rem;font-weight:600;color:var(--gold-light);list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:' ▾'}
+.more[open] summary::after{content:' ▴'}
+.more ul{list-style:none;padding:0 14px 12px}
+.more li{position:relative;padding-left:20px;font-size:.82rem;opacity:.92;margin-bottom:7px}
+.more li::before{content:'✓';position:absolute;left:0;color:var(--gold-light);font-weight:700}
+.help-line{font-size:.82rem;margin:12px 0 0;padding:9px 12px;border:1px solid rgba(0,104,255,.6);border-radius:12px;background:rgba(0,104,255,.12)}
+.help-line a{color:#fff;font-weight:700}
+.step2{text-align:center;font-size:.86rem;color:var(--gold-light);font-weight:600;margin:16px 0 4px}
 
   /* rules */
 .rules{background:rgba(255,255,255,.05);border:1px solid rgba(193,163,116,.3);border-radius:16px;padding:16px 18px;margin:20px 0}
@@ -167,7 +181,7 @@ footer a{color:var(--gold-light)}
 <style>:where(img){max-width:100%}:where(img[height]){height:auto}</style>
 </head>
 <body>
-<div class="zalo-bar">💬 Mọi hỗ trợ quay số &amp; nhận quà chỉ qua <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Zalo The Nest House 0969.850.153</a>. Khung chat Shopee/Lazada/TikTok <b>không xử lý quà tặng</b> — anh chị nhắn ở đó shop sẽ không hỗ trợ được.</div>
+<div class="zalo-bar">💬 Hỗ trợ quà tặng chỉ qua <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Zalo 0969.850.153</a> — chat Shopee/Lazada/TikTok <b>không xử lý quà</b>.</div>
 
 <header class="topbar"><div class="brand">THE NEST HOUSE</div></header>
 
@@ -181,33 +195,12 @@ footer a{color:var(--gold-light)}
 
   <section class="gifts" id="giftShowcase" aria-label="Quà tặng vòng quay"><h2>🎁 7 phần quà đang chờ anh chị</h2><div class="gift-grid" id="giftGrid"></div></section>
 
-  <div class="countdown" id="countdown">
-    <div class="u"><b id="cdD">00</b><span>Ngày</span></div>
-    <div class="u"><b id="cdH">00</b><span>Giờ</span></div>
-    <div class="u"><b id="cdM">00</b><span>Phút</span></div>
-    <div class="u"><b id="cdS">00</b><span>Giây</span></div>
-  </div>
-  <p class="cd-note">Thời gian tham gia còn lại — hết hạn 31/01/2027</p>
-
-  <div class="rules">
-    <h3>Cách tham gia — 3 bước</h3>
-    <ol class="steps">
-      <li><span class="n">1</span> Nhập <b>mã đơn</b> (mua trên sàn) hoặc <b>SĐT đã mua</b> (website, Zalo, cửa hàng)</li>
-      <li><span class="n">2</span> Bấm <b>Quay ngay</b> — 2 lượt, chọn quà anh chị thích hơn</li>
-      <li><span class="n">3</span> Nhập <b>SĐT nhận quà</b> (số có Zalo) → shop nhắn Zalo cho anh chị</li>
-    </ol>
-    <p class="help">📷 <b>Không quét được mã hoặc không biết quay?</b> <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Chụp thư cảm ơn gửi Zalo 0969.850.153</a>, shop quay giúp.</p>
-    <ul class="small">
-      <li>Áp dụng cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>, <b>đặt trong 30 ngày gần nhất</b>; mỗi mã đơn tham gia <b>1 lần</b>; quà được xác nhận sau khi shop kiểm tra đơn. Nếu anh chị mua hơn 1 lần thì bổ sung <b>SĐT khác (người thân)</b> để có thể tham gia quay nhiều lần</li>
-      <li>Nhận quà: <b>ghé cửa hàng</b>, shop <b>gửi kèm đơn kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship)</li>
-      <li>Chương trình áp dụng đến hết <b>31/01/2027</b></li>
-    </ul>
-  </div>
+  <p class="cd-line" id="cdLine">⏳ Còn <b id="cdD">--</b> ngày — chương trình đến hết 31/01/2027</p>
 
   <!-- WHEEL STEP -->
   <div class="gate" id="gateBox">
     <h3>Bước 1 — Thông tin nhận quà</h3>
-    <p class="cond">Vòng quay dành cho đơn hàng <b>thanh toán thực tế từ 1.000.000đ</b>; shop kiểm tra đơn trước khi gửi quà. <b>Đã tham gia rồi?</b> Nhập lại SĐT và bấm nút — trang hiện lại quà + mã nhận quà của anh chị.</p>
+    <p class="cond">Anh chị có thể tham gia nếu đơn đặt trong <b>30 ngày gần nhất</b> và đã <b>thanh toán thực tế từ 1.000.000đ</b>. Mỗi đơn tham gia <b>1 lần</b>, được quay <b>2 lượt</b> để chọn quà. Shop kiểm tra đơn trước khi gửi quà.</p>
     <div class="gate-form">
       <label for="gatePhone">Số điện thoại nhận quà <span class="req">*</span> <span style="opacity:.7;font-weight:400">(số có Zalo)</span></label>
       <input type="tel" id="gatePhone" placeholder="VD: 0912 345 678" inputmode="tel" autocomplete="tel">
@@ -223,15 +216,27 @@ footer a{color:var(--gold-light)}
       </div>
       <input class="ref-input" id="gateRef" maxlength="40" placeholder="Mã đơn hàng" autocomplete="off" hidden>
       <div class="pickup-note" id="gateRefNote" hidden>✓ SĐT ở trên là SĐT mua hàng — không cần nhập thêm.</div>
-      <p class="pickup-note">Bấm <b>Mở lượt quay</b> là anh chị xác nhận đơn hàng thanh toán thực tế <b>từ 1.000.000đ</b>.</p>
+      <p class="pickup-note">Bấm <b>Mở lượt quay</b> là anh chị xác nhận đơn thanh toán thực tế <b>từ 1.000.000đ</b>, đặt trong 30 ngày gần nhất.</p>
       <div class="err" id="gateErr">—</div>
       <button type="button" class="submit-btn" id="gateBtn" style="margin-top:12px">🔓 Mở lượt quay</button>
     </div>
     <div class="ok" id="gateOkMsg" hidden></div>
+    <p class="pickup-note" style="margin-top:12px"><b>Đã tham gia rồi?</b> Nhập lại SĐT và bấm nút — trang hiện lại quà và mã nhận quà của anh chị.</p>
+    <p class="help-line">📷 <b>Không biết quay?</b> <a href="https://zalo.me/0969850153" target="_blank" rel="noopener">Chụp thư cảm ơn gửi Zalo 0969.850.153</a>, shop quay giúp anh chị.</p>
   </div>
+
+  <details class="more" id="moreInfo">
+    <summary>Điều kiện &amp; cách nhận quà — bấm để xem</summary>
+    <ul>
+      <li>Mua hơn 1 lần? Mỗi số điện thoại quay 1 lần — đơn sau anh chị dùng <b>SĐT khác (người thân)</b> để quay tiếp.</li>
+      <li>Nhận quà: <b>ghé cửa hàng</b>, shop <b>gửi kèm đơn kế tiếp</b>, hoặc <b>nhận ngay</b> (quý khách thanh toán phí ship).</li>
+      <li>Chương trình áp dụng đến hết <b>31/01/2027</b>.</li>
+    </ul>
+  </details>
 
   <div id="stepWheel">
     <div class="wheel-zone">
+      <p class="step2">Bước 2 — Quay 2 lượt, chọn quà anh chị thích hơn</p>
       <div class="wheel-outer">
         <div class="pointer"></div>
         <div class="wheel-ring">
@@ -317,7 +322,7 @@ footer a{color:var(--gold-light)}
   <div id="stepAlready" class="thanks" hidden>
     <div class="ico">🎁</div>
     <h2>Anh chị đã tham gia rồi!</h2>
-    <p>Mỗi số điện thoại tham gia 1 lần. Thông tin quà của anh chị:</p>
+    <p>Mỗi số điện thoại tham gia 1 lần (mua đơn khác thì anh chị dùng <b>SĐT khác — người thân</b> để quay tiếp). Thông tin quà của anh chị:</p>
     <div class="lookup" id="lookupBox" hidden>
       <div>🎁 Quà: <b id="lkPrize">—</b></div>
       <div>🎟 Mã nhận quà: <b id="lkCode">—</b> <button type="button" class="copy-btn" data-copy="lkCode" style="margin:0 0 0 6px;padding:4px 10px">📋 Sao chép</button></div>
@@ -372,7 +377,7 @@ footer a{color:var(--gold-light)}
     var g = document.getElementById('giftGrid'); if(!g) return;
     var list = SEGMENTS.filter(function(s){ return s.prob > 0; });
     list.forEach(function(s, i){
-      var d = document.createElement('div'); d.className = 'gift' + (list.length % 2 === 1 && i === list.length - 1 ? ' last' : '');
+      var d = document.createElement('div'); d.className = 'gift';
       var im = document.createElement('img'); im.src = s.img; im.alt = s.label || s.name; im.loading = 'lazy'; im.width = 400; im.height = 400;
       d.appendChild(im); g.appendChild(d);
     });
@@ -487,19 +492,15 @@ track('wheel_view',{ stage: state.submitted ? 'returned' : (state.spins.length >
 
   // ---- countdown ----
 function tickCountdown(){
-    var now = Date.now();
-    var diff = Math.max(0, DEADLINE - now);
+    var diff = Math.max(0, DEADLINE - Date.now());
     var d = Math.floor(diff/86400000);
-    var h = Math.floor((diff%86400000)/3600000);
-    var m = Math.floor((diff%3600000)/60000);
-    var s = Math.floor((diff%60000)/1000);
-    document.getElementById('cdD').textContent = String(d).padStart(2,'0');
-    document.getElementById('cdH').textContent = String(h).padStart(2,'0');
-    document.getElementById('cdM').textContent = String(m).padStart(2,'0');
-    document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+    var ln = document.getElementById('cdLine'); if(!ln) return;
+    if(diff <= 0){ ln.textContent = 'Chương trình đã kết thúc (hết 31/01/2027)'; return; }
+    if(d === 0){ ln.textContent = '⏳ Hôm nay là ngày cuối của chương trình (đến hết 31/01/2027)'; return; }
+    document.getElementById('cdD').textContent = d;
   }
   tickCountdown();
-  setInterval(tickCountdown, 1000);
+  setInterval(tickCountdown, 60000);
 
   // ---- wheel drawing ----
   var canvas = document.getElementById('wheelCanvas');
